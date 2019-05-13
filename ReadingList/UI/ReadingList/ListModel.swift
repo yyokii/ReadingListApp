@@ -22,17 +22,11 @@ protocol ListModelInput {
 
 final class ListModel: ListModelInput {
     func addItemToRealm(title: String, url: String) {
-        // 日付取得（TODO: 他にまとめる）
-        let formater = DateFormatter()
-        formater.dateStyle = .medium
-        formater.timeStyle = .short
-        let dateString = formater.string(from: Date())
-        
         let readingItem = ReadingItem()
         readingItem.title = title
         readingItem.url = url
-        readingItem.createdDate = dateString
-        readingItem.finishedDate = ""
+        readingItem.createdDate =  Date()
+        readingItem.finishedDate = nil
     }
 
     /// 配列に格納されているアイテムをrealmに変換し保存
@@ -59,8 +53,10 @@ final class ListModel: ListModelInput {
             let readingItem = ReadingItem()
             readingItem.title = title
             readingItem.url = url
-            readingItem.createdDate = createdDate
-            readingItem.finishedDate = finishedDate
+            
+            let fotmatter = Date().getFormatter()
+            readingItem.createdDate = fotmatter.date(from: createdDate)
+            readingItem.finishedDate = fotmatter.date(from: finishedDate)
             return readingItem
         } else {
             return nil

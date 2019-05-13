@@ -29,7 +29,8 @@ class ShareViewController: SLComposeServiceViewController {
                         return
                     }
                     // 日付取得
-                    let dateString = Date().formattedToday()
+                    let formatter = Date().getFormatter()
+                    let dateString = formatter.string(from: Date())
                     
                     var itemDic = Dictionary<String, String>()
                     itemDic = [Constant.readingItem.title : title, Constant.readingItem.url: itemUrl, Constant.readingItem.createdDate: dateString, Constant.readingItem.finishedDate: ""]

@@ -26,8 +26,8 @@ class RealmManager {
         }
     }
     
-    /// 記事データ編集 FIXME: bool返すようにしたい, error型か
-    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: String, finishedDate: String, item: ReadingItem) {
+    /// 記事データ編集 TODO: bool返すようにしたい, error型か
+    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: Date?, finishedDate: Date?, item: ReadingItem) {
         try? database?.write {
             item.url = url
             item.title = title
@@ -41,12 +41,12 @@ class RealmManager {
         if isFinished {
             // 読み終わった
             try? database?.write {
-                object.finishedDate = Date().formattedToday()
+                object.finishedDate = Date()
             }
         } else {
             // 未読
             try? database?.write {
-                object.finishedDate = ""
+                object.finishedDate = nil
             }
         }
     }

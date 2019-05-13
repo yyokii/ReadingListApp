@@ -45,7 +45,7 @@ final class ListPresenter {
             // Userdefaultに保存している記事情報を削除
             UserDefaultManager.shareInstance.deleteReadingItems()
             // UI更新
-            if let items = RealmManager.sharedInstance.readItems() {
+            if let items = RealmManager.sharedInstance.readNotFinishedItems() {
                 view.updateList(results: items)
             }
         }

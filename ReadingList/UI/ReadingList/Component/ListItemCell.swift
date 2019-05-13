@@ -17,16 +17,19 @@ class ListItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureView(title: String, url: String, date: String) {
+    func configureView(title: String, url: String, date: Date?) {
         titleLbl.text = title
-        dateLbl.text = date
+        let formatter = Date().getFormatter()
+        
+        if let displayDate = date {
+            dateLbl.text = formatter.string(from: displayDate)
+        }
         
         let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
             if let _ = error {

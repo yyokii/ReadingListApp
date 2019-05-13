@@ -9,11 +9,11 @@
 import Foundation
 
 extension Date {
-    /// フォーマットされた今日の日付
-    func formattedToday() -> String {
+    /// フォーマッターを作成
+    func getFormatter(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .short) -> DateFormatter {
         let formater = DateFormatter()
         formater.dateStyle = .medium
         formater.timeStyle = .short
-        return formater.string(from: Date())
+        return formater
     }
 }
