@@ -8,15 +8,15 @@
 
 import RealmSwift
 
+/// リーディングリストのアイテム（読む予定のもの or 読み終わりのもの）
 class ReadingItem: Object {
     @objc dynamic var url = ""
     @objc dynamic var title = ""
     @objc dynamic var imageUrl = ""
-    // FIXME: これdateにカエルに当たって保存フローを修正したい
     // 記事がアプリに追加された日
     @objc dynamic var createdDate: Date?
     // いつまでに読み終わる予定か
-    @objc dynamic var expirationDate: Date?
+    @objc dynamic var dueDate: Date?
     // 読み終わった日（値がある＝読み終わっている、値なし＝まだ読み終わってない）
     @objc dynamic var finishedDate: Date?
 }

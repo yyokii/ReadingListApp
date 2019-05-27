@@ -68,6 +68,9 @@ extension ListPresenter: ListPresenterInput {
     
     func viewWillAppear() {
         fetchAndUpdateList()
+        
+        // test
+        RealmManager.sharedInstance.readItemsByDueDateTowDaysAfter()
     }
     
     func didTapAddButton() {

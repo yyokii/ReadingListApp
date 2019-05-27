@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum LocalNotificationType {
+    // 1日前の通知
+    case OneDayBefore
+    // 2日前の通知
+    case TwoDaysBefore
+}
+
 struct Constant {
     struct UserDefault {
         static let suiteName = "group.yyokii.ReadingList"
@@ -16,11 +23,11 @@ struct Constant {
         static let readingItem = "readingItem"
     }
     
-    // TODO: 先頭を大文字にする
-    struct readingItem {
+    struct ReadingItem {
         static let title = "title"
         static let url = "url"
         static let createdDate = "createdDate"
+        static let dueDate = "dueDate"
         static let finishedDate = "finishedDate"
     }
     
@@ -31,6 +38,7 @@ struct Constant {
             static let twoDaysBefore = "twoDaysBefore"
         }
         
+        // TODO: これ使っていないのでは？
         static let body = "あと2日でこちらの記事が自動的に削除されます👀\n"
     }
 }

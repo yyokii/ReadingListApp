@@ -12,8 +12,8 @@ extension Date {
     /// フォーマッターを作成
     func getFormatter(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .short) -> DateFormatter {
         let formater = DateFormatter()
-        formater.dateStyle = .medium
-        formater.timeStyle = .short
+        formater.dateStyle = dateStyle
+        formater.timeStyle = timeStyle
         return formater
     }
 }

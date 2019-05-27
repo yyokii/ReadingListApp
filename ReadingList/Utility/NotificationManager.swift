@@ -11,13 +11,6 @@ import NotificationCenter
 import UserNotifications
 import RealmSwift
 
-enum LocalNotificationType {
-    // 1日前の通知
-    case OneDayBefore
-    // 2日前の通知
-    case TwoDaysBefore
-}
-
 class NotificationManager {
     static let sharedInstance = NotificationManager()
     

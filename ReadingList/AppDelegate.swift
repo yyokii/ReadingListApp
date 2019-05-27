@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,22 +15,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         
-//        let listVC = UIStoryboard(name: "List", bundle: nil).instantiateInitialViewController() as! ListVC
-//        let model = ListModel()
-//        let presenter = ListPresenter(view: listVC, model: model)
-//        listVC.inject(presenter: presenter)
-//
-//        let navVC = UINavigationController()
-//        navVC.viewControllers = [listVC]
+        // FIXME: いらないのでは？
+        // configureVC()
         
-        let ArticleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
+        let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
+        let navFirst = UINavigationController()
+        navFirst.viewControllers = [articleListVC]
+        
+        
+        let listVC = UIStoryboard(name: "List", bundle: nil).instantiateInitialViewController() as! ListVC
+        let model = ListModel()
+        let presenter = ListPresenter(view: listVC, model: model)
+        listVC.inject(presenter: presenter)
+        let navSecond = UINavigationController()
+        navSecond.viewControllers = [listVC]
+        
+        let tab = UITabBarController()
+        tab.viewControllers = [navFirst, navSecond]
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ArticleListVC
+        window?.rootViewController = tab
         window?.makeKeyAndVisible()
-        
         return true
+    }
+    
+    private func configureVC() {
+        
+        let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
+        let navFirst = UINavigationController()
+        navFirst.viewControllers = [articleListVC]
+        
+        
+        let listVC = UIStoryboard(name: "List", bundle: nil).instantiateInitialViewController() as! ListVC
+        let model = ListModel()
+        let presenter = ListPresenter(view: listVC, model: model)
+        listVC.inject(presenter: presenter)
+        let navSecond = UINavigationController()
+        navSecond.viewControllers = [listVC]
+        
+        // タブの作成
+        let tabBar = UITabBarController()
+        tabBar.viewControllers = [navFirst, navSecond]
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabBar
+        window?.makeKeyAndVisible()
     }
 }
 

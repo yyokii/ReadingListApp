@@ -29,6 +29,12 @@ class ArticleListVC: UIViewController {
         collectionView.register(UINib(nibName: "ArticleItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ArticleItemCollectionViewCell")
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        FirebaseManager.sharedInstance.fetchRssArticles { articles in
+            print("test")
+        }
+    }
 }
 
 
