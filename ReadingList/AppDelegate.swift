@@ -20,11 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // FIXME: いらないのでは？
         // configureVC()
         
+        // おすすめ記事一覧
         let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
         let navFirst = UINavigationController()
         navFirst.viewControllers = [articleListVC]
         
-        
+        // リーディングリスト一覧
         let listVC = UIStoryboard(name: "List", bundle: nil).instantiateInitialViewController() as! ListVC
         let model = ListModel()
         let presenter = ListPresenter(view: listVC, model: model)
@@ -32,8 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navSecond = UINavigationController()
         navSecond.viewControllers = [listVC]
         
+        // メニュー
+        let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
+        let navThird = UINavigationController()
+        navThird.navigationBar.prefersLargeTitles = true
+        navThird.navigationItem.largeTitleDisplayMode = .always
+        navThird.viewControllers = [aboutAppVC]
+        
         let tab = UITabBarController()
-        tab.viewControllers = [navFirst, navSecond]
+        tab.viewControllers = [navFirst, navSecond, navThird]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tab
