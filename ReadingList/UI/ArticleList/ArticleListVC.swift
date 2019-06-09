@@ -18,7 +18,7 @@ class ArticleListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseManager.sharedInstance.fetchRssArticles {[weak self] articles in
+        FirebaseManager.sharedInstance.fetchArticles {[weak self] articles in
             self?.articles = articles
             self?.collectionView.reloadData()
         }

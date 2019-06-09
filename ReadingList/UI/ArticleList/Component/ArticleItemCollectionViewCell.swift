@@ -24,6 +24,12 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    // cellの再利用について https://stackoverflow.com/questions/45284705/swift-3-tableview-duplicating-loaded-images-from-firebase
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
+    
     func configureCell() {
         guard let item = article else { return }
         
@@ -32,7 +38,7 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
             if let _ = error {
                 return
             }
-            
+            // TODO: ここのimageURLを保存したい
             if let imageUrl = ogData.imageUrl as URL? {
                 DispatchQueue.main.async{
                     self?.imageView.setImageByAlamofire(with: imageUrl)

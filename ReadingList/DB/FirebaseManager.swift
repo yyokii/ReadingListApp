@@ -20,56 +20,32 @@ class FirebaseManager {
     
     private init() {}
     
-    func fetchRssArticles(completion: (([Article]?) -> Void)?) {
-        let collectionRef = db.collection("Rss")
+    // TODO: ここのerrorと、成功時のresultを渡す時のはなし、swift詳解であったよねと。。
+    func fetchArticles(completion: @escaping (_ result: [Article]) -> Void) {
+        let collectionRef = db.collection("Articles")
         
         collectionRef.getDocuments { (snapShot, error) in
             guard error == nil else {
-                completion?(nil)
                 return
             }
-
-            // 各Rssのドキュメント参照を取得
-            let rssRefs = snapShot?.documents.map({ (docSnapShot) in
-                docSnapShot.reference
+            
+            // 記事データを全て取得
+            let datas = snapShot?.documents.map({ (docSnapShot) in
+                docSnapShot.data()
             })
             
-            // 各Rssの記事の配列、辞書型が良さげ
+            // 記事の配列
             var articles = [Article]()
-            
-            let dispatchGroup = DispatchGroup()
-            let dispatchQueue = DispatchQueue(label: "rssQueue", attributes: .concurrent)
-        
-            rssRefs?.forEach({ reference in
-                dispatchGroup.enter()
-                dispatchQueue.async(group: dispatchGroup) {
-                    reference.collection("Items").getDocuments { (itemsSnapShot, error) in
-                        guard error == nil else {
-                            completion?(nil)
-                            return
-                        }
-                        // 記事データを全て取得
-                        let datas = itemsSnapShot?.documents.map({ (docSnapShot) in
-                            docSnapShot.data()
-                        })
-                        
-                        // 記事データを配列に格納する
-                        datas?.forEach { data  in
-                            
-                            let timeStamp = data["date"] as! Timestamp
-                            let dateValue = timeStamp.dateValue()
-                            
-                            let article = Article(url: data["url"] as! String, title: data["title"] as! String, imageUrl: data["imgUrl"] as? String, summary: data["summary"] as? String, date: dateValue)
-                            articles.append(article)
-                        }
-                        dispatchGroup.leave()
-                    }
-                }
-            })
-            // 全ての非同期処理完了後にメインスレッドで処理
-            dispatchGroup.notify(queue: .main) {
-                completion?(articles)
+            // 記事データを配列に格納する
+            datas?.forEach { data  in
+                
+                let timeStamp = data["date"] as! Timestamp
+                let dateValue = timeStamp.dateValue()
+                
+                let article = Article(url: data["url"] as! String, title: data["title"] as! String, imageUrl: data["imgUrl"] as? String, summary: data["summary"] as? String, date: dateValue)
+                articles.append(article)
             }
+            completion(articles)
         }
     }
 }

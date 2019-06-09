@@ -27,6 +27,11 @@ class ListItemCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        articleImage.image = nil
+    }
+    
     func configureView(row: Int, title: String, url: String, date: Date?) {
         self.row = row
         titleLbl.text = title
