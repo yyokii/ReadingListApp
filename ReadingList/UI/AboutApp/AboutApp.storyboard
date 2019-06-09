@@ -13,20 +13,11 @@
         <!--About AppVC-->
         <scene sceneID="snL-6V-dqW">
             <objects>
-                <viewController id="3Hc-lA-fS7" customClass="AboutAppVC" customModule="ThreeToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Hc-lA-fS7" customClass="AboutAppVC" customModule="ReadingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w2y-AP-ikp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-gu-Qb6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Wea-nj-2HG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5mi-Mf-Fxl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,7 +35,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5mi-Mf-Fxl" firstAttribute="top" secondItem="Gho-Cr-ZKU" secondAttribute="top" id="k9h-OI-IC0"/>
+                            <constraint firstItem="5mi-Mf-Fxl" firstAttribute="top" secondItem="Gho-Cr-ZKU" secondAttribute="top" id="HN4-uq-dHc"/>
                             <constraint firstItem="5mi-Mf-Fxl" firstAttribute="bottom" secondItem="Gho-Cr-ZKU" secondAttribute="bottom" id="neM-Vh-LcJ"/>
                             <constraint firstItem="5mi-Mf-Fxl" firstAttribute="leading" secondItem="Gho-Cr-ZKU" secondAttribute="leading" id="qN4-OS-VU6"/>
                             <constraint firstItem="5mi-Mf-Fxl" firstAttribute="trailing" secondItem="Gho-Cr-ZKU" secondAttribute="trailing" id="ukN-7e-j5J"/>
@@ -63,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGD-bk-YiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="731.8840579710145" y="110.49107142857143"/>
+            <point key="canvasLocation" x="730.43478260869574" y="110.49107142857143"/>
         </scene>
     </scenes>
 </document>

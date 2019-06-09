@@ -101,7 +101,11 @@ PODS:
   - Realm/Headers (3.13.1)
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
+  - SwiftMessages (7.0.0):
+    - SwiftMessages/App (= 7.0.0)
+  - SwiftMessages/App (7.0.0)
   - URLEmbeddedView (0.17.1)
+  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - AlamofireImage
@@ -110,7 +114,9 @@ DEPENDENCIES:
   - Hero
   - LicensePlist
   - RealmSwift
+  - SwiftMessages
   - URLEmbeddedView
+  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -134,7 +140,9 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - SwiftMessages
     - URLEmbeddedView
+    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -157,8 +165,10 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
   URLEmbeddedView: 08237f670e68c9ba7ae98f7de9e3e48ae2492126
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: a7057b7373fbb9bf6ad1bdb7b49d22f732592e2c
+PODFILE CHECKSUM: 0268708918c6c2ed8884f50afb64197b18ce37f4
 
 COCOAPODS: 1.6.0

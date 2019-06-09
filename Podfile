@@ -6,13 +6,15 @@ target 'ReadingList' do
   use_frameworks!
 
   # Pods for ReadingList
+  pod 'AlamofireImage'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'	
-  pod 'LicensePlist'
   pod 'Hero'
+  pod 'LicensePlist'
   pod 'RealmSwift'
+  pod 'SwiftMessages'
   pod 'URLEmbeddedView'
-  pod 'AlamofireImage'
+  pod 'XLPagerTabStrip', '~> 9.0'
 
 end
 

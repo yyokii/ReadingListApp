@@ -51,10 +51,9 @@ class RealmManager {
         }
     }
     
-    /// 記事アイテムを全て取得
-    func readItems() -> Results<ReadingItem>? {
-        let results = database!.objects(ReadingItem.self)
-        return results
+    /// 読み終わってるものを全て取得
+    func readFinishedItems() -> Results<ReadingItem>?  {
+        return database?.objects(ReadingItem.self).filter("finishedDate != null")
     }
     
     /// 読み終わっていないものを全て取得
@@ -122,8 +121,8 @@ class RealmManager {
     }
     
     /// タイトルとURLが一致するものを削除
-    func deleteItem(readingItem: ReadingItem) {
-        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@", readingItem.title, readingItem.url)
+    func deleteItem(title: String, url: String) {
+        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@", title, url)
         
         guard let results = fileterdItem else { return }
         try? database?.write {

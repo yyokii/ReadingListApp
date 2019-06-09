@@ -42,7 +42,7 @@ final class ListModel: ListModelInput {
     
     /// 特定のアイテムを削除
     func deleteItem(readingItem: ReadingItem) {
-        RealmManager.sharedInstance.deleteItem(readingItem: readingItem)
+        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url)
     }
     
     /// dicからRealmオブジェクトを生成

@@ -1,8 +1,8 @@
 //
-//  ListPresenter.swift
+//  ReadingListPresenter.swift
 //  ReadingList
 //
-//  Created by Yoki Higashihara on 2019/04/14.
+//  Created by Yoki Higashihara on 2019/06/09.
 //  Copyright © 2019 Yoki Higashihara. All rights reserved.
 //
 
@@ -10,27 +10,23 @@ import Foundation
 import UIKit.UIApplication
 import RealmSwift
 
-protocol ListPresenterInput {
+protocol ReadingListPresenterInput {
     func deleteItem(readingItem: ReadingItem)
     func tapAddButton()
-    func tapReadingItemButton()
-    func tapFinishedItemButton()
     func viewDidLoad()
     func viewWillAppear()
 }
 
-protocol ListPresenterOutput: AnyObject {
-    func configureReadingItemButton()
-    func configureFinishedItemButton()
+protocol ReadingListPresenterOutput: AnyObject {
     func updateList(results: Results<ReadingItem>)
 }
 
-final class ListPresenter {
-    private weak var view: ListPresenterOutput!
+final class ReadingListPresenter {
+    private weak var view: ReadingListPresenterOutput!
     private var model: ListModelInput
     let center = NotificationCenter.default
     
-    init(view: ListPresenterOutput, model: ListModelInput ) {
+    init(view: ReadingListPresenterOutput, model: ListModelInput ) {
         self.view = view
         self.model = model
     }
@@ -56,12 +52,6 @@ final class ListPresenter {
         }
     }
     
-    private func fetchFinishedList() {
-        if let items = RealmManager.sharedInstance.readFinishedItems() {
-            view.updateList(results: items)
-        }
-    }
-    
     /// シェアしたものを確認してRealmに保存
     private func addReadingItem() -> Bool {
         if let items = UserDefaultManager.shareInstance.fetchReadingItems() {
@@ -72,23 +62,13 @@ final class ListPresenter {
     }
 }
 
-extension ListPresenter: ListPresenterInput {
+extension ReadingListPresenter: ReadingListPresenterInput {
     func deleteItem(readingItem: ReadingItem) {
         model.deleteItem(readingItem: readingItem)
     }
     
     func tapAddButton() {
         // TODO: ダイアログの表示
-    }
-    
-    func tapReadingItemButton() {
-        fetchAndUpdateList()
-        view.configureReadingItemButton()
-    }
-    
-    func tapFinishedItemButton() {
-        fetchFinishedList()
-        view.configureFinishedItemButton()
     }
     
     func viewDidLoad() {

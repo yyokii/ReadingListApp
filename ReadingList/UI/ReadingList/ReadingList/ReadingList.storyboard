@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XXC-a9-5lS">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reading ListVC-->
+        <scene sceneID="pgK-YZ-83J">
+            <objects>
+                <viewController id="XXC-a9-5lS" customClass="ReadingListVC" customModule="ReadingList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="huK-Ui-JZM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-yy-gNr" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="rra-ip-Xv7"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IYY-UJ-Y2j">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Kd-Eo-Gcu">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4O-yk-wZy">
+                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B4O-yk-wZy" firstAttribute="top" secondItem="TQG-yy-gNr" secondAttribute="bottom" id="Gpf-s4-sY3"/>
+                            <constraint firstItem="B4O-yk-wZy" firstAttribute="leading" secondItem="Obg-pQ-vYi" secondAttribute="leading" id="Qp3-tW-YC8"/>
+                            <constraint firstItem="TQG-yy-gNr" firstAttribute="leading" secondItem="Obg-pQ-vYi" secondAttribute="leading" id="R3F-rC-9JW"/>
+                            <constraint firstItem="Obg-pQ-vYi" firstAttribute="trailing" secondItem="TQG-yy-gNr" secondAttribute="trailing" id="XXE-AS-8Cj"/>
+                            <constraint firstItem="TQG-yy-gNr" firstAttribute="top" secondItem="Obg-pQ-vYi" secondAttribute="top" id="Xc0-Gd-TXj"/>
+                            <constraint firstItem="B4O-yk-wZy" firstAttribute="trailing" secondItem="Obg-pQ-vYi" secondAttribute="trailing" id="ZXO-R0-GpW"/>
+                            <constraint firstItem="Obg-pQ-vYi" firstAttribute="bottom" secondItem="B4O-yk-wZy" secondAttribute="bottom" id="mMp-Zt-ICG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Obg-pQ-vYi"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="vHi-lA-N6A"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="buttonBarView" destination="TQG-yy-gNr" id="xMO-9P-GqG"/>
+                        <outlet property="containerView" destination="B4O-yk-wZy" id="of8-uf-Whv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="COK-kX-EQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115.94202898550725" y="122.54464285714285"/>
+        </scene>
+    </scenes>
+</document>
