@@ -63,7 +63,7 @@ class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListItemCell
         let item = displayItems![indexPath.row]
-        cell?.configureView(title: item.title, url: item.url, date: item.createdDate)
+        cell?.configureView(row: indexPath.row, title: item.title, url: item.url, date: item.createdDate)
         cell?.selectionStyle = .none
         return cell!
     }

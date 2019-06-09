@@ -15,6 +15,10 @@ class ListItemCell: UITableViewCell {
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     
+    var row: Int?
+    
+    let notificationCenter = NotificationCenter.default
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -23,7 +27,8 @@ class ListItemCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureView(title: String, url: String, date: Date?) {
+    func configureView(row: Int, title: String, url: String, date: Date?) {
+        self.row = row
         titleLbl.text = title
         let formatter = Date().getFormatter()
         
@@ -42,5 +47,9 @@ class ListItemCell: UITableViewCell {
                 }
             }
         }
+    }
+    @IBAction func tapOptionButton(_ sender: Any) {
+        let info = ["row": row!]
+        notificationCenter.post(name: .showItemOption, object: nil, userInfo: info)
     }
 }
