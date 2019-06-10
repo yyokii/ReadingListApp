@@ -13,17 +13,14 @@ class ArticleListVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    private var presenter: ArticleListPresenterInput!
+    
     var articles: [Article]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        FirebaseManager.sharedInstance.fetchArticles {[weak self] articles in
-            self?.articles = articles
-            self?.collectionView.reloadData()
-        }
-        
         configureColletionView()
+        presenter.viewDidload()
     }
     
     private func configureColletionView() {
@@ -41,7 +38,8 @@ class ArticleListVC: UIViewController {
         collectionView.register(UINib(nibName: "ArticleItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ArticleItemCollectionViewCell")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func inject(presenter: ArticleListPresenterInput) {
+        self.presenter = presenter
     }
     
 //    @IBAction func toList(_ sender: Any) {
@@ -53,6 +51,12 @@ class ArticleListVC: UIViewController {
 
 }
 
+extension ArticleListVC: ArticleListPresenterOutput {
+    func updateList(results: [Article]) {
+        articles = results
+        collectionView.reloadData()
+    }
+}
 
 extension ArticleListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,7 +66,11 @@ extension ArticleListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleItemCollectionViewCell", for: indexPath as IndexPath) as! ArticleItemCollectionViewCell
         if let articleDatas = articles {
-            cell.article = articleDatas[indexPath.row]
+            let article = articleDatas[indexPath.row]
+            cell.article = article
+            cell.tapAddAction = {[weak self] in
+                self?.presenter.addReadingList(article: article)
+            }
         }
         cell.hero.modifiers = [.fade, .translate(y:20)]
         return cell

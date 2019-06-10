@@ -13,6 +13,9 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     
+    // cellのボタンアクションについて（delegate, cloasure）：https://fluffy.es/handling-button-tap-inside-uitableviewcell-without-using-tag/
+    var tapAddAction: (() -> Void)?
+    
     var article: Article? {
         didSet {
             configureCell()
@@ -38,12 +41,16 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
             if let _ = error {
                 return
             }
-            // TODO: ここのimageURLを保存したい
+            // TODO: ここのimageURLを保存したい?かも
             if let imageUrl = ogData.imageUrl as URL? {
                 DispatchQueue.main.async{
                     self?.imageView.setImageByAlamofire(with: imageUrl)
                 }
             }
         }
+    }
+    
+    @IBAction func tapAddButon(_ sender: Any) {
+        tapAddAction?()
     }
 }

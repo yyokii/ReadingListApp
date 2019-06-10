@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // おすすめ記事一覧
         let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
+        let articleListModel = ArticleListModel()
+        let articleListPresenter = ArticleListPresenter(view: articleListVC, model: articleListModel)
+        articleListVC.inject(presenter: articleListPresenter)
 //        let navFirst = UINavigationController()
 //        navFirst.viewControllers = [articleListVC]
 
@@ -35,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navThird.navigationItem.largeTitleDisplayMode = .always
         navThird.viewControllers = [aboutAppVC]
         
+        // 表示画面をタブに格納
         let tab = UITabBarController()
         tab.viewControllers = [articleListVC, listVC, navThird]
         tab.hero.isEnabled = true

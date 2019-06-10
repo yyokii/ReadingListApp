@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit.UIApplication
 import RealmSwift
 
 protocol FinishedListPresenterInput {

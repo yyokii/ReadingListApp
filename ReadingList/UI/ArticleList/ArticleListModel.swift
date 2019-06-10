@@ -14,6 +14,8 @@ protocol ArticleListModelInput {
 }
 
 final class ArticleListModel: ArticleListModelInput {
+    
+    /// Article型を変換してRealmに保存する
     func addItemToRealm(from articleItem: Article) {
         let readingItem = ReadingItem()
         readingItem.title = articleItem.title
