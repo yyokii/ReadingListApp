@@ -53,19 +53,19 @@ class RealmManager {
     
     /// 読み終わってるものを全て取得
     func readFinishedItems() -> Results<ReadingItem>?  {
-        return database?.objects(ReadingItem.self).filter("finishedDate != null")
+        return database?.objects(ReadingItem.self).filter("finishedDate != null && isDeleted == false")
     }
     
     /// 読み終わっていないものを全て取得
     func readNotFinishedItems() -> Results<ReadingItem>?  {
-        return database?.objects(ReadingItem.self).filter("finishedDate == null")
+        return database?.objects(ReadingItem.self).filter("finishedDate == null && isDeleted == false")
     }
     
     /// 読み終わってない且つ期限日が１日後のアイテムを取得
     func readItemsByDueDateOneDayAfter() -> Results<ReadingItem>?  {
         let date = getDueDate(addingDaysValue: 1)
         guard let dueDate = date else { return nil }
-        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@", dueDate)
+        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@ && isDeleted == false", dueDate)
         
         return results
     }
@@ -76,7 +76,7 @@ class RealmManager {
         let date2 = getDueDate(addingDaysValue: 2)
         
         guard let dueDate1 = date1, let dueDate2 = date2 else { return nil }
-        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate > %@ && dueDate <= %@", dueDate1, dueDate2)
+        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate > %@ && dueDate <= %@ && isDeleted == false", dueDate1, dueDate2)
         
         return results
     }
@@ -122,11 +122,12 @@ class RealmManager {
     
     /// タイトルとURLが一致するものを削除
     func deleteItem(title: String, url: String) {
-        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@", title, url)
+        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@ && isDeleted == false", title, url)
         
+        // TODO: これ複数ある場合の適切な対応は？
         guard let results = fileterdItem else { return }
         try? database?.write {
-            database?.delete(results)
+            results.first?.isDeleted = true
         }
     }
 }

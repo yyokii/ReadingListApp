@@ -14,7 +14,8 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
     let redColor = UIColor(red: 221/255.0, green: 0/255.0, blue: 19/255.0, alpha: 1.0)
     let unselectedIconColor = UIColor(red: 73/255.0, green: 8/255.0, blue: 10/255.0, alpha: 1.0)
     
-    let notificationCenter = NotificationCenter.default
+    
+    var tappedItem: ReadingItem?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -49,25 +50,11 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
         super.viewDidLoad()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-
-        // TODO: ここのobjectて何をするためのもの？
-        notificationCenter.addObserver(self, selector: #selector(showItemOptionVC(notification:)), name: .showItemOption, object: nil)
     }
     
     @objc private func showItemOptionVC(notification: Notification) {
         if let tappedRow = notification.userInfo?["row"] as? Int {
             performSegue(withIdentifier: "ItemOption", sender: tappedRow)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ItemOption":
-            let vc = segue.destination as! ItemOption
-            if let row = sender as? Int {
-                vc.tappedItemRow = row
-            }
-        default: break
         }
     }
     
@@ -79,10 +66,12 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
         let readingListTableVC = ReadingListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " HOME", image: UIImage(named: "home")))
         let presenter_1 = ReadingListPresenter(view: readingListTableVC, model: model)
         readingListTableVC.inject(presenter: presenter_1)
+        readingListTableVC.delegate = self
         
         let finishedListTableVC = FinishedListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " TRENDING", image: UIImage(named: "trending")))
         let presenter_2 = FinishedListPresenter(view: finishedListTableVC, model: model)
         finishedListTableVC.inject(presenter: presenter_2)
+        finishedListTableVC.delegate = self
         
         return [readingListTableVC, finishedListTableVC]
     }
@@ -98,3 +87,15 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
     }
 }
 
+extension ReadingListVC: TapOptionButtonDelegate {
+    func showItemOption(item: ReadingItem) {
+        tappedItem = item
+        if let _ = item.finishedDate {
+            // 読み終わっている場合
+            performSegue(withIdentifier: "FinishedItemOption", sender: nil)
+        } else {
+            // リーディングリストのアイテムの場合
+            performSegue(withIdentifier: "ReadingItemOption", sender: nil)
+        }
+    }
+}

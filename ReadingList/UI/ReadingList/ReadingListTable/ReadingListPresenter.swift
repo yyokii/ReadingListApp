@@ -11,7 +11,7 @@ import UIKit.UIApplication
 import RealmSwift
 
 protocol ReadingListPresenterInput {
-    func deleteItem(readingItem: ReadingItem)
+    func optionTapped(item: ReadingItem)
     func tapAddButton()
     func viewDidLoad()
     func viewWillAppear()
@@ -24,15 +24,24 @@ protocol ReadingListPresenterOutput: AnyObject {
 final class ReadingListPresenter {
     private weak var view: ReadingListPresenterOutput!
     private var model: ListModelInput
-    let center = NotificationCenter.default
+    
+    // オプションをタップされたアイテム
+    var optionTappedItem: ReadingItem!
+    let notificationCenter = NotificationCenter.default
     
     init(view: ReadingListPresenterOutput, model: ListModelInput ) {
         self.view = view
         self.model = model
+        
+        addObserver()
     }
     
     private func addObserver() {
-        center.addObserver(self, selector: #selector(viewWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        // TODO: バックグラウンドから復帰した時にデータを最新にするために必要かも
+//        notificationCenter.addObserver(self, selector: #selector(viewWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
     }
     
     @objc func viewWillEnterForeground(_ notification: Notification?) {
@@ -60,11 +69,25 @@ final class ReadingListPresenter {
         }
         return false
     }
+    
+    /// 削除アクションされたアイテムを削除しリストを更新
+    @objc func deleteItem() {
+        model.deleteItem(readingItem: optionTappedItem)
+        fetchAndUpdateList()
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
+    
+    /// アイテムを既読にし更新
+    @objc private func changeItemStateToFinished() {
+        model.changeItemStateToFinished(item: optionTappedItem)
+        fetchAndUpdateList()
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
 }
 
 extension ReadingListPresenter: ReadingListPresenterInput {
-    func deleteItem(readingItem: ReadingItem) {
-        model.deleteItem(readingItem: readingItem)
+    func optionTapped(item: ReadingItem) {
+        optionTappedItem = item
     }
     
     func tapAddButton() {

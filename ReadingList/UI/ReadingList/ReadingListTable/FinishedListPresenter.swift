@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol FinishedListPresenterInput {
+    func optionTapped(item: ReadingItem)
     func viewWillAppear()
 }
 
@@ -20,11 +21,19 @@ protocol  FinishedListPresenterOutput: AnyObject {
 final class  FinishedListPresenter {
     private weak var view: FinishedListPresenterOutput!
     private var model: ListModelInput
-    let center = NotificationCenter.default
+    
+    // オプションをタップされたアイテム
+    var optionTappedItem: ReadingItem!
+    
+    let notificationCenter = NotificationCenter.default
     
     init(view:  FinishedListPresenterOutput, model: ListModelInput ) {
         self.view = view
         self.model = model
+        
+        // TODO: ここのobjectて何をするためのもの？
+        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .changeItemStateToReading, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(changeItemStateToReading), name: .deleteFinishedItem, object: nil)
     }
     
     private func fetchFinishedList() {
@@ -32,9 +41,27 @@ final class  FinishedListPresenter {
             view.updateList(results: items)
         }
     }
+    
+    /// 削除アクションされたアイテムを削除しリストを更新
+    @objc private func deleteItem() {
+        model.deleteItem(readingItem: optionTappedItem)
+        fetchFinishedList()
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
+    
+    /// アイテムをリーディングリストに戻し更新
+    @objc private func changeItemStateToReading() {
+        model.changeItemStateToReading(item: optionTappedItem)
+        fetchFinishedList()
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
 }
 
 extension  FinishedListPresenter:  FinishedListPresenterInput {
+    func optionTapped(item: ReadingItem) {
+        optionTappedItem = item
+    }
+    
     func viewWillAppear() {
         fetchFinishedList()
     }

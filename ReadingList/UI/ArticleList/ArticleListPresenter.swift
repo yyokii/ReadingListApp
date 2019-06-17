@@ -15,6 +15,7 @@ protocol ArticleListPresenterInput {
 }
 
 protocol  ArticleListPresenterOutput: AnyObject {
+    func showSuccessAddDialog()
     func updateList(results: [Article])
 }
 
@@ -42,5 +43,6 @@ extension  ArticleListPresenter:  ArticleListPresenterInput {
     
     func addReadingList(article: Article) {
         model.addItemToRealm(from: article)
+        view.showSuccessAddDialog()
     }
 }

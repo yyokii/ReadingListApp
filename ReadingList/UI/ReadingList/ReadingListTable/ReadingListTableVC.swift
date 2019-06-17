@@ -10,11 +10,16 @@ import Foundation
 import XLPagerTabStrip
 import RealmSwift
 
+protocol TapOptionButtonDelegate: class {
+    func showItemOption(item: ReadingItem)
+}
+
 class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private let cellIdentifier = "ListItemCell"
     var itemInfo = IndicatorInfo(title: "View")
     
+    weak var delegate: TapOptionButtonDelegate?
     private var presenter: ReadingListPresenterInput!
     
     // 表示するアイテムの配列
@@ -46,9 +51,9 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private func configureTableView() {
         tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        tableView.estimatedRowHeight = 600.0
+        tableView.estimatedRowHeight = 300.0
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
     }
     
     // MARK: - UITableViewDataSource
@@ -64,9 +69,20 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListItemCell
         let item = displayItems![indexPath.row]
+        cell?.tapOptionBtnAction = {[weak self] in
+            self?.presenter.optionTapped(item: item)
+            self?.delegate?.showItemOption(item: item)
+        }
         cell?.configureView(row: indexPath.row, title: item.title, url: item.url, date: item.createdDate)
         cell?.selectionStyle = .none
         return cell!
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wevNav = ArticleWebVC.articleWebVCInit(urlSrting: displayItems![indexPath.row].url)
+        present(wevNav, animated: true, completion: nil)
     }
     
     // MARK: - IndicatorInfoProvider

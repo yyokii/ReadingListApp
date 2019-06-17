@@ -17,6 +17,8 @@ import Foundation
 protocol ListModelInput {
     func addItemToRealm(from dicItems: [[String:String]])
     // func addItemToRealm(title: String, url: String)
+    func changeItemStateToReading(item: ReadingItem)
+    func changeItemStateToFinished(item: ReadingItem)
     func deleteItem(readingItem: ReadingItem)
 }
 
@@ -40,11 +42,6 @@ final class ListModel: ListModelInput {
         }
     }
     
-    /// 特定のアイテムを削除
-    func deleteItem(readingItem: ReadingItem) {
-        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url)
-    }
-    
     /// dicからRealmオブジェクトを生成
     private func createRealmObj(itemDic: [String:String]) -> ReadingItem? {
         if let title = itemDic[Constant.ReadingItem.title],
@@ -65,5 +62,20 @@ final class ListModel: ListModelInput {
         } else {
             return nil
         }
+    }
+    
+    /// 特定のアイテムを削除
+    func deleteItem(readingItem: ReadingItem) {
+        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url)
+    }
+    
+    // アイテムをリーディングリストに戻す
+    func changeItemStateToReading(item: ReadingItem) {
+        RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: false)
+    }
+    
+    // アイテムを既読にする
+    func changeItemStateToFinished(item: ReadingItem) {
+        RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: true)
     }
 }

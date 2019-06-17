@@ -18,7 +18,7 @@ class ArticleWebVC: UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
         vc.urlString = urlSrting
         let nav = UINavigationController(rootViewController: vc)
-        nav.hero.isEnabled = true
+        // nav.hero.isEnabled = true
         return nav
     }
     

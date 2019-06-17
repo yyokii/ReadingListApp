@@ -19,4 +19,6 @@ class ReadingItem: Object {
     @objc dynamic var dueDate: Date?
     // 読み終わった日（値がある＝読み終わっている、値なし＝まだ読み終わってない）
     @objc dynamic var finishedDate: Date?
+    // 削除フラグ
+    @objc dynamic var isDeleted = false
 }

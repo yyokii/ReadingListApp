@@ -9,5 +9,20 @@
 import Foundation
 
 extension Notification.Name {
-    static let showItemOption = Notification.Name("showItemOption")
+    
+    
+    // MARL: アイテムオプション
+    
+    // 閉じる
+    static let dismissItemOption = Notification.Name("dismissItemOption")
+    
+    // リーディングリストに戻す
+    static let changeItemStateToReading = Notification.Name("changeItemStateToReading")
+    
+    // 読み終わったものにする
+    static let changeItemStateToFinishedReading = Notification.Name("changeItemStateToFinishedReading")
+    
+    // アイテムの削除
+    static let deleteReadingItem = Notification.Name("deleteReadingItem")
+    static let deleteFinishedItem = Notification.Name("deleteFinishedItem")
 }
