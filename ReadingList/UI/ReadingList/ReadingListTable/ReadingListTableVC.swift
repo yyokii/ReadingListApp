@@ -74,6 +74,14 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
             self?.delegate?.showItemOption(item: item)
         }
         cell?.configureView(row: indexPath.row, title: item.title, url: item.url, date: item.createdDate)
+        
+        // 期限が迫っているものは対応する表示をする
+        if item.isDueDateIsOneDayAfter() {
+            cell?.redView()
+        } else if item.isDueDateIsTwoDaysAfter() {
+            cell?.yelloeView()
+        }
+        
         cell?.selectionStyle = .none
         return cell!
     }

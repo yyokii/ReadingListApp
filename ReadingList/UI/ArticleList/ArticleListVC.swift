@@ -53,7 +53,7 @@ class ArticleListVC: UIViewController {
 
 extension ArticleListVC: ArticleListPresenterOutput {
     func showSuccessAddDialog() {
-        SwiftMessageUtil.showMessage(title: "保存しました", message: "リーディングリストに記事を追加しました")
+        SwiftMessageUtil.showIconTextMessage(type: .Success, iconText: "👍", title: "保存しました", message: "リーディングリストに記事を追加しました") 
     }
     
     func updateList(results: [Article]) {

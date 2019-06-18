@@ -54,7 +54,7 @@ final class ListModel: ListModelInput {
             readingItem.title = title
             readingItem.url = url
             
-            let fotmatter = Date().getFormatter()
+            let fotmatter = Date.getFormatter()
             readingItem.createdDate = fotmatter.date(from: createdDate)
             readingItem.dueDate = fotmatter.date(from: dueDate)
             readingItem.finishedDate = fotmatter.date(from: finishedDate)

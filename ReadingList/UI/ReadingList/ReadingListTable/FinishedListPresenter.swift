@@ -32,8 +32,8 @@ final class  FinishedListPresenter {
         self.model = model
         
         // TODO: ここのobjectて何をするためのもの？
-        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .changeItemStateToReading, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(changeItemStateToReading), name: .deleteFinishedItem, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteFinishedItem, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(changeItemStateToReading), name: .changeItemStateToReading, object: nil)
     }
     
     private func fetchFinishedList() {

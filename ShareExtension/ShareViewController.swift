@@ -31,7 +31,7 @@ class ShareViewController: SLComposeServiceViewController {
                     
                     let now = Date()
                     // 日付取得
-                    let formatter = Date().getFormatter()
+                    let formatter = Date.getFormatter()
                     let dateString = formatter.string(from: now)
                     
                     // 一週間後の日付（=読み終わり予定の期限日）を取得

@@ -23,7 +23,6 @@ class FinishedItemOptionVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // FIXME: 戻ってない？
     @IBAction func tapIntoReadingList(_ sender: Any) {
         notificationCenter.post(name: .changeItemStateToReading,
                     object: nil)

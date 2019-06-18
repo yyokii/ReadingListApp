@@ -32,7 +32,7 @@ class ListItemCell: UITableViewCell {
     
     func configureView(row: Int, title: String, url: String, date: Date?) {
         titleLbl.text = title
-        let formatter = Date().getFormatter()
+        let formatter = Date.getFormatter()
         
         if let displayDate = date {
             dateLbl.text = formatter.string(from: displayDate)
@@ -50,6 +50,16 @@ class ListItemCell: UITableViewCell {
             }
         }
     }
+    
+    func redView() {
+        titleLbl.backgroundColor = UIColor.red
+    }
+    
+    func yelloeView() {
+        titleLbl.backgroundColor = UIColor.yellow
+    }
+    
+    
     @IBAction func tapOptionButton(_ sender: Any) {
         tapOptionBtnAction?()
     }
