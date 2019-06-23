@@ -8,6 +8,7 @@
 
 import RealmSwift
 
+/// ReadingItemモデル管理クラス
 class RealmManager {
     static let sharedInstance = RealmManager()
     private var database: Realm?
@@ -58,7 +59,7 @@ class RealmManager {
     
     /// 読み終わっていないものを全て取得
     func readNotFinishedItems() -> Results<ReadingItem>?  {
-        return database?.objects(ReadingItem.self).filter("finishedDate == null && isDeleted == false")
+        return database?.objects(ReadingItem.self).filter("finishedDate == null && isDeleted == false").sorted(byKeyPath: "dueDate")
     }
     
     /// 読み終わってない且つ期限日が１日後のアイテムを取得
@@ -81,7 +82,7 @@ class RealmManager {
         return results
     }
     
-    /// TODO: 期日切れのアイテムを削除
+    /// FIXME: 期日切れのアイテムを削除
     func deleteOverdueItem() {
 //        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@", readingItem.title, readingItem.url)
 //

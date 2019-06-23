@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-yy-gNr" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="rra-ip-Xv7"/>
@@ -42,26 +43,41 @@
                                 </cells>
                             </collectionView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4O-yk-wZy">
-                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
+                                <rect key="frame" x="0.0" y="90" width="414" height="723"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-aJ-P6F">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                <color key="backgroundColor" name="MyrtleGreen"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mfr-46-gHC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="B4O-yk-wZy" firstAttribute="top" secondItem="TQG-yy-gNr" secondAttribute="bottom" id="Gpf-s4-sY3"/>
                             <constraint firstItem="B4O-yk-wZy" firstAttribute="leading" secondItem="Obg-pQ-vYi" secondAttribute="leading" id="Qp3-tW-YC8"/>
                             <constraint firstItem="TQG-yy-gNr" firstAttribute="leading" secondItem="Obg-pQ-vYi" secondAttribute="leading" id="R3F-rC-9JW"/>
+                            <constraint firstItem="BS6-aJ-P6F" firstAttribute="leading" secondItem="Obg-pQ-vYi" secondAttribute="leading" id="R8j-gL-I6Z"/>
                             <constraint firstItem="Obg-pQ-vYi" firstAttribute="trailing" secondItem="TQG-yy-gNr" secondAttribute="trailing" id="XXE-AS-8Cj"/>
-                            <constraint firstItem="TQG-yy-gNr" firstAttribute="top" secondItem="Obg-pQ-vYi" secondAttribute="top" id="Xc0-Gd-TXj"/>
+                            <constraint firstItem="TQG-yy-gNr" firstAttribute="top" secondItem="BS6-aJ-P6F" secondAttribute="bottom" id="Xc0-Gd-TXj"/>
                             <constraint firstItem="B4O-yk-wZy" firstAttribute="trailing" secondItem="Obg-pQ-vYi" secondAttribute="trailing" id="ZXO-R0-GpW"/>
+                            <constraint firstItem="BS6-aJ-P6F" firstAttribute="top" secondItem="huK-Ui-JZM" secondAttribute="top" id="eBz-Vc-4gR"/>
                             <constraint firstItem="Obg-pQ-vYi" firstAttribute="bottom" secondItem="B4O-yk-wZy" secondAttribute="bottom" id="mMp-Zt-ICG"/>
+                            <constraint firstItem="BS6-aJ-P6F" firstAttribute="trailing" secondItem="Obg-pQ-vYi" secondAttribute="trailing" id="wVT-Cm-Uyl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Obg-pQ-vYi"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="vHi-lA-N6A"/>
+                    <tabBarItem key="tabBarItem" title="" image="footer_icon_not_active" id="vHi-lA-N6A">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="footer_icon"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="buttonBarView" destination="TQG-yy-gNr" id="xMO-9P-GqG"/>
                         <outlet property="containerView" destination="B4O-yk-wZy" id="of8-uf-Whv"/>
+                        <outlet property="statusBarBackView" destination="BS6-aJ-P6F" id="W4n-Aj-NUi"/>
                         <segue destination="2Kr-nv-djt" kind="custom" identifier="ReadingItemOption" customClass="SwiftMessagesBottomTabSegue" customModule="ReadingList" customModuleProvider="target" id="U1Y-YO-o4c"/>
                         <segue destination="q47-11-D7X" kind="custom" identifier="FinishedItemOption" customClass="SwiftMessagesBottomTabSegue" customModule="ReadingList" customModuleProvider="target" id="e5P-Md-GUW"/>
                     </connections>
@@ -87,4 +103,11 @@
             <point key="canvasLocation" x="721" y="167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="footer_icon" width="30" height="30"/>
+        <image name="footer_icon_not_active" width="30" height="30"/>
+        <namedColor name="MyrtleGreen">
+            <color red="0.14509803921568629" green="0.47450980392156861" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

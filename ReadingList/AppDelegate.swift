@@ -42,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tab = UITabBarController()
         tab.viewControllers = [articleListVC, listVC, navThird]
         tab.hero.isEnabled = true
+
+        UITabBar.appearance().tintColor = UIColor.red
+        UITabBar.appearance().unselectedItemTintColor = UIColor.gray
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tab

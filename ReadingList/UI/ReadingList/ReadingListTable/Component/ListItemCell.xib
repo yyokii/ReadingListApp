@@ -38,14 +38,14 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHH-um-eOz">
                                         <rect key="frame" x="0.0" y="0.0" width="248.5" height="86"/>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/00/00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh3-Dl-UDG">
                                         <rect key="frame" x="0.0" y="86" width="248.5" height="21.5"/>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -65,7 +65,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cBC-jM-K6u" firstAttribute="top" secondItem="bhh-v4-sx0" secondAttribute="top" constant="10" id="3ca-HF-Umh"/>
                             <constraint firstItem="jUF-d5-gfk" firstAttribute="leading" secondItem="cBC-jM-K6u" secondAttribute="trailing" constant="10" id="6Sw-FS-h8R"/>
@@ -106,6 +105,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="articleImage" destination="jUF-d5-gfk" id="oxO-Sm-pcp"/>
+                <outlet property="baseView" destination="bhh-v4-sx0" id="sbD-VC-SYY"/>
                 <outlet property="dateLbl" destination="Kh3-Dl-UDG" id="rAI-Lp-ZIy"/>
                 <outlet property="titleLbl" destination="PHH-um-eOz" id="gQv-8o-49X"/>
             </connections>

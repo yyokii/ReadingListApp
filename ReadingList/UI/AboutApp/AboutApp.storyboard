@@ -42,7 +42,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gho-Cr-ZKU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="cxm-df-v5I"/>
+                    <tabBarItem key="tabBarItem" image="footer_setting" id="cxm-df-v5I"/>
                     <navigationItem key="navigationItem" id="hdZ-0g-sR9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
@@ -57,4 +57,7 @@
             <point key="canvasLocation" x="730.43478260869574" y="110.49107142857143"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="footer_setting" width="30" height="30"/>
+    </resources>
 </document>

@@ -14,7 +14,8 @@ class ListItemCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
-
+    @IBOutlet weak var baseView: DesignableView!
+    
     var tapOptionBtnAction: (() -> ())?
     
     override func awakeFromNib() {
@@ -31,6 +32,12 @@ class ListItemCell: UITableViewCell {
     }
     
     func configureView(row: Int, title: String, url: String, date: Date?) {
+        baseView.backgroundColor = UIColor.white
+        baseView.cornerRadius = 12
+        baseView.shadowRadius = 4
+        baseView.shadowOpacity = 0.5
+        baseView.shadowOffset = CGSize(width: 3, height: 3)
+        
         titleLbl.text = title
         let formatter = Date.getFormatter()
         
@@ -52,15 +59,16 @@ class ListItemCell: UITableViewCell {
     }
     
     func redView() {
-        titleLbl.backgroundColor = UIColor.red
+        dateLbl.textColor = UIColor.darkText
+        baseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
     }
     
     func yelloeView() {
-        titleLbl.backgroundColor = UIColor.yellow
+        baseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
     }
     
-    
     @IBAction func tapOptionButton(_ sender: Any) {
+        dateLbl.textColor = UIColor.darkText
         tapOptionBtnAction?()
     }
 }

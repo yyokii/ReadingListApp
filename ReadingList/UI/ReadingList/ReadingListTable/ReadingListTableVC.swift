@@ -51,8 +51,6 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private func configureTableView() {
         tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        tableView.estimatedRowHeight = 300.0
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
     }
     
@@ -60,6 +58,10 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

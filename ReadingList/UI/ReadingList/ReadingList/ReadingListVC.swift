@@ -10,10 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCell> {
-    
-    let redColor = UIColor(red: 221/255.0, green: 0/255.0, blue: 19/255.0, alpha: 1.0)
-    let unselectedIconColor = UIColor(red: 73/255.0, green: 8/255.0, blue: 10/255.0, alpha: 1.0)
-    
+    @IBOutlet weak var statusBarBackView: UIView!
     
     var tappedItem: ReadingItem?
     
@@ -31,20 +28,18 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
     
     override func viewDidLoad() {
         // change selected bar color
-        settings.style.buttonBarBackgroundColor = redColor
-        settings.style.buttonBarItemBackgroundColor = .blue
-        settings.style.selectedBarBackgroundColor = UIColor.green
-        settings.style.selectedBarHeight = 4.0
+        settings.style.buttonBarBackgroundColor = UIColor.init(named: Constant.Color.myrtleGreen)
+        settings.style.selectedBarBackgroundColor = UIColor.init(named: Constant.Color.bisque)!
+        settings.style.selectedBarHeight = 6.0
         settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = .black
         settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarLeftContentInset = 0
         settings.style.buttonBarRightContentInset = 0
         
-        changeCurrentIndexProgressive = { [weak self] (oldCell: ReadingListIconCell?, newCell: ReadingListIconCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        changeCurrentIndexProgressive = { (oldCell: ReadingListIconCell?, newCell: ReadingListIconCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.iconImage.tintColor = self?.unselectedIconColor
-            newCell?.iconImage.tintColor = .gray
+            oldCell?.iconImage.tintColor = UIColor.black
+            newCell?.iconImage.tintColor = .white
         }
         
         super.viewDidLoad()
@@ -63,12 +58,12 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let model = ListModel()
         
-        let readingListTableVC = ReadingListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " HOME", image: UIImage(named: "home")))
+        let readingListTableVC = ReadingListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " HOME", image: UIImage(named: "reading")))
         let presenter_1 = ReadingListPresenter(view: readingListTableVC, model: model)
         readingListTableVC.inject(presenter: presenter_1)
         readingListTableVC.delegate = self
         
-        let finishedListTableVC = FinishedListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " TRENDING", image: UIImage(named: "trending")))
+        let finishedListTableVC = FinishedListTableVC(style: .plain, itemInfo: IndicatorInfo(title: " TRENDING", image: UIImage(named: "reading_finished")))
         let presenter_2 = FinishedListPresenter(view: finishedListTableVC, model: model)
         finishedListTableVC.inject(presenter: presenter_2)
         finishedListTableVC.delegate = self

@@ -48,7 +48,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kF5-9n-8un"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="1HZ-UD-lx2"/>
+                    <tabBarItem key="tabBarItem" image="footer_plus" id="1HZ-UD-lx2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="qAj-9B-5Tb" id="4ar-Pb-NLS"/>
@@ -100,4 +100,7 @@
             <point key="canvasLocation" x="1669.5999999999999" y="179.46026986506749"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="footer_plus" width="30" height="30"/>
+    </resources>
 </document>

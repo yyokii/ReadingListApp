@@ -18,9 +18,11 @@ enum LocalNotificationType {
 struct Constant {
     struct UserDefault {
         static let suiteName = "group.yyokii.ReadingList"
-        static let shareUrl = "shareUrl"
-        
         static let readingItem = "readingItem"
+        
+        // 初回表示時されたかどうかを管理
+        static let firstOpenArticleView = "firstOpenArticleView"
+        static let firstOpenReadingListView = "firstOpenReadingListView"
     }
     
     struct ReadingItem {
@@ -29,6 +31,16 @@ struct Constant {
         static let createdDate = "createdDate"
         static let dueDate = "dueDate"
         static let finishedDate = "finishedDate"
+    }
+    
+    struct Color {
+        // アセッツで定義している色
+        static let sugarPlum = "SugarPlum"
+        static let pinkSherbet = "PinkSherbet"
+        static let bisque = "Bisque"
+        static let caramel = "Caramel"
+        static let greenSheen = "GreenSheen"
+        static let myrtleGreen = "MyrtleGreen"
     }
     
     // ローカル通知
