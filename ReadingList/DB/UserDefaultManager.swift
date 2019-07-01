@@ -15,6 +15,26 @@ class UserDefaultManager {
     
     private init() {}
     
+    /// 記事画面が起動済みかどうか
+    func isFirstOpenArticleView() -> Bool {
+        return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenArticleView)
+    }
+    
+    /// 記事画面が起動済みであることを保存する
+    func setFirstOpenArticleView() {
+        sharedDefaults.set(true, forKey: Constant.UserDefault.firstOpenArticleView)
+    }
+    
+    /// リーディングリスト画面が起動済みかどうか
+    func isFirstOpenReadingListView() -> Bool {
+        return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenReadingListView)
+    }
+    
+    /// リーディングリスト画面が起動済みであることを保存する
+    func setFirstOpenReadingListView() {
+        sharedDefaults.set(true, forKey: Constant.UserDefault.firstOpenReadingListView)
+    }
+    
     /// 記事アイテムを追加
     func addReadingItem(readingItem: [String:String]) {
         if var savedItems = fetchReadingItems() {

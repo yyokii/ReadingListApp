@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="239" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FpT-QS-rxC">
+                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FpT-QS-rxC">
                         <rect key="frame" x="0.0" y="0.0" width="239" height="300"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -27,7 +27,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw2-A3-fpd" customClass="GradationView" customModule="ReadingList" customModuleProvider="target">
+                    <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw2-A3-fpd" customClass="GradationView" customModule="ReadingList" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="180" width="239" height="120"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
@@ -42,9 +42,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-xA-BwI">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-xA-BwI">
                         <rect key="frame" x="201" y="270" width="30" height="30"/>
-                        <state key="normal" title="Add">
+                        <state key="normal" image="footer_plus">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <connections>
@@ -91,4 +91,7 @@
             <point key="canvasLocation" x="288.80000000000001" y="194.30284857571215"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="footer_plus" width="30" height="30"/>
+    </resources>
 </document>

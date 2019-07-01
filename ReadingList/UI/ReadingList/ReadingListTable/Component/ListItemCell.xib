@@ -23,7 +23,7 @@
                         <rect key="frame" x="10" y="10" width="398" height="127.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUF-d5-gfk">
-                                <rect key="frame" x="268.5" y="16" width="119.5" height="95.5"/>
+                                <rect key="frame" x="268.5" y="22" width="119.5" height="95.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jUF-d5-gfk" secondAttribute="height" multiplier="5:4" id="RZn-8P-4s4"/>
                                 </constraints>
@@ -53,13 +53,12 @@
                                     <constraint firstItem="PHH-um-eOz" firstAttribute="height" secondItem="cBC-jM-K6u" secondAttribute="height" multiplier="0.8" id="d5v-BD-yJt"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0Y-Sh-Wkl">
-                                <rect key="frame" x="328" y="0.0" width="70" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0Y-Sh-Wkl" customClass="DesignableButton" customModule="ReadingList" customModuleProvider="target">
+                                <rect key="frame" x="338" y="0.0" width="60" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5iU-W9-dpR"/>
-                                    <constraint firstAttribute="width" constant="70" id="zp1-Bn-tne"/>
+                                    <constraint firstAttribute="width" constant="60" id="7a6-dz-HOA"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="three_dot"/>
                                 <connections>
                                     <action selector="tapOptionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="39N-WP-hGr"/>
                                 </connections>
@@ -68,13 +67,14 @@
                         <constraints>
                             <constraint firstItem="cBC-jM-K6u" firstAttribute="top" secondItem="bhh-v4-sx0" secondAttribute="top" constant="10" id="3ca-HF-Umh"/>
                             <constraint firstItem="jUF-d5-gfk" firstAttribute="leading" secondItem="cBC-jM-K6u" secondAttribute="trailing" constant="10" id="6Sw-FS-h8R"/>
+                            <constraint firstAttribute="trailing" secondItem="g0Y-Sh-Wkl" secondAttribute="trailing" id="88U-8D-jgW"/>
+                            <constraint firstAttribute="bottom" secondItem="jUF-d5-gfk" secondAttribute="bottom" constant="10" id="9hM-qn-KUG"/>
                             <constraint firstItem="jUF-d5-gfk" firstAttribute="width" secondItem="bhh-v4-sx0" secondAttribute="width" multiplier="0.3" id="J1a-ru-JiI"/>
-                            <constraint firstItem="g0Y-Sh-Wkl" firstAttribute="top" secondItem="bhh-v4-sx0" secondAttribute="top" id="JdX-lN-tB8"/>
                             <constraint firstAttribute="trailing" secondItem="jUF-d5-gfk" secondAttribute="trailing" constant="10" id="LH0-gv-OXS"/>
-                            <constraint firstItem="jUF-d5-gfk" firstAttribute="centerY" secondItem="bhh-v4-sx0" secondAttribute="centerY" id="VR3-3b-HgS"/>
                             <constraint firstItem="cBC-jM-K6u" firstAttribute="leading" secondItem="bhh-v4-sx0" secondAttribute="leading" constant="10" id="Zif-50-b3I"/>
-                            <constraint firstAttribute="trailing" secondItem="g0Y-Sh-Wkl" secondAttribute="trailing" id="dRJ-GF-Mp3"/>
                             <constraint firstAttribute="bottom" secondItem="cBC-jM-K6u" secondAttribute="bottom" constant="10" id="gTO-Gd-MIh"/>
+                            <constraint firstItem="jUF-d5-gfk" firstAttribute="top" secondItem="g0Y-Sh-Wkl" secondAttribute="bottom" id="hEC-Bm-xc3"/>
+                            <constraint firstItem="g0Y-Sh-Wkl" firstAttribute="top" secondItem="bhh-v4-sx0" secondAttribute="top" id="qO2-iU-qI3"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -112,4 +112,7 @@
             <point key="canvasLocation" x="32" y="102.54872563718142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="three_dot" width="21" height="21"/>
+    </resources>
 </document>

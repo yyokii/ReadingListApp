@@ -31,28 +31,36 @@ class ListItemCell: UITableViewCell {
         articleImage.image = nil
     }
     
-    func configureView(row: Int, title: String, url: String, date: Date?) {
+    func configureView(row: Int, item: ReadingItem) {
         baseView.backgroundColor = UIColor.white
         baseView.cornerRadius = 12
         baseView.shadowRadius = 4
         baseView.shadowOpacity = 0.5
         baseView.shadowOffset = CGSize(width: 3, height: 3)
         
-        titleLbl.text = title
+        titleLbl.text = item.title
         let formatter = Date.getFormatter()
         
-        if let displayDate = date {
+        if let displayDate = item.createdDate {
             dateLbl.text = formatter.string(from: displayDate)
         }
-        
-        let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
-            if let _ = error {
-                return
-            }
-            
-            if let imageUrl = ogData.imageUrl as URL? {
-                DispatchQueue.main.async{
-                    self?.articleImage.setImageByAlamofire(with: imageUrl)
+        self.setImage(imageUrl: item.imageUrl, url: item.url)
+    }
+    
+    private func setImage(imageUrl: String, url: String) {
+        if imageUrl != "" {
+            articleImage.setImageByAlamofire(with: URL(string: imageUrl)!)
+        } else {
+            // OGPから画像取得
+            let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
+                if let _ = error {
+                    return
+                }
+                
+                if let imageUrl = ogData.imageUrl as URL? {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.articleImage.setImageByAlamofire(with: imageUrl)
+                    }
                 }
             }
         }
@@ -64,6 +72,7 @@ class ListItemCell: UITableViewCell {
     }
     
     func yelloeView() {
+        dateLbl.textColor = UIColor.darkText
         baseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
     }
     

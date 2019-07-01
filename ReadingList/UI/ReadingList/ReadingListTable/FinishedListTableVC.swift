@@ -70,7 +70,7 @@ class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
             self?.presenter.optionTapped(item: item)
             self?.delegate?.showItemOption(item: item)
         }
-        cell?.configureView(row: indexPath.row, title: item.title, url: item.url, date: item.createdDate)
+        cell?.configureView(row: indexPath.row, item: item)
         cell?.selectionStyle = .none
         return cell!
     }

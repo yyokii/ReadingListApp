@@ -36,15 +36,25 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
     func configureCell() {
         guard let item = article else { return }
         
-        titleLbl.text = article?.title
-        let _ = OGDataProvider.shared.fetchOGData(withURLString: item.url) { [weak self] ogData, error in
-            if let _ = error {
-                return
-            }
-            // TODO: ここのimageURLを保存したい?かも
-            if let imageUrl = ogData.imageUrl as URL? {
-                DispatchQueue.main.async{
-                    self?.imageView.setImageByAlamofire(with: imageUrl)
+        titleLbl.text = item.title
+            self.setImage(imageUrl: item.imageUrl ?? "", url: item.url)        
+    }
+    
+    private func setImage(imageUrl: String, url: String) {
+        if imageUrl != "" {
+            imageView.setImageByAlamofire(with: URL(string: imageUrl)!)
+        } else {
+            // OGPから画像取得
+            let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
+                if let _ = error {
+                    return
+                }
+                
+                
+                if let imageUrl = ogData.imageUrl as URL? {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.imageView.setImageByAlamofire(with: imageUrl)
+                    }
                 }
             }
         }

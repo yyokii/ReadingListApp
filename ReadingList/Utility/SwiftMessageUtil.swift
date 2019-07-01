@@ -34,7 +34,7 @@ struct SwiftMessageUtil {
         case .Fail:
             view.configureTheme(backgroundColor: UIColor.green, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .Success:
-            view.configureTheme(backgroundColor: UIColor.green, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToFinishedList:
             view.configureTheme(backgroundColor: UIColor.green, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToReadingList:
@@ -50,10 +50,11 @@ struct SwiftMessageUtil {
         SwiftMessages.show(config: config, view: view)
     }
     
-    static func showCenteredMessage(iconText: String, title: String, body: String, buttonTitle: String) {
+    /// センター表示の画像付きダイアログ
+    static func showCenteredIconMessage(iconImage: UIImage, title: String, body: String, buttonTitle: String) {
         let messageView: MessageView = MessageView.viewFromNib(layout: .centeredView)
         messageView.configureBackgroundView(width: 300)
-        messageView.configureContent(title: title, body: body, iconImage: nil, iconText: iconText, buttonImage: nil, buttonTitle: buttonTitle) { _ in
+        messageView.configureContent(title: title, body: body, iconImage: iconImage, iconText: "", buttonImage: nil, buttonTitle: buttonTitle) { _ in
             SwiftMessages.hide()
         }
         messageView.backgroundView.backgroundColor = UIColor.init(white: 0.97, alpha: 1)
@@ -61,7 +62,7 @@ struct SwiftMessageUtil {
         var config = SwiftMessages.defaultConfig
         config.presentationStyle = .center
         config.duration = .forever
-        config.dimMode = .blur(style: .dark, alpha: 1, interactive: true)
+        config.dimMode = .gray(interactive: false)
         config.presentationContext  = .window(windowLevel: UIWindow.Level.statusBar)
         SwiftMessages.show(config: config, view: messageView)
     }

@@ -21,6 +21,10 @@ class ArticleListVC: UIViewController {
         super.viewDidLoad()
         configureColletionView()
         presenter.viewDidload()
+        
+        if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
+            SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "オススメ記事", body: "人気記事から気になったものをリーディングリストに追加しましょう！", buttonTitle: "OK")
+        }
     }
     
     private func configureColletionView() {
@@ -82,7 +86,10 @@ extension ArticleListVC: UICollectionViewDataSource {
 }
 
 extension ArticleListVC: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let wevNav = ArticleWebVC.articleWebVCInit(urlSrting: articles![indexPath.row].url)
+        present(wevNav, animated: true, completion: nil)
+    }
 }
 
 extension ArticleListVC: HeroViewControllerDelegate {

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // リーディングリスト一覧
         let listVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListVC
         
-        // メニュー
+        // このアプリについて
         let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
         let navThird = UINavigationController()
         navThird.navigationBar.prefersLargeTitles = true

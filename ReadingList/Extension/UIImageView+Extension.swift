@@ -16,13 +16,13 @@ extension UIImageView {
         af_setImage(withURL: url) { [weak self] response in
             switch response.result {
             case .success(let image):
-                self?.image = image
+                
+                    self?.image = image
                 
             case .failure(let error):
                 print(error.localizedDescription)
                 break
             }
-            
         }
     }
 }
