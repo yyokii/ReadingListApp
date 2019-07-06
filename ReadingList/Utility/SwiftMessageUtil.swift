@@ -36,11 +36,10 @@ struct SwiftMessageUtil {
         case .Success:
             view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToFinishedList:
-            view.configureTheme(backgroundColor: UIColor.green, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.sugarPlum)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToReadingList:
-            view.configureTheme(backgroundColor: UIColor.green, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.myrtleGreen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         }
-        
         
         // config
         var config = SwiftMessages.defaultConfig

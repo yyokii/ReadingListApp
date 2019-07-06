@@ -21,12 +21,14 @@ class ArticleWebVC: UIViewController {
     @IBOutlet weak var baseView: UIView!
  
     var webView: WKWebView!
-    var urlString: String?
+    var item: WebItem!
+    var model: ArticleWebModelInput!
  
     /// ナビゲーション付きのwebviewを作成する
-    class func articleWebVCInit(webItem: WebItem) -> UIViewController {
+    class func articleWebVCInit(webItem: WebItem, model: ArticleWebModelInput = ArticleWebModel()) -> UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
-        vc.urlString = webItem.url
+        vc.item = webItem
+        vc.model = model
         let nav = UINavigationController(rootViewController: vc)
         // nav.hero.isEnabled = true
         return nav
@@ -42,8 +44,9 @@ class ArticleWebVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: urlString!)!
+        let url = URL(string: item.url)!
         webView.load(URLRequest(url: url))
+        title = "読み込み中・・・"
         
         configureToolbar()
     }
@@ -69,7 +72,7 @@ class ArticleWebVC: UIViewController {
         // 既読リストに追加ボタン
         let finishedReadingBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
         finishedReadingBtnView.setBackgroundImage(UIImage(named: "reading_finished"), for: .normal)
-        finishedReadingBtnView.addTarget(self, action: #selector(self.addToReadingList), for: .touchUpInside)
+        finishedReadingBtnView.addTarget(self, action: #selector(self.addToFinishedReadingList), for: .touchUpInside)
         let finishedReadingBtn = UIBarButtonItem(customView: finishedReadingBtnView)
         finishedReadingBtn.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
         finishedReadingBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
@@ -89,11 +92,13 @@ class ArticleWebVC: UIViewController {
     }
     
     @objc private func addToReadingList() {
-        //
+        model.addItemToReadingList(from: item)
+        SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "保存しました", message: "リーディングリストに記事を追加しました")
     }
     
     @objc private func addToFinishedReadingList() {
-        //
+        model.addItemToFinishedList(from: item)
+        SwiftMessageUtil.showIconTextMessage(type: .ToFinishedList, iconText: "👍", title: "保存しました", message: "読み終わりリストに記事を追加しました")
     }
 }
 

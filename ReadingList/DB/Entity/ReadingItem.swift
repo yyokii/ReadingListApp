@@ -13,7 +13,7 @@ class ReadingItem: Object {
     @objc dynamic var url = ""
     @objc dynamic var title = ""
     @objc dynamic var imageUrl = ""
-    // 記事がアプリに追加された日
+    // 記事がDBに追加された日
     @objc dynamic var createdDate: Date?
     // いつまでに読み終わる予定か
     @objc dynamic var dueDate: Date?
