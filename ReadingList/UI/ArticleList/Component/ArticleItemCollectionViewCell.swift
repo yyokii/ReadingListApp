@@ -62,12 +62,18 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
                 slp.preview(url,
                             onSuccess: {[weak self] result in
                                 if let imageUrlString = result.image, let imageUrl = URL(string: imageUrlString) {
+                                    self?.imageView.contentMode = .scaleAspectFill
                                     self?.imageView.setImageByAlamofire(with: imageUrl)
+                                } else {
+                                    self?.imageView.contentMode = .scaleToFill
+                                    self?.imageView.image = UIImage(named: "no_image")
                                 }
                     },
-                            onError: {
-                                // TODO:
-                                error in print("\(error)")}
+                            onError: {[weak self] error in
+                                print("\(error)")
+                                self?.imageView.contentMode = .scaleToFill
+                                self?.imageView.image = UIImage(named: "no_image")
+                    }
                 )
             }
         }

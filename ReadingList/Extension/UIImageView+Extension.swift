@@ -12,7 +12,6 @@ import AlamofireImage
 extension UIImageView {
     
     func setImageByAlamofire(with url: URL) {
-        // TODO: no image を設定する
         af_setImage(withURL: url) { [weak self] response in
             switch response.result {
             case .success(let image):
@@ -21,6 +20,7 @@ extension UIImageView {
                 
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.image = UIImage(named: "no_image")
                 break
             }
         }

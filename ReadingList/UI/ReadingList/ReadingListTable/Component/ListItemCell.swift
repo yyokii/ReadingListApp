@@ -10,7 +10,7 @@ import UIKit
 import SwiftLinkPreview
 
 class ListItemCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
@@ -23,7 +23,7 @@ class ListItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -65,14 +65,21 @@ class ListItemCell: UITableViewCell {
                             onSuccess: {[weak self] result in
                                 if let imageUrlString = result.image, let imageUrl = URL(string: imageUrlString) {
                                     self?.articleImage.setImageByAlamofire(with: imageUrl)
+                                } else {
+                                    self?.articleImage.image = UIImage(named: "no_image")
                                 }
                     },
-                            onError: {
-                                // TODO:
-                                error in print("\(error)")}
+                            onError: {[weak self] error in
+                                print("\(error)")
+                                self?.articleImage.image = UIImage(named: "no_image")
+                    }
                 )
             }
         }
+    }
+    
+    private func setNoImage() {
+        
     }
     
     func redView() {

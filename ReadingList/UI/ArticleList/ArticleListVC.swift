@@ -15,6 +15,7 @@ class ArticleListVC: UIViewController {
     
     private var presenter: ArticleListPresenterInput!
     
+    let floatingBtn = UIButton(type: .custom)
     var articles: [Article]?
     
     override func viewDidLoad() {
@@ -24,6 +25,39 @@ class ArticleListVC: UIViewController {
         
         if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
             SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "オススメ記事", body: "人気記事から気になったものをリーディングリストに追加しましょう！", buttonTitle: "OK")
+            UserDefaultManager.shareInstance.setFirstOpenArticleView()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        // configureFloatingBtn()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+    }
+    
+    func configureFloatingBtn(){
+        let width: CGFloat = 70
+        let height: CGFloat = 70
+        
+        let rightMargin: CGFloat = 10
+        let bottomMargin: CGFloat = 10
+        
+        let x = view.frame.width - width - rightMargin
+        let y = view.frame.height - (tabBarController?.tabBar.frame.height)! - height - bottomMargin
+
+        floatingBtn.frame = CGRect(x: x, y: y, width: width, height: height)
+        floatingBtn.setTitle("😎", for: .normal)
+        floatingBtn.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        floatingBtn.clipsToBounds = true
+        floatingBtn.layer.cornerRadius = width / 2
+        floatingBtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        floatingBtn.layer.borderWidth = 3.0
+//        floatingBtn.addTarget(self,action: #selector(DestinationVC.buttonTapped), for: UIControlEvent.touchUpInside)
+        if let window = UIApplication.shared.keyWindow {
+            window.addSubview(self.floatingBtn)
         }
     }
     

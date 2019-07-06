@@ -55,11 +55,6 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
         tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.separatorStyle = .none
     }
-
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        btn.frame.origin.y = scrollView.contentOffset.y
-    }
     
     // MARK: - UITableViewDataSource
     

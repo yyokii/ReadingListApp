@@ -17,17 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
+        RealmManager.sharedInstance.deleteExpiredItem(now: Date())
+        configireUI()
+        return true
+    }
+    
+    private func configireUI() {
         // https://github.com/xmartlabs/XLPagerTabStrip/issues/141
         _ = ReadingListVC(nibName: nil, bundle: nil)
-
+        
         // おすすめ記事一覧
         let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
         let articleListModel = ArticleListModel()
         let articleListPresenter = ArticleListPresenter(view: articleListVC, model: articleListModel)
         articleListVC.inject(presenter: articleListPresenter)
-//        let navFirst = UINavigationController()
-//        navFirst.viewControllers = [articleListVC]
-
+        //        let navFirst = UINavigationController()
+        //        navFirst.viewControllers = [articleListVC]
+        
         // リーディングリスト一覧
         let listVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListVC
         
@@ -42,14 +48,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tab = UITabBarController()
         tab.viewControllers = [articleListVC, listVC, navThird]
         tab.hero.isEnabled = true
-
+        
         UITabBar.appearance().tintColor = UIColor.red
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tab
         window?.makeKeyAndVisible()
-        return true
     }
 }
 

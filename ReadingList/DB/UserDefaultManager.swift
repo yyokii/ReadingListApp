@@ -15,6 +15,8 @@ class UserDefaultManager {
     
     private init() {}
     
+    // FIXME: 初回起動系処理、registerつけないとだめでは
+    
     /// 記事画面が起動済みかどうか
     func isFirstOpenArticleView() -> Bool {
         return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenArticleView)

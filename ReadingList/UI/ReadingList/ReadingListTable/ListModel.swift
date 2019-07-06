@@ -78,9 +78,4 @@ final class ListModel: ListModelInput {
     func changeItemStateToFinished(item: ReadingItem) {
         RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: true)
     }
-    
-    // 期限切れのものを削除する
-    func deleteExpiredItem() {
-        
-    }
 }
