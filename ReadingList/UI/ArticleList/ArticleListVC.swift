@@ -87,7 +87,10 @@ extension ArticleListVC: UICollectionViewDataSource {
 
 extension ArticleListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let wevNav = ArticleWebVC.articleWebVCInit(urlSrting: articles![indexPath.row].url)
+        
+        let displayItem = articles![indexPath.row]
+        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
+        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
         present(wevNav, animated: true, completion: nil)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import URLEmbeddedView
+import SwiftLinkPreview
 
 class ListItemCell: UITableViewCell {
 
@@ -15,6 +15,8 @@ class ListItemCell: UITableViewCell {
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var baseView: DesignableView!
+    
+    private let slp = SwiftLinkPreview(cache: InMemoryCache())
     
     var tapOptionBtnAction: (() -> ())?
     
@@ -52,16 +54,23 @@ class ListItemCell: UITableViewCell {
             articleImage.setImageByAlamofire(with: URL(string: imageUrl)!)
         } else {
             // OGPから画像取得
-            let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
-                if let _ = error {
-                    return
-                }
+            if let url = slp.extractURL(text: url),
+                let cached = self.slp.cache.slp_getCachedResponse(url: url.absoluteString),
+                let imageUrlString = cached.image,
+                let imageUrl = URL(string: imageUrlString) {
+                articleImage.setImageByAlamofire(with: imageUrl)
                 
-                if let imageUrl = ogData.imageUrl as URL? {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.articleImage.setImageByAlamofire(with: imageUrl)
-                    }
-                }
+            } else {
+                slp.preview(url,
+                            onSuccess: {[weak self] result in
+                                if let imageUrlString = result.image, let imageUrl = URL(string: imageUrlString) {
+                                    self?.articleImage.setImageByAlamofire(with: imageUrl)
+                                }
+                    },
+                            onError: {
+                                // TODO:
+                                error in print("\(error)")}
+                )
             }
         }
     }

@@ -13,8 +13,8 @@ target 'ReadingList' do
   pod 'LicensePlist'
   pod 'RealmSwift'
   pod 'SwiftMessages'
-  pod 'URLEmbeddedView'
   pod 'XLPagerTabStrip', '~> 9.0'
+  pod 'SwiftLinkPreview', '~> 3.0.1'
 
 end
 

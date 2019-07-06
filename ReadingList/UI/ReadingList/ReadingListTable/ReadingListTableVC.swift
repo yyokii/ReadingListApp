@@ -17,6 +17,8 @@ protocol TapOptionButtonDelegate: class {
 class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private let cellIdentifier = "ListItemCell"
+    let btn = UIButton(type: .custom)
+
     var itemInfo = IndicatorInfo(title: "View")
     
     weak var delegate: TapOptionButtonDelegate?
@@ -44,6 +46,10 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
         presenter.viewDidLoad()
     }
     
+    override func viewDidLayoutSubviews() {
+        configureFloatingButton()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
@@ -52,6 +58,24 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     private func configureTableView() {
         tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.separatorStyle = .none
+    }
+    
+    private func configureFloatingButton() {
+        btn.frame = CGRect(x: 285, y: 485, width: 100, height: 100)
+        btn.setTitle("All Defects", for: .normal)
+        btn.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 50
+        btn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btn.layer.borderWidth = 3.0
+//        btn.addTarget(self,action: #selector(DestinationVC.buttonTapped), for: UIControlEvent.touchUpInside)
+        view.addSubview(btn)
+    }
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        btn.frame.origin.y = scrollView.contentOffset.y
     }
     
     // MARK: - UITableViewDataSource
@@ -91,7 +115,9 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let wevNav = ArticleWebVC.articleWebVCInit(urlSrting: displayItems![indexPath.row].url)
+        let displayItem = displayItems![indexPath.row]
+        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
+        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
         present(wevNav, animated: true, completion: nil)
     }
     

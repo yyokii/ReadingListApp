@@ -8,6 +8,8 @@
 
 import RealmSwift
 
+// TODO: 削除は論理削除、期限日より1ヶ月経過したら物理削除してもいいかも
+
 /// ReadingItemモデル管理クラス
 class RealmManager {
     static let sharedInstance = RealmManager()
@@ -82,17 +84,20 @@ class RealmManager {
         return results
     }
     
-    /// FIXME: 期日切れのアイテムを削除
-    func deleteOverdueItem() {
-//        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@", readingItem.title, readingItem.url)
-//
-//        guard let results = fileterdItem else { return }
-//        try? database?.write {
-//            database?.delete(results)
-//        }
+    /// TODO: 動作確認、期日切れのアイテムを論理削除
+    func deleteExpiredItem(now: Date) {
+        // 削除されていない、期限日を超えているもの、読み終わっていないもの
+        let fileterdItem = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate < %@ && isDeleted == false", now)
+        guard let results = fileterdItem else { return }
+        
+        results.forEach { item in
+            try? database?.write {
+                item.isDeleted = true
+            }
+        }
     }
     
-    /// タイトルとURLが一致するものを削除
+    /// タイトルとURLが一致するものを論理削除
     func deleteItem(title: String, url: String) {
         let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@ && isDeleted == false", title, url)
         

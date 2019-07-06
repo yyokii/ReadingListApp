@@ -16,7 +16,7 @@ class NotificationManager {
     
     private init(){}
     
-    // TOOD: 許可タイミングの検討：　初回のスライド終わったときかなと
+    // TOOD: 許可タイミングの検討：　リーディングリスト画面に入って、初回ダイアログ消えた時
     func requestAuthorize(vc: UNUserNotificationCenterDelegate) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()

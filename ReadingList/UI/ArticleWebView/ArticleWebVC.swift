@@ -10,6 +10,13 @@ import Hero
 import UIKit
 import WebKit
 
+/// webViewで表示するアイテム
+struct WebItem {
+    var url: String
+    var title: String
+    var imageUrl: String?
+}
+
 class ArticleWebVC: UIViewController {
     @IBOutlet weak var baseView: UIView!
  
@@ -17,9 +24,9 @@ class ArticleWebVC: UIViewController {
     var urlString: String?
  
     /// ナビゲーション付きのwebviewを作成する
-    class func articleWebVCInit(urlSrting: String) -> UIViewController {
+    class func articleWebVCInit(webItem: WebItem) -> UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
-        vc.urlString = urlSrting
+        vc.urlString = webItem.url
         let nav = UINavigationController(rootViewController: vc)
         // nav.hero.isEnabled = true
         return nav
@@ -93,11 +100,5 @@ class ArticleWebVC: UIViewController {
 extension ArticleWebVC: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
-    }
-}
-
-extension ArticleWebVC: HeroViewControllerDelegate {
-    func heroWillStartAnimatingFrom(viewController: UIViewController) {
-        hero.modalAnimationType = .fade
     }
 }

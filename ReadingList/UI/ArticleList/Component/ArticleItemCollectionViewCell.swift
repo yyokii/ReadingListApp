@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import URLEmbeddedView
+import SwiftLinkPreview
 
 class ArticleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var plusBtn: UIButton!
+    
+    private let slp = SwiftLinkPreview(cache: InMemoryCache())
     
     // cellのボタンアクションについて（delegate, cloasure）：https://fluffy.es/handling-button-tap-inside-uitableviewcell-without-using-tag/
     var tapAddAction: (() -> Void)?
@@ -36,8 +39,12 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
     func configureCell() {
         guard let item = article else { return }
         
+        let plusBtnImage = UIImage(named: "footer_plus")?.withRenderingMode(.alwaysTemplate)
+        plusBtn.setImage(plusBtnImage, for: .normal)
+        plusBtn.tintColor = UIColor.init(named: Constant.Color.bisque)
+        
         titleLbl.text = item.title
-            self.setImage(imageUrl: item.imageUrl ?? "", url: item.url)        
+        self.setImage(imageUrl: item.imageUrl ?? "", url: item.url)
     }
     
     private func setImage(imageUrl: String, url: String) {
@@ -45,17 +52,23 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
             imageView.setImageByAlamofire(with: URL(string: imageUrl)!)
         } else {
             // OGPから画像取得
-            let _ = OGDataProvider.shared.fetchOGData(withURLString: url) { [weak self] ogData, error in
-                if let _ = error {
-                    return
-                }
+            if let url = slp.extractURL(text: url),
+                let cached = self.slp.cache.slp_getCachedResponse(url: url.absoluteString),
+                let imageUrlString = cached.image,
+                let imageUrl = URL(string: imageUrlString) {
+                imageView.setImageByAlamofire(with: imageUrl)
                 
-                
-                if let imageUrl = ogData.imageUrl as URL? {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.imageView.setImageByAlamofire(with: imageUrl)
-                    }
-                }
+            } else {
+                slp.preview(url,
+                            onSuccess: {[weak self] result in
+                                if let imageUrlString = result.image, let imageUrl = URL(string: imageUrlString) {
+                                    self?.imageView.setImageByAlamofire(with: imageUrl)
+                                }
+                    },
+                            onError: {
+                                // TODO:
+                                error in print("\(error)")}
+                )
             }
         }
     }

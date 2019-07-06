@@ -21,6 +21,10 @@ final class ArticleListModel: ArticleListModelInput {
         readingItem.title = articleItem.title
         readingItem.url = articleItem.url
         
+        if let imageUrlString = articleItem.imageUrl {
+            readingItem.imageUrl = imageUrlString
+        }
+        
         let now = Date()
         readingItem.createdDate = now
         // 一週間後の日付（=読み終わり予定の期限日）を取得

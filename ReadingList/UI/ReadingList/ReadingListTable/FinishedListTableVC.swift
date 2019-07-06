@@ -78,7 +78,10 @@ class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let wevNav = ArticleWebVC.articleWebVCInit(urlSrting: displayItems![indexPath.row].url)
+        
+        let displayItem = displayItems![indexPath.row]
+        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
+        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
         present(wevNav, animated: true, completion: nil)
     }
     
