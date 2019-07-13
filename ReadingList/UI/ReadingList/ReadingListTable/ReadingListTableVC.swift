@@ -17,15 +17,18 @@ protocol TapOptionButtonDelegate: class {
 class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private let cellIdentifier = "ListItemCell"
-    let btn = UIButton(type: .custom)
-
     var itemInfo = IndicatorInfo(title: "View")
-    
+
     weak var delegate: TapOptionButtonDelegate?
     private var presenter: ReadingListPresenterInput!
-    
     // 表示するアイテムの配列
-    private var displayItems: Results<ReadingItem>?
+    private var displayItems: [ReadingItem]?
+    
+    // リフレッシュのアニメーション関連
+    var labelsArray: Array<UILabel> = []
+    var isAnimating = false
+    var currentColorIndex = 0
+    var currentLabelIndex = 0
     
     init(style: UITableView.Style, itemInfo: IndicatorInfo) {
         self.itemInfo = itemInfo
@@ -42,6 +45,8 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationManager.sharedInstance.requestAuthorize()
+        
         configureTableView()
         presenter.viewDidLoad()
     }
@@ -54,9 +59,15 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     private func configureTableView() {
         tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.separatorStyle = .none
+        
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl!)
+        refreshControl!.backgroundColor = UIColor.clear
+        refreshControl!.tintColor = UIColor.clear
+        loadCustomRefreshContents()
     }
     
-    // MARK: - UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -90,7 +101,7 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
         return cell!
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let displayItem = displayItems![indexPath.row]
@@ -99,15 +110,126 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
         present(wevNav, animated: true, completion: nil)
     }
     
-    // MARK: - IndicatorInfoProvider
+    // MARK: UIScrollView delegate method implementation
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl!.isRefreshing && !isAnimating {
+            guard let items = displayItems else { return }
+            
+            // FIXME: ここのアニメーション実装は消す
+            // animateRefreshStep1()
+            
+            displayItems = items.shuffled()
+            tableView.reloadData()
+            refreshControl?.endRefreshing()
+        }
+    }
+    
+    // MARK: IndicatorInfoProvider
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return itemInfo
     }
+    
+    // MARK: リフレッシュコントロールのカスタム
+    
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
+        
+        let refreshCustomView = refreshContents![0] as! UIView
+        refreshCustomView.frame = refreshControl!.bounds
+        
+        for i in 0 ..< refreshCustomView.subviews.count {
+            labelsArray.append(refreshCustomView.viewWithTag(i + 1) as! UILabel)
+        }
+        
+        refreshControl!.addSubview(refreshCustomView)
+    }
+    
+    func animateRefreshStep1() {
+        isAnimating = true
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform(rotationAngle: CGFloat(Float.pi/4))
+            self.labelsArray[self.currentLabelIndex].textColor = self.getNextColor()
+            
+        }, completion: { (finished) -> Void in
+            
+            UIView.animate(withDuration: 0.05, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+                self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform.identity
+                self.labelsArray[self.currentLabelIndex].textColor = UIColor.black
+                
+            }, completion: { (finished) -> Void in
+                self.currentLabelIndex += 1
+                
+                if self.currentLabelIndex < self.labelsArray.count {
+                    // 文字数分のアニメーションを行う、順番に傾き・色変えのいアニメーション実行
+                    self.animateRefreshStep1()
+                }
+                else {
+                    self.animateRefreshStep2()
+                }
+            })
+        })
+    }
+    
+    
+    func animateRefreshStep2() {
+        UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+            self.labelsArray[0].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[1].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[2].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[3].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[4].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[5].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.labelsArray[6].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            
+        }, completion: { (finished) -> Void in
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+                self.labelsArray[0].transform = CGAffineTransform.identity
+                self.labelsArray[1].transform = CGAffineTransform.identity
+                self.labelsArray[2].transform = CGAffineTransform.identity
+                self.labelsArray[3].transform = CGAffineTransform.identity
+                self.labelsArray[4].transform = CGAffineTransform.identity
+                self.labelsArray[5].transform = CGAffineTransform.identity
+                self.labelsArray[6].transform = CGAffineTransform.identity
+                
+            }, completion: { (finished) -> Void in
+                if self.refreshControl!.isRefreshing {
+                    self.currentLabelIndex = 0
+                    self.animateRefreshStep1()
+                }
+                else {
+                    self.isAnimating = false
+                    self.currentLabelIndex = 0
+                    for i in 0..<self.labelsArray.count {
+                        self.labelsArray[i].textColor = UIColor.black
+                        self.labelsArray[i].transform = CGAffineTransform.identity
+                    }
+                }
+            })
+        })
+    }
+    
+    
+    func getNextColor() -> UIColor {
+        // 7色、文字数と同じ
+        var colorsArray: Array<UIColor> = [UIColor.init(named: Constant.Color.bisque)!, UIColor.init(named: Constant.Color.caramel)!, UIColor.init(named: Constant.Color.greenSheen)!, UIColor.init(named: Constant.Color.myrtleGreen)!, UIColor.init(named: Constant.Color.pinkSherbet)!, UIColor.init(named: Constant.Color.sugarPlum)!, UIColor.init(named: Constant.Color.bisque)!]
+        
+        if currentColorIndex == colorsArray.count {
+            // 先頭に戻る
+            currentColorIndex = 0
+        }
+        
+        let returnColor = colorsArray[currentColorIndex]
+        currentColorIndex += 1
+        
+        return returnColor
+    }
 }
 
 extension ReadingListTableVC: ReadingListPresenterOutput {
-    func updateList(results: Results<ReadingItem>) {
+    func updateList(results: [ReadingItem]) {
         displayItems = results
         tableView.reloadData()
     }

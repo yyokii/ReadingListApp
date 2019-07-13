@@ -17,6 +17,8 @@
 		B6658C2E22ADD45300C3353A /* ArticleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6658C2D22ADD45300C3353A /* ArticleListPresenter.swift */; };
 		B6658C3022AE3B5000C3353A /* SwiftMessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6658C2F22AE3B5000C3353A /* SwiftMessageUtil.swift */; };
 		B66C0A3C22D0CB3C007FA72B /* ArticleWebModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C0A3B22D0CB3C007FA72B /* ArticleWebModel.swift */; };
+		B66C0A3E22D389FA007FA72B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66C0A3D22D389F9007FA72B /* RefreshContents.xib */; };
+		B66C0A4022D4E8B6007FA72B /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C0A3F22D4E8B6007FA72B /* Indicator.swift */; };
 		B68722EA2276797200692AE0 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68722E92276797200692AE0 /* UIImageView+Extension.swift */; };
 		B68722EC2276803200692AE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68722EB2276803200692AE0 /* AppDelegate.swift */; };
 		B68722EF227681A300692AE0 /* ArticleWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68722EE227681A300692AE0 /* ArticleWebVC.swift */; };
@@ -102,6 +104,8 @@
 		B6658C2D22ADD45300C3353A /* ArticleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListPresenter.swift; sourceTree = "<group>"; };
 		B6658C2F22AE3B5000C3353A /* SwiftMessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMessageUtil.swift; sourceTree = "<group>"; };
 		B66C0A3B22D0CB3C007FA72B /* ArticleWebModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebModel.swift; sourceTree = "<group>"; };
+		B66C0A3D22D389F9007FA72B /* RefreshContents.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
+		B66C0A3F22D4E8B6007FA72B /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		B68722E92276797200692AE0 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		B68722EB2276803200692AE0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68722EE227681A300692AE0 /* ArticleWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebVC.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F7AEB222A4E6CB003EC815 /* GradationView.swift */,
+				B66C0A3F22D4E8B6007FA72B /* Indicator.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 			children = (
 				B6F15772226AD900007FB37B /* ListItemCell.swift */,
 				B6F15773226AD900007FB37B /* ListItemCell.xib */,
+				B66C0A3D22D389F9007FA72B /* RefreshContents.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				B6F2949E22AC199E00BB6F9F /* ReadingListIconCell.xib in Resources */,
 				B692B2A4229D923B00B00AD2 /* SwitchTableViewCell.xib in Resources */,
 				B6FA5B9B2287474000A5242A /* ArticleItemCollectionViewCell.xib in Resources */,
+				B66C0A3E22D389FA007FA72B /* RefreshContents.xib in Resources */,
 				B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */,
 				B6FA5B922287464800A5242A /* ArticleList.storyboard in Resources */,
 			);
@@ -705,6 +712,7 @@
 				B6FA5BAB22911FF300A5242A /* Article.swift in Sources */,
 				B6F15778226C20EE007FB37B /* ReadingItem.swift in Sources */,
 				B692B298229701FF00B00AD2 /* AboutAppVC.swift in Sources */,
+				B66C0A4022D4E8B6007FA72B /* Indicator.swift in Sources */,
 				B6F15770226AD4B3007FB37B /* RealmManager.swift in Sources */,
 				B6FA5B9A2287474000A5242A /* ArticleItemCollectionViewCell.swift in Sources */,
 				B6658C2822AD09D300C3353A /* SwiftMessagesSegue.swift in Sources */,

@@ -18,7 +18,7 @@ protocol ReadingListPresenterInput {
 }
 
 protocol ReadingListPresenterOutput: AnyObject {
-    func updateList(results: Results<ReadingItem>)
+    func updateList(results: [ReadingItem])
 }
 
 final class ReadingListPresenter {
@@ -38,7 +38,7 @@ final class ReadingListPresenter {
     
     private func addObserver() {
         // TODO: バックグラウンドから復帰した時にデータを最新にするために必要かも
-//        notificationCenter.addObserver(self, selector: #selector(viewWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        //        notificationCenter.addObserver(self, selector: #selector(viewWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
@@ -50,28 +50,28 @@ final class ReadingListPresenter {
     
     private func fetchAndUpdateList() {
         // 記事情報更新
-        if addReadingItem() {
-            // Userdefaultに保存している記事情報を削除
-            UserDefaultManager.shareInstance.deleteReadingItems()
-        }
+        addReadingItem()
         
         // UI更新
         if let items = RealmManager.sharedInstance.readNotFinishedItems() {
-            view.updateList(results: items)
+            view.updateList(results: Array(items))
         }
     }
     
     /// シェアしたものを確認してRealmに保存
-    private func addReadingItem() -> Bool {
+    private func addReadingItem() {
         if let items = UserDefaultManager.shareInstance.fetchReadingItems() {
             model.addItemToRealm(from: items)
-            return true
+            // Userdefaultに保存している記事情報を削除
+            UserDefaultManager.shareInstance.deleteReadingItems()
         }
-        return false
     }
     
     /// 削除アクションされたアイテムを削除しリストを更新
     @objc func deleteItem() {
+        // 通知削除
+        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
+
         model.deleteItem(readingItem: optionTappedItem)
         fetchAndUpdateList()
         notificationCenter.post(name: .dismissItemOption, object: nil)
@@ -79,6 +79,9 @@ final class ReadingListPresenter {
     
     /// アイテムを既読にし更新
     @objc private func changeItemStateToFinished() {
+        // 通知削除
+        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
+
         model.changeItemStateToFinished(item: optionTappedItem)
         fetchAndUpdateList()
         notificationCenter.post(name: .dismissItemOption, object: nil)

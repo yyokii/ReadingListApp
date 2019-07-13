@@ -10,12 +10,11 @@ import Foundation
 
 protocol ArticleListModelInput {
     func addItemToRealm(from articleItem: Article)
-    func deleteItem(from articleItem: Article)
 }
 
 final class ArticleListModel: ArticleListModelInput {
     
-    /// Article型を変換してRealmに保存する
+    /// Article型を変換してリーディングリストに追加する
     func addItemToRealm(from articleItem: Article) {
         let readingItem = ReadingItem()
         readingItem.title = articleItem.title
@@ -34,10 +33,8 @@ final class ArticleListModel: ArticleListModelInput {
 
         readingItem.finishedDate = nil
         RealmManager.sharedInstance.addReadingItem(object: readingItem)
-    }
-    
-    /// アイテムをリーディングリストから削除
-    func deleteItem(from articleItem: Article) {
-        RealmManager.sharedInstance.deleteItem(title: articleItem.title, url: articleItem.url)
+        // duedate前の通知設定
+        NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
+        NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
     }
 }

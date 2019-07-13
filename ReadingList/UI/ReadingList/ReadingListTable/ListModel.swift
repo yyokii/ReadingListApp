@@ -39,6 +39,9 @@ final class ListModel: ListModelInput {
             let obj = createRealmObj(itemDic: item)
             guard let readingItem = obj else { return }
             RealmManager.sharedInstance.addReadingItem(object: readingItem)
+            // duedate前の通知設定
+            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
+            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
         }
     }
     
