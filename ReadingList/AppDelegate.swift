@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
-        RealmManager.sharedInstance.deleteExpiredItem(now: Date())
+        let now = Date()
+        RealmManager.sharedInstance.deleteExpiredItem(now: now)
+        RealmManager.sharedInstance.deleteItem(now: now)
+        
         configireUI()
         return true
     }
@@ -40,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // このアプリについて
         let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
         let navThird = UINavigationController()
+        navThird.navigationBar.tintColor = .black
         navThird.navigationBar.prefersLargeTitles = true
         navThird.navigationItem.largeTitleDisplayMode = .always
         navThird.viewControllers = [aboutAppVC]

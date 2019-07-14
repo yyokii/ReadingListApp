@@ -107,6 +107,7 @@
                 <outlet property="articleImage" destination="jUF-d5-gfk" id="oxO-Sm-pcp"/>
                 <outlet property="baseView" destination="bhh-v4-sx0" id="sbD-VC-SYY"/>
                 <outlet property="dateLbl" destination="Kh3-Dl-UDG" id="rAI-Lp-ZIy"/>
+                <outlet property="optionItem" destination="g0Y-Sh-Wkl" id="iBQ-5l-Twx"/>
                 <outlet property="titleLbl" destination="PHH-um-eOz" id="gQv-8o-49X"/>
             </connections>
             <point key="canvasLocation" x="32" y="102.54872563718142"/>

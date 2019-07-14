@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6276857A368476B81C8D6170 /* Pods_ShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E22290BE107C2F13C710EF1A /* Pods_ShareExtension.framework */; };
 		A7CEF6036A72FE9F0992F451 /* Pods_ReadingList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F592C20404838448C261CD50 /* Pods_ReadingList.framework */; };
+		B62870D822DA2B3F00A89830 /* DeletedList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62870D722DA2B3F00A89830 /* DeletedList.storyboard */; };
 		B64691CA22B644D100B7C8C3 /* FinishedItemOption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64691C922B644D100B7C8C3 /* FinishedItemOption.storyboard */; };
 		B64691CC22B6459E00B7C8C3 /* FinishedItemOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64691CB22B6459E00B7C8C3 /* FinishedItemOptionVC.swift */; };
 		B64691CE22B645E800B7C8C3 /* ReadingItemOptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64691CD22B645E800B7C8C3 /* ReadingItemOptionVC.swift */; };
@@ -31,6 +32,7 @@
 		B692B2A3229D923B00B00AD2 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B2A1229D923B00B00AD2 /* SwitchTableViewCell.swift */; };
 		B692B2A4229D923B00B00AD2 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B692B2A2229D923B00B00AD2 /* SwitchTableViewCell.xib */; };
 		B692B2A6229EE2C300B00AD2 /* ArticleListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B2A5229EE2C300B00AD2 /* ArticleListTableVC.swift */; };
+		B6A4B1C622DA1D5C00B9BE0A /* DeletedListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4B1C522DA1D5C00B9BE0A /* DeletedListVC.swift */; };
 		B6DEFE1322ACE5AE000E5886 /* FinishedListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DEFE1222ACE5AE000E5886 /* FinishedListPresenter.swift */; };
 		B6DEFE1522ACE5BE000E5886 /* ReadingListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DEFE1422ACE5BE000E5886 /* ReadingListPresenter.swift */; };
 		B6DEFE1922ACE80C000E5886 /* ReadingListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DEFE1822ACE80C000E5886 /* ReadingListTableVC.swift */; };
@@ -96,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		4749F697DFD7C7F4E60807D8 /* Pods-ReadingList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadingList.release.xcconfig"; path = "Target Support Files/Pods-ReadingList/Pods-ReadingList.release.xcconfig"; sourceTree = "<group>"; };
+		B62870D722DA2B3F00A89830 /* DeletedList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeletedList.storyboard; sourceTree = "<group>"; };
 		B64691C922B644D100B7C8C3 /* FinishedItemOption.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinishedItemOption.storyboard; sourceTree = "<group>"; };
 		B64691CB22B6459E00B7C8C3 /* FinishedItemOptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedItemOptionVC.swift; sourceTree = "<group>"; };
 		B64691CD22B645E800B7C8C3 /* ReadingItemOptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItemOptionVC.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		B692B2A1229D923B00B00AD2 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		B692B2A2229D923B00B00AD2 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		B692B2A5229EE2C300B00AD2 /* ArticleListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListTableVC.swift; sourceTree = "<group>"; };
+		B6A4B1C522DA1D5C00B9BE0A /* DeletedListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedListVC.swift; sourceTree = "<group>"; };
 		B6DEFE1222ACE5AE000E5886 /* FinishedListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedListPresenter.swift; sourceTree = "<group>"; };
 		B6DEFE1422ACE5BE000E5886 /* ReadingListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListPresenter.swift; sourceTree = "<group>"; };
 		B6DEFE1822ACE80C000E5886 /* ReadingListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListTableVC.swift; sourceTree = "<group>"; };
@@ -249,6 +253,15 @@
 				B692B2A2229D923B00B00AD2 /* SwitchTableViewCell.xib */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		B6A4B1C422DA1D4B00B9BE0A /* DeletedList */ = {
+			isa = PBXGroup;
+			children = (
+				B6A4B1C522DA1D5C00B9BE0A /* DeletedListVC.swift */,
+				B62870D722DA2B3F00A89830 /* DeletedList.storyboard */,
+			);
+			path = DeletedList;
 			sourceTree = "<group>";
 		};
 		B6DEFE0F22AC385F000E5886 /* ReadingList */ = {
@@ -414,6 +427,7 @@
 		B6FCE2FA2262221800FE85EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B6A4B1C422DA1D4B00B9BE0A /* DeletedList */,
 				B6658C2522AD097000C3353A /* ItemOption */,
 				B692B29D229C3FCB00B00AD2 /* CustomView */,
 				B692B2902297012900B00AD2 /* AboutApp */,
@@ -578,6 +592,7 @@
 				B6F294A922AC1CFE00BB6F9F /* ReadingList.storyboard in Resources */,
 				B68722F12276820A00692AE0 /* Article.storyboard in Resources */,
 				B64691CA22B644D100B7C8C3 /* FinishedItemOption.storyboard in Resources */,
+				B62870D822DA2B3F00A89830 /* DeletedList.storyboard in Resources */,
 				B6F15775226AD900007FB37B /* ListItemCell.xib in Resources */,
 				B6F3F78A22BF88CF00C6DD94 /* Color.xcassets in Resources */,
 				B6FCE2D7225A4F2B00FE85EF /* LaunchScreen.storyboard in Resources */,
@@ -740,6 +755,7 @@
 				B66C0A3C22D0CB3C007FA72B /* ArticleWebModel.swift in Sources */,
 				B6DEFE1B22ACE85D000E5886 /* FinishedListTableVC.swift in Sources */,
 				B6FA5BA9228F1FCA00A5242A /* FirebaseManager.swift in Sources */,
+				B6A4B1C622DA1D5C00B9BE0A /* DeletedListVC.swift in Sources */,
 				B6DEFE1922ACE80C000E5886 /* ReadingListTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

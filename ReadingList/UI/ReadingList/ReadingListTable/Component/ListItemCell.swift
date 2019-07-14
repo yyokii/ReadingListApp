@@ -9,12 +9,19 @@
 import UIKit
 import SwiftLinkPreview
 
+enum ListType {
+    case ReadingList
+    case FinishedList
+    case DeletedList
+}
+
 class ListItemCell: UITableViewCell {
     
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var baseView: DesignableView!
+    @IBOutlet weak var optionItem: DesignableButton!
     
     private let slp = SwiftLinkPreview(cache: InMemoryCache())
     
@@ -33,12 +40,19 @@ class ListItemCell: UITableViewCell {
         articleImage.image = nil
     }
     
-    func configureView(row: Int, item: ReadingItem) {
+    func configureView(row: Int, item: ReadingItem, type: ListType = .ReadingList) {
         baseView.backgroundColor = UIColor.white
         baseView.cornerRadius = 12
         baseView.shadowRadius = 4
         baseView.shadowOpacity = 0.5
         baseView.shadowOffset = CGSize(width: 3, height: 3)
+        
+        switch type {
+        case .ReadingList, .FinishedList:
+            break
+        case .DeletedList:
+            optionItem.isHidden = true
+        }
         
         titleLbl.text = item.title
         let formatter = Date.getFormatter()

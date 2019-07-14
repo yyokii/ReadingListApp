@@ -36,7 +36,7 @@ final class ArticleWebModel: ArticleWebModelInput {
         RealmManager.sharedInstance.addReadingItem(object: readingItem)
     }
     
-    /// リーディングリストに読み終わりアイテムを保存する
+    /// 読み終わりアイテムに保存する
     func addItemToFinishedList(from webItem: WebItem) {
         let readingItem = ReadingItem()
         readingItem.title = webItem.title

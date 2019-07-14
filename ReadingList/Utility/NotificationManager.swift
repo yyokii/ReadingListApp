@@ -43,8 +43,6 @@ class NotificationManager {
         }
     }
     
-    //////////////////////////////////////////////
-    
     func addNotification(item: ReadingItem, type: LocalNotificationType) {
         guard let dueDate = item.dueDate else { return }
         
@@ -106,70 +104,4 @@ class NotificationManager {
         
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id1, id2])
     }
-    
-    //////////////////////////////////////////////
-    
-    
-    //    private func addNotificationContent(type: LocalNotificationType, trigger: UNNotificationTrigger) {
-    //        switch type {
-    //        case .OneDayBefore:
-    //            createOneDayBeforeNotification(trigger: trigger)
-    //        case .TwoDaysBefore:
-    //            createTwoDaysBeforeNotification(trigger: trigger)
-    //        }
-    //    }
-    //
-    //
-    //    // FIXME: これ時間しか指定してないから、日付で指定するようにしないと
-    //    private func createNotificationTrigger(type: LocalNotificationType) -> UNNotificationTrigger {
-    //        var notificationTime = DateComponents()
-    //        var trigger: UNNotificationTrigger
-    //
-    //        switch type {
-    //        case .OneDayBefore:
-    //            notificationTime.hour = 13
-    //            notificationTime.minute = 0
-    //        case .TwoDaysBefore:
-    //            notificationTime.hour = 10
-    //            notificationTime.minute = 0
-    //        }
-    //        trigger = UNCalendarNotificationTrigger(dateMatching: notificationTime, repeats: false)
-    //        return trigger
-    //    }
-    //
-    //    /// 期限1日後の通知を作成
-    //    private func createOneDayBeforeNotification(trigger: UNNotificationTrigger) {
-    //        if let items = RealmManager.sharedInstance.readItemsByDueDateOneDayAfter() {
-    //            items.forEach { item in
-    //                // 通知コンテンツを作成
-    //                let content = UNMutableNotificationContent()
-    //                content.title = item.title
-    //                content.body = Constant.LocalNotification.body
-    //                content.sound = UNNotificationSound.default
-    //                let typeId = Constant.LocalNotification.id.onwDayBefore
-    //                let id = "\(typeId): \(item.title)"
-    //                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-    //                // 通知をセット
-    //                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    //            }
-    //        }
-    //    }
-    //
-    //    /// 期限2日後の通知を作成
-    //    private func createTwoDaysBeforeNotification(trigger: UNNotificationTrigger) {
-    //        if let items = RealmManager.sharedInstance.readItemsByDueDateTowDaysAfter() {
-    //            items.forEach { item in
-    //                // 通知コンテンツを作成
-    //                let content = UNMutableNotificationContent()
-    //                content.title = item.title
-    //                content.body = Constant.LocalNotification.body
-    //                content.sound = UNNotificationSound.default
-    //                let typeId = Constant.LocalNotification.id.twoDaysBefore
-    //                let id = "\(typeId): \(item.title)"
-    //                let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-    //                // 通知をセット
-    //                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    //            }
-    //        }
-    //    }
 }

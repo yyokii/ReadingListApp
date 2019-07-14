@@ -84,10 +84,30 @@ class RealmManager {
         return results
     }
     
+    /// 論理削除されているアイテムを取得
+    func readDeletedItems() -> Results<ReadingItem>?  {
+        let results = database?.objects(ReadingItem.self).filter("isDeleted == true")
+        return results
+    }
+    
     /// TODO: 動作確認、期日切れのアイテムを論理削除
     func deleteExpiredItem(now: Date) {
         // 削除されていない、期限日を超えているもの、読み終わっていないもの
         let fileterdItem = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate < %@ && isDeleted == false", now)
+        guard let results = fileterdItem else { return }
+        
+        results.forEach { item in
+            try? database?.write {
+                item.isDeleted = true
+            }
+        }
+    }
+    
+    /// TODO: 動作確認、論理削除されている且つ、作成日から30日以上経過しているものを削除
+    func deleteItem(now: Date) {
+        let date = NSDate(timeInterval: -60*60*24*30, since: now)
+        
+        let fileterdItem = database?.objects(ReadingItem.self).filter("createdDate < %@ && isDeleted == true", date)
         guard let results = fileterdItem else { return }
         
         results.forEach { item in
