@@ -92,10 +92,6 @@ class ListItemCell: UITableViewCell {
         }
     }
     
-    private func setNoImage() {
-        
-    }
-    
     func redView() {
         dateLbl.textColor = UIColor.darkText
         baseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
@@ -107,7 +103,6 @@ class ListItemCell: UITableViewCell {
     }
     
     @IBAction func tapOptionButton(_ sender: Any) {
-        dateLbl.textColor = UIColor.darkText
         tapOptionBtnAction?()
     }
 }

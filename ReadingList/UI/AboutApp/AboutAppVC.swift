@@ -10,18 +10,24 @@ import UIKit
 import StoreKit
 import UserNotifications
 
+
 class AboutAppVC: UITableViewController {
-    let cellTitles = [
+    private let aboutAppCellIdentifier = "AboutAppTableViewCell"
+    private let notificationStateCellIdentifier = "NotificationAuthStateCell"
+    let notificationCenter = NotificationCenter.default
+    
+    private let cellTitles = [
         ["「Yomu」の使い方"],
         ["最近削除したもの", "通知設定"],
         ["いいねする", "お問い合わせ", "開発した人"],
     ]
     
-    let current = UNUserNotificationCenter.current()
+    private let current = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notificationCenter.addObserver(self, selector: #selector(updateNorificationAuthState), name: UIApplication.willEnterForegroundNotification, object: nil)
         navigationItem.title = "このアプリについて"
         confirureTableView()
     }
@@ -30,24 +36,20 @@ class AboutAppVC: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
+        
     }
     
     func confirureTableView() {
-        tableView.register(UINib(nibName: "AboutAppTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutAppTableViewCell")
+        tableView.register(UINib(nibName: "AboutAppTableViewCell", bundle: nil), forCellReuseIdentifier: aboutAppCellIdentifier)
+        tableView.register(UINib(nibName: "SwitchBtnTableViewCell", bundle: nil), forCellReuseIdentifier: notificationStateCellIdentifier)
     }
     
-    // FIXME:
-    private func setNotificationSetting() {
-        current.getNotificationSettings(completionHandler: { settings in
-            switch settings.authorizationStatus {
-            case .authorized, .provisional:
-                print("authorized")
-            case .denied:
-                print("denied")
-            case .notDetermined:
-                print("not determined, ask user for permission now")
-            }
-        })
+    @objc private func updateNorificationAuthState() {
+        guard let _ = view.window else { return }
+        
+        let notificationAuthStateIndexPath = IndexPath(row: 1, section: 1)
+        tableView.reloadRows(at: [notificationAuthStateIndexPath], with: .none)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,10 +65,16 @@ class AboutAppVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AboutAppTableViewCell", for: indexPath) as! AboutAppTableViewCell
-        let title = cellTitles[indexPath.section][indexPath.row]
-        cell.titleLabel.text = title
-        return cell
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: notificationStateCellIdentifier, for: indexPath) as! SwitchBtnTableViewCell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: aboutAppCellIdentifier, for: indexPath) as! AboutAppTableViewCell
+            let title = cellTitles[indexPath.section][indexPath.row]
+            cell.titleLabel.text = title
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,7 +85,7 @@ class AboutAppVC: UITableViewController {
             case 0:
                 print("test")
             default:
-                print("警告：未設定のセルをタップ")
+                break
             }
         case 1:
             switch indexPath.row {
@@ -85,9 +93,9 @@ class AboutAppVC: UITableViewController {
                 let deleteListVC = DeletedListVC.deleteVCInit()
                 navigationController?.pushViewController(deleteListVC, animated: true)
             case 1:
-                print("test")
+                break
             default:
-                print("警告：未設定のセルをタップ")
+                break
             }
         case 2:
             switch indexPath.row {
@@ -98,7 +106,7 @@ class AboutAppVC: UITableViewController {
                     //                    MDCAlert.showAlert(vc: self, title: "😥", message: "申し訳ございません。現在のOSバージョンではご利用になれません。", isEnableOutsideScreenTouch: true, positiveAction: {})
                 }
             case 1:
-                print("test")
+                break
             case 2:
                 let url = URL(string: "https://twitter.com/enyyokii")!
                 if UIApplication.shared.canOpenURL(url) {
@@ -110,28 +118,6 @@ class AboutAppVC: UITableViewController {
         default:
             print("警告：未設定のセルをタップ")
         }
-        
-        //        switch indexPath.row {
-        //        case 0:
-        //            let howToVC = UIStoryboard(name: "HowTo", bundle: nil).instantiateInitialViewController() as! HowToViewController
-        //            howToVC.presentationCase = .closeButton
-        //            howToVC.hero.isEnabled = true
-        //            howToVC.hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up), dismissing: .pageOut(direction: .down))
-        //            present(howToVC, animated: true, completion: nil)
-        //        case 1:
-        //            if #available(iOS 10.3, *) {
-        //                SKStoreReviewController.requestReview()
-        //            } else {
-        //                MDCAlert.showAlert(vc: self, title: "😥", message: "申し訳ございません。現在のOSバージョンではご利用になれません。", isEnableOutsideScreenTouch: true, positiveAction: {})
-        //            }
-        //        case 2:
-        //            let url = URL(string: "https://twitter.com/enyyokii")!
-        //            if UIApplication.shared.canOpenURL(url) {
-        //                UIApplication.shared.open(url)
-        //            }
-        //        default:
-        //            break
-        //        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
