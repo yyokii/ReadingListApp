@@ -47,6 +47,9 @@ class ListItemCell: UITableViewCell {
         baseView.shadowOpacity = 0.5
         baseView.shadowOffset = CGSize(width: 3, height: 3)
         
+        articleImage.layer.cornerRadius = 8.0
+        articleImage.clipsToBounds = true
+        
         switch type {
         case .ReadingList, .FinishedList:
             break

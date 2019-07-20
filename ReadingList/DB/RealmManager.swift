@@ -117,11 +117,10 @@ class RealmManager {
         }
     }
     
-    /// タイトルとURLが一致するものを論理削除
-    func deleteItem(title: String, url: String) {
-        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@ && isDeleted == false", title, url)
+    /// タイトルとURL、作成日が一致するものを論理削除
+    func deleteItem(title: String, url: String, createdDate: Date) {
+        let fileterdItem = database?.objects(ReadingItem.self).filter("title == %@ && url == %@ && createdDate == %@ && isDeleted == false", title, url, createdDate)
         
-        // TODO: これ複数ある場合の適切な対応は？
         guard let results = fileterdItem else { return }
         try? database?.write {
             results.first?.isDeleted = true

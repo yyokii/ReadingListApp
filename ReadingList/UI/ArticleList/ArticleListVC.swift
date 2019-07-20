@@ -15,8 +15,8 @@ class ArticleListVC: UIViewController {
     
     private var presenter: ArticleListPresenterInput!
     
-    let floatingBtn = UIButton(type: .custom)
-    var articles: [Article]?
+    private lazy var indicator = Indicator.init(frame: view.frame)
+    private var articles: [Article]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,36 +29,8 @@ class ArticleListVC: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        // configureFloatingBtn()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-    }
-    
-    func configureFloatingBtn(){
-        let width: CGFloat = 70
-        let height: CGFloat = 70
-        
-        let rightMargin: CGFloat = 10
-        let bottomMargin: CGFloat = 10
-        
-        let x = view.frame.width - width - rightMargin
-        let y = view.frame.height - (tabBarController?.tabBar.frame.height)! - height - bottomMargin
-
-        floatingBtn.frame = CGRect(x: x, y: y, width: width, height: height)
-        floatingBtn.setTitle("😎", for: .normal)
-        floatingBtn.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        floatingBtn.clipsToBounds = true
-        floatingBtn.layer.cornerRadius = width / 2
-        floatingBtn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        floatingBtn.layer.borderWidth = 3.0
-//        floatingBtn.addTarget(self,action: #selector(DestinationVC.buttonTapped), for: UIControlEvent.touchUpInside)
-        if let window = UIApplication.shared.keyWindow {
-            window.addSubview(self.floatingBtn)
-        }
     }
     
     private func configureColletionView() {
@@ -80,16 +52,31 @@ class ArticleListVC: UIViewController {
         self.presenter = presenter
     }
     
-//    @IBAction func toList(_ sender: Any) {
-//        let next = (UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleListTable") as? ArticleListTableVC)!
-//        _ = next.view
-//        next.articleTableView.contentOffset.y = collectionView!.contentOffset.y + collectionView!.contentInset.top
-//        hero.replaceViewController(with: next)
-//    }
-
+    //    @IBAction func toList(_ sender: Any) {
+    //        let next = (UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleListTable") as? ArticleListTableVC)!
+    //        _ = next.view
+    //        next.articleTableView.contentOffset.y = collectionView!.contentOffset.y + collectionView!.contentInset.top
+    //        hero.replaceViewController(with: next)
+    //    }
+    
 }
 
 extension ArticleListVC: ArticleListPresenterOutput {
+    func dismissIndicator() {
+        guard let indicator = view.findSubview(withTag: Constant.ViewTag.indicator) else { return }
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+            indicator.removeFromSuperview()
+        }, completion: nil)
+    }
+    
+    func showIndicator() {
+        if let _ = view.findSubview(withTag: Constant.ViewTag.indicator) {
+            return
+        } else {
+            view.addSubview(indicator)
+        }
+    }
+    
     func showSuccessAddDialog() {
         SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "保存しました", message: "リーディングリストに記事を追加しました") 
     }
@@ -104,7 +91,7 @@ extension ArticleListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles?.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleItemCollectionViewCell", for: indexPath as IndexPath) as! ArticleItemCollectionViewCell
         if let articleDatas = articles {
@@ -131,10 +118,10 @@ extension ArticleListVC: UICollectionViewDelegate {
 
 extension ArticleListVC: HeroViewControllerDelegate {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
-            // collectionView.hero.modifiers = [.cascade]
+        // collectionView.hero.modifiers = [.cascade]
     }
-
+    
     func heroWillStartAnimatingFrom(viewController: UIViewController) {
-            collectionView.hero.modifiers = [.cascade, .delay(0.2)]
+        collectionView.hero.modifiers = [.cascade, .delay(0.2)]
     }
 }

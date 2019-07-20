@@ -15,7 +15,9 @@ protocol ArticleListPresenterInput {
 }
 
 protocol  ArticleListPresenterOutput: AnyObject {
+    func dismissIndicator()
     func showSuccessAddDialog()
+    func showIndicator()
     func updateList(results: [Article])
 }
 
@@ -30,7 +32,9 @@ final class  ArticleListPresenter {
     }
     
     private func fetchArticles() {
+        view.showIndicator()
         FirebaseManager.sharedInstance.fetchArticles {[weak self] articles in
+            self?.view.dismissIndicator()
             self?.view.updateList(results: articles)
         }
     }

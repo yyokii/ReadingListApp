@@ -105,4 +105,13 @@ extension UIView {
             }
         }
     }
+    
+    func findSubview(withTag tag: Int) -> UIView? {
+        for subview in self.subviews {
+            if subview.tag == tag {
+                return subview
+            }
+        }
+        return nil
+    }
 }

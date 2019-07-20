@@ -68,6 +68,7 @@ class AboutAppVC: UITableViewController {
         
         if indexPath.section == 1 && indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: notificationStateCellIdentifier, for: indexPath) as! SwitchBtnTableViewCell
+            cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: aboutAppCellIdentifier, for: indexPath) as! AboutAppTableViewCell

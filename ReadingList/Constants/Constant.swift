@@ -33,6 +33,10 @@ struct Constant {
         static let finishedDate = "finishedDate"
     }
     
+    struct ViewTag {
+        static let indicator = 1000
+    }
+    
     struct Color {
         // アセッツで定義している色
         static let sugarPlum = "SugarPlum"

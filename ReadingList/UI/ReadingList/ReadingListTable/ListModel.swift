@@ -69,7 +69,7 @@ final class ListModel: ListModelInput {
     
     /// 特定のアイテムを削除
     func deleteItem(readingItem: ReadingItem) {
-        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url)
+        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url, createdDate: readingItem.createdDate!)
     }
     
     // アイテムをリーディングリストに戻す
