@@ -77,18 +77,42 @@ class ArticleWebVC: UIViewController {
         finishedReadingBtn.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
         finishedReadingBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
+        // 戻るボタン
+        let goBackBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
+        goBackBtnView.setBackgroundImage(UIImage(named: "arrow_left"), for: .normal)
+        goBackBtnView.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+        let goBackBtn = UIBarButtonItem(customView: goBackBtnView)
+        goBackBtn.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        goBackBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        // 進むボタン
+        let goForwardBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
+        goForwardBtnView.setBackgroundImage(UIImage(named: "arrow_right"), for: .normal)
+        goForwardBtnView.addTarget(self, action: #selector(self.goForward), for: .touchUpInside)
+        let goForwardBtn = UIBarButtonItem(customView: goForwardBtnView)
+        goForwardBtn.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        goForwardBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
         // スペーサー
         let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let fixedItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         fixedItem.width = 30
         
         // ツールバーに追加する
-        toolbarItems = [closeBtn, flexibleItem, readingBtn, fixedItem, finishedReadingBtn]
+        toolbarItems = [closeBtn, flexibleItem, goBackBtn, fixedItem, goForwardBtn, fixedItem, readingBtn, fixedItem, finishedReadingBtn]
         navigationController?.isToolbarHidden = false
     }
     
     @objc private func close() {
         hero.dismissViewController()
+    }
+    
+    @objc private func goBack() {
+        webView.goBack()
+    }
+    
+    @objc private func goForward() {
+        webView.goForward()
     }
     
     @objc private func addToReadingList() {

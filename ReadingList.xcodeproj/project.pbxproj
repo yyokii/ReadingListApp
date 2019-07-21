@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -71,6 +71,8 @@
 		B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FCE2D3225A4F2B00FE85EF /* Assets.xcassets */; };
 		B6FCE2D7225A4F2B00FE85EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FCE2D5225A4F2B00FE85EF /* LaunchScreen.storyboard */; };
 		B6FCE3002262240B00FE85EF /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCE2FF2262240B00FE85EF /* UserDefaultManager.swift */; };
+		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
+		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +169,8 @@
 		E22290BE107C2F13C710EF1A /* Pods_ShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB52ECA6527CE09E5922F8A6 /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		F592C20404838448C261CD50 /* Pods_ReadingList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadingList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
+		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		FD94C44318BD7ADE2A0CF1A8 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -430,6 +434,7 @@
 		B6FCE2FA2262221800FE85EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F5CC9C3B22E4949D00D6B4DB /* NoContentView */,
 				B6A4B1C422DA1D4B00B9BE0A /* DeletedList */,
 				B6658C2522AD097000C3353A /* ItemOption */,
 				B692B29D229C3FCB00B00AD2 /* CustomView */,
@@ -480,6 +485,15 @@
 				FD94C44318BD7ADE2A0CF1A8 /* Pods-ShareExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F5CC9C3B22E4949D00D6B4DB /* NoContentView */ = {
+			isa = PBXGroup;
+			children = (
+				F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */,
+				F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */,
+			);
+			path = NoContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,6 +616,7 @@
 				B6F2949E22AC199E00BB6F9F /* ReadingListIconCell.xib in Resources */,
 				B62870DC22DB18CF00A89830 /* SwitchBtnTableViewCell.xib in Resources */,
 				B6FA5B9B2287474000A5242A /* ArticleItemCollectionViewCell.xib in Resources */,
+				F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */,
 				B62870DE22DB5FD100A89830 /* Indicator.xib in Resources */,
 				B66C0A3E22D389FA007FA72B /* RefreshContents.xib in Resources */,
 				B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */,
@@ -640,44 +655,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReadingList/Pods-ReadingList-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftLinkPreview/SwiftLinkPreview.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
-				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ReadingList/Pods-ReadingList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLinkPreview.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ReadingList/Pods-ReadingList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -733,6 +715,7 @@
 				B692B298229701FF00B00AD2 /* AboutAppVC.swift in Sources */,
 				B66C0A4022D4E8B6007FA72B /* Indicator.swift in Sources */,
 				B6F15770226AD4B3007FB37B /* RealmManager.swift in Sources */,
+				F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */,
 				B6FA5B9A2287474000A5242A /* ArticleItemCollectionViewCell.swift in Sources */,
 				B6658C2822AD09D300C3353A /* SwiftMessagesSegue.swift in Sources */,
 				B6FA5B9D22885F9400A5242A /* Date+Extension.swift in Sources */,
@@ -961,8 +944,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ReadingList/ReadingList.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EAZT2D654U;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReadingList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -971,6 +954,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -983,8 +967,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ReadingList/ReadingList.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EAZT2D654U;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReadingList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -993,6 +977,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

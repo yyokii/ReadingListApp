@@ -13,7 +13,7 @@
         <!--Article WebVC-->
         <scene sceneID="M38-gT-VSN">
             <objects>
-                <viewController id="MvF-uu-vJZ" customClass="ArticleWebVC" customModule="ReadingList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="MvF-uu-vJZ" customClass="ArticleWebVC" customModule="ReadingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zU9-mi-RHf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

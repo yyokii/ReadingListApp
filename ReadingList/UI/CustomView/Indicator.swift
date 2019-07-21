@@ -39,15 +39,15 @@ class Indicator: UIView {
         
         // sourceになるSublayerを生成、追加
         let circle = CALayer()
-        circle.bounds = CGRect(x: 0, y: 0, width: 10, height: 10)
+        circle.bounds = CGRect(x: 0, y: 0, width: 20, height: 20)
         circle.position = center
-        circle.position.x -= 30
+        circle.position.x -= 40
         circle.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)?.cgColor
-        circle.cornerRadius = 5
+        circle.cornerRadius = 10
         replicatorLayer.addSublayer(circle)
         
         replicatorLayer.instanceCount = 4
-        replicatorLayer.instanceTransform = CATransform3DMakeTranslation(20, 0.0, 0.0)
+        replicatorLayer.instanceTransform = CATransform3DMakeTranslation(30, 0.0, 0.0)
         
         // 上下のアニメーション
         let animation = CABasicAnimation(keyPath: "position.y")
