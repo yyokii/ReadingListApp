@@ -18,6 +18,8 @@ protocol ReadingListPresenterInput {
 }
 
 protocol ReadingListPresenterOutput: AnyObject {
+    func displayNoContentView()
+    func dismissNoContentView()
     func updateList(results: [ReadingItem])
 }
 
@@ -54,7 +56,15 @@ final class ReadingListPresenter {
         
         // UI更新
         if let items = RealmManager.sharedInstance.readNotFinishedItems() {
-            view.updateList(results: Array(items))
+            if items.count == 0 {
+                view.updateList(results: Array(items))
+                view.displayNoContentView()
+            } else {
+                view.updateList(results: Array(items))
+                view.dismissNoContentView()
+            }
+        } else {
+            view.displayNoContentView()
         }
     }
     

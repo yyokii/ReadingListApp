@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,10 +13,109 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAt-YO-zZv">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-rB-0eR">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0x-IQ-6yi">
+                                    <rect key="frame" x="0.0" y="60" width="414" height="38"/>
+                                    <string key="text">リーディングリストに
+記事を追加しますか？</string>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="19"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2通りの方法で追加することができます" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTh-5j-p2m">
+                                    <rect key="frame" x="0.0" y="118" width="414" height="18"/>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9G-N4-Tko">
+                                    <rect key="frame" x="0.0" y="186" width="414" height="32"/>
+                                    <string key="text">【方法1】
+おすすめ記事の「➕」をタップ</string>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-3f-qS6">
+                                    <rect key="frame" x="0.0" y="258" width="414" height="48"/>
+                                    <string key="text">【方法2】
+他のアプリから追加
+他のアプリの「共有」ボタンをタップ</string>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="howto_share" translatesAutoresizingMaskIntoConstraints="NO" id="YAC-Kg-5IJ">
+                                    <rect key="frame" x="0.0" y="346" width="414" height="39.5"/>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="howto_select_yomu" translatesAutoresizingMaskIntoConstraints="NO" id="PKQ-Xj-NQz">
+                                    <rect key="frame" x="0.0" y="425.5" width="414" height="190.5"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※ 「Yomu」が表示されない場合は「その他（More）」より「Yomu」をオンにしてください" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75K-Aa-9ny">
+                                    <rect key="frame" x="0.0" y="636" width="414" height="26"/>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="lPa-3f-qS6" firstAttribute="top" secondItem="P9G-N4-Tko" secondAttribute="bottom" constant="40" id="4d7-hH-a1b"/>
+                                <constraint firstAttribute="trailing" secondItem="o0x-IQ-6yi" secondAttribute="trailing" id="9hI-9D-I7s"/>
+                                <constraint firstItem="o0x-IQ-6yi" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="As5-jI-vUC"/>
+                                <constraint firstAttribute="trailing" secondItem="bTh-5j-p2m" secondAttribute="trailing" id="Crl-6q-mqR"/>
+                                <constraint firstItem="PKQ-Xj-NQz" firstAttribute="top" secondItem="YAC-Kg-5IJ" secondAttribute="bottom" constant="40" id="DdH-h8-vy6"/>
+                                <constraint firstAttribute="trailing" secondItem="75K-Aa-9ny" secondAttribute="trailing" id="Nyw-He-8ii"/>
+                                <constraint firstAttribute="trailing" secondItem="PKQ-Xj-NQz" secondAttribute="trailing" id="OtP-ci-RYb"/>
+                                <constraint firstAttribute="trailing" secondItem="lPa-3f-qS6" secondAttribute="trailing" id="PwL-z1-zQI"/>
+                                <constraint firstItem="o0x-IQ-6yi" firstAttribute="top" secondItem="y8f-rB-0eR" secondAttribute="top" constant="60" id="SEc-ly-yrj"/>
+                                <constraint firstItem="P9G-N4-Tko" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="TFR-XL-X5V"/>
+                                <constraint firstItem="YAC-Kg-5IJ" firstAttribute="top" secondItem="lPa-3f-qS6" secondAttribute="bottom" constant="40" id="Tbz-k8-sIM"/>
+                                <constraint firstItem="YAC-Kg-5IJ" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="UPN-HA-9xU"/>
+                                <constraint firstItem="P9G-N4-Tko" firstAttribute="top" secondItem="bTh-5j-p2m" secondAttribute="bottom" constant="50" id="WCN-jb-h3V"/>
+                                <constraint firstItem="lPa-3f-qS6" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="cYY-zO-Xu9"/>
+                                <constraint firstItem="bTh-5j-p2m" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="ffJ-OU-boB"/>
+                                <constraint firstItem="bTh-5j-p2m" firstAttribute="top" secondItem="o0x-IQ-6yi" secondAttribute="bottom" constant="20" id="i4k-Y1-2yB"/>
+                                <constraint firstAttribute="trailing" secondItem="P9G-N4-Tko" secondAttribute="trailing" id="nb8-lr-QWI"/>
+                                <constraint firstAttribute="trailing" secondItem="YAC-Kg-5IJ" secondAttribute="trailing" id="vCU-lr-TyV"/>
+                                <constraint firstItem="75K-Aa-9ny" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="xiN-g4-z28"/>
+                                <constraint firstItem="PKQ-Xj-NQz" firstAttribute="leading" secondItem="y8f-rB-0eR" secondAttribute="leading" id="yuw-2H-HW3"/>
+                                <constraint firstAttribute="bottom" secondItem="75K-Aa-9ny" secondAttribute="bottom" constant="200" id="zk1-HZ-BfQ"/>
+                                <constraint firstItem="75K-Aa-9ny" firstAttribute="top" secondItem="PKQ-Xj-NQz" secondAttribute="bottom" constant="20" id="zu6-WH-Avh"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="y8f-rB-0eR" secondAttribute="trailing" id="FSa-6W-lXM"/>
+                        <constraint firstItem="y8f-rB-0eR" firstAttribute="leading" secondItem="uAt-YO-zZv" secondAttribute="leading" id="Lab-Zl-G1a"/>
+                        <constraint firstItem="y8f-rB-0eR" firstAttribute="top" secondItem="uAt-YO-zZv" secondAttribute="top" id="guj-tT-70C"/>
+                        <constraint firstAttribute="bottom" secondItem="y8f-rB-0eR" secondAttribute="bottom" id="jpx-sB-2L5"/>
+                        <constraint firstItem="y8f-rB-0eR" firstAttribute="width" secondItem="uAt-YO-zZv" secondAttribute="width" id="mOm-pT-Oxy"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uAt-YO-zZv" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ay2-1c-Lxk"/>
+                <constraint firstItem="uAt-YO-zZv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dmF-t6-2ln"/>
+                <constraint firstAttribute="bottom" secondItem="uAt-YO-zZv" secondAttribute="bottom" id="g31-n7-RQl"/>
+                <constraint firstItem="uAt-YO-zZv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="utr-B1-YMt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="47.826086956521742" y="63.616071428571423"/>
         </view>
     </objects>
+    <resources>
+        <image name="howto_select_yomu" width="217.66667175292969" height="190.33332824707031"/>
+        <image name="howto_share" width="218.33332824707031" height="39.666667938232422"/>
+    </resources>
 </document>

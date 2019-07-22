@@ -1,14 +1,14 @@
 //
-//  NoReadingListItemView.swift
+//  NoFinishedListItem.swift
 //  ReadingList
 //
-//  Created by 東原与生 on 2019/07/21.
+//  Created by 東原与生 on 2019/07/23.
 //  Copyright © 2019 Yoki Higashihara. All rights reserved.
 //
 
 import UIKit
 
-class NoReadingListItemView: UIView {
+class NoFinishedListItemView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNib()

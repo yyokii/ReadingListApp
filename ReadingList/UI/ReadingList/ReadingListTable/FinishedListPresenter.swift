@@ -16,6 +16,8 @@ protocol FinishedListPresenterInput {
 
 protocol  FinishedListPresenterOutput: AnyObject {
     func updateList(results: Results<ReadingItem>)
+    func displayNoContentView()
+    func dismissNoContentView()
 }
 
 final class  FinishedListPresenter {
@@ -38,7 +40,15 @@ final class  FinishedListPresenter {
     
     private func fetchFinishedList() {
         if let items = RealmManager.sharedInstance.readFinishedItems() {
-            view.updateList(results: items)
+            if items.count == 0 {
+                view.updateList(results: items)
+                view.displayNoContentView()
+            } else {
+                view.updateList(results: items)
+                view.dismissNoContentView()
+            }
+        } else {
+            view.displayNoContentView()
         }
     }
     

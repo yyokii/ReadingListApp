@@ -17,6 +17,7 @@ protocol TapOptionButtonDelegate: class {
 class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private let cellIdentifier = "ListItemCell"
+    private var noContentView: UIView!
     var itemInfo = IndicatorInfo(title: "View")
 
     weak var delegate: TapOptionButtonDelegate?
@@ -47,6 +48,7 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
         super.viewDidLoad()
         NotificationManager.sharedInstance.requestAuthorize()
         
+        noContentView = NoReadingListItemView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         configureTableView()
         presenter.viewDidLoad()
     }
@@ -229,6 +231,20 @@ class ReadingListTableVC: UITableViewController, IndicatorInfoProvider {
 }
 
 extension ReadingListTableVC: ReadingListPresenterOutput {
+    func dismissNoContentView() {
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+            guard let self = self else { return }
+            self.noContentView.removeFromSuperview()
+            }, completion: nil)
+    }
+    
+    func displayNoContentView() {
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+            guard let self = self else { return }
+            self.view.addSubview(self.noContentView)
+            }, completion: nil)
+    }
+    
     func updateList(results: [ReadingItem]) {
         displayItems = results
         tableView.reloadData()

@@ -13,6 +13,7 @@ import RealmSwift
 class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
     
     private let cellIdentifier = "ListItemCell"
+    private var noContentView: UIView!
     var itemInfo = IndicatorInfo(title: "View")
     
     weak var delegate: TapOptionButtonDelegate?
@@ -36,6 +37,8 @@ class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        noContentView = NoFinishedListItemView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         configureTableView()
     }
     
@@ -93,6 +96,20 @@ class FinishedListTableVC: UITableViewController, IndicatorInfoProvider {
 }
 
 extension FinishedListTableVC: FinishedListPresenterOutput {
+    func dismissNoContentView() {
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+            guard let self = self else { return }
+            self.noContentView.removeFromSuperview()
+            }, completion: nil)
+    }
+    
+    func displayNoContentView() {
+        UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+            guard let self = self else { return }
+            self.view.addSubview(self.noContentView)
+            }, completion: nil)
+    }
+    
     func updateList(results: Results<ReadingItem>) {
         displayItems = results
         tableView.reloadData()
