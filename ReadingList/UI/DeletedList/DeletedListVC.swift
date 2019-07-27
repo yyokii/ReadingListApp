@@ -15,7 +15,7 @@ class DeletedListVC: UIViewController {
     
     private let cellIdentifier = "ListItemCell"
     
-    private var displayItems: Results<ReadingItem>?
+    private var displayItems: [ReadingItem]?
     
     /// ナビゲーション付きのwebviewを作成する
     class func deleteVCInit() -> DeletedListVC {
@@ -27,7 +27,8 @@ class DeletedListVC: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
-        displayItems = RealmManager.sharedInstance.readDeletedItems()
+        // 最近削除したものを上に表示するためにreverseにする
+        displayItems = RealmManager.sharedInstance.readDeletedItems()?.reversed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
