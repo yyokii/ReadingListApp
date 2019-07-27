@@ -14,28 +14,43 @@ class UserDefaultManager {
     var sharedDefaults = UserDefaults(suiteName: Constant.UserDefault.suiteName)!
     
     private init() {}
-    
-    // FIXME: 初回起動系処理、registerつけないとだめでは
+
+    // MARK: 初回起動かどうかの確認用
     
     /// 記事画面が起動済みかどうか
     func isFirstOpenArticleView() -> Bool {
+        sharedDefaults.register(defaults: [Constant.UserDefault.firstOpenArticleView: true])
         return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenArticleView)
     }
     
     /// 記事画面が起動済みであることを保存する
     func setFirstOpenArticleView() {
-        sharedDefaults.set(true, forKey: Constant.UserDefault.firstOpenArticleView)
+        sharedDefaults.set(false, forKey: Constant.UserDefault.firstOpenArticleView)
     }
     
     /// リーディングリスト画面が起動済みかどうか
     func isFirstOpenReadingListView() -> Bool {
+        sharedDefaults.register(defaults: [Constant.UserDefault.firstOpenReadingListView: true])
         return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenReadingListView)
     }
     
     /// リーディングリスト画面が起動済みであることを保存する
     func setFirstOpenReadingListView() {
-        sharedDefaults.set(true, forKey: Constant.UserDefault.firstOpenReadingListView)
+        sharedDefaults.set(false, forKey: Constant.UserDefault.firstOpenReadingListView)
     }
+    
+    /// webViewが起動済みかどうか
+    func isFirstOpenArticleWebView() -> Bool {
+        sharedDefaults.register(defaults: [Constant.UserDefault.firstOpenArticleWebView: true])
+        return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenArticleWebView)
+    }
+    
+    /// webViewが起動済みであることを保存する
+    func setFirstOpenArticleWebView() {
+        sharedDefaults.set(false, forKey: Constant.UserDefault.firstOpenArticleWebView)
+    }
+    
+    // MARK: 記事情報
     
     /// 記事アイテムを追加
     func addReadingItem(readingItem: [String:String]) {

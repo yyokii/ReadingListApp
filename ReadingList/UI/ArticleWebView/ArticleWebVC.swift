@@ -49,12 +49,18 @@ class ArticleWebVC: UIViewController {
         title = "読み込み中・・・"
         
         configureToolbar()
+        
+        
+        if UserDefaultManager.shareInstance.isFirstOpenArticleWebView() {
+            SwiftMessageUtil.showWebHowtoView()
+            UserDefaultManager.shareInstance.setFirstOpenArticleWebView()
+        }
     }
     
     // https://stackoverflow.com/questions/43073738/change-size-of-uibarbuttonitem-image-in-swift-3
     private func configureToolbar() {
         // 閉じるボタン
-        let closeBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:124))
+        let closeBtnView = UIButton(frame: CGRect(x:0, y:0, width:25, height:25))
         closeBtnView.setBackgroundImage(UIImage(named: "cross"), for: .normal)
         closeBtnView.addTarget(self, action: #selector(self.close), for: .touchUpInside)
         let closeBtn = UIBarButtonItem(customView: closeBtnView)
@@ -62,7 +68,7 @@ class ArticleWebVC: UIViewController {
         closeBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         // リーディングリストに追加ボタン
-        let readingBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
+        let readingBtnView = UIButton(frame: CGRect(x:0, y:0, width:25, height:25))
         readingBtnView.setBackgroundImage(UIImage(named: "reading"), for: .normal)
         readingBtnView.addTarget(self, action: #selector(self.addToReadingList), for: .touchUpInside)
         let readingBtn = UIBarButtonItem(customView: readingBtnView)
@@ -70,7 +76,7 @@ class ArticleWebVC: UIViewController {
         readingBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
         // 既読リストに追加ボタン
-        let finishedReadingBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
+        let finishedReadingBtnView = UIButton(frame: CGRect(x:0, y:0, width:25, height:25))
         finishedReadingBtnView.setBackgroundImage(UIImage(named: "reading_finished"), for: .normal)
         finishedReadingBtnView.addTarget(self, action: #selector(self.addToFinishedReadingList), for: .touchUpInside)
         let finishedReadingBtn = UIBarButtonItem(customView: finishedReadingBtnView)
@@ -78,7 +84,7 @@ class ArticleWebVC: UIViewController {
         finishedReadingBtn.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         // 戻るボタン
-        let goBackBtnView = UIButton(frame: CGRect(x:0, y:0, width:24, height:24))
+        let goBackBtnView = UIButton(frame: CGRect(x:0, y:0, width:25, height:25))
         goBackBtnView.setBackgroundImage(UIImage(named: "arrow_left"), for: .normal)
         goBackBtnView.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
         let goBackBtn = UIBarButtonItem(customView: goBackBtnView)

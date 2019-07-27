@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 表示画面をタブに格納
         let tab = UITabBarController()
         tab.viewControllers = [articleListVC, listVC, navThird]
+        tab.tabBar.barTintColor = UIColor.white
         tab.hero.isEnabled = true
         
         UITabBar.appearance().tintColor = UIColor.red

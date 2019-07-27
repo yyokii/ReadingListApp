@@ -45,6 +45,11 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
         super.viewDidLoad()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
+        if UserDefaultManager.shareInstance.isFirstOpenReadingListView() {
+            SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "リーディングリスト", body: "こちらにリーディングリストに追加した記事が保存さます。\nリーディングリストに追加する方法はとても簡単！\n① 「人気記事」から追加　\n② 他のアプリの「共有」機能から追加", buttonTitle: "OK")
+            UserDefaultManager.shareInstance.setFirstOpenReadingListView()
+        }
     }
     
     @objc private func showItemOptionVC(notification: Notification) {

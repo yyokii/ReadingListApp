@@ -6,7 +6,7 @@
 //  Copyright © 2019 Yoki Higashihara. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SwiftMessages
 
 enum DialogType {
@@ -65,4 +65,26 @@ struct SwiftMessageUtil {
         config.presentationContext  = .window(windowLevel: UIWindow.Level.statusBar)
         SwiftMessages.show(config: config, view: messageView)
     }
+    
+    static func showWebHowtoView() -> Void {
+        let howtoView = WebHowtoView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
+        let messageView = BaseView(frame: .zero)
+        messageView.layoutMargins = .zero
+        messageView.backgroundHeight = 300.0
+        do {
+            let backgroundView = CornerRoundingView()
+            backgroundView.layer.cornerRadius = 15
+            backgroundView.layer.masksToBounds = true
+            messageView.installBackgroundView(backgroundView)
+            messageView.installContentView(howtoView)
+            messageView.layoutMarginAdditions = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
+        }
+        messageView.configureDropShadow()
+        var config = SwiftMessages.defaultConfig
+        config.presentationStyle = .center
+        config.duration = .forever
+        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+        SwiftMessages.show(config: config, view: messageView)
+    }
+
 }

@@ -21,12 +21,7 @@ class ArticleListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColletionView()
-        presenter.viewDidload()
-        
-        if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
-            SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "オススメ記事", body: "人気記事から気になったものをリーディングリストに追加しましょう！", buttonTitle: "OK")
-            UserDefaultManager.shareInstance.setFirstOpenArticleView()
-        }
+        presenter.viewDidload()        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,6 +57,10 @@ class ArticleListVC: UIViewController {
 }
 
 extension ArticleListVC: ArticleListPresenterOutput {
+    func displayTutorialDialog() {
+        SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリや「人気記事」から記事を「Yomu」へ追加し、読み忘れをなくしましょう！", buttonTitle: "OK")
+    }
+    
     func dismissIndicator() {
         guard let indicator = view.findSubview(withTag: Constant.ViewTag.indicator) else { return }
         UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve], animations: {

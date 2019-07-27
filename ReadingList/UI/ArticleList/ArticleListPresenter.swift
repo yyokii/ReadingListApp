@@ -16,6 +16,7 @@ protocol ArticleListPresenterInput {
 
 protocol  ArticleListPresenterOutput: AnyObject {
     func dismissIndicator()
+    func displayTutorialDialog()
     func showSuccessAddDialog()
     func showIndicator()
     func updateList(results: [Article])
@@ -43,6 +44,11 @@ final class  ArticleListPresenter {
 extension  ArticleListPresenter:  ArticleListPresenterInput {
     func viewDidload() {
         fetchArticles()
+        
+        if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
+            view.displayTutorialDialog()
+            UserDefaultManager.shareInstance.setFirstOpenArticleView()
+        }
     }
     
     func addReadingList(article: Article) {

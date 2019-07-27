@@ -23,6 +23,7 @@ struct Constant {
         // 初回表示時されたかどうかを管理
         static let firstOpenArticleView = "firstOpenArticleView"
         static let firstOpenReadingListView = "firstOpenReadingListView"
+        static let firstOpenArticleWebView = "firstOpenArticleWebView"
     }
     
     struct ReadingItem {
