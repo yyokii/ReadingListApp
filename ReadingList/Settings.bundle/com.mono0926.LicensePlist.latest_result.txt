@@ -1,0 +1,107 @@
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: AlamofireImage, nameSpecified: 
+body: Copyright (c) 2015-2…
+version: 3.5.0
+
+name: BoringSSL-GRPC, nameSpecified: 
+body: BoringSSL is a fork …
+version: 0.0.2
+
+name: Firebase, nameSpecified: 
+body: Copyright 2019 Googl…
+version: 5.16.0
+
+name: FirebaseAnalytics, nameSpecified: 
+body: Copyright 2019 Googl…
+version: 5.5.0
+
+name: FirebaseAuthInterop, nameSpecified: 
+body: 
+                   …
+version: 1.0.0
+
+name: FirebaseCore, nameSpecified: 
+body: 
+                   …
+version: 5.2.0
+
+name: FirebaseFirestore, nameSpecified: 
+body: 
+                   …
+version: 1.0.0
+
+name: FirebaseInstanceID, nameSpecified: 
+body: Copyright 2019 Googl…
+version: 3.4.0
+
+name: GoogleAppMeasurement, nameSpecified: 
+body: Copyright 2019 Googl…
+version: 5.5.0
+
+name: GoogleUtilities, nameSpecified: 
+body: 
+                   …
+version: 5.3.7
+
+name: gRPC-C++, nameSpecified: 
+body: 
+                   …
+version: 
+
+name: gRPC-Core, nameSpecified: 
+body: 
+                   …
+version: 1.17.0
+
+name: Hero, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.4.0
+
+name: leveldb-library, nameSpecified: 
+body: Copyright (c) 2011 T…
+version: 1.20
+
+name: LicensePlist, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 2.1.0
+
+name: nanopb, nameSpecified: 
+body: Copyright (c) 2011 P…
+version: 0.3.901
+
+name: Protobuf, nameSpecified: 
+body: Copyright 2008 Googl…
+version: 3.6.1
+
+name: Realm, nameSpecified: 
+body: TABLE OF CONTENTS
+
+1…
+version: 3.13.1
+
+name: RealmSwift, nameSpecified: 
+body: TABLE OF CONTENTS
+
+1…
+version: 3.13.1
+
+name: SwiftLinkPreview, nameSpecified: 
+body: The MIT License (MIT…
+version: 3.0.1
+
+name: SwiftMessages, nameSpecified: 
+body: Copyright (c) 2016 S…
+version: 7.0.0
+
+name: XLPagerTabStrip, nameSpecified: 
+body: The MIT License (MIT…
+version: 9.0.0
+
+add-version-numbers: false
+
+LicensePlist Version: 1.8.3

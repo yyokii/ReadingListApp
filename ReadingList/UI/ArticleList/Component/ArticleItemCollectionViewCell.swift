@@ -33,7 +33,8 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
     // cellの再利用について https://stackoverflow.com/questions/45284705/swift-3-tableview-duplicating-loaded-images-from-firebase
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+//        imageView.contentMode = .scaleToFill
+//        imageView.image = nil
     }
     
     func configureCell() {
@@ -41,9 +42,13 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
         
         let plusBtnImage = UIImage(named: "footer_plus")?.withRenderingMode(.alwaysTemplate)
         plusBtn.setImage(plusBtnImage, for: .normal)
-        plusBtn.tintColor = UIColor.init(named: Constant.Color.bisque)
+        plusBtn.tintColor = UIColor.init(named: Constant.Color.pinkSherbet)
         
         titleLbl.text = item.title
+        
+        // 非同期コンテンツが読み込まれるまで他の画像が表示されないようにする https://ja.stackoverflow.com/questions/27845/uitableview%E3%81%AE%E3%82%BB%E3%83%AB%E3%81%8C%E5%86%8D%E5%88%A9%E7%94%A8%E3%81%95%E3%82%8C%E3%82%8B%E9%9A%9B%E3%81%AB%E5%89%8D%E3%81%AE%E7%94%BB%E5%83%8F%E3%81%AA%E3%81%A9%E3%81%8C%E6%AE%8B%E3%81%A3%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6
+        imageView.image = nil
+        imageView.contentMode = .scaleAspectFill
         self.setImage(imageUrl: item.imageUrl ?? "", url: item.url)
     }
     
@@ -62,16 +67,13 @@ class ArticleItemCollectionViewCell: UICollectionViewCell {
                 slp.preview(url,
                             onSuccess: {[weak self] result in
                                 if let imageUrlString = result.image, let imageUrl = URL(string: imageUrlString) {
-                                    self?.imageView.contentMode = .scaleAspectFill
                                     self?.imageView.setImageByAlamofire(with: imageUrl)
                                 } else {
-                                    self?.imageView.contentMode = .scaleToFill
                                     self?.imageView.image = UIImage(named: "no_image")
                                 }
                     },
                             onError: {[weak self] error in
                                 print("\(error)")
-                                self?.imageView.contentMode = .scaleToFill
                                 self?.imageView.image = UIImage(named: "no_image")
                     }
                 )

@@ -20,7 +20,6 @@ class NotificationManager {
     
     // TOOD: 許可タイミングの検討：　リーディングリスト画面に入って、初回ダイアログ消えた時
     
-    // vc: UNUserNotificationCenterDelegate
     func requestAuthorize() {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
@@ -33,8 +32,6 @@ class NotificationManager {
                 
                 if granted {
                     print("通知許可")
-//                    let center = UNUserNotificationCenter.current()
-//                    center.delegate = vc
                     
                 } else {
                     print("通知拒否")
@@ -55,14 +52,14 @@ class NotificationManager {
         var notificationDate: Date!
         
         let content = UNMutableNotificationContent()
-        content.title = item.title
-        // fixme
-        content.body = Constant.LocalNotification.body
+        content.title = "【積ん読注意🔥】\(item.title)"
         content.sound = UNNotificationSound.default
         var typeId: String!
         
         switch type {
         case .OneDayBefore:
+            content.body = Constant.LocalNotification.onwDayBeforeBody
+            
             // 通知時間設定
             notificationDate = calendar.date(byAdding: .day, value: -1, to: dueDate)
             let year = calendar.component(.year, from: notificationDate)
@@ -75,8 +72,10 @@ class NotificationManager {
             trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             // 通知id
-            typeId = Constant.LocalNotification.id.onwDayBefore
+            typeId = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
         case .TwoDaysBefore:
+            content.body = Constant.LocalNotification.twoDaysBeforeBody
+            
             // 通知時間設定
             notificationDate = calendar.date(byAdding: .day, value: -2, to: dueDate)
             let year = calendar.component(.year, from: notificationDate)
@@ -89,7 +88,7 @@ class NotificationManager {
             trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             // 通知id
-            typeId = Constant.LocalNotification.id.twoDaysBefore
+            typeId = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
         }
         
         // 通知内容を設定

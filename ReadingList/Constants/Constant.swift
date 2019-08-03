@@ -54,8 +54,9 @@ struct Constant {
             static let onwDayBefore = "onwDayBefore"
             static let twoDaysBefore = "twoDaysBefore"
         }
-        
-        // TODO: これ使っていないのでは？
-        static let body = "あと2日でこちらの記事が自動的に削除されます👀\n"
+
+        // 通知内容
+        static let onwDayBeforeBody = "あと1日でこちらの記事が削除されます👀\n"
+        static let twoDaysBeforeBody = "あと2日でこちらの記事が削除されます👀\n"
     }
 }

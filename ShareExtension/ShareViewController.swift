@@ -11,6 +11,20 @@ import Social
 import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Yomu🔥"
+        
+        // ナビゲーションのデザイン
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.backgroundColor = UIColor.init(named: Constant.Color.greenSheen)
+        
+        let controller: UIViewController = self.navigationController!.viewControllers.first!
+        controller.navigationItem.rightBarButtonItem!.title = "保存👜"
+        controller.navigationItem.leftBarButtonItem!.title = "戻る⏪"
+        
+    }
 
     override func isContentValid() -> Bool {
         return true

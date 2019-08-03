@@ -8,8 +8,6 @@
 
 import RealmSwift
 
-// TODO: 削除は論理削除、期限日より1ヶ月経過したら物理削除してもいいかも
-
 /// ReadingItemモデル管理クラス
 class RealmManager {
     static let sharedInstance = RealmManager()

@@ -20,11 +20,10 @@ class FirebaseManager {
     
     private init() {}
     
-    // TODO: ここのerrorと、成功時のresultを渡す時のはなし、swift詳解であったよねと。。
     func fetchArticles(completion: @escaping (_ result: [Article]) -> Void) {
         let collectionRef = db.collection("Articles")
-        
-        collectionRef.getDocuments { (snapShot, error) in
+                
+        collectionRef.order(by: "date", descending: true).limit(to: 50).getDocuments { (snapShot, error) in
             guard error == nil else {
                 return
             }

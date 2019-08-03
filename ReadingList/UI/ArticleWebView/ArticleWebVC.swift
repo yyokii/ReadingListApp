@@ -34,7 +34,7 @@ class ArticleWebVC: UIViewController {
         return nav
     }
     
-    // FIXME: 呼ぶべきじゃない?
+    // Todo: 呼ぶべきじゃない?
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self

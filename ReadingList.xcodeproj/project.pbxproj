@@ -71,12 +71,13 @@
 		B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FCE2D3225A4F2B00FE85EF /* Assets.xcassets */; };
 		B6FCE2D7225A4F2B00FE85EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FCE2D5225A4F2B00FE85EF /* LaunchScreen.storyboard */; };
 		B6FCE3002262240B00FE85EF /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCE2FF2262240B00FE85EF /* UserDefaultManager.swift */; };
+		F52BB9FD22F605C800086801 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F3F78922BF88CF00C6DD94 /* Color.xcassets */; };
+		F57ABA8D22F5D42000CEBC92 /* WebHowtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */; };
+		F57ABA9022F5D53600CEBC92 /* WebHowtoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57ABA8F22F5D53500CEBC92 /* WebHowtoView.xib */; };
 		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
 		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 		F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */; };
 		F5CC9C4322E607CE00D6B4DB /* NoFinishedListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C4222E607CE00D6B4DB /* NoFinishedListItemView.xib */; };
-		F5CC9C4822ECA4E300D6B4DB /* WebHowtoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C4722ECA4E300D6B4DB /* WebHowtoView.xib */; };
-		F5CC9C4A22ECA53400D6B4DB /* WebHowtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4922ECA53400D6B4DB /* WebHowtoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,13 +173,13 @@
 		DA8B32AFE9E82DD9C813CDC5 /* Pods-ReadingList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadingList.debug.xcconfig"; path = "Target Support Files/Pods-ReadingList/Pods-ReadingList.debug.xcconfig"; sourceTree = "<group>"; };
 		E22290BE107C2F13C710EF1A /* Pods_ShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB52ECA6527CE09E5922F8A6 /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebHowtoView.swift; sourceTree = "<group>"; };
+		F57ABA8F22F5D53500CEBC92 /* WebHowtoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebHowtoView.xib; sourceTree = "<group>"; };
 		F592C20404838448C261CD50 /* Pods_ReadingList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadingList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFinishedListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C4222E607CE00D6B4DB /* NoFinishedListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFinishedListItemView.xib; sourceTree = "<group>"; };
-		F5CC9C4722ECA4E300D6B4DB /* WebHowtoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebHowtoView.xib; sourceTree = "<group>"; };
-		F5CC9C4922ECA53400D6B4DB /* WebHowtoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebHowtoView.swift; path = /Users/yoki/Desktop/Yoki_MacBook_Pro/iOSProjects/ReadingList/ReadingList/UI/ArticleWebView/Howto/WebHowtoView.swift; sourceTree = "<absolute>"; };
 		FD94C44318BD7ADE2A0CF1A8 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,8 +511,8 @@
 		F5CC9C4622ECA4BA00D6B4DB /* Howto */ = {
 			isa = PBXGroup;
 			children = (
-				F5CC9C4922ECA53400D6B4DB /* WebHowtoView.swift */,
-				F5CC9C4722ECA4E300D6B4DB /* WebHowtoView.xib */,
+				F57ABA8F22F5D53500CEBC92 /* WebHowtoView.xib */,
+				F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */,
 			);
 			path = Howto;
 			sourceTree = "<group>";
@@ -547,6 +548,7 @@
 				B6FCE2C7225A4F2700FE85EF /* Resources */,
 				B6FCE2F2225A522800FE85EF /* Embed App Extensions */,
 				928B6E541793EB06BD2B41BB /* [CP] Embed Pods Frameworks */,
+				F52BB9FC22F6007A00086801 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -614,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F1575B2263170F007FB37B /* MainInterface.storyboard in Resources */,
+				F52BB9FD22F605C800086801 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +631,7 @@
 				B692B2922297017800B00AD2 /* AboutApp.storyboard in Resources */,
 				B6F294A922AC1CFE00BB6F9F /* ReadingList.storyboard in Resources */,
 				B68722F12276820A00692AE0 /* Article.storyboard in Resources */,
-				F5CC9C4822ECA4E300D6B4DB /* WebHowtoView.xib in Resources */,
+				F57ABA9022F5D53600CEBC92 /* WebHowtoView.xib in Resources */,
 				B64691CA22B644D100B7C8C3 /* FinishedItemOption.storyboard in Resources */,
 				B62870D822DA2B3F00A89830 /* DeletedList.storyboard in Resources */,
 				B6F15775226AD900007FB37B /* ListItemCell.xib in Resources */,
@@ -710,6 +713,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F52BB9FC22F6007A00086801 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n${PODS_ROOT}/LicensePlist/license-plist --output-path $PRODUCT_NAME/Settings.bundle\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -747,11 +767,11 @@
 				B62870DB22DB18CF00A89830 /* SwitchBtnTableViewCell.swift in Sources */,
 				B6658C2E22ADD45300C3353A /* ArticleListPresenter.swift in Sources */,
 				B6FCE3002262240B00FE85EF /* UserDefaultManager.swift in Sources */,
+				F57ABA8D22F5D42000CEBC92 /* WebHowtoView.swift in Sources */,
 				B68722EA2276797200692AE0 /* UIImageView+Extension.swift in Sources */,
 				F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */,
 				B692B296229701FF00B00AD2 /* AboutAppTableViewCell.swift in Sources */,
 				B6F15769226345AD007FB37B /* Notification+Extension.swift in Sources */,
-				F5CC9C4A22ECA53400D6B4DB /* WebHowtoView.swift in Sources */,
 				B68722EC2276803200692AE0 /* AppDelegate.swift in Sources */,
 				B64691CC22B6459E00B7C8C3 /* FinishedItemOptionVC.swift in Sources */,
 				B692B29A229C3C9E00B00AD2 /* UIView+Extension.swift in Sources */,

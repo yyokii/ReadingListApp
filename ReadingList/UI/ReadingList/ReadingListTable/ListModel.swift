@@ -23,15 +23,6 @@ protocol ListModelInput {
 }
 
 final class ListModel: ListModelInput {
-    
-//    func addItemToRealm(title: String, url: String) {
-//        let readingItem = ReadingItem()
-//        readingItem.title = title
-//        readingItem.url = url
-//        readingItem.createdDate =  Date()
-//        // FIXME: 期限を設定する
-//        readingItem.finishedDate = nil
-//    }
 
     /// 配列に格納されているアイテムをrealmに変換し保存
     func addItemToRealm(from dicItems: [[String:String]]) {
