@@ -21,7 +21,10 @@ class ArticleListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColletionView()
-        presenter.viewDidload()        
+        presenter.viewDidload()
+        
+//        NotificationManager.sharedInstance.testNotification(type: .OneDayBefore)
+//        NotificationManager.sharedInstance.testNotification(type: .TwoDaysBefore)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

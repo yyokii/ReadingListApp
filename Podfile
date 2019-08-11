@@ -7,6 +7,7 @@ target 'ReadingList' do
 
   # Pods for ReadingList
   pod 'AlamofireImage'
+  pod 'Charts'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'	
   pod 'Hero'

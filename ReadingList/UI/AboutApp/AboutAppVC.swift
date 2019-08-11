@@ -84,7 +84,7 @@ class AboutAppVC: UITableViewController {
         case 0:
             switch indexPath.row {
             case 0:
-                print("test")
+                SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "リーディングリストの使い方", body: "リーディングリストに記事を追加して「積ん読」を回避しよう！\n7日間読まれない場合、削除されてしまいます😢\n5日目、6日目には通知が来るので忘れるのを防げます！\nリーディングリストに追加する方法はとても簡単！\n① 「人気記事」から追加　\n② 他のアプリの「共有」機能から追加", buttonTitle: "OK")
             default:
                 break
             }

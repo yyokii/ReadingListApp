@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xxi-di-qzX">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--HomeVC-->
+        <scene sceneID="deS-lX-2p9">
+            <objects>
+                <viewController id="xxi-di-qzX" customClass="HomeVC" customModule="ReadingList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CBM-i0-275">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrB-Lf-l98">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oCe-8r-NCO">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7z-6P-g1a">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcC-hS-NgH" customClass="TodayDataView" customModule="ReadingList" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="44" width="394" height="246"/>
+                                                        <color key="backgroundColor" name="Bisque"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="0.0" height="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="wcC-hS-NgH" secondAttribute="bottom" constant="10" id="InC-vA-82j"/>
+                                                    <constraint firstItem="wcC-hS-NgH" firstAttribute="leading" secondItem="V7z-6P-g1a" secondAttribute="leading" constant="10" id="bWt-6G-ceq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wcC-hS-NgH" secondAttribute="trailing" constant="10" id="cIH-5J-I5o"/>
+                                                    <constraint firstAttribute="height" constant="300" id="dPi-go-Qqc"/>
+                                                    <constraint firstItem="wcC-hS-NgH" firstAttribute="top" secondItem="V7z-6P-g1a" secondAttribute="top" constant="44" id="lnG-UP-Nem"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oCe-8r-NCO" firstAttribute="top" secondItem="XrB-Lf-l98" secondAttribute="top" id="Gx7-Es-ncy"/>
+                                    <constraint firstAttribute="bottom" secondItem="oCe-8r-NCO" secondAttribute="bottom" id="J5a-jE-6gu"/>
+                                    <constraint firstItem="oCe-8r-NCO" firstAttribute="width" secondItem="XrB-Lf-l98" secondAttribute="width" id="WEV-2H-QSw"/>
+                                    <constraint firstAttribute="trailing" secondItem="oCe-8r-NCO" secondAttribute="trailing" id="YZ9-RH-4f2"/>
+                                    <constraint firstItem="oCe-8r-NCO" firstAttribute="leading" secondItem="XrB-Lf-l98" secondAttribute="leading" id="wcs-3w-HtX"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XrB-Lf-l98" firstAttribute="trailing" secondItem="qMg-WX-vZW" secondAttribute="trailing" id="5f7-Xs-ZVh"/>
+                            <constraint firstAttribute="bottom" secondItem="XrB-Lf-l98" secondAttribute="bottom" id="abl-3t-nln"/>
+                            <constraint firstItem="XrB-Lf-l98" firstAttribute="leading" secondItem="qMg-WX-vZW" secondAttribute="leading" id="pc9-As-D2Z"/>
+                            <constraint firstItem="XrB-Lf-l98" firstAttribute="top" secondItem="CBM-i0-275" secondAttribute="top" id="xFW-he-uF2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qMg-WX-vZW"/>
+                    </view>
+                    <connections>
+                        <outlet property="finishedLineChartView" destination="wcC-hS-NgH" id="i0O-MJ-NWN"/>
+                        <outlet property="todayDataView" destination="wcC-hS-NgH" id="nzc-nQ-aUs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSv-UO-dYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85.507246376811594" y="109.82142857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Bisque">
+            <color red="1" green="0.90196078431372551" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

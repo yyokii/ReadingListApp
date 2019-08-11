@@ -8,12 +8,6 @@
 
 import Foundation
 
-/**
- アイテム追加パターン
- ① シェアする（ dic → realm ）
- ② 追加する（ realm ）
- */
-
 protocol ListModelInput {
     func addItemToRealm(from dicItems: [[String:String]])
     // func addItemToRealm(title: String, url: String)

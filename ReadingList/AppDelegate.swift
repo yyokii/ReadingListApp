@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // https://github.com/xmartlabs/XLPagerTabStrip/issues/141
         _ = ReadingListVC(nibName: nil, bundle: nil)
         
-        // おすすめ記事一覧
-        let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
-        let articleListModel = ArticleListModel()
-        let articleListPresenter = ArticleListPresenter(view: articleListVC, model: articleListModel)
-        articleListVC.inject(presenter: articleListPresenter)
-        //        let navFirst = UINavigationController()
-        //        navFirst.viewControllers = [articleListVC]
+//        // おすすめ記事一覧
+//        let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
+//        let articleListModel = ArticleListModel()
+//        let articleListPresenter = ArticleListPresenter(view: articleListVC, model: articleListModel)
+//        articleListVC.inject(presenter: articleListPresenter)
+        
+        let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
         
         // リーディングリスト一覧
         let listVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListVC
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 表示画面をタブに格納
         let tab = UITabBarController()
-        tab.viewControllers = [articleListVC, listVC, navThird]
+        tab.viewControllers = [homeVC, listVC, navThird]
         tab.tabBar.barTintColor = UIColor.white
         tab.hero.isEnabled = true
         

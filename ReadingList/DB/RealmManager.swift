@@ -82,6 +82,27 @@ class RealmManager {
         return results
     }
     
+    /// 特定の日に追加されたアイテムを取得
+    func readItemsAddedOn(date: Date) -> Results<ReadingItem>?  {
+        let startOfDay = date.startOfDay
+        let endOfDay = date.endOfDay
+        
+        let results = database?.objects(ReadingItem.self).filter("dueDate > %@ && dueDate <= %@ && isDeleted == false", startOfDay, endOfDay)
+        return results
+    }
+    
+    /// 1週間以内に読み終わりになったアイテムを取得
+    func readItemsFinishedItems() -> Results<ReadingItem>?  {
+        let now = Date()
+        let date = Date(timeInterval: -60*60*24*30, since: now)
+        
+        let startOfDay = date.startOfDay
+        let endOfDay = now.endOfDay
+        
+        let results = database?.objects(ReadingItem.self).filter("finishedDate >= %@ && finishedDate <= %@ && isDeleted == false", startOfDay, endOfDay)
+        return results
+    }
+
     /// 論理削除されているアイテムを取得
     func readDeletedItems() -> Results<ReadingItem>?  {
         let results = database?.objects(ReadingItem.self).filter("isDeleted == true")

@@ -40,6 +40,35 @@ class NotificationManager {
         }
     }
     
+//    func testNotification(type: LocalNotificationType) {
+//        var trigger: UNNotificationTrigger!
+//        // 通知指定日時
+//        var dateComponents: DateComponents!
+//        
+//        let content = UNMutableNotificationContent()
+//        content.sound = UNNotificationSound.default
+//        var typeId: String!
+//        
+//        switch type {
+//        case .OneDayBefore:
+//            content.title = "【積ん読注意🔥】Yomuについて知る"
+//            content.body = Constant.LocalNotification.onwDayBeforeBody
+//            
+//            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: 2019, month: 8, day: 4, hour: 4, minute: 43)
+//            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//            typeId = "test1"
+//        case .TwoDaysBefore:
+//            content.title = "【積ん読注意🔥】リーディングリストって溜まりがち。。"
+//            content.body = Constant.LocalNotification.twoDaysBeforeBody
+//            
+//            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: 2019, month: 8, day: 4, hour: 4, minute: 44)
+//            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//            typeId = "test2"
+//        }
+//        let request = UNNotificationRequest(identifier: typeId, content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//    }
+    
     func addNotification(item: ReadingItem, type: LocalNotificationType) {
         guard let dueDate = item.dueDate else { return }
         

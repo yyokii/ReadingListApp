@@ -9,6 +9,19 @@
 import Foundation
 
 extension Date {
+    /// dateのstart日時を取得
+    var startOfDay: Date {
+        return Calendar.current.startOfDay(for: self)
+    }
+    
+    /// dateのend日時を取得
+    var endOfDay: Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: startOfDay)!
+    }
+    
     /// フォーマッターを作成
     static func getFormatter(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .short) -> DateFormatter {
         let formater = DateFormatter()
@@ -35,8 +48,8 @@ extension Date {
         guard let date = formattedDate else { return nil }
         return date
     }
-    
-    /// dateの最終時を取得
+
+    /// 特定のdateの最終時を取得
     static func endOfDayForDate(date: Date) -> Date? {
         let cal = Calendar.current
         var components = DateComponents()
