@@ -20,46 +20,46 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="424" height="271"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="310"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPw-b0-BRi">
-                    <rect key="frame" x="0.0" y="0.0" width="424" height="271"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPw-b0-BRi" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="310"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQc-gE-PVI">
-                            <rect key="frame" x="8" y="10" width="65.5" height="50"/>
+                            <rect key="frame" x="32" y="10" width="65.5" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="0H7-rt-exx"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="UIB-ka-2U3">
-                            <rect key="frame" x="63.5" y="75" width="297" height="24"/>
+                            <rect key="frame" x="45.5" y="75" width="309" height="36"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日追加した記事" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofc-do-YVl">
-                                    <rect key="frame" x="0.0" y="3.5" width="200" height="17"/>
+                                    <rect key="frame" x="0.0" y="9.5" width="200" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="bFQ-WW-T1E"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="u4q-Rk-sjK">
-                                    <rect key="frame" x="250" y="0.0" width="47" height="24"/>
+                                    <rect key="frame" x="250" y="0.0" width="59" height="36"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAN-QO-tIr">
-                                            <rect key="frame" x="0.0" y="0.0" width="25.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="37.5" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                            <color key="textColor" name="MyrtleGreen"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DId-AZ-Un2">
-                                            <rect key="frame" x="33.5" y="11" width="13.5" height="13"/>
+                                            <rect key="frame" x="45.5" y="23" width="13.5" height="13"/>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -67,7 +67,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-Jl-6kb" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
-                            <rect key="frame" x="112" y="119" width="200" height="2"/>
+                            <rect key="frame" x="100" y="131" width="200" height="2"/>
                             <color key="backgroundColor" name="GreenSheen"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="Nk9-Nx-77i"/>
@@ -80,10 +80,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="7F5-me-ZvV">
-                            <rect key="frame" x="66" y="141" width="292" height="30"/>
+                            <rect key="frame" x="48" y="153" width="304" height="36"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNc-j0-kaG">
-                                    <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                    <rect key="frame" x="0.0" y="3" width="230" height="30"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-jw-9Wk" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -104,24 +104,24 @@
                                                 <constraint firstAttribute="width" constant="200" id="NRl-A9-Uen"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7aS-pw-Mg7">
-                                    <rect key="frame" x="245" y="3" width="47" height="24"/>
+                                    <rect key="frame" x="245" y="0.0" width="59" height="36"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnp-ZU-3EF">
-                                            <rect key="frame" x="0.0" y="0.0" width="25.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="37.5" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                             <color key="textColor" name="PinkSherbet"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sb-ll-XPj">
-                                            <rect key="frame" x="33.5" y="11" width="13.5" height="13"/>
+                                            <rect key="frame" x="45.5" y="23" width="13.5" height="13"/>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -129,10 +129,10 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="lMg-p7-Y9d">
-                            <rect key="frame" x="66" y="191" width="292" height="30"/>
+                            <rect key="frame" x="48" y="209" width="304" height="36"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vz-9Q-2U2">
-                                    <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                    <rect key="frame" x="0.0" y="3" width="230" height="30"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Zj-2k-wpK" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -153,24 +153,24 @@
                                                 <constraint firstAttribute="width" constant="200" id="akM-IM-pWE"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2SN-sY-HoJ">
-                                    <rect key="frame" x="245" y="3" width="47" height="24"/>
+                                    <rect key="frame" x="245" y="0.0" width="59" height="36"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9b-aV-cTR">
-                                            <rect key="frame" x="0.0" y="0.0" width="25.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="37.5" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                             <color key="textColor" name="Caramel"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-X2-3vY">
-                                            <rect key="frame" x="33.5" y="11" width="13.5" height="13"/>
+                                            <rect key="frame" x="45.5" y="23" width="13.5" height="13"/>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -178,9 +178,9 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.52941176470588236" green="0.58823529411764708" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstItem="xQc-gE-PVI" firstAttribute="leading" secondItem="BPw-b0-BRi" secondAttribute="leading" constant="8" id="CgY-gA-0iO"/>
+                        <constraint firstItem="xQc-gE-PVI" firstAttribute="leading" secondItem="BPw-b0-BRi" secondAttribute="leading" constant="32" id="CgY-gA-0iO"/>
                         <constraint firstItem="lMg-p7-Y9d" firstAttribute="top" secondItem="7F5-me-ZvV" secondAttribute="bottom" constant="20" id="DLv-LR-fPx"/>
                         <constraint firstItem="UIB-ka-2U3" firstAttribute="centerX" secondItem="BPw-b0-BRi" secondAttribute="centerX" id="Eid-2g-x86"/>
                         <constraint firstItem="xQc-gE-PVI" firstAttribute="top" secondItem="BPw-b0-BRi" secondAttribute="top" constant="10" id="Ond-As-OFX"/>
@@ -191,18 +191,39 @@
                         <constraint firstItem="7F5-me-ZvV" firstAttribute="centerX" secondItem="BPw-b0-BRi" secondAttribute="centerX" id="vY2-iN-H5u"/>
                         <constraint firstItem="lMg-p7-Y9d" firstAttribute="centerX" secondItem="BPw-b0-BRi" secondAttribute="centerX" id="waH-X4-Hpi"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="60"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="10" height="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="BPw-b0-BRi" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BF2-87-qa3"/>
                 <constraint firstAttribute="bottom" secondItem="BPw-b0-BRi" secondAttribute="bottom" id="ITt-sS-BJg"/>
                 <constraint firstItem="BPw-b0-BRi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oeo-oG-bjc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BPw-b0-BRi" secondAttribute="trailing" id="pWF-gS-bs7"/>
                 <constraint firstItem="BPw-b0-BRi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qYM-2L-e60"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="144.92753623188406" y="313.05803571428572"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="197.10144927536234" y="287.61160714285711"/>
         </view>
     </objects>
     <resources>
@@ -211,6 +232,9 @@
         </namedColor>
         <namedColor name="GreenSheen">
             <color red="0.47058823529411764" green="0.76078431372549016" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MyrtleGreen">
+            <color red="0.14509803921568629" green="0.47450980392156861" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PinkSherbet">
             <color red="0.95686274509803926" green="0.56470588235294117" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

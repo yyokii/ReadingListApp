@@ -14,7 +14,9 @@ protocol HomePresenterInput {
 }
 
 protocol  HomePresenterOutput: AnyObject {
+    func updateGraph(datas: [Double])
     func updateTodayDataView(addedCount: Int, expire1DayCount: Int, expire2DaysCount: Int)
+    func updateTotalData(listCount: Int, finishedCount: Int)
 }
 
 final class  HomePresenter {
@@ -29,6 +31,9 @@ final class  HomePresenter {
 
 extension  HomePresenter: HomePresenterInput {
     func viewWillAppear() {
+        
+        view.updateGraph(datas: model.fetchFinishedGraphData())
         view.updateTodayDataView(addedCount: model.fetchTodayAddCount(), expire1DayCount: model.expire1DayCount(), expire2DaysCount: model.expire2DaysCount())
+        view.updateTotalData(listCount: model.fetchReadingListCount(), finishedCount: model.fetchFinishedListCount())
     }
 }

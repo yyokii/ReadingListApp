@@ -83,7 +83,7 @@ class NotificationManager {
         let content = UNMutableNotificationContent()
         content.title = "【積ん読注意🔥】\(item.title)"
         content.sound = UNNotificationSound.default
-        var typeId: String!
+        var notificationId: String!
         
         switch type {
         case .OneDayBefore:
@@ -101,7 +101,7 @@ class NotificationManager {
             trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             // 通知id
-            typeId = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
+            notificationId = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
         case .TwoDaysBefore:
             content.body = Constant.LocalNotification.twoDaysBeforeBody
             
@@ -117,12 +117,11 @@ class NotificationManager {
             trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             // 通知id
-            typeId = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
+            notificationId = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
         }
         
         // 通知内容を設定
-        let id = "\(String(describing: typeId)): \(item.title)"
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     

@@ -22,53 +22,51 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWL-cB-CaI" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
-                    <rect key="frame" x="10" y="10" width="684" height="386"/>
+                    <rect key="frame" x="0.0" y="0.0" width="704" height="406"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAM-KN-1tZ" customClass="LineChartView" customModule="Charts">
-                            <rect key="frame" x="0.0" y="0.0" width="684" height="386"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
+                            <rect key="frame" x="0.0" y="0.0" width="704" height="370"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7日前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR6-OT-q0O">
+                            <rect key="frame" x="8" y="378" width="41" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="f16-fW-WFO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHi-h1-Gqj">
+                            <rect key="frame" x="666" y="378" width="30" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="YA5-07-bEd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" name="Bisque"/>
+                    <color key="backgroundColor" name="GreenSheen"/>
                     <constraints>
-                        <constraint firstItem="dAM-KN-1tZ" firstAttribute="top" secondItem="gWL-cB-CaI" secondAttribute="top" id="C2Z-hh-pbn"/>
-                        <constraint firstAttribute="trailing" secondItem="dAM-KN-1tZ" secondAttribute="trailing" id="beU-pb-93f"/>
-                        <constraint firstAttribute="bottom" secondItem="dAM-KN-1tZ" secondAttribute="bottom" id="mm2-Su-snK"/>
-                        <constraint firstItem="dAM-KN-1tZ" firstAttribute="leading" secondItem="gWL-cB-CaI" secondAttribute="leading" id="vi0-XQ-tLI"/>
+                        <constraint firstItem="jR6-OT-q0O" firstAttribute="leading" secondItem="gWL-cB-CaI" secondAttribute="leading" constant="8" id="2MD-Cc-41i"/>
+                        <constraint firstItem="GHi-h1-Gqj" firstAttribute="top" secondItem="dAM-KN-1tZ" secondAttribute="bottom" constant="8" id="75r-uf-1mW"/>
+                        <constraint firstItem="dAM-KN-1tZ" firstAttribute="top" secondItem="gWL-cB-CaI" secondAttribute="top" id="Cc8-86-GdW"/>
+                        <constraint firstAttribute="bottom" secondItem="GHi-h1-Gqj" secondAttribute="bottom" constant="8" id="Io3-9w-j5c"/>
+                        <constraint firstAttribute="bottom" secondItem="jR6-OT-q0O" secondAttribute="bottom" constant="8" id="Khg-X9-TP1"/>
+                        <constraint firstItem="dAM-KN-1tZ" firstAttribute="leading" secondItem="gWL-cB-CaI" secondAttribute="leading" id="bVJ-TF-rho"/>
+                        <constraint firstAttribute="trailing" secondItem="dAM-KN-1tZ" secondAttribute="trailing" id="hnZ-rY-mMQ"/>
+                        <constraint firstAttribute="trailing" secondItem="GHi-h1-Gqj" secondAttribute="trailing" constant="8" id="k4P-o6-PTH"/>
+                        <constraint firstItem="jR6-OT-q0O" firstAttribute="top" secondItem="dAM-KN-1tZ" secondAttribute="bottom" constant="8" id="v25-8H-0ml"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="3" height="3"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gWL-cB-CaI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="P4B-tt-HiE"/>
-                <constraint firstItem="gWL-cB-CaI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="XYd-TX-qgK"/>
-                <constraint firstAttribute="bottom" secondItem="gWL-cB-CaI" secondAttribute="bottom" constant="10" id="gU0-Yj-2Pf"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gWL-cB-CaI" secondAttribute="trailing" constant="10" id="vq9-4P-v1B"/>
+                <constraint firstItem="gWL-cB-CaI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9BF-HQ-JB3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gWL-cB-CaI" secondAttribute="trailing" id="Iru-10-7Vg"/>
+                <constraint firstAttribute="bottom" secondItem="gWL-cB-CaI" secondAttribute="bottom" id="OOm-37-fOU"/>
+                <constraint firstItem="gWL-cB-CaI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fhd-6S-ApO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -76,8 +74,8 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="Bisque">
-            <color red="1" green="0.90196078431372551" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="GreenSheen">
+            <color red="0.47058823529411764" green="0.76078431372549016" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

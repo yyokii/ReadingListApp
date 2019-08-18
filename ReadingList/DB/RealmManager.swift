@@ -87,14 +87,13 @@ class RealmManager {
         let startOfDay = date.startOfDay
         let endOfDay = date.endOfDay
         
-        let results = database?.objects(ReadingItem.self).filter("dueDate > %@ && dueDate <= %@ && isDeleted == false", startOfDay, endOfDay)
+        let results = database?.objects(ReadingItem.self).filter("createdDate > %@ && createdDate <= %@ && isDeleted == false", startOfDay, endOfDay)
         return results
     }
     
     /// 1週間以内に読み終わりになったアイテムを取得
-    func readItemsFinishedItems() -> Results<ReadingItem>?  {
-        let now = Date()
-        let date = Date(timeInterval: -60*60*24*30, since: now)
+    func readItemsFinishedInAWeek(now: Date) -> Results<ReadingItem>?  {
+        let date = Date(timeInterval: -60*60*24*7, since: now)
         
         let startOfDay = date.startOfDay
         let endOfDay = now.endOfDay

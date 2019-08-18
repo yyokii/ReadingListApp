@@ -36,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        articleListVC.inject(presenter: articleListPresenter)
         
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
+        let homeModel = HomeModel()
+        let homePresenter = HomePresenter(view: homeVC, model: homeModel)
+        homeVC.inject(presenter: homePresenter)
+        let navFirst = UINavigationController()
+        navFirst.navigationBar.tintColor = .black
+        navFirst.viewControllers = [homeVC]
         
         // リーディングリスト一覧
         let listVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListVC
@@ -50,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 表示画面をタブに格納
         let tab = UITabBarController()
-        tab.viewControllers = [homeVC, listVC, navThird]
+        tab.viewControllers = [navFirst, listVC, navThird]
         tab.tabBar.barTintColor = UIColor.white
         tab.hero.isEnabled = true
         
