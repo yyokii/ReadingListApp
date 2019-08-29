@@ -47,7 +47,7 @@ class ReadingListVC: BaseButtonBarPagerTabStripViewController<ReadingListIconCel
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
         if UserDefaultManager.shareInstance.isFirstOpenReadingListView() {
-            SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "リーディングリスト", body: "こちらにリーディングリストに追加した記事が保存さます。\nリーディングリストに追加する方法はとても簡単！\n① 「人気記事」から追加　\n② 他のアプリの「共有」機能から追加", buttonTitle: "OK")
+            SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "リーディングリスト", body: "こちらにリーディングリストに追加した記事が保存さます。\nリーディングリストに追加する方法はとても簡単！\n\n他のアプリの「共有」機能から追加できます\n\n7日間読まれない場合、記事は削除されてしまいます😢\n5日目、6日目には通知が来るので忘れるのを防げます！", buttonTitle: "OK")
             UserDefaultManager.shareInstance.setFirstOpenReadingListView()
         }
     }

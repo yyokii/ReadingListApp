@@ -10,6 +10,7 @@ import UIKit
 import Charts
 
 class HomeVC: UIViewController {
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var baseScrollView: UIScrollView!
     @IBOutlet weak var todayDataView: TodayDataView!
     @IBOutlet weak var finishedLineChartView: YomuLineChartView!
@@ -25,10 +26,11 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter.viewDidLoad()
+
         navigationItem.title = "Yomu"
         let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         baseScrollView.contentInset = adjustForTabbarInsets
-        // baseScrollView.scrollIndicatorInsets = adjustForTabbarInsets
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +41,15 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: HomePresenterOutput {
+    func displayTutorialDialog() {
+        SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリから記事を「Yomu」へ追加し、「積ん読」をなくしましょう！\n\nこの画面では自分のデータを確認することができます！", buttonTitle: "OK")
+
+    }
+    
+    func updateStatusLabel(text: String) {
+        statusLbl.text = text
+    }
+    
     func updateGraph(datas: [Double]) {
         finishedLineChartView.drawLineChart(xValArr: ["1","2","3","4","5","6","7"], yValArr: datas)
     }

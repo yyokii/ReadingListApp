@@ -236,11 +236,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qMg-WX-vZW"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="footet_my_data" id="Jbe-Jl-URs"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="baseScrollView" destination="XrB-Lf-l98" id="JDK-53-ILb"/>
                         <outlet property="finishedCountLbl" destination="Q46-31-pOd" id="uwl-5F-gqD"/>
                         <outlet property="finishedLineChartView" destination="Tve-pO-0hN" id="z57-0W-DbW"/>
                         <outlet property="listCountLbl" destination="bFo-UB-BDt" id="wSc-5h-Ocv"/>
+                        <outlet property="statusLbl" destination="CXH-V0-CWe" id="fo1-gO-ohs"/>
                         <outlet property="todayDataView" destination="wcC-hS-NgH" id="nzc-nQ-aUs"/>
                     </connections>
                 </viewController>
@@ -250,6 +253,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="footet_my_data" width="30" height="30"/>
         <namedColor name="GreenSheen">
             <color red="0.47058823529411764" green="0.76078431372549016" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

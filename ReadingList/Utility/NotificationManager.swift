@@ -40,6 +40,7 @@ class NotificationManager {
         }
     }
     
+    // テスト
 //    func testNotification(type: LocalNotificationType) {
 //        var trigger: UNNotificationTrigger!
 //        // 通知指定日時

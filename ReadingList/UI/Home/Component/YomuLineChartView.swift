@@ -11,6 +11,7 @@ import Charts
 
 class YomuLineChartView: UIView {
     @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var noDataView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +53,7 @@ class YomuLineChartView: UIView {
         //その他UI設定
         lineChartView.noDataFont = UIFont.systemFont(ofSize: 30) //Noデータ時の表示フォント
         lineChartView.noDataTextColor = UIColor.white //Noデータ時の文字色
-        lineChartView.noDataText = "No Data..." //Noデータ時に表示する文字
+        lineChartView.noDataText = "" //Noデータ時に表示する文字
         lineChartView.legend.enabled = false //"■ months"のlegendの表示
         lineChartView.dragDecelerationEnabled = true //指を離してもスクロール続くか
         lineChartView.dragDecelerationFrictionCoef = 0.6 //ドラッグ時の減速スピード(0-1)
@@ -62,7 +63,21 @@ class YomuLineChartView: UIView {
     //グラフ描画部分
     public func drawLineChart(xValArr: [String], yValArr: [Double]) {
         
-        lineChartView.leftAxis.axisMaximum = (yValArr.max() ??  10) * 1.1 //y左軸最大値
+        let isAllZero = yValArr.allSatisfy { $0 == 0 }
+        if isAllZero {
+            UIView.transition(with: noDataView, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+                guard let self = self else { return }
+                self.noDataView.isHidden = false
+                }, completion: nil)
+            return
+        } else {
+            UIView.transition(with: noDataView, duration: 0.5, options: [.transitionCrossDissolve], animations: { [weak self] in
+                guard let self = self else { return }
+                self.noDataView.isHidden = true
+                }, completion: nil)
+        }
+        
+        lineChartView.leftAxis.axisMaximum = (yValArr.max() ?? 10) * 1.1 //y左軸最大値
         
         var dataEntries : [ChartDataEntry] = [ChartDataEntry]()
         
@@ -72,7 +87,7 @@ class YomuLineChartView: UIView {
         }
         
         let data = LineChartData()
-        let ds = LineChartDataSet(entries: dataEntries, label: "Months") //ds means DataSet
+        let ds = LineChartDataSet(entries: dataEntries, label: "date") //ds means DataSet
         
         ////グラフのUI設定
         //グラフのグラデーション有効化
