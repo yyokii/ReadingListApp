@@ -62,24 +62,31 @@ class RealmManager {
         return database?.objects(ReadingItem.self).filter("finishedDate == null && isDeleted == false").sorted(byKeyPath: "dueDate")
     }
     
-    /// 読み終わってない且つ期限日が１日後のアイテムを取得
-    func readItemsByDueDateOneDayAfter() -> Results<ReadingItem>?  {
-        let date = Date.getDueDate(addingDaysValue: 1)
-        guard let dueDate = date else { return nil }
-        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@ && isDeleted == false", dueDate)
-        
-        return results
-    }
     
-    /// 読み終わってない且つ期限日が2日後のアイテムを取得
-    func readItemsByDueDateTowDaysAfter() -> Results<ReadingItem>?  {
-        let date1 = Date.getDueDate(addingDaysValue: 1)
-        let date2 = Date.getDueDate(addingDaysValue: 2)
+    
+    /// 数日後が期限日となっているアイテムの取得
+    ///
+    /// - Parameter after: 何日後が期限日となっているかの指定
+    /// - Returns: 取得したアイテム
+    func readItemsByDueDate(duedate after: Int) -> Results<ReadingItem>?  {
         
-        guard let dueDate1 = date1, let dueDate2 = date2 else { return nil }
-        let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate > %@ && dueDate <= %@ && isDeleted == false", dueDate1, dueDate2)
-        
-        return results
+        if after == 1 {
+            let date = Date.getDueDate(addingDaysValue: 1)
+            guard let dueDate = date else { return nil }
+            let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@ && isDeleted == false", dueDate)
+            
+            return results
+        } else if after > 1 {
+            let date1 = Date.getDueDate(addingDaysValue: after - 1)
+            let date2 = Date.getDueDate(addingDaysValue: after)
+            
+            guard let dueDate1 = date1, let dueDate2 = date2 else { return nil }
+            let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate > %@ && dueDate <= %@ && isDeleted == false", dueDate1, dueDate2)
+            
+            return results
+        } else {
+            return nil
+        }
     }
     
     /// 特定の日に追加されたアイテムを取得

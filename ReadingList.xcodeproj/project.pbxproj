@@ -76,16 +76,26 @@
 		F52BBA0822FEB14C00086801 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BBA0722FEB14C00086801 /* HomeModel.swift */; };
 		F52BBA0A22FEB15700086801 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BBA0922FEB15700086801 /* HomePresenter.swift */; };
 		F52BBA0E22FEB1B700086801 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BBA0D22FEB1B700086801 /* HomeVC.swift */; };
-		F52BBA1222FF414B00086801 /* YomuLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BBA1122FF414B00086801 /* YomuLineChartView.swift */; };
-		F52BBA1422FF419D00086801 /* YomuLineChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52BBA1322FF419D00086801 /* YomuLineChartView.xib */; };
+		F56FD7E1231AB21200E12E9B /* GraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56FD7E0231AB21200E12E9B /* GraphViewModel.swift */; };
+		F56FD7E3231AD04D00E12E9B /* FloatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56FD7E2231AD04D00E12E9B /* FloatingViewModel.swift */; };
+		F56FD7E5231AD05D00E12E9B /* FloatingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56FD7E4231AD05D00E12E9B /* FloatingViewPresenter.swift */; };
 		F57ABA8D22F5D42000CEBC92 /* WebHowtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */; };
 		F57ABA9022F5D53600CEBC92 /* WebHowtoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57ABA8F22F5D53500CEBC92 /* WebHowtoView.xib */; };
 		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
 		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 		F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */; };
 		F5CC9C4322E607CE00D6B4DB /* NoFinishedListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C4222E607CE00D6B4DB /* NoFinishedListItemView.xib */; };
-		F5E9E75422FFA20B0022421B /* TodayDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5E9E75322FFA20B0022421B /* TodayDataView.xib */; };
-		F5FC46522300305200D7A36F /* TodayDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC46512300305200D7A36F /* TodayDataView.swift */; };
+		F5E9AFBA23180FB6004EEA79 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9AFB923180FB6004EEA79 /* GraphView.swift */; };
+		F5E9AFBC23180FCB004EEA79 /* GraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5E9AFBB23180FCB004EEA79 /* GraphView.xib */; };
+		F5E9AFBE2318FE65004EEA79 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9AFBD2318FE65004EEA79 /* ArticleView.swift */; };
+		F5E9AFC02318FE80004EEA79 /* ArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5E9AFBF2318FE80004EEA79 /* ArticleView.xib */; };
+		F5E9AFC3231902AB004EEA79 /* FloatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9AFC2231902AB004EEA79 /* FloatingVC.swift */; };
+		F5E9AFC5231974DA004EEA79 /* ArticleListPanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9AFC4231974DA004EEA79 /* ArticleListPanelLayout.swift */; };
+		F5E9AFC923199E19004EEA79 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9AFC723199E19004EEA79 /* ArticleTableViewCell.swift */; };
+		F5E9AFCA23199E19004EEA79 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5E9AFC823199E19004EEA79 /* ArticleTableViewCell.xib */; };
+		F5E9AFCD23199F6E004EEA79 /* FloatingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E9AFCC23199F6E004EEA79 /* FloatingVC.storyboard */; };
+		F5EAD9AC2319C80800E9FDCF /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EAD9AA2319C80800E9FDCF /* ArticleCollectionViewCell.swift */; };
+		F5EAD9AD2319C80800E9FDCF /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5EAD9AB2319C80800E9FDCF /* ArticleCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,8 +195,9 @@
 		F52BBA0722FEB14C00086801 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		F52BBA0922FEB15700086801 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		F52BBA0D22FEB1B700086801 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		F52BBA1122FF414B00086801 /* YomuLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YomuLineChartView.swift; sourceTree = "<group>"; };
-		F52BBA1322FF419D00086801 /* YomuLineChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YomuLineChartView.xib; sourceTree = "<group>"; };
+		F56FD7E0231AB21200E12E9B /* GraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewModel.swift; sourceTree = "<group>"; };
+		F56FD7E2231AD04D00E12E9B /* FloatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingViewModel.swift; sourceTree = "<group>"; };
+		F56FD7E4231AD05D00E12E9B /* FloatingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingViewPresenter.swift; sourceTree = "<group>"; };
 		F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebHowtoView.swift; sourceTree = "<group>"; };
 		F57ABA8F22F5D53500CEBC92 /* WebHowtoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebHowtoView.xib; sourceTree = "<group>"; };
 		F592C20404838448C261CD50 /* Pods_ReadingList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadingList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,8 +205,17 @@
 		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFinishedListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C4222E607CE00D6B4DB /* NoFinishedListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFinishedListItemView.xib; sourceTree = "<group>"; };
-		F5E9E75322FFA20B0022421B /* TodayDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayDataView.xib; sourceTree = "<group>"; };
-		F5FC46512300305200D7A36F /* TodayDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDataView.swift; sourceTree = "<group>"; };
+		F5E9AFB923180FB6004EEA79 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		F5E9AFBB23180FCB004EEA79 /* GraphView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GraphView.xib; sourceTree = "<group>"; };
+		F5E9AFBD2318FE65004EEA79 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		F5E9AFBF2318FE80004EEA79 /* ArticleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleView.xib; sourceTree = "<group>"; };
+		F5E9AFC2231902AB004EEA79 /* FloatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingVC.swift; sourceTree = "<group>"; };
+		F5E9AFC4231974DA004EEA79 /* ArticleListPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListPanelLayout.swift; sourceTree = "<group>"; };
+		F5E9AFC723199E19004EEA79 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F5E9AFC823199E19004EEA79 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
+		F5E9AFCC23199F6E004EEA79 /* FloatingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FloatingVC.storyboard; sourceTree = "<group>"; };
+		F5EAD9AA2319C80800E9FDCF /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		F5EAD9AB2319C80800E9FDCF /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		FD94C44318BD7ADE2A0CF1A8 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,6 +290,9 @@
 		B692B29D229C3FCB00B00AD2 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F5E9AFC623199D90004EEA79 /* ArticleView */,
+				F5E9AFB823180FA6004EEA79 /* GraphView */,
+				F5CC9C3B22E4949D00D6B4DB /* NoContentView */,
 				B6F7AEB222A4E6CB003EC815 /* GradationView.swift */,
 				B66C0A3F22D4E8B6007FA72B /* Indicator.swift */,
 				B62870DD22DB5FD100A89830 /* Indicator.xib */,
@@ -461,7 +484,6 @@
 			isa = PBXGroup;
 			children = (
 				F52BB9FF22FEAC6600086801 /* Home */,
-				F5CC9C3B22E4949D00D6B4DB /* NoContentView */,
 				B6A4B1C422DA1D4B00B9BE0A /* DeletedList */,
 				B6658C2522AD097000C3353A /* ItemOption */,
 				B692B29D229C3FCB00B00AD2 /* CustomView */,
@@ -469,6 +491,7 @@
 				B6FA5B902287434F00A5242A /* ArticleList */,
 				B6F1576A22635110007FB37B /* ReadingList */,
 				B68722ED2276814B00692AE0 /* ArticleWebView */,
+				F5E9AFC12319025C004EEA79 /* FloatingView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -517,24 +540,12 @@
 		F52BB9FF22FEAC6600086801 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F52BBA0022FEAC8100086801 /* Component */,
 				F52BBA0722FEB14C00086801 /* HomeModel.swift */,
 				F52BBA0D22FEB1B700086801 /* HomeVC.swift */,
 				F52BBA0922FEB15700086801 /* HomePresenter.swift */,
 				F52BBA0322FEB12F00086801 /* Home.storyboard */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		F52BBA0022FEAC8100086801 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				F52BBA1122FF414B00086801 /* YomuLineChartView.swift */,
-				F52BBA1322FF419D00086801 /* YomuLineChartView.xib */,
-				F5FC46512300305200D7A36F /* TodayDataView.swift */,
-				F5E9E75322FFA20B0022421B /* TodayDataView.xib */,
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 		F5CC9C3B22E4949D00D6B4DB /* NoContentView */ = {
@@ -555,6 +566,57 @@
 				F57ABA8B22F5D41F00CEBC92 /* WebHowtoView.swift */,
 			);
 			path = Howto;
+			sourceTree = "<group>";
+		};
+		F5E9AFB823180FA6004EEA79 /* GraphView */ = {
+			isa = PBXGroup;
+			children = (
+				F5E9AFB923180FB6004EEA79 /* GraphView.swift */,
+				F5E9AFBB23180FCB004EEA79 /* GraphView.xib */,
+				F56FD7E0231AB21200E12E9B /* GraphViewModel.swift */,
+			);
+			path = GraphView;
+			sourceTree = "<group>";
+		};
+		F5E9AFC12319025C004EEA79 /* FloatingView */ = {
+			isa = PBXGroup;
+			children = (
+				F5E9AFC4231974DA004EEA79 /* ArticleListPanelLayout.swift */,
+				F5E9AFC2231902AB004EEA79 /* FloatingVC.swift */,
+				F5E9AFCC23199F6E004EEA79 /* FloatingVC.storyboard */,
+				F56FD7E2231AD04D00E12E9B /* FloatingViewModel.swift */,
+				F56FD7E4231AD05D00E12E9B /* FloatingViewPresenter.swift */,
+			);
+			path = FloatingView;
+			sourceTree = "<group>";
+		};
+		F5E9AFC623199D90004EEA79 /* ArticleView */ = {
+			isa = PBXGroup;
+			children = (
+				F5EAD9A72319C7C100E9FDCF /* CollectionViewCell */,
+				F5E9AFCB23199E21004EEA79 /* TableViewCell */,
+				F5E9AFBD2318FE65004EEA79 /* ArticleView.swift */,
+				F5E9AFBF2318FE80004EEA79 /* ArticleView.xib */,
+			);
+			path = ArticleView;
+			sourceTree = "<group>";
+		};
+		F5E9AFCB23199E21004EEA79 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5E9AFC723199E19004EEA79 /* ArticleTableViewCell.swift */,
+				F5E9AFC823199E19004EEA79 /* ArticleTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		F5EAD9A72319C7C100E9FDCF /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F5EAD9AA2319C80800E9FDCF /* ArticleCollectionViewCell.swift */,
+				F5EAD9AB2319C80800E9FDCF /* ArticleCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -665,14 +727,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F1571D2262E0D6007FB37B /* Settings.bundle in Resources */,
+				F5EAD9AD2319C80800E9FDCF /* ArticleCollectionViewCell.xib in Resources */,
 				B6FA5BA7228F183D00A5242A /* GoogleService-Info.plist in Resources */,
 				B692B297229701FF00B00AD2 /* AboutAppTableViewCell.xib in Resources */,
 				B64691D022B645FE00B7C8C3 /* ReadingItemOption.storyboard in Resources */,
 				B692B2922297017800B00AD2 /* AboutApp.storyboard in Resources */,
-				F52BBA1422FF419D00086801 /* YomuLineChartView.xib in Resources */,
 				B6F294A922AC1CFE00BB6F9F /* ReadingList.storyboard in Resources */,
 				B68722F12276820A00692AE0 /* Article.storyboard in Resources */,
 				F57ABA9022F5D53600CEBC92 /* WebHowtoView.xib in Resources */,
+				F5E9AFCA23199E19004EEA79 /* ArticleTableViewCell.xib in Resources */,
 				B64691CA22B644D100B7C8C3 /* FinishedItemOption.storyboard in Resources */,
 				B62870D822DA2B3F00A89830 /* DeletedList.storyboard in Resources */,
 				B6F15775226AD900007FB37B /* ListItemCell.xib in Resources */,
@@ -683,8 +746,10 @@
 				F5CC9C4322E607CE00D6B4DB /* NoFinishedListItemView.xib in Resources */,
 				B6FA5B9B2287474000A5242A /* ArticleItemCollectionViewCell.xib in Resources */,
 				F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */,
-				F5E9E75422FFA20B0022421B /* TodayDataView.xib in Resources */,
+				F5E9AFC02318FE80004EEA79 /* ArticleView.xib in Resources */,
 				B62870DE22DB5FD100A89830 /* Indicator.xib in Resources */,
+				F5E9AFCD23199F6E004EEA79 /* FloatingVC.storyboard in Resources */,
+				F5E9AFBC23180FCB004EEA79 /* GraphView.xib in Resources */,
 				B66C0A3E22D389FA007FA72B /* RefreshContents.xib in Resources */,
 				B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */,
 				F52BBA0422FEB12F00086801 /* Home.storyboard in Resources */,
@@ -795,9 +860,9 @@
 				B68722EF227681A300692AE0 /* ArticleWebVC.swift in Sources */,
 				B6DEFE1522ACE5BE000E5886 /* ReadingListPresenter.swift in Sources */,
 				B6F7AEB322A4E6CB003EC815 /* GradationView.swift in Sources */,
-				F5FC46522300305200D7A36F /* TodayDataView.swift in Sources */,
 				B6FA5BAB22911FF300A5242A /* Article.swift in Sources */,
 				B6F15778226C20EE007FB37B /* ReadingItem.swift in Sources */,
+				F5EAD9AC2319C80800E9FDCF /* ArticleCollectionViewCell.swift in Sources */,
 				B692B298229701FF00B00AD2 /* AboutAppVC.swift in Sources */,
 				B66C0A4022D4E8B6007FA72B /* Indicator.swift in Sources */,
 				F52BBA0E22FEB1B700086801 /* HomeVC.swift in Sources */,
@@ -806,29 +871,36 @@
 				B6FA5B9A2287474000A5242A /* ArticleItemCollectionViewCell.swift in Sources */,
 				B6658C2822AD09D300C3353A /* SwiftMessagesSegue.swift in Sources */,
 				B6FA5B9D22885F9400A5242A /* Date+Extension.swift in Sources */,
+				F56FD7E1231AB21200E12E9B /* GraphViewModel.swift in Sources */,
 				B64691CE22B645E800B7C8C3 /* ReadingItemOptionVC.swift in Sources */,
 				B6FA5BA12288660000A5242A /* NotificationManager.swift in Sources */,
+				F5E9AFBA23180FB6004EEA79 /* GraphView.swift in Sources */,
 				B6FA5B94228746AF00A5242A /* ArticleListVC.swift in Sources */,
 				B62870DB22DB18CF00A89830 /* SwitchBtnTableViewCell.swift in Sources */,
 				B6658C2E22ADD45300C3353A /* ArticleListPresenter.swift in Sources */,
 				B6FCE3002262240B00FE85EF /* UserDefaultManager.swift in Sources */,
 				F57ABA8D22F5D42000CEBC92 /* WebHowtoView.swift in Sources */,
 				B68722EA2276797200692AE0 /* UIImageView+Extension.swift in Sources */,
+				F5E9AFC5231974DA004EEA79 /* ArticleListPanelLayout.swift in Sources */,
 				F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */,
 				B692B296229701FF00B00AD2 /* AboutAppTableViewCell.swift in Sources */,
 				B6F15769226345AD007FB37B /* Notification+Extension.swift in Sources */,
-				F52BBA1222FF414B00086801 /* YomuLineChartView.swift in Sources */,
+				F56FD7E5231AD05D00E12E9B /* FloatingViewPresenter.swift in Sources */,
 				B68722EC2276803200692AE0 /* AppDelegate.swift in Sources */,
+				F5E9AFC923199E19004EEA79 /* ArticleTableViewCell.swift in Sources */,
 				B64691CC22B6459E00B7C8C3 /* FinishedItemOptionVC.swift in Sources */,
 				B692B29A229C3C9E00B00AD2 /* UIView+Extension.swift in Sources */,
+				F56FD7E3231AD04D00E12E9B /* FloatingViewModel.swift in Sources */,
 				B6DEFE1322ACE5AE000E5886 /* FinishedListPresenter.swift in Sources */,
 				B692B2A6229EE2C300B00AD2 /* ArticleListTableVC.swift in Sources */,
+				F5E9AFBE2318FE65004EEA79 /* ArticleView.swift in Sources */,
 				B6F1576E2263527A007FB37B /* ListModel.swift in Sources */,
 				B6F2949F22AC199E00BB6F9F /* ReadingListIconCell.swift in Sources */,
 				B6F15765226317F1007FB37B /* Constant.swift in Sources */,
 				F52BBA0822FEB14C00086801 /* HomeModel.swift in Sources */,
 				B6F2949722AC186300BB6F9F /* ReadingListVC.swift in Sources */,
 				B6658C3022AE3B5000C3353A /* SwiftMessageUtil.swift in Sources */,
+				F5E9AFC3231902AB004EEA79 /* FloatingVC.swift in Sources */,
 				B6F15774226AD900007FB37B /* ListItemCell.swift in Sources */,
 				B66C0A3C22D0CB3C007FA72B /* ArticleWebModel.swift in Sources */,
 				B6DEFE1B22ACE85D000E5886 /* FinishedListTableVC.swift in Sources */,

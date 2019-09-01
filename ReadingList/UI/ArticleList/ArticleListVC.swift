@@ -38,7 +38,6 @@ class ArticleListVC: UIViewController {
         let holizontalyMargin: CGFloat = 2
         let interItemSpacing:CGFloat = 2
         
-        // TODO: 高さを調整
         flowLayout.itemSize = CGSize(width:width / 2 - holizontalyMargin*2 - interItemSpacing, height:300)
         flowLayout.sectionInset = UIEdgeInsets(top: 8,left: holizontalyMargin,bottom: 0,right: holizontalyMargin)
         flowLayout.minimumInteritemSpacing = interItemSpacing

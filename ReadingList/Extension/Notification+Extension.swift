@@ -10,7 +10,6 @@ import Foundation
 
 extension Notification.Name {
     
-    
     // MARL: アイテムオプション
     
     // 閉じる

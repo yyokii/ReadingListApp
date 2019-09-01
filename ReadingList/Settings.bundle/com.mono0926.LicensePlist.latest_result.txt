@@ -42,6 +42,12 @@ name: FirebaseInstanceID, nameSpecified:
 body: Copyright 2019 Googl…
 version: 3.4.0
 
+name: FloatingPanel, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 1.6.2
+
 name: GoogleAppMeasurement, nameSpecified: 
 body: Copyright 2019 Googl…
 version: 5.5.0

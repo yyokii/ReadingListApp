@@ -16,10 +16,9 @@ protocol HomePresenterInput {
 
 protocol  HomePresenterOutput: AnyObject {
     func displayTutorialDialog()
-    func updateStatusLabel(text: String)
-    func updateGraph(datas: [Double])
-    func updateTodayDataView(addedCount: Int, expire1DayCount: Int, expire2DaysCount: Int)
-    func updateTotalData(listCount: Int, finishedCount: Int)
+    func displayUserData(dataViewModel: GraphViewModel)
+    func displayTodayDeleteList()
+    func displayReadingList()
 }
 
 final class  HomePresenter {
@@ -29,6 +28,20 @@ final class  HomePresenter {
     init(view:  HomePresenterOutput, model: HomeModelInput) {
         self.view = view
         self.model = model
+    }
+    
+    private func fetchUserData() {
+        let one = model.expireOneDayCount()
+        let two = model.expireTwoDaysCount()
+        let three = model.expireThreeDaysCount()
+        let four = model.expireFourDaysCount()
+        let five = model.expireFiveDaysCount()
+        let six = model.expireSixDaysCount()
+        let seven = model.expireSevenDaysCount()
+        
+        let dataViewModel = GraphViewModel(oneDayAfterCount: one, twoDaysAfterCount: two, threeDaysAfterCount: three, fourDaysAfterCount: four, fiveDaysAfterCount: five, sixDaysAfterCount: six, sevenDaysAfterCount: seven)
+        
+        view.displayUserData(dataViewModel: dataViewModel)
     }
 }
 
@@ -41,19 +54,6 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func viewWillAppear() {
-        
-        let expire1DayCount = model.expire1DayCount()
-        let expire2DaysCount = model.expire2DaysCount()
-        
-        if ((expire1DayCount == 0) && (expire2DaysCount == 0)) {
-            view.updateStatusLabel(text: "😄 現在「積ん読」はありません ")
-        } else {
-            view.updateStatusLabel(text: "🙄 おっと積ん読しているものがあります！ ")
-        }
-        
-        view.updateTodayDataView(addedCount: model.fetchTodayAddCount(), expire1DayCount: expire1DayCount, expire2DaysCount: expire2DaysCount)
-        
-        view.updateGraph(datas: model.fetchFinishedGraphData())
-        view.updateTotalData(listCount: model.fetchReadingListCount(), finishedCount: model.fetchFinishedListCount())
+        fetchUserData()
     }
 }

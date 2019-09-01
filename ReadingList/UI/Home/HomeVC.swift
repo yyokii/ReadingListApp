@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import Charts
+import FloatingPanel
 
 class HomeVC: UIViewController {
-    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var baseScrollView: UIScrollView!
-    @IBOutlet weak var todayDataView: TodayDataView!
-    @IBOutlet weak var finishedLineChartView: YomuLineChartView!
-    @IBOutlet weak var listCountLbl: UILabel!
-    @IBOutlet weak var finishedCountLbl: UILabel!
+    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var todayDeleteCollectionView: UICollectionView!
+    @IBOutlet weak var readingCollectionView: UICollectionView!
+    
+    var floatingPanelController: FloatingPanelController!
     
     private var presenter: HomePresenterInput!
     
@@ -27,10 +27,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         
         presenter.viewDidLoad()
-
-        navigationItem.title = "Yomu"
-        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-        baseScrollView.contentInset = adjustForTabbarInsets
+        configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,28 +35,105 @@ class HomeVC: UIViewController {
         
         presenter.viewWillAppear()
     }
+    
+    private func configureView() {
+        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        baseScrollView.contentInset = adjustForTabbarInsets
+        
+        configureFloatingPanel()
+        configureCollectionView()
+    }
+    
+    private func configureFloatingPanel() {
+        floatingPanelController = FloatingPanelController()
+        floatingPanelController.delegate = self
+        //        if #available(iOS 11, *) {
+        //            floatingPanelController.surfaceView.cornerRadius =
+        //        } else {
+        //            floatingPanelController.surfaceView.cornerRadius = 0.0
+        //        }
+        let storyboard: UIStoryboard = UIStoryboard(name: "FloatingVC", bundle: nil)
+        let floatingVC = storyboard.instantiateInitialViewController() as! FloatingVC
+        let floatingViewModel = FloatingViewModel()
+        let floatingViewPresenter = FloatingViewPresenter(view: floatingVC, model: floatingViewModel)
+        floatingVC.inject(presenter: floatingViewPresenter)
+        floatingPanelController.set(contentViewController: floatingVC)
+        floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
+    }
+    
+    private func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width:300, height:100)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.scrollDirection = .horizontal
+        
+        todayDeleteCollectionView.collectionViewLayout = layout
+        readingCollectionView.collectionViewLayout = layout
+        todayDeleteCollectionView.register(UINib(nibName: "ArticleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ArticleCollectionViewCell")
+        readingCollectionView.register(UINib(nibName: "ArticleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ArticleCollectionViewCell")
+        
+        todayDeleteCollectionView.dataSource = self
+        readingCollectionView.dataSource = self
+        todayDeleteCollectionView.delegate = self
+        readingCollectionView.delegate = self
+        
+    }
 }
 
 extension HomeVC: HomePresenterOutput {
+    func displayUserData(dataViewModel: GraphViewModel) {
+        graphView.configureView(datas: dataViewModel)
+    }
+    
+    func displayTodayDeleteList() {
+    }
+    
+    func displayReadingList() {
+    }
+    
     func displayTutorialDialog() {
-        SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリから記事を「Yomu」へ追加し、「積ん読」をなくしましょう！\n\nこの画面では自分のデータを確認することができます！", buttonTitle: "OK")
+        SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリから記事を「Yomu」へ追加し、「積ん読」をなくしましょう！", buttonTitle: "OK")
 
     }
-    
-    func updateStatusLabel(text: String) {
-        statusLbl.text = text
+}
+
+extension HomeVC: FloatingPanelControllerDelegate {
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+        return ArticleListPanelLayout()
+    }
+}
+
+extension HomeVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == todayDeleteCollectionView {
+            return 2
+        } else if collectionView == readingCollectionView {
+            return 2
+        } else {
+            return 0
+        }
     }
     
-    func updateGraph(datas: [Double]) {
-        finishedLineChartView.drawLineChart(xValArr: ["1","2","3","4","5","6","7"], yValArr: datas)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == todayDeleteCollectionView {
+            
+            let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
+            return cell
+            
+        } else if collectionView == readingCollectionView {
+            
+            let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
+            return cell
+
+        } else {
+            
+            return UICollectionViewCell()
+        }
     }
     
-    func updateTodayDataView(addedCount: Int, expire1DayCount: Int, expire2DaysCount: Int) {
-        todayDataView.configureView(addDataCount: addedCount, expire1DayCount: expire1DayCount, expire2DaysCount: expire2DaysCount)
-    }
     
-    func updateTotalData(listCount: Int, finishedCount: Int) {
-        listCountLbl.text = "\(listCount)"
-        finishedCountLbl.text = "\(finishedCount)"
-    }
+}
+
+extension HomeVC: UICollectionViewDelegate {
+    
 }

@@ -29,43 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // https://github.com/xmartlabs/XLPagerTabStrip/issues/141
         _ = ReadingListVC(nibName: nil, bundle: nil)
         
-//        // おすすめ記事一覧
-//        let articleListVC = UIStoryboard(name: "ArticleList", bundle: nil).instantiateViewController(withIdentifier: "ArticleList") as! ArticleListVC
-//        let articleListModel = ArticleListModel()
-//        let articleListPresenter = ArticleListPresenter(view: articleListVC, model: articleListModel)
-//        articleListVC.inject(presenter: articleListPresenter)
-        
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
         let homeModel = HomeModel()
         let homePresenter = HomePresenter(view: homeVC, model: homeModel)
         homeVC.inject(presenter: homePresenter)
-        let navFirst = UINavigationController()
-        navFirst.navigationBar.tintColor = .black
-        navFirst.viewControllers = [homeVC]
-        
-        // リーディングリスト一覧
-        let listVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListVC
-        
-        // このアプリについて
-        let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
-        let navThird = UINavigationController()
-        navThird.navigationBar.tintColor = .black
-        navThird.navigationBar.prefersLargeTitles = true
-        navThird.navigationItem.largeTitleDisplayMode = .always
-        navThird.viewControllers = [aboutAppVC]
-        
-        // 表示画面をタブに格納
-        let tab = UITabBarController()
-        tab.viewControllers = [navFirst, listVC, navThird]
-        tab.tabBar.barTintColor = UIColor.white
-        tab.hero.isEnabled = true
-        
-        UITabBar.appearance().tintColor = UIColor.red
-        UITabBar.appearance().unselectedItemTintColor = UIColor.gray
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tab
+        window?.rootViewController = homeVC
         window?.makeKeyAndVisible()
     }
 }
-
