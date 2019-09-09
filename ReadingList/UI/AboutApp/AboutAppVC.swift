@@ -27,8 +27,10 @@ class AboutAppVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        notificationCenter.addObserver(self, selector: #selector(updateNorificationAuthState), name: UIApplication.willEnterForegroundNotification, object: nil)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.title = "このアプリについて"
+        notificationCenter.addObserver(self, selector: #selector(updateNorificationAuthState), name: UIApplication.willEnterForegroundNotification, object: nil)
         confirureTableView()
     }
     
@@ -84,7 +86,7 @@ class AboutAppVC: UITableViewController {
         case 0:
             switch indexPath.row {
             case 0:
-                SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "footer_icon")!, title: "リーディングリストの使い方", body: "リーディングリストに記事を追加して「積ん読」を回避しよう！\n\n7日間読まれない場合、削除されてしまいます😢\n5日目、6日目には通知が来るので忘れるのを防げます！\n\nリーディングリストに追加する方法はとても簡単！\n 他のアプリの「共有」機能から追加できます", buttonTitle: "OK")
+                SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "logo")!, title: "リーディングリストの使い方", body: "リーディングリストに記事を追加して「積ん読」を回避しよう！\n\n7日間読まれない場合、削除されてしまいます😢\n5日目、6日目には通知が来るので忘れるのを防げます！\n\nリーディングリストに追加する方法はとても簡単！\n 他のアプリの「共有」機能から追加できます", buttonTitle: "OK")
             default:
                 break
             }

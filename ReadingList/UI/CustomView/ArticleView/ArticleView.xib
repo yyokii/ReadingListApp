@@ -28,7 +28,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f95-0G-LJ7" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                     <rect key="frame" x="8" y="8" width="395" height="214"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Akw-I0-eXh">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Akw-I0-eXh">
                             <rect key="frame" x="0.0" y="0.0" width="395" height="139"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -67,13 +67,13 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-er-Bx4">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-er-Bx4">
                             <rect key="frame" x="357" y="0.0" width="30" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="95x-AZ-l47"/>
                                 <constraint firstAttribute="width" constant="30" id="bbj-Wr-hxZ"/>
                             </constraints>
-                            <state key="normal" title="B"/>
+                            <state key="normal" image="three_dot"/>
                             <connections>
                                 <action selector="tappedOptionBtn:" destination="-1" eventType="touchUpInside" id="edO-Dv-Qbc"/>
                             </connections>
@@ -116,6 +116,7 @@
         </view>
     </objects>
     <resources>
+        <image name="three_dot" width="21" height="21"/>
         <namedColor name="Caramel">
             <color red="0.98039215686274506" green="0.82745098039215681" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

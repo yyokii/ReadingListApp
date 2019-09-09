@@ -44,7 +44,7 @@ class FloatingVC: UIViewController {
 
 extension FloatingVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 178
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

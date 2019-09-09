@@ -26,16 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configireUI() {
-        // https://github.com/xmartlabs/XLPagerTabStrip/issues/141
-        _ = ReadingListVC(nibName: nil, bundle: nil)
-        
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
         let homeModel = HomeModel()
         let homePresenter = HomePresenter(view: homeVC, model: homeModel)
         homeVC.inject(presenter: homePresenter)
+        let homeNav = UINavigationController()
+        homeNav.viewControllers = [homeVC]
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = homeVC
+        window?.rootViewController = homeNav
         window?.makeKeyAndVisible()
     }
 }

@@ -62,7 +62,13 @@ class RealmManager {
         return database?.objects(ReadingItem.self).filter("finishedDate == null && isDeleted == false").sorted(byKeyPath: "dueDate")
     }
     
-    
+    /// 今日削除される予定のものを全て取得
+    func readTodayDeleteItems() -> Results<ReadingItem>?  {
+        let now = Date()
+        let endOfDate = Date.endOfDayForDate(date: now)
+        guard let date = endOfDate else { return nil }
+        return database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@ && isDeleted == false", date).sorted(byKeyPath: "dueDate")
+    }
     
     /// 数日後が期限日となっているアイテムの取得
     ///

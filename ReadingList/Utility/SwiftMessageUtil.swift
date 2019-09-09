@@ -24,7 +24,7 @@ struct SwiftMessageUtil {
         // view
         let view: MessageView
         view = MessageView.viewFromNib(layout: .cardView)
-        view.configureContent(title: title, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "Hide", buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureContent(title: title, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
         view.configureDropShadow()
         
         // タイプに基づきテーマ設定
@@ -56,6 +56,7 @@ struct SwiftMessageUtil {
         messageView.configureContent(title: title, body: body, iconImage: iconImage, iconText: "", buttonImage: nil, buttonTitle: buttonTitle) { _ in
             SwiftMessages.hide()
         }
+                
         messageView.backgroundView.backgroundColor = UIColor.init(white: 0.97, alpha: 1)
         messageView.backgroundView.layer.cornerRadius = 10
         var config = SwiftMessages.defaultConfig
@@ -66,7 +67,31 @@ struct SwiftMessageUtil {
         SwiftMessages.show(config: config, view: messageView)
     }
     
-    static func showWebHowtoView() -> Void {
+    /// 未読記事（リーディングリスト）にてオプションダイアログを表示
+    static func showReadingListDialog() {
+        let view: ReadingItemDialogView = try! SwiftMessages.viewFromNib()
+        view.configureDropShadow()
+        var config = SwiftMessages.defaultConfig
+        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
+        config.duration = .forever
+        config.presentationStyle = .center
+        config.dimMode = .gray(interactive: true)
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    /// 既読記事にてオプションダイアログを表示
+    static func showFinishedListDialog() {
+        let view: FinishedItemDialogView = try! SwiftMessages.viewFromNib()
+        view.configureDropShadow()
+        var config = SwiftMessages.defaultConfig
+        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
+        config.duration = .forever
+        config.presentationStyle = .center
+        config.dimMode = .gray(interactive: true)
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    static func showWebHowtoView() {
         let howtoView = WebHowtoView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
         let messageView = BaseView(frame: .zero)
         messageView.layoutMargins = .zero

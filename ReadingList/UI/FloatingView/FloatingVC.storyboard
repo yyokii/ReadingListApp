@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,9 +24,19 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hol-60-W9X">
                                 <rect key="frame" x="0.0" y="44" width="414" height="98"/>
-                                <color key="backgroundColor" name="PinkSherbet"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reading_finished" translatesAutoresizingMaskIntoConstraints="NO" id="0JP-n6-3tT">
+                                        <rect key="frame" x="191" y="24" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="vUK-QL-LYe"/>
+                                            <constraint firstAttribute="width" secondItem="0JP-n6-3tT" secondAttribute="height" multiplier="1:1" id="wW6-Ig-czg"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstItem="0JP-n6-3tT" firstAttribute="centerX" secondItem="hol-60-W9X" secondAttribute="centerX" id="4lQ-BJ-eox"/>
                                     <constraint firstAttribute="height" constant="98" id="A1G-as-2CI"/>
+                                    <constraint firstItem="0JP-n6-3tT" firstAttribute="top" secondItem="hol-60-W9X" secondAttribute="top" constant="24" id="Mpg-ne-7Ge"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -62,8 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="PinkSherbet">
-            <color red="0.95686274509803926" green="0.56470588235294117" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="reading_finished" width="23" height="29"/>
     </resources>
 </document>

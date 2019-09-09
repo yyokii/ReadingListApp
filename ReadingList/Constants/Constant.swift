@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum ListType {
+    case ReadingList
+    case FinishedList
+    case DeletedList
+}
+
 enum LocalNotificationType {
     // 1日前の通知
     case OneDayBefore

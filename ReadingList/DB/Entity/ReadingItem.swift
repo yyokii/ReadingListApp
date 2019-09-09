@@ -22,6 +22,11 @@ class ReadingItem: Object {
     // 削除フラグ
     @objc dynamic var isDeleted = false
     
+    func daysUntilDeleting() {
+        
+        
+    }
+    
     func isDueDateIsOneDayAfter() -> Bool {
         let date = Date.getDueDate(addingDaysValue: 1)
         guard let dueDate = date, let selfDueDate = self.dueDate  else { return false }

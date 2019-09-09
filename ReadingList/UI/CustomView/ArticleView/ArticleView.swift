@@ -55,9 +55,15 @@ class ArticleView: UIView {
         self.tapOptionBtnAction = tapOptionBtnAction
         
         switch type {
-        case .ReadingList, .FinishedList:
-            break
+        case .ReadingList:
+            dueDateLbl.isHidden = false
+            dueDateBaseView.isHidden = false
+        case .FinishedList:
+            dueDateLbl.isHidden = true
+            dueDateBaseView.isHidden = true
         case .DeletedList:
+            dueDateLbl.isHidden = false
+            dueDateBaseView.isHidden = false
             optionButton.isHidden = true
         }
         

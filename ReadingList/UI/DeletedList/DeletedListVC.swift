@@ -65,10 +65,11 @@ extension DeletedListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListItemCell
-        let item = displayItems![indexPath.row]
-        cell?.configureView(row: indexPath.row, item: item, type: .DeletedList)
-        cell?.selectionStyle = .none
-        return cell!
+        // TODO
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListItemCell
+//        let item = displayItems![indexPath.row]
+//        cell?.configureView(row: indexPath.row, item: item, type: .DeletedList)
+//        cell?.selectionStyle = .none
+        return UITableViewCell()
     }
 }

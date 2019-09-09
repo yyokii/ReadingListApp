@@ -34,21 +34,21 @@
                     <rect key="frame" x="0.0" y="0.0" width="213" height="260"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="総数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4B-U1-0IZ">
-                            <rect key="frame" x="89" y="71.5" width="35" height="20.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="94" y="97.5" width="25" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTU-xF-Kg0">
-                            <rect key="frame" x="78.5" y="102" width="56" height="56.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="47"/>
-                            <color key="textColor" red="0.52941176469999995" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <rect key="frame" x="90" y="112" width="33.5" height="36"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="30"/>
+                            <color key="textColor" name="CornFlower"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="sTU-xF-Kg0" firstAttribute="top" secondItem="T4B-U1-0IZ" secondAttribute="bottom" constant="10" id="8w9-1l-aZf"/>
+                        <constraint firstItem="sTU-xF-Kg0" firstAttribute="top" secondItem="T4B-U1-0IZ" secondAttribute="bottom" id="8w9-1l-aZf"/>
                         <constraint firstItem="T4B-U1-0IZ" firstAttribute="centerX" secondItem="rzD-5U-uug" secondAttribute="centerX" id="TMB-kJ-rwx"/>
                         <constraint firstItem="sTU-xF-Kg0" firstAttribute="centerY" secondItem="rzD-5U-uug" secondAttribute="centerY" id="eg6-bs-S4S"/>
                         <constraint firstItem="sTU-xF-Kg0" firstAttribute="centerX" secondItem="rzD-5U-uug" secondAttribute="centerX" id="xTu-89-8h3"/>
@@ -58,11 +58,11 @@
                     <rect key="frame" x="213" y="0.0" width="497" height="260"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uqo-mf-rwO">
-                            <rect key="frame" x="24" y="31" width="449" height="180"/>
+                            <rect key="frame" x="24" y="46.5" width="449" height="180"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsH-7j-nrB" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsH-7j-nrB" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
-                                    <color key="backgroundColor" name="GreenSheen"/>
+                                    <color key="backgroundColor" name="CornFlower"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="15" id="Efl-PN-rCo"/>
                                         <constraint firstAttribute="height" constant="180" id="lQd-zt-RDX"/>
@@ -73,25 +73,25 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-RB-5aj" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-RB-5aj" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="72.5" y="0.0" width="15" height="180"/>
-                                    <color key="backgroundColor" name="GreenSheen"/>
+                                    <color key="backgroundColor" name="CornFlower"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvE-u5-ze6" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvE-u5-ze6" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="144.5" y="0.0" width="15" height="180"/>
-                                    <color key="backgroundColor" name="GreenSheen"/>
+                                    <color key="backgroundColor" name="CornFlower"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiy-8p-v7n" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiy-8p-v7n" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="217" y="0.0" width="15" height="180"/>
                                     <color key="backgroundColor" name="Caramel"/>
                                     <userDefinedRuntimeAttributes>
@@ -100,7 +100,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giM-TE-lrb" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giM-TE-lrb" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="289.5" y="0.0" width="15" height="180"/>
                                     <color key="backgroundColor" name="Caramel"/>
                                     <userDefinedRuntimeAttributes>
@@ -109,7 +109,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwx-Sb-xdH" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwx-Sb-xdH" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="361.5" y="0.0" width="15" height="180"/>
                                     <color key="backgroundColor" name="PinkSherbet"/>
                                     <userDefinedRuntimeAttributes>
@@ -118,7 +118,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Oz-Ud-AWf" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
+                                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Oz-Ud-AWf" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="434" y="0.0" width="15" height="180"/>
                                     <color key="backgroundColor" name="PinkSherbet"/>
                                     <userDefinedRuntimeAttributes>
@@ -139,58 +139,58 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXX-1n-Ygd">
-                            <rect key="frame" x="0.0" y="211" width="497" height="1"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="8" y="226.5" width="481" height="0.5"/>
+                            <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="zTA-uY-aqD"/>
+                                <constraint firstAttribute="height" constant="0.40000000000000002" id="zTA-uY-aqD"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8fh-UB-kB6">
-                            <rect key="frame" x="24" y="228" width="449" height="24"/>
+                            <rect key="frame" x="24" y="235" width="449" height="17"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIR-6s-5dj">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="vva-ga-xS5"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwp-Br-8KR">
-                                    <rect key="frame" x="76" y="0.0" width="12.5" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="78" y="0.0" width="9" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="az5-P0-XaP">
-                                    <rect key="frame" x="148.5" y="0.0" width="12.5" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="151" y="0.0" width="9" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9q-1x-imW">
-                                    <rect key="frame" x="221" y="0.0" width="12.5" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="223.5" y="0.0" width="9" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUz-o1-mpg">
-                                    <rect key="frame" x="293.5" y="0.0" width="12.5" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="296" y="0.0" width="9" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ji-V5-JJC">
-                                    <rect key="frame" x="366" y="0.0" width="12" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="369" y="0.0" width="8.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJM-Ts-Sgc">
-                                    <rect key="frame" x="439.5" y="0.0" width="9.5" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="442.5" y="0.0" width="6.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -200,12 +200,12 @@
                     <constraints>
                         <constraint firstItem="QXX-1n-Ygd" firstAttribute="top" secondItem="uqo-mf-rwO" secondAttribute="bottom" id="5Fb-At-ld3"/>
                         <constraint firstAttribute="bottom" secondItem="8fh-UB-kB6" secondAttribute="bottom" constant="8" id="GKc-zW-Oe1"/>
-                        <constraint firstItem="QXX-1n-Ygd" firstAttribute="leading" secondItem="3XG-td-pqV" secondAttribute="leading" id="OzJ-dc-5va"/>
+                        <constraint firstItem="QXX-1n-Ygd" firstAttribute="leading" secondItem="3XG-td-pqV" secondAttribute="leading" constant="8" id="OzJ-dc-5va"/>
                         <constraint firstAttribute="trailing" secondItem="uqo-mf-rwO" secondAttribute="trailing" constant="24" id="fvS-qc-MoG"/>
                         <constraint firstItem="8fh-UB-kB6" firstAttribute="leading" secondItem="3XG-td-pqV" secondAttribute="leading" constant="24" id="jxz-ud-QWz"/>
                         <constraint firstAttribute="trailing" secondItem="8fh-UB-kB6" secondAttribute="trailing" constant="24" id="rZW-5r-XK5"/>
-                        <constraint firstItem="8fh-UB-kB6" firstAttribute="top" secondItem="QXX-1n-Ygd" secondAttribute="bottom" constant="16" id="rcj-eW-qZn"/>
-                        <constraint firstAttribute="trailing" secondItem="QXX-1n-Ygd" secondAttribute="trailing" id="uAv-Rb-zfE"/>
+                        <constraint firstItem="8fh-UB-kB6" firstAttribute="top" secondItem="QXX-1n-Ygd" secondAttribute="bottom" constant="8" id="rcj-eW-qZn"/>
+                        <constraint firstAttribute="trailing" secondItem="QXX-1n-Ygd" secondAttribute="trailing" constant="8" id="uAv-Rb-zfE"/>
                         <constraint firstItem="uqo-mf-rwO" firstAttribute="leading" secondItem="3XG-td-pqV" secondAttribute="leading" constant="24" id="ub8-Rc-V3b"/>
                     </constraints>
                 </view>
@@ -230,8 +230,8 @@
         <namedColor name="Caramel">
             <color red="0.98039215686274506" green="0.82745098039215681" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="GreenSheen">
-            <color red="0.47058823529411764" green="0.76078431372549016" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="CornFlower">
+            <color red="0.44313725490196076" green="0.5490196078431373" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PinkSherbet">
             <color red="0.95686274509803926" green="0.56470588235294117" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
