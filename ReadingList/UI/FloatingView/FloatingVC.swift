@@ -60,9 +60,10 @@ extension FloatingVC: UITableViewDataSource {
             
             if let items = displayItems {
                 let item = items[indexPath.row]
-                cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: { [weak self] in
-                    self?.displayItemOption()
-                })
+                let optionTappedAction = {
+                    self.presenter.optionTapped(item: item)
+                }
+                cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: optionTappedAction)
             }
         
             return cell
@@ -76,6 +77,10 @@ extension FloatingVC: UITableViewDelegate {
 }
 
 extension FloatingVC: FloatingViewPresenterOutput {
+    func displayFinishedListDialog(item: ReadingItem) {
+        SwiftMessageUtil.showFinishedListDialog(title: item.title)
+    }
+    
     func updateList(results: Results<ReadingItem>) {
         displayItems = results
     }

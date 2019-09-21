@@ -19,6 +19,8 @@ protocol HomeModelInput {
     func expireSixDaysItems() -> Results<ReadingItem>?
     func expireSevenDaysItems() -> Results<ReadingItem>?
     func fetchNotFinishedItems() -> Results<ReadingItem>?
+    func deleteItem(readingItem: ReadingItem)
+    func changeItemStateToReading(item: ReadingItem)
 }
 
 final class HomeModel: HomeModelInput {
@@ -54,6 +56,16 @@ final class HomeModel: HomeModelInput {
         } else {
             return nil
         }
+    }
+    
+    /// 特定のアイテムを削除
+    func deleteItem(readingItem: ReadingItem) {
+        RealmManager.sharedInstance.deleteItem(title: readingItem.title, url: readingItem.url, createdDate: readingItem.createdDate!)
+    }
+    
+    // アイテムを既読にする
+    func changeItemStateToReading(item: ReadingItem) {
+        RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: true)
     }
     
     /// 期限日が1日以内のものの件数を返す

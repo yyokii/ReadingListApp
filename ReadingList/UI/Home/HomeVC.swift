@@ -115,6 +115,10 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: HomePresenterOutput {
+    func displayReadingListDialog(item: ReadingItem) {
+        SwiftMessageUtil.showReadingListDialog(title: item.title)
+    }
+    
     func showNoTodayDeleteItemsView() {
         noTodayDeleteItemsLbl.isHidden = false
     }
@@ -179,7 +183,10 @@ extension HomeVC: UICollectionViewDataSource {
             let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
             if let items = displayTodayDeleteItems {
                 let item = items[indexPath.row]
-                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: nil)
+                let optionTappedAction = {
+                    self.presenter.tapOptionBtn(item: item)
+                }
+                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             }
             return cell
             
@@ -188,7 +195,10 @@ extension HomeVC: UICollectionViewDataSource {
             let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
             if let items = displayReadingItems {
                 let item = items[indexPath.row]
-                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: nil)
+                let optionTappedAction = {
+                    self.presenter.tapOptionBtn(item: item)
+                }
+                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             }
             return cell
 

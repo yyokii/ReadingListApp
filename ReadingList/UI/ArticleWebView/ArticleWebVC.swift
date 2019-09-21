@@ -6,7 +6,6 @@
 //  Copyright © 2019 Yoki Higashihara. All rights reserved.
 //
 
-import Hero
 import UIKit
 import WebKit
 
@@ -110,7 +109,7 @@ class ArticleWebVC: UIViewController {
     }
     
     @objc private func close() {
-        hero.dismissViewController()
+        // hero.dismissViewController()
     }
     
     @objc private func goBack() {

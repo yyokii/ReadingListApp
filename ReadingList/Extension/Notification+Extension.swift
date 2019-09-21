@@ -24,4 +24,8 @@ extension Notification.Name {
     // アイテムの削除
     static let deleteReadingItem = Notification.Name("deleteReadingItem")
     static let deleteFinishedItem = Notification.Name("deleteFinishedItem")
+    
+    // リストの更新
+    static let updateReadingList = Notification.Name("updateReadingList")
+    static let updateFinishedList = Notification.Name("updateFinishedList")
 }

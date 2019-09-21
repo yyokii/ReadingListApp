@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol HomePresenterInput {
+    func tapOptionBtn(item: ReadingItem)
     func viewDidLoad()
     func viewWillAppear()
 }
@@ -18,6 +19,7 @@ protocol  HomePresenterOutput: AnyObject {
     func displayTutorialDialog()
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
+    func displayReadingListDialog(item: ReadingItem)
     func displayUserData(dataViewModel: GraphViewModel)
     func updateTodayDeleteList(items: Results<ReadingItem>?)
     func updateReadingList(items: Results<ReadingItem>?)
@@ -26,6 +28,10 @@ protocol  HomePresenterOutput: AnyObject {
 final class  HomePresenter {
     private weak var view: HomePresenterOutput!
     private var model: HomeModelInput
+    
+    let notificationCenter = NotificationCenter.default
+    
+    private var optionTappedItem: ReadingItem!
     
     private var expireOneDayItems: Results<ReadingItem>?
     private var expireTwoDaysItems: Results<ReadingItem>?
@@ -38,6 +44,11 @@ final class  HomePresenter {
     init(view:  HomePresenterOutput, model: HomeModelInput) {
         self.view = view
         self.model = model
+        
+        // リーディングリストの削除を検知
+        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
+        // リーディングリストへの追加を検知
+        notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
     }
     
     private func fetchUserData() {
@@ -75,7 +86,7 @@ final class  HomePresenter {
         }
     }
     
-    private func updateReadingList() {
+    @objc private func updateReadingList() {
         let items = model.fetchNotFinishedItems()
         if items?.count ?? 0 > 0 {
             view.updateReadingList(items: items)
@@ -92,10 +103,34 @@ final class  HomePresenter {
             UserDefaultManager.shareInstance.deleteReadingItems()
         }
     }
+    
+    /// 削除アクションされたアイテムを削除しリストを更新
+    @objc private func deleteItem() {
+        model.deleteItem(readingItem: optionTappedItem)
+        fetchAndUpdateList()
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
+    
+    /// アイテムを既読リストに戻しリストを更新
+    @objc private func changeItemStateToFinished() {
+        model.changeItemStateToReading(item: optionTappedItem)
+        // リスト更新
+        fetchAndUpdateList()
+        // 既読リスト更新
+        notificationCenter.post(name: .updateFinishedList, object: nil)
+        notificationCenter.post(name: .dismissItemOption, object: nil)
+    }
 }
 
 extension  HomePresenter: HomePresenterInput {
+    
+    func tapOptionBtn(item: ReadingItem) {
+        optionTappedItem = item
+        view.displayReadingListDialog(item: item)
+    }
+    
     func viewDidLoad() {
+        
         if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
             view.displayTutorialDialog()
             UserDefaultManager.shareInstance.setFirstOpenArticleView()

@@ -49,8 +49,6 @@ class ArticleView: UIView {
     }
     
     func configureView(row: Int, item: ReadingItem, type: ListType, tapOptionBtnAction: (() -> Void)?) {
-//        articleImage.layer.cornerRadius = 8.0
-//        articleImage.clipsToBounds = true
         
         self.tapOptionBtnAction = tapOptionBtnAction
         

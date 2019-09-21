@@ -16,6 +16,7 @@ protocol FloatingViewPresenterInput {
 
 protocol FloatingViewPresenterOutput: AnyObject {
     func updateList(results: Results<ReadingItem>)
+    func displayFinishedListDialog(item: ReadingItem)
     func displayNoContentView()
     func dismissNoContentView()
 }
@@ -33,12 +34,12 @@ final class  FloatingViewPresenter {
         self.view = view
         self.model = model
         
-        // TODO: ここのobjectて何をするためのもの？
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteFinishedItem, object: nil)
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToReading), name: .changeItemStateToReading, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(fetchFinishedList), name: .updateFinishedList, object: nil)
     }
     
-    private func fetchFinishedList() {
+    @objc private func fetchFinishedList() {
         if let items = model.fetchFinishedItems() {
             if items.count == 0 {
                 view.updateList(results: items)
@@ -62,7 +63,10 @@ final class  FloatingViewPresenter {
     /// アイテムをリーディングリストに戻し更新
     @objc private func changeItemStateToReading() {
         model.changeItemStateToReading(item: optionTappedItem)
+        // 既読リスト更新
         fetchFinishedList()
+        // リーディングリスト更新
+        notificationCenter.post(name: .updateReadingList, object: nil)
         notificationCenter.post(name: .dismissItemOption, object: nil)
     }
 }
@@ -70,6 +74,7 @@ final class  FloatingViewPresenter {
 extension  FloatingViewPresenter: FloatingViewPresenterInput {
     func optionTapped(item: ReadingItem) {
         optionTappedItem = item
+        view.displayFinishedListDialog(item: item)
     }
     
     func viewWillAppear() {

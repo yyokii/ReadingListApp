@@ -68,8 +68,9 @@ struct SwiftMessageUtil {
     }
     
     /// 未読記事（リーディングリスト）にてオプションダイアログを表示
-    static func showReadingListDialog() {
+    static func showReadingListDialog(title: String) {
         let view: ReadingItemDialogView = try! SwiftMessages.viewFromNib()
+        view.title = title
         view.configureDropShadow()
         var config = SwiftMessages.defaultConfig
         config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
@@ -80,8 +81,9 @@ struct SwiftMessageUtil {
     }
     
     /// 既読記事にてオプションダイアログを表示
-    static func showFinishedListDialog() {
+    static func showFinishedListDialog(title: String) {
         let view: FinishedItemDialogView = try! SwiftMessages.viewFromNib()
+        view.title = title
         view.configureDropShadow()
         var config = SwiftMessages.defaultConfig
         config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)

@@ -11,7 +11,21 @@ import SwiftMessages
 
 class FinishedItemDialogView: MessageView {
     
+    @IBOutlet weak var titleLbl: UILabel!
+    
     let notificationCenter = NotificationCenter.default
+    
+    var title: String = ""
+
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        
+        configureView(title: title)
+    }
+    
+    private func configureView(title: String) {
+        titleLbl.text = title
+    }
     
     @IBAction func tapToReadingList() {
         notificationCenter.post(name: .changeItemStateToReading,

@@ -22,8 +22,6 @@ class AboutAppVC: UITableViewController {
         ["いいねする", "お問い合わせ", "開発した人"],
     ]
     
-    private let current = UNUserNotificationCenter.current()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
