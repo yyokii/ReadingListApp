@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 /// データ画面で表示するデータ
 struct GraphViewModel {
@@ -23,29 +24,59 @@ struct GraphViewModel {
     let noDataHeight: CGFloat = 15
     let barMaxHeight: CGFloat = 180
     
-    init(oneDayAfterCount: Int, twoDaysAfterCount: Int, threeDaysAfterCount: Int, fourDaysAfterCount: Int, fiveDaysAfterCount: Int, sixDaysAfterCount: Int, sevenDaysAfterCount: Int) {
+    init(items: Results<ReadingItem>) {
         
-        totalCount = oneDayAfterCount + twoDaysAfterCount + threeDaysAfterCount + fourDaysAfterCount + fiveDaysAfterCount + sixDaysAfterCount + sevenDaysAfterCount
+        let now = Date()
         
-        let firstHeight: CGFloat = ( oneDayAfterCount == 0 ) ? noDataHeight : min(CGFloat(oneDayAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let firstItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) <= 1
+        }).count
+        
+        let secondItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 2
+        }).count
+        
+        let thirdItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 3
+        }).count
+        
+        let fourthItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 4
+        }).count
+        
+        let fifthItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 5
+        }).count
+        
+        let sixthItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 6
+        }).count
+        
+        let seventhItemsCount = items.filter({
+            $0.differenceDay(fromDate: now) == 7
+        }).count
+        
+        totalCount = firstItemsCount + secondItemsCount + thirdItemsCount + fourthItemsCount + fifthItemsCount + sixthItemsCount + seventhItemsCount
+        
+        let firstHeight: CGFloat = ( firstItemsCount == 0 ) ? noDataHeight : min(CGFloat(firstItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         firstBarHeight = firstHeight
         
-        let secondHeight: CGFloat = ( twoDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(twoDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let secondHeight: CGFloat = ( secondItemsCount == 0 ) ? noDataHeight : min(CGFloat(secondItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         secondBarHeight = secondHeight
         
-        let thirdHeight: CGFloat = ( threeDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(threeDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let thirdHeight: CGFloat = ( thirdItemsCount == 0 ) ? noDataHeight : min(CGFloat(thirdItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         thirdBarHeight = thirdHeight
         
-        let fourthHeight: CGFloat = ( fourDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(fourDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let fourthHeight: CGFloat = ( fourthItemsCount == 0 ) ? noDataHeight : min(CGFloat(fourthItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         fourthBarHeight = fourthHeight
         
-        let fifthHeight: CGFloat = ( fiveDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(fiveDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let fifthHeight: CGFloat = ( fifthItemsCount == 0 ) ? noDataHeight : min(CGFloat(fifthItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         fifthBarHeight = fifthHeight
         
-        let sixthHeight: CGFloat = ( sixDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(sixDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let sixthHeight: CGFloat = ( sixthItemsCount == 0 ) ? noDataHeight : min(CGFloat(sixthItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         sixthBarHeight = sixthHeight
         
-        let seventhHeight: CGFloat = ( sevenDaysAfterCount == 0 ) ? noDataHeight : min(CGFloat(sevenDaysAfterCount) / 10.0 * barMaxHeight, barMaxHeight)
+        let seventhHeight: CGFloat = ( seventhItemsCount == 0 ) ? noDataHeight : min(CGFloat(seventhItemsCount) / 10.0 * barMaxHeight, barMaxHeight)
         seventhBarHeight = seventhHeight
         
     }

@@ -9,6 +9,16 @@
 import Foundation
 
 extension Date {
+    
+    /// 日数の差を取得
+    func differenceInDay(_ date: Date) -> Int {
+        let cal = Calendar(identifier: .gregorian)
+        let lhs = cal.dateComponents([.year, .month, .day], from: self)
+        let rhs = cal.dateComponents([.year, .month, .day], from: date)
+        let components = cal.dateComponents([.day], from: lhs, to: rhs)
+        return components.day!
+    }
+    
     /// dateのstart日時を取得
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)
@@ -30,8 +40,8 @@ extension Date {
         return formater
     }
     
-    /// 数日後（引き数日後）の日付を取得する
-    static func getDueDate(addingDaysValue: Int) -> Date? {
+    /// 数日後（引き数日後）の日付の最終時間を取得する
+    static func getAfterSomeDaysDate(addingDaysValue: Int) -> Date? {
         // 今日の終わりのDateを取得
         let todayEndDate = endOfDayForDate(date: Date())
         guard let endDate = todayEndDate else { return nil }

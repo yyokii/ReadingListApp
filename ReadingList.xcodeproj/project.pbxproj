@@ -64,6 +64,7 @@
 		F57CD6CF2325533B0084C587 /* ReadingItemDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57CD6CE2325533B0084C587 /* ReadingItemDialogView.swift */; };
 		F57CD6D1232553530084C587 /* FinishedItemDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */; };
 		F57CD6D32325536B0084C587 /* FinishedItemDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */; };
+		F5A21A4C23409C56008E5F33 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A21A4B23409C55008E5F33 /* WebKit.framework */; };
 		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
 		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 		F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */; };
@@ -172,6 +173,7 @@
 		F57CD6CE2325533B0084C587 /* ReadingItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItemDialogView.swift; sourceTree = "<group>"; };
 		F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishedItemDialogView.xib; sourceTree = "<group>"; };
 		F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedItemDialogView.swift; sourceTree = "<group>"; };
+		F5A21A4B23409C55008E5F33 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFinishedListItemView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5A21A4C23409C56008E5F33 /* WebKit.framework in Frameworks */,
 				D26B6A1B803419F3D9C358D9 /* Pods_ReadingList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +219,7 @@
 		93EF2D0881669806EB4F1B83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5A21A4B23409C55008E5F33 /* WebKit.framework */,
 				BD581389B87B858592B81099 /* Pods_ReadingList.framework */,
 				1C91B8675F949CDF074B8C8B /* Pods_ShareExtension.framework */,
 			);

@@ -12,9 +12,6 @@ extension Notification.Name {
     
     // MARL: アイテムオプション
     
-    // 閉じる
-    static let dismissItemOption = Notification.Name("dismissItemOption")
-    
     // リーディングリストに戻す
     static let changeItemStateToReading = Notification.Name("changeItemStateToReading")
     

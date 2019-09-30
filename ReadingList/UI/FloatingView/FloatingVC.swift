@@ -24,16 +24,21 @@ class FloatingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleTableView.dataSource = self
-        articleTableView.delegate = self
-        
-        articleTableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         presenter.viewWillAppear()
+    }
+    
+    private func configureTableView() {
+        articleTableView.dataSource = self
+        articleTableView.delegate = self
+        
+        articleTableView.separatorStyle = .none
+        articleTableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
     }
     
     private func displayItemOption() {
@@ -83,6 +88,7 @@ extension FloatingVC: FloatingViewPresenterOutput {
     
     func updateList(results: Results<ReadingItem>) {
         displayItems = results
+        articleTableView.reloadData()
     }
     
     func displayNoContentView() {

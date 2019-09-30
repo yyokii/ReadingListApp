@@ -48,10 +48,13 @@ class DeletedListVC: UIViewController {
 
 extension DeletedListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let displayItem = displayItems![indexPath.row]
-        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
-        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
-        present(wevNav, animated: true, completion: nil)
+        
+        // TODO: タップアクションなくていいかも？スライドで
+        
+//        let displayItem = displayItems![indexPath.row]
+//        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
+//        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
+//        present(wevNav, animated: true, completion: nil)
     }
 }
 

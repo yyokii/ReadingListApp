@@ -19,8 +19,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var noReadingItemsLbl: UILabel!
     
     var floatingPanelController: FloatingPanelController!
-    var displayTodayDeleteItems: Results<ReadingItem>?
-    var displayReadingItems: Results<ReadingItem>?
+    var displayTodayDeleteItems: [ReadingItem]?
+    var displayReadingItems: [ReadingItem]?
     
     private var presenter: HomePresenterInput!
     
@@ -70,12 +70,12 @@ class HomeVC: UIViewController {
     private func configureCollectionView() {
         let todayDeleteListLayout = UICollectionViewFlowLayout()
         todayDeleteListLayout.itemSize = CGSize(width:320, height:178)
-        todayDeleteListLayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        todayDeleteListLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         todayDeleteListLayout.scrollDirection = .horizontal
         
         let readingListlayout = UICollectionViewFlowLayout()
         readingListlayout.itemSize = CGSize(width:320, height:178)
-        readingListlayout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        readingListlayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         readingListlayout.scrollDirection = .horizontal
         
         todayDeleteCollectionView.collectionViewLayout = todayDeleteListLayout
@@ -87,23 +87,20 @@ class HomeVC: UIViewController {
         readingCollectionView.dataSource = self
         todayDeleteCollectionView.delegate = self
         readingCollectionView.delegate = self
+        
+        todayDeleteCollectionView.showsHorizontalScrollIndicator = false
+        readingCollectionView.showsHorizontalScrollIndicator = false
     }
     
     @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
 
-        let todayDeleteVC = UIStoryboard(name: "TodayDelete", bundle: nil).instantiateInitialViewController() as! TodayDeleteTableVC
-        let todayDeleteModel = TodayDeleteModel()
-        let todayDeletePresenter = TodayDeletePresenter(view: todayDeleteVC, model: todayDeleteModel)
-        todayDeleteVC.inject(presenter: todayDeletePresenter)
+        let todayDeleteVC = TodayDeleteTableVC.viewController()
         navigationController?.pushViewController(todayDeleteVC, animated: true)
     }
     
     @IBAction func tapShowingReadingItems(_ sender: Any) {
 
-        let readingListVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListTableVC
-        let readingListModel = ReadingListModel()
-        let readingListPresenter = ReadingListPresenter(view: readingListVC, model: readingListModel)
-        readingListVC.inject(presenter: readingListPresenter)
+        let readingListVC = ReadingListTableVC.viewController()
         navigationController?.pushViewController(readingListVC, animated: true)
     }
     
@@ -115,6 +112,18 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: HomePresenterOutput {
+    func updateTodayDeleteList(items: [ReadingItem]?) {
+        noTodayDeleteItemsLbl.isHidden = true
+        displayTodayDeleteItems = items
+        todayDeleteCollectionView.reloadData()
+    }
+    
+    func updateReadingList(items: [ReadingItem]?) {
+        noReadingItemsLbl.isHidden = true
+        displayReadingItems = items
+        readingCollectionView.reloadData()
+    }
+    
     func displayReadingListDialog(item: ReadingItem) {
         SwiftMessageUtil.showReadingListDialog(title: item.title)
     }
@@ -134,18 +143,6 @@ extension HomeVC: HomePresenterOutput {
     func displayTutorialDialog() {
         SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "logo")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリから記事を「Yomu」へ追加し、「積ん読」をなくしましょう！", buttonTitle: "OK")
 
-    }
-    
-    func updateTodayDeleteList(items: Results<ReadingItem>?) {
-        noTodayDeleteItemsLbl.isHidden = true
-        displayTodayDeleteItems = items
-        todayDeleteCollectionView.reloadData()
-    }
-    
-    func updateReadingList(items: Results<ReadingItem>?) {
-        noReadingItemsLbl.isHidden = true
-        displayReadingItems = items
-        readingCollectionView.reloadData()
     }
 }
 
@@ -210,5 +207,16 @@ extension HomeVC: UICollectionViewDataSource {
 }
 
 extension HomeVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var item: ReadingItem?
+        if collectionView == todayDeleteCollectionView {
+            item = displayTodayDeleteItems?[indexPath.row]
+        } else if collectionView == readingCollectionView {
+            item = displayReadingItems?[indexPath.row]
+        }
+        guard let selectedItem = item else { return }
+        let vc = ArticleWebVC.viewController(item: selectedItem)
+        present(vc, animated: true, completion: nil)
+    }
 }

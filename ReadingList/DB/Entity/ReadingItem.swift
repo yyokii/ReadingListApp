@@ -22,31 +22,10 @@ class ReadingItem: Object {
     // 削除フラグ
     @objc dynamic var isDeleted = false
     
-    func daysUntilDeleting() {
-        
-        
-    }
-    
-    func isDueDateIsOneDayAfter() -> Bool {
-        let date = Date.getDueDate(addingDaysValue: 1)
-        guard let dueDate = date, let selfDueDate = self.dueDate  else { return false }
-
-        if finishedDate == nil && isDeleted == false && selfDueDate <= dueDate {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func isDueDateIsTwoDaysAfter() -> Bool {
-        let date1 = Date.getDueDate(addingDaysValue: 1)
-        let date2 = Date.getDueDate(addingDaysValue: 2)
-        guard let dueDate1 = date1, let dueDate2 = date2, let selfDueDate = self.dueDate else { return false }
-        
-        if finishedDate == nil && isDeleted == false && selfDueDate > dueDate1 && selfDueDate <= dueDate2 {
-            return true
-        } else {
-            return false
-        }
+    /// 引数で与えられたdateと期限日との日数差（baseDate - dueDate）
+    func differenceDay(fromDate: Date) -> Int {
+        guard let dueDate = self.dueDate else { return 0 }
+        let diff = fromDate.differenceInDay(dueDate)
+        return diff
     }
 }

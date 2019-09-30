@@ -9,51 +9,39 @@
 import UIKit
 import WebKit
 
-/// webViewで表示するアイテム
-struct WebItem {
-    var url: String
-    var title: String
-    var imageUrl: String?
-}
-
 class ArticleWebVC: UIViewController {
-    @IBOutlet weak var baseView: UIView!
- 
-    var webView: WKWebView!
-    var item: WebItem!
+    @IBOutlet weak var webView: WKWebView!
+    
+    var item: ReadingItem!
     var model: ArticleWebModelInput!
  
     /// ナビゲーション付きのwebviewを作成する
-    class func articleWebVCInit(webItem: WebItem, model: ArticleWebModelInput = ArticleWebModel()) -> UIViewController {
+    class func viewController (item: ReadingItem) -> UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
-        vc.item = webItem
-        vc.model = model
+        vc.item = item
+        vc.model = ArticleWebModel()
         let nav = UINavigationController(rootViewController: vc)
-        // nav.hero.isEnabled = true
         return nav
     }
-    
-    // Todo: 呼ぶべきじゃない?
-    override func loadView() {
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: item.url)!
-        webView.load(URLRequest(url: url))
-        title = "読み込み中・・・"
-        
-        configureToolbar()
-        
+       
+        configureWebView()
+        // configureToolbar()
         
         if UserDefaultManager.shareInstance.isFirstOpenArticleWebView() {
             SwiftMessageUtil.showWebHowtoView()
             UserDefaultManager.shareInstance.setFirstOpenArticleWebView()
         }
+    }
+    
+    private func configureWebView() {
+        webView.navigationDelegate = self
+        let url = URL(string: item.url)!
+               webView.load(URLRequest(url: url))
+               title = "読み込み中・・・"
     }
     
     // https://stackoverflow.com/questions/43073738/change-size-of-uibarbuttonitem-image-in-swift-3
@@ -121,13 +109,33 @@ class ArticleWebVC: UIViewController {
     }
     
     @objc private func addToReadingList() {
-        model.addItemToReadingList(from: item)
-        SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "保存しました", message: "リーディングリストに記事を追加しました")
+//        model.addItemToReadingList(from: item)
+//        SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "保存しました", message: "リーディングリストに記事を追加しました")
     }
     
     @objc private func addToFinishedReadingList() {
-        model.addItemToFinishedList(from: item)
-        SwiftMessageUtil.showIconTextMessage(type: .ToFinishedList, iconText: "👍", title: "保存しました", message: "読み終わりリストに記事を追加しました")
+//        model.addItemToFinishedList(from: item)
+//        SwiftMessageUtil.showIconTextMessage(type: .ToFinishedList, iconText: "👍", title: "保存しました", message: "読み終わりリストに記事を追加しました")
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            // 下にスクロール
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.navigationController?.setToolbarHidden(true, animated: true)
+                print("Hide")
+            }, completion: nil)
+            
+        } else {
+            // 上にスクロール
+            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.setToolbarHidden(false, animated: true)
+                print("Unhide")
+            }, completion: nil)
+        }
     }
 }
 
@@ -135,4 +143,5 @@ extension ArticleWebVC: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
+    
 }

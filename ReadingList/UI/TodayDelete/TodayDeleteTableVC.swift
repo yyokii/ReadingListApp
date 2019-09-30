@@ -15,6 +15,14 @@ class TodayDeleteTableVC: UITableViewController {
     
     private var presenter: TodayDeletePresenterInput!
     
+    static func viewController() -> UIViewController {
+        let todayDeleteVC = UIStoryboard(name: "TodayDelete", bundle: nil).instantiateInitialViewController() as! TodayDeleteTableVC
+        let todayDeleteModel = TodayDeleteModel()
+        let todayDeletePresenter = TodayDeletePresenter(view: todayDeleteVC, model: todayDeleteModel)
+        todayDeleteVC.inject(presenter: todayDeletePresenter)
+        return todayDeleteVC
+    }
+    
     func inject(presenter: TodayDeletePresenterInput) {
         self.presenter = presenter
     }
@@ -24,10 +32,18 @@ class TodayDeleteTableVC: UITableViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.tintColor = .black
+        
+        tableView.separatorStyle = .none
+        
         navigationItem.title = "本日削除される未読記事"
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        presenter.viewWillAppear()
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 178

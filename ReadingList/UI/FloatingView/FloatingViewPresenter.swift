@@ -34,8 +34,11 @@ final class  FloatingViewPresenter {
         self.view = view
         self.model = model
         
+        // （オプションボタンのアクション）アイテム削除を検知
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteFinishedItem, object: nil)
+        // （オプションボタンのアクション）リーディングリストへの移動を検知
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToReading), name: .changeItemStateToReading, object: nil)
+        // 既読リストの更新依頼を検知
         notificationCenter.addObserver(self, selector: #selector(fetchFinishedList), name: .updateFinishedList, object: nil)
     }
     
@@ -57,7 +60,6 @@ final class  FloatingViewPresenter {
     @objc private func deleteItem() {
         model.deleteItem(readingItem: optionTappedItem)
         fetchFinishedList()
-        notificationCenter.post(name: .dismissItemOption, object: nil)
     }
     
     /// アイテムをリーディングリストに戻し更新
@@ -67,7 +69,6 @@ final class  FloatingViewPresenter {
         fetchFinishedList()
         // リーディングリスト更新
         notificationCenter.post(name: .updateReadingList, object: nil)
-        notificationCenter.post(name: .dismissItemOption, object: nil)
     }
 }
 

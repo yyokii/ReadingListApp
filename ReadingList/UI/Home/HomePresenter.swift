@@ -21,8 +21,8 @@ protocol  HomePresenterOutput: AnyObject {
     func showNoReadingItemsView()
     func displayReadingListDialog(item: ReadingItem)
     func displayUserData(dataViewModel: GraphViewModel)
-    func updateTodayDeleteList(items: Results<ReadingItem>?)
-    func updateReadingList(items: Results<ReadingItem>?)
+    func updateTodayDeleteList(items: [ReadingItem]?)
+    func updateReadingList(items: [ReadingItem]?)
 }
 
 final class  HomePresenter {
@@ -33,64 +33,85 @@ final class  HomePresenter {
     
     private var optionTappedItem: ReadingItem!
     
-    private var expireOneDayItems: Results<ReadingItem>?
-    private var expireTwoDaysItems: Results<ReadingItem>?
-    private var expireThreeDaysItems: Results<ReadingItem>?
-    private var expireFourDaysItems: Results<ReadingItem>?
-    private var expireFiveDaysItems: Results<ReadingItem>?
-    private var expireSixDaysItems: Results<ReadingItem>?
-    private var expireSevenDaysItems: Results<ReadingItem>?
+    private var notFinishedItems: Results<ReadingItem>?
     
     init(view:  HomePresenterOutput, model: HomeModelInput) {
         self.view = view
         self.model = model
         
-        // リーディングリストの削除を検知
+        // （オプションボタンのアクション）リーディングリストの削除を検知
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
-        // リーディングリストへの追加を検知
+        // （オプションボタンのアクション）既読リストへの追加を検知
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(fetchAndUpdateList), name: .updateReadingList, object: nil)
     }
     
-    private func fetchUserData() {
-        expireOneDayItems = model.expireOneDayItems()
-        expireTwoDaysItems = model.expireTwoDaysItems()
-        expireThreeDaysItems = model.expireThreeDaysItems()
-        expireFourDaysItems = model.expireFourDaysItems()
-        expireFiveDaysItems = model.expireFiveDaysItems()
-        expireSixDaysItems = model.expireSixDaysItems()
-        expireSevenDaysItems = model.expireSevenDaysItems()
+    private func updateUserData(items: Results<ReadingItem>?) {
+
+        guard let readingItems = items else {
+            return
+        }
         
-        let dataViewModel = GraphViewModel(oneDayAfterCount: expireOneDayItems?.count ?? 0, twoDaysAfterCount: expireTwoDaysItems?.count ?? 0, threeDaysAfterCount: expireThreeDaysItems?.count ?? 0, fourDaysAfterCount: expireFourDaysItems?.count ?? 0, fiveDaysAfterCount: expireFiveDaysItems?.count ?? 0, sixDaysAfterCount: expireSixDaysItems?.count ?? 0, sevenDaysAfterCount: expireSevenDaysItems?.count ?? 0)
+        let dataViewModel = GraphViewModel(items: readingItems)
         
         view.displayUserData(dataViewModel: dataViewModel)
     }
     
-    private func fetchAndUpdateList() {
+    @objc private func fetchAndUpdateList() {
+        
         // 記事情報更新
         addReadingItem()
+        // 未読アイテム取得
+        notFinishedItems = model.fetchNotFinishedItems()
+        let now = Date()
         
-        // UI更新
-        updateTodayDeleteList()
-        updateReadingList()
+        // グラフとリスト更新
+        updateUserData(items: notFinishedItems)
+        updateTodayDeleteList(now: now, notFinishedItems: notFinishedItems)
+        updateReadingList(now: now)
     }
     
-    private func updateTodayDeleteList() {
-        let now = Date()
-        let endOfDate = Date.endOfDayForDate(date: now)
-        guard let date = endOfDate else { return }
-        let todayDelete = expireOneDayItems?.filter("dueDate <= %@", date)
-        if todayDelete?.count ?? 0 > 0 {
-            view.updateTodayDeleteList(items: todayDelete)
+    private func updateTodayDeleteList(now: Date, notFinishedItems: Results<ReadingItem>?) {
+        
+        guard let items = notFinishedItems else {
+            view.updateTodayDeleteList(items: nil)
+            view.showNoTodayDeleteItemsView()
+            return
+        }
+        
+        var todayDeleteItems: [ReadingItem] = [ReadingItem]()
+        
+        for item: ReadingItem in items where item.differenceDay(fromDate: now) <= 1 {
+            // 1日以内に削除される記事
+            todayDeleteItems.append(item)
+        }
+
+        if todayDeleteItems.count > 0 {
+            view.updateTodayDeleteList(items: todayDeleteItems)
         } else {
+            view.updateTodayDeleteList(items: nil)
             view.showNoTodayDeleteItemsView()
         }
     }
     
-    @objc private func updateReadingList() {
-        let items = model.fetchNotFinishedItems()
-        if items?.count ?? 0 > 0 {
-            view.updateReadingList(items: items)
+    @objc private func updateReadingList(now: Date) {
+        
+        guard let items = notFinishedItems else {
+            view.updateReadingList(items: nil)
+            view.showNoReadingItemsView()
+            return
+        }
+        
+        var readingItems: [ReadingItem] = [ReadingItem]()
+        
+        for item: ReadingItem in items where item.differenceDay(fromDate: now) > 1 {
+            readingItems.append(item)
+        }
+        
+        if readingItems.count > 0 {
+            view.updateReadingList(items: readingItems)
         } else {
+            view.updateReadingList(items: nil)
             view.showNoReadingItemsView()
         }
     }
@@ -108,17 +129,15 @@ final class  HomePresenter {
     @objc private func deleteItem() {
         model.deleteItem(readingItem: optionTappedItem)
         fetchAndUpdateList()
-        notificationCenter.post(name: .dismissItemOption, object: nil)
     }
     
-    /// アイテムを既読リストに戻しリストを更新
+    /// アイテムを既読リストに移しリストを更新
     @objc private func changeItemStateToFinished() {
         model.changeItemStateToReading(item: optionTappedItem)
         // リスト更新
         fetchAndUpdateList()
         // 既読リスト更新
         notificationCenter.post(name: .updateFinishedList, object: nil)
-        notificationCenter.post(name: .dismissItemOption, object: nil)
     }
 }
 
@@ -137,8 +156,6 @@ extension  HomePresenter: HomePresenterInput {
         }
     }
     
-    func viewWillAppear() {
-        fetchUserData()
-        fetchAndUpdateList()
+    func viewWillAppear() {        fetchAndUpdateList()
     }
 }

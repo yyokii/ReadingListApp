@@ -46,6 +46,9 @@
                                                     <state key="normal" title="削除">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapDelete" destination="RR0-aD-E9R" eventType="touchUpInside" id="xTT-YT-iJR"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBS-yU-Ews">
                                                     <rect key="frame" x="274" y="0.0" width="266" height="60"/>
@@ -53,6 +56,9 @@
                                                     <state key="normal" title="リーディングリストへ">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapToReadingList" destination="RR0-aD-E9R" eventType="touchUpInside" id="SDO-qM-TpF"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

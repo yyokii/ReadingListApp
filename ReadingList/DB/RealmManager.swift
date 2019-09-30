@@ -77,14 +77,14 @@ class RealmManager {
     func readItemsByDueDate(duedate after: Int) -> Results<ReadingItem>?  {
         
         if after == 1 {
-            let date = Date.getDueDate(addingDaysValue: 1)
+            let date = Date.getAfterSomeDaysDate(addingDaysValue: 1)
             guard let dueDate = date else { return nil }
             let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate <= %@ && isDeleted == false", dueDate)
             
             return results
         } else if after > 1 {
-            let date1 = Date.getDueDate(addingDaysValue: after - 1)
-            let date2 = Date.getDueDate(addingDaysValue: after)
+            let date1 = Date.getAfterSomeDaysDate(addingDaysValue: after - 1)
+            let date2 = Date.getAfterSomeDaysDate(addingDaysValue: after)
             
             guard let dueDate1 = date1, let dueDate2 = date2 else { return nil }
             let results = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate > %@ && dueDate <= %@ && isDeleted == false", dueDate1, dueDate2)

@@ -15,6 +15,14 @@ class ReadingListTableVC: UITableViewController {
     
     private var presenter: ReadingListPresenterInput!
     
+    static func viewController() -> UIViewController {
+        let readingListVC = UIStoryboard(name: "ReadingList", bundle: nil).instantiateInitialViewController() as! ReadingListTableVC
+        let readingListModel = ReadingListModel()
+        let readingListPresenter = ReadingListPresenter(view: readingListVC, model: readingListModel)
+        readingListVC.inject(presenter: readingListPresenter)
+        return readingListVC
+    }
+    
     func inject(presenter: ReadingListPresenterInput) {
         self.presenter = presenter
     }
@@ -24,8 +32,17 @@ class ReadingListTableVC: UITableViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.tintColor = .black
+        
+        tableView.separatorStyle = .none
+        
         navigationItem.title = "未読記事"
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.viewWillAppear()
     }
     
     
@@ -33,12 +50,8 @@ class ReadingListTableVC: UITableViewController {
         return 178
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return displayReadingItems?.count ?? 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return displayReadingItems?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,6 +72,7 @@ extension ReadingListTableVC: ReadingListPresenterOutput {
     
     func updateReadingList(items: Results<ReadingItem>?) {
         displayReadingItems = items
+        print("テスト： \(displayReadingItems?.count)")
         tableView.reloadData()
     }
 }

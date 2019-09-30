@@ -46,6 +46,9 @@
                                                     <state key="normal" title="削除">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapDelete" destination="7bV-JZ-X4e" eventType="touchUpInside" id="kNR-6y-zEB"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-8b-ovx">
                                                     <rect key="frame" x="274" y="0.0" width="266" height="60"/>
@@ -53,6 +56,9 @@
                                                     <state key="normal" title="読み終わった！">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapToFinishedList" destination="7bV-JZ-X4e" eventType="touchUpInside" id="RgT-Yg-QRe"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
