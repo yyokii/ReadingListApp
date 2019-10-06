@@ -8,6 +8,18 @@
 
 import RealmSwift
 
+/*
+ ReditReadingItemのステータス
+ ・リーディングリストにある: finishedDate == nil
+ ・既読: finishedDate != nil
+ ・削除: isDeleted == true
+ 
+ リーディングリストからステータス変える場合: finishedDate = Date() || （isDeleted = true && 通知削除）
+ 既読からステータス変える場合: （finishedDate = nil && dueDate = 期限日更新 && 通知追加） || isDeleted = true
+ 削除からステータス変える場合: 現状なし
+ 
+ */
+
 /// ReadingItemモデル管理クラス
 class RealmManager {
     static let sharedInstance = RealmManager()
@@ -37,6 +49,8 @@ class RealmManager {
         }
     }
     
+    // todo: リーディングリスト、既読、リスト、の際に再度期限を付与する必要ある
+    
     /// 記事の読んだかどうかの状態を変更
     func updateReadingItemFinishedState(object: ReadingItem, isFinished: Bool) {
         if isFinished {
@@ -48,6 +62,12 @@ class RealmManager {
             // 未読
             try? database?.write {
                 object.finishedDate = nil
+                
+                // 一週間後の日付（=読み終わり予定の期限日）を設定
+                let calendar = Calendar.current
+                let dueDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: Date())
+                guard let due = dueDate else { return }
+                object.dueDate = due
             }
         }
     }

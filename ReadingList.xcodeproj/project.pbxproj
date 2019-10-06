@@ -65,6 +65,9 @@
 		F57CD6D1232553530084C587 /* FinishedItemDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */; };
 		F57CD6D32325536B0084C587 /* FinishedItemDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */; };
 		F5A21A4C23409C56008E5F33 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A21A4B23409C55008E5F33 /* WebKit.framework */; };
+		F5A21A522342D78A008E5F33 /* WebToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A21A512342D78A008E5F33 /* WebToolBarView.swift */; };
+		F5A21A562342DA7C008E5F33 /* ArticleWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A21A552342DA7C008E5F33 /* ArticleWebPresenter.swift */; };
+		F5A21A582349E5BB008E5F33 /* WebToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A21A572349E5BB008E5F33 /* WebToolBarView.xib */; };
 		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
 		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 		F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */; };
@@ -174,6 +177,9 @@
 		F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishedItemDialogView.xib; sourceTree = "<group>"; };
 		F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedItemDialogView.swift; sourceTree = "<group>"; };
 		F5A21A4B23409C55008E5F33 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F5A21A512342D78A008E5F33 /* WebToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebToolBarView.swift; sourceTree = "<group>"; };
+		F5A21A552342DA7C008E5F33 /* ArticleWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebPresenter.swift; sourceTree = "<group>"; };
+		F5A21A572349E5BB008E5F33 /* WebToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebToolBarView.xib; sourceTree = "<group>"; };
 		F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFinishedListItemView.swift; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 				F5CC9C4622ECA4BA00D6B4DB /* Howto */,
 				B66C0A3B22D0CB3C007FA72B /* ArticleWebModel.swift */,
 				B68722EE227681A300692AE0 /* ArticleWebVC.swift */,
+				F5A21A552342DA7C008E5F33 /* ArticleWebPresenter.swift */,
 				B68722F02276820A00692AE0 /* Article.storyboard */,
 			);
 			path = ArticleWebView;
@@ -250,6 +257,7 @@
 		B692B29D229C3FCB00B00AD2 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F5A21A502342D76C008E5F33 /* WebTooBar */,
 				F57CD6CB232552320084C587 /* OptionDialog */,
 				F5E9AFC623199D90004EEA79 /* ArticleView */,
 				F5E9AFB823180FA6004EEA79 /* GraphView */,
@@ -444,6 +452,15 @@
 				F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */,
 			);
 			path = OptionDialog;
+			sourceTree = "<group>";
+		};
+		F5A21A502342D76C008E5F33 /* WebTooBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5A21A512342D78A008E5F33 /* WebToolBarView.swift */,
+				F5A21A572349E5BB008E5F33 /* WebToolBarView.xib */,
+			);
+			path = WebTooBar;
 			sourceTree = "<group>";
 		};
 		F5CC9C3B22E4949D00D6B4DB /* NoContentView */ = {
@@ -657,6 +674,7 @@
 				F5E9AFCD23199F6E004EEA79 /* FloatingVC.storyboard in Resources */,
 				F57CD6C82324CDBE0084C587 /* ReadingList.storyboard in Resources */,
 				F5E9AFBC23180FCB004EEA79 /* GraphView.xib in Resources */,
+				F5A21A582349E5BB008E5F33 /* WebToolBarView.xib in Resources */,
 				B6FCE2D4225A4F2B00FE85EF /* Assets.xcassets in Resources */,
 				F52BBA0422FEB12F00086801 /* Home.storyboard in Resources */,
 			);
@@ -780,6 +798,7 @@
 				B6FA5BA12288660000A5242A /* NotificationManager.swift in Sources */,
 				F5E9AFBA23180FB6004EEA79 /* GraphView.swift in Sources */,
 				B62870DB22DB18CF00A89830 /* SwitchBtnTableViewCell.swift in Sources */,
+				F5A21A522342D78A008E5F33 /* WebToolBarView.swift in Sources */,
 				B6FCE3002262240B00FE85EF /* UserDefaultManager.swift in Sources */,
 				F5FB0046231C78F3007E47B7 /* TodayDeleteModel.swift in Sources */,
 				F57ABA8D22F5D42000CEBC92 /* WebHowtoView.swift in Sources */,
@@ -803,6 +822,7 @@
 				F5FB0048231C7902007E47B7 /* TodayDeletePresenter.swift in Sources */,
 				B6A4B1C622DA1D5C00B9BE0A /* DeletedListVC.swift in Sources */,
 				F52BBA0A22FEB15700086801 /* HomePresenter.swift in Sources */,
+				F5A21A562342DA7C008E5F33 /* ArticleWebPresenter.swift in Sources */,
 				F57CD6D32325536B0084C587 /* FinishedItemDialogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

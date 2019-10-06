@@ -24,6 +24,7 @@ final class FloatingViewModel: FloatingViewModelInput {
     
     // アイテムをリーディングリストに戻す
     func changeItemStateToReading(item: ReadingItem) {
+        
         RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: false)
     }
     

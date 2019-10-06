@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class FloatingVC: UIViewController {
-
+    
     @IBOutlet weak var articleTableView: UITableView!
     
     // 表示するアイテムの配列
@@ -29,7 +29,7 @@ class FloatingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         presenter.viewWillAppear()
     }
     
@@ -70,7 +70,9 @@ extension FloatingVC: UITableViewDataSource {
                 }
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: optionTappedAction)
             }
-        
+            
+            cell.selectionStyle = .none
+            
             return cell
         }
         return UITableViewCell()
@@ -79,6 +81,13 @@ extension FloatingVC: UITableViewDataSource {
 
 extension FloatingVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let item = displayItems?[indexPath.row] {
+            let vc = ArticleWebVC.viewController(item: item)
+            present(vc, animated: true, completion: nil)
+        }
+    }   
 }
 
 extension FloatingVC: FloatingViewPresenterOutput {

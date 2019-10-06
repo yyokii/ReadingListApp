@@ -17,6 +17,9 @@ final class ArticleWebModel: ArticleWebModelInput {
     
     /// リーディングリストに保存する
     func addItemToReadingList(item: ReadingItem) {
+        
+        RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: false)
+        
 //        let readingItem = ReadingItem()
 //        readingItem.title = webItem.title
 //        readingItem.url = webItem.url
@@ -38,6 +41,7 @@ final class ArticleWebModel: ArticleWebModelInput {
     
     /// 読み終わりアイテムに保存する
     func addItemToFinishedList(item: ReadingItem) {
+        RealmManager.sharedInstance.updateReadingItemFinishedState(object: item, isFinished: true)
 //        let readingItem = ReadingItem()
 //        readingItem.title = webItem.title
 //        readingItem.url = webItem.url

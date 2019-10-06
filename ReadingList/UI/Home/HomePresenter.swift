@@ -127,12 +127,17 @@ final class  HomePresenter {
     
     /// 削除アクションされたアイテムを削除しリストを更新
     @objc private func deleteItem() {
+        
+        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
         model.deleteItem(readingItem: optionTappedItem)
+        
         fetchAndUpdateList()
     }
     
     /// アイテムを既読リストに移しリストを更新
     @objc private func changeItemStateToFinished() {
+        
+        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
         model.changeItemStateToReading(item: optionTappedItem)
         // リスト更新
         fetchAndUpdateList()

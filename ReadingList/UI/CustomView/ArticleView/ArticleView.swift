@@ -54,14 +54,23 @@ class ArticleView: UIView {
         
         switch type {
         case .ReadingList:
+            // 期限日までの残り日数表示関連view
             dueDateLbl.isHidden = false
             dueDateBaseView.isHidden = false
+            
+            optionButton.isHidden = false
+            
         case .FinishedList:
+            
             dueDateLbl.isHidden = true
             dueDateBaseView.isHidden = true
+            
+            optionButton.isHidden = false
+            
         case .DeletedList:
-            dueDateLbl.isHidden = false
-            dueDateBaseView.isHidden = false
+            dueDateLbl.isHidden = true
+            dueDateBaseView.isHidden = true
+            
             optionButton.isHidden = true
         }
         

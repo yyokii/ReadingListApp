@@ -26,9 +26,9 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJ0-Ue-UUW">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJ0-Ue-UUW" customClass="WebToolBarView" customModule="ReadingList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="5Wv-te-Uva"/>
                                 </constraints>
@@ -47,6 +47,9 @@
                         <viewLayoutGuide key="safeArea" id="5Lk-Yv-NQW"/>
                     </view>
                     <connections>
+                        <outlet property="toolBarBottomConstraint" destination="ZZK-Fi-gAE" id="Bgf-mi-Vr6"/>
+                        <outlet property="toolBarHeight" destination="5Wv-te-Uva" id="idX-F8-gPX"/>
+                        <outlet property="toolbarView" destination="FJ0-Ue-UUW" id="BFz-f5-kvu"/>
                         <outlet property="webView" destination="8P7-Mf-ixy" id="Edp-UZ-fvU"/>
                     </connections>
                 </viewController>
