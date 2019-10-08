@@ -12,7 +12,6 @@
 		B62870DB22DB18CF00A89830 /* SwitchBtnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62870D922DB18CF00A89830 /* SwitchBtnTableViewCell.swift */; };
 		B62870DC22DB18CF00A89830 /* SwitchBtnTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B62870DA22DB18CF00A89830 /* SwitchBtnTableViewCell.xib */; };
 		B62870DE22DB5FD100A89830 /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = B62870DD22DB5FD100A89830 /* Indicator.xib */; };
-		B6658C2822AD09D300C3353A /* SwiftMessagesSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6658C2722AD09D300C3353A /* SwiftMessagesSegue.swift */; };
 		B6658C3022AE3B5000C3353A /* SwiftMessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6658C2F22AE3B5000C3353A /* SwiftMessageUtil.swift */; };
 		B66C0A3C22D0CB3C007FA72B /* ArticleWebModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C0A3B22D0CB3C007FA72B /* ArticleWebModel.swift */; };
 		B66C0A4022D4E8B6007FA72B /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C0A3F22D4E8B6007FA72B /* Indicator.swift */; };
@@ -64,10 +63,14 @@
 		F57CD6CF2325533B0084C587 /* ReadingItemDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57CD6CE2325533B0084C587 /* ReadingItemDialogView.swift */; };
 		F57CD6D1232553530084C587 /* FinishedItemDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */; };
 		F57CD6D32325536B0084C587 /* FinishedItemDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */; };
+		F59FDCD0234AC3E500182074 /* DeletedListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59FDCCF234AC3E500182074 /* DeletedListModel.swift */; };
+		F59FDCDA234CF7EE00182074 /* TutorialDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59FDCD8234CF7EE00182074 /* TutorialDialogView.swift */; };
+		F59FDCDB234CF7EE00182074 /* TutorialDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59FDCD9234CF7EE00182074 /* TutorialDialogView.xib */; };
 		F5A21A4C23409C56008E5F33 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A21A4B23409C55008E5F33 /* WebKit.framework */; };
 		F5A21A522342D78A008E5F33 /* WebToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A21A512342D78A008E5F33 /* WebToolBarView.swift */; };
 		F5A21A562342DA7C008E5F33 /* ArticleWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A21A552342DA7C008E5F33 /* ArticleWebPresenter.swift */; };
 		F5A21A582349E5BB008E5F33 /* WebToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A21A572349E5BB008E5F33 /* WebToolBarView.xib */; };
+		F5A95D3F234AC1A300BA5C5F /* DeletedListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A95D3E234AC1A300BA5C5F /* DeletedListPresenter.swift */; };
 		F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */; };
 		F5CC9C3F22E495BA00D6B4DB /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */; };
 		F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */; };
@@ -123,7 +126,6 @@
 		B62870D922DB18CF00A89830 /* SwitchBtnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBtnTableViewCell.swift; sourceTree = "<group>"; };
 		B62870DA22DB18CF00A89830 /* SwitchBtnTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchBtnTableViewCell.xib; sourceTree = "<group>"; };
 		B62870DD22DB5FD100A89830 /* Indicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Indicator.xib; sourceTree = "<group>"; };
-		B6658C2722AD09D300C3353A /* SwiftMessagesSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMessagesSegue.swift; sourceTree = "<group>"; };
 		B6658C2F22AE3B5000C3353A /* SwiftMessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMessageUtil.swift; sourceTree = "<group>"; };
 		B66C0A3B22D0CB3C007FA72B /* ArticleWebModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebModel.swift; sourceTree = "<group>"; };
 		B66C0A3F22D4E8B6007FA72B /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
@@ -176,10 +178,14 @@
 		F57CD6CE2325533B0084C587 /* ReadingItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItemDialogView.swift; sourceTree = "<group>"; };
 		F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishedItemDialogView.xib; sourceTree = "<group>"; };
 		F57CD6D22325536B0084C587 /* FinishedItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedItemDialogView.swift; sourceTree = "<group>"; };
+		F59FDCCF234AC3E500182074 /* DeletedListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedListModel.swift; sourceTree = "<group>"; };
+		F59FDCD8234CF7EE00182074 /* TutorialDialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDialogView.swift; sourceTree = "<group>"; };
+		F59FDCD9234CF7EE00182074 /* TutorialDialogView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialDialogView.xib; sourceTree = "<group>"; };
 		F5A21A4B23409C55008E5F33 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F5A21A512342D78A008E5F33 /* WebToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebToolBarView.swift; sourceTree = "<group>"; };
 		F5A21A552342DA7C008E5F33 /* ArticleWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebPresenter.swift; sourceTree = "<group>"; };
 		F5A21A572349E5BB008E5F33 /* WebToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebToolBarView.xib; sourceTree = "<group>"; };
+		F5A95D3E234AC1A300BA5C5F /* DeletedListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedListPresenter.swift; sourceTree = "<group>"; };
 		F5CC9C3C22E494BA00D6B4DB /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
 		F5CC9C3E22E495BA00D6B4DB /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
 		F5CC9C4022E607BC00D6B4DB /* NoFinishedListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFinishedListItemView.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 		B692B29D229C3FCB00B00AD2 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F59FDCD3234CF3D600182074 /* TutorialDialog */,
 				F5A21A502342D76C008E5F33 /* WebTooBar */,
 				F57CD6CB232552320084C587 /* OptionDialog */,
 				F5E9AFC623199D90004EEA79 /* ArticleView */,
@@ -285,6 +292,8 @@
 			children = (
 				B6A4B1C522DA1D5C00B9BE0A /* DeletedListVC.swift */,
 				B62870D722DA2B3F00A89830 /* DeletedList.storyboard */,
+				F5A95D3E234AC1A300BA5C5F /* DeletedListPresenter.swift */,
+				F59FDCCF234AC3E500182074 /* DeletedListModel.swift */,
 			);
 			path = DeletedList;
 			sourceTree = "<group>";
@@ -322,7 +331,6 @@
 		B6FA5B9F228865E300A5242A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				B6658C2722AD09D300C3353A /* SwiftMessagesSegue.swift */,
 				B6FA5BA02288660000A5242A /* NotificationManager.swift */,
 				B6658C2F22AE3B5000C3353A /* SwiftMessageUtil.swift */,
 			);
@@ -452,6 +460,15 @@
 				F57CD6D0232553530084C587 /* FinishedItemDialogView.xib */,
 			);
 			path = OptionDialog;
+			sourceTree = "<group>";
+		};
+		F59FDCD3234CF3D600182074 /* TutorialDialog */ = {
+			isa = PBXGroup;
+			children = (
+				F59FDCD8234CF7EE00182074 /* TutorialDialogView.swift */,
+				F59FDCD9234CF7EE00182074 /* TutorialDialogView.xib */,
+			);
+			path = TutorialDialog;
 			sourceTree = "<group>";
 		};
 		F5A21A502342D76C008E5F33 /* WebTooBar */ = {
@@ -652,6 +669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59FDCDB234CF7EE00182074 /* TutorialDialogView.xib in Resources */,
 				B6F1571D2262E0D6007FB37B /* Settings.bundle in Resources */,
 				F5EAD9AD2319C80800E9FDCF /* ArticleCollectionViewCell.xib in Resources */,
 				B6FA5BA7228F183D00A5242A /* GoogleService-Info.plist in Resources */,
@@ -781,6 +799,7 @@
 			files = (
 				B68722EF227681A300692AE0 /* ArticleWebVC.swift in Sources */,
 				F505C9022323FBB600A1D47E /* ReadingListTableVC.swift in Sources */,
+				F59FDCDA234CF7EE00182074 /* TutorialDialogView.swift in Sources */,
 				B6F7AEB322A4E6CB003EC815 /* GradationView.swift in Sources */,
 				B6F15778226C20EE007FB37B /* ReadingItem.swift in Sources */,
 				F505C8FE2323FB8D00A1D47E /* ReadingListModel.swift in Sources */,
@@ -790,11 +809,11 @@
 				F52BBA0E22FEB1B700086801 /* HomeVC.swift in Sources */,
 				B6F15770226AD4B3007FB37B /* RealmManager.swift in Sources */,
 				F5CC9C3D22E494BA00D6B4DB /* NoReadingListItemView.swift in Sources */,
-				B6658C2822AD09D300C3353A /* SwiftMessagesSegue.swift in Sources */,
 				B6FA5B9D22885F9400A5242A /* Date+Extension.swift in Sources */,
 				F56FD7E1231AB21200E12E9B /* GraphViewModel.swift in Sources */,
 				F57CD6CF2325533B0084C587 /* ReadingItemDialogView.swift in Sources */,
 				F5FB0044231C77B5007E47B7 /* TodayDeleteTableVC.swift in Sources */,
+				F59FDCD0234AC3E500182074 /* DeletedListModel.swift in Sources */,
 				B6FA5BA12288660000A5242A /* NotificationManager.swift in Sources */,
 				F5E9AFBA23180FB6004EEA79 /* GraphView.swift in Sources */,
 				B62870DB22DB18CF00A89830 /* SwitchBtnTableViewCell.swift in Sources */,
@@ -805,6 +824,7 @@
 				B68722EA2276797200692AE0 /* UIImageView+Extension.swift in Sources */,
 				F5E9AFC5231974DA004EEA79 /* ArticleListPanelLayout.swift in Sources */,
 				F5CC9C4122E607BC00D6B4DB /* NoFinishedListItemView.swift in Sources */,
+				F5A95D3F234AC1A300BA5C5F /* DeletedListPresenter.swift in Sources */,
 				B692B296229701FF00B00AD2 /* AboutAppTableViewCell.swift in Sources */,
 				B6F15769226345AD007FB37B /* Notification+Extension.swift in Sources */,
 				F56FD7E5231AD05D00E12E9B /* FloatingViewPresenter.swift in Sources */,

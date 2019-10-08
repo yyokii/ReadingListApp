@@ -161,6 +161,7 @@ extension  HomePresenter: HomePresenterInput {
         }
     }
     
-    func viewWillAppear() {        fetchAndUpdateList()
+    func viewWillAppear() {
+        fetchAndUpdateList()
     }
 }

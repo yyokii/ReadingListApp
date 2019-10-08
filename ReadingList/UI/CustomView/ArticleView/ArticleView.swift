@@ -83,6 +83,30 @@ class ArticleView: UIView {
         self.setImage(imageUrl: item.imageUrl, url: item.url)
     }
     
+    private func configureDudateBaseView(item: ReadingItem) {
+        let now = Date()
+        let diff = item.differenceDay(fromDate: now)
+        
+        switch diff {
+        case 1:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
+        case 2:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
+        case 3:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
+        case 4:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
+        case 5:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+        case 6:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+        case 7:
+            dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+        default:
+            break
+        }
+    }
+    
     private func setImage(imageUrl: String, url: String) {
         if imageUrl != "" {
             articleImage.setImageByAlamofire(with: URL(string: imageUrl)!)

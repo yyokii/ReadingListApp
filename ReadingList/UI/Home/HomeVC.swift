@@ -141,8 +141,7 @@ extension HomeVC: HomePresenterOutput {
     }
     
     func displayTutorialDialog() {
-        SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "logo")!, title: "ようこそ「Yomu」へ！", body: "ダウンロードありがとうございます☺️\n「Yomu」は通知の来る最新のリーディングリストアプリです。\n他のアプリから記事を「Yomu」へ追加し、「積ん読」をなくしましょう！", buttonTitle: "OK")
-
+        SwiftMessageUtil.showTutorialDialog()
     }
 }
 

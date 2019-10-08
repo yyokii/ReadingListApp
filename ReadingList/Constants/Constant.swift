@@ -52,6 +52,8 @@ struct Constant {
         static let caramel = "Caramel"
         static let greenSheen = "GreenSheen"
         static let myrtleGreen = "MyrtleGreen"
+        static let cornFlower = "CornFlower"
+        static let softBlue = "SoftBlue"
     }
     
     // ローカル通知

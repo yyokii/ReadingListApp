@@ -55,8 +55,13 @@ class ArticleWebVC: UIViewController {
 }
 
 extension ArticleWebVC: ArticleWebPresenterOutput {
-    func updateActionBtnState() {
-        // todo
+    
+    func hideToolBar() {
+        toolbarView.isHidden = true
+    }
+    
+    func showToolBar() {
+        toolbarView.isHidden = false
     }
     
     func showAddReadinListBtn() {
@@ -68,11 +73,11 @@ extension ArticleWebVC: ArticleWebPresenterOutput {
     }
     
     func showSuccessAddReadingListDialog() {
-        // todo
+        SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "", message: "リーディングリストに追加しました")
     }
     
     func showSuccessAddFinishedListDialog() {
-        // todo
+        SwiftMessageUtil.showIconTextMessage(type: .ToFinishedList, iconText: "🌟", title: "", message: "読み終わり記事に追加しました")
     }
     
     func closeView() {

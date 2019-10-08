@@ -16,11 +16,12 @@ protocol ArticleWebPresenterInput {
 protocol ArticleWebPresenterOutput: AnyObject {
     func closeView()
     func load(url: URL)
+    func hideToolBar()
+    func showToolBar()
     func showAddReadinListBtn()
     func showAddFinishedListBtn()
     func showSuccessAddReadingListDialog()
     func showSuccessAddFinishedListDialog()
-    func updateActionBtnState()
 }
 
 final class ArticleWebPresenter {
@@ -34,6 +35,24 @@ final class ArticleWebPresenter {
         self.view = view
         self.model = model
     }
+    
+    private func updateActionBtnState() {
+        if item.finishedDate == nil {
+            // リーディングリストにあるもの
+            view.showAddFinishedListBtn()
+        } else {
+            // 既読リストなど、リーディングリストにはいっていないもの
+            view.showAddReadinListBtn()
+        }
+    }
+    
+    private func configureToobBar() {
+        if item.isDeleted {
+            view.hideToolBar()
+        } else {
+            view.showToolBar()
+        }
+    }
 }
 
 extension  ArticleWebPresenter: ArticleWebPresenterInput {
@@ -41,6 +60,8 @@ extension  ArticleWebPresenter: ArticleWebPresenterInput {
     func viewDidLoad() {
         let url = URL(string: item.url)!
         view.load(url: url)
+        
+        updateActionBtnState()
     }
     
     func tapItemActionButton() {
@@ -49,13 +70,15 @@ extension  ArticleWebPresenter: ArticleWebPresenterInput {
             // リーディングリストのもの
             model.addItemToFinishedList(item: item)
             view.showSuccessAddFinishedListDialog()
-            view.showAddReadinListBtn()
+            // view.showAddReadinListBtn()
             
         } else {
-            // 既読など、リーディングリストにはいっていないもの
+            // 既読リストなど、リーディングリストにはいっていないもの
             model.addItemToReadingList(item: item)
             view.showSuccessAddReadingListDialog()
-            view.showAddFinishedListBtn()
+            // view.showAddFinishedListBtn()
         }
+        
+        updateActionBtnState()
     }
 }

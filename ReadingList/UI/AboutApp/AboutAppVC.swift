@@ -84,14 +84,14 @@ class AboutAppVC: UITableViewController {
         case 0:
             switch indexPath.row {
             case 0:
-                SwiftMessageUtil.showCenteredIconMessage(iconImage: UIImage.init(named: "logo")!, title: "リーディングリストの使い方", body: "リーディングリストに記事を追加して「積ん読」を回避しよう！\n\n7日間読まれない場合、削除されてしまいます😢\n5日目、6日目には通知が来るので忘れるのを防げます！\n\nリーディングリストに追加する方法はとても簡単！\n 他のアプリの「共有」機能から追加できます", buttonTitle: "OK")
+                SwiftMessageUtil.showTutorialDialog()
             default:
                 break
             }
         case 1:
             switch indexPath.row {
             case 0:
-                let deleteListVC = DeletedListVC.deleteVCInit()
+                let deleteListVC = DeletedListVC.viewController()
                 navigationController?.pushViewController(deleteListVC, animated: true)
             case 1:
                 break

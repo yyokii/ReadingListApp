@@ -39,17 +39,50 @@ class RealmManager {
         }
     }
     
-    /// 記事データ編集 TODO: bool返すようにしたい, error型か
-    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: Date?, finishedDate: Date?, item: ReadingItem) {
-        try? database?.write {
-            item.url = url
-            item.title = title
-            item.createdDate = createdDate
-            item.finishedDate = finishedDate
+//    /// 記事データ編集 TODO: bool返すようにしたい, error型か
+//    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: Date?, finishedDate: Date?, item: ReadingItem) {
+//        try? database?.write {
+//            item.url = url
+//            item.title = title
+//            item.createdDate = createdDate
+//            item.finishedDate = finishedDate
+//        }
+//    }
+    //
+    
+    /// 辞書型データをRealmへ保存
+    func addItemToRealm(from dicItems: [[String:String]]) {
+        dicItems.forEach { (item: [String:String]) in
+            let obj = RealmManager.sharedInstance.createRealmObj(itemDic: item)
+            guard let readingItem = obj else { return }
+            RealmManager.sharedInstance.addReadingItem(object: readingItem)
+            // duedate前の通知設定
+            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
+            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
         }
     }
     
-    // todo: リーディングリスト、既読、リスト、の際に再度期限を付与する必要ある
+    /// dicからRealmオブジェクトを生成
+    func createRealmObj(itemDic: [String:String]) -> ReadingItem? {
+        if let title = itemDic[Constant.ReadingItem.title],
+            let url = itemDic[Constant.ReadingItem.url],
+            let createdDate = itemDic[Constant.ReadingItem.createdDate],
+            let dueDate = itemDic[Constant.ReadingItem.dueDate],
+            let finishedDate = itemDic[Constant.ReadingItem.finishedDate] {
+            
+            let readingItem = ReadingItem()
+            readingItem.title = title
+            readingItem.url = url
+            
+            let fotmatter = Date.getFormatter()
+            readingItem.createdDate = fotmatter.date(from: createdDate)
+            readingItem.dueDate = fotmatter.date(from: dueDate)
+            readingItem.finishedDate = fotmatter.date(from: finishedDate)
+            return readingItem
+        } else {
+            return nil
+        }
+    }
     
     /// 記事の読んだかどうかの状態を変更
     func updateReadingItemFinishedState(object: ReadingItem, isFinished: Bool) {

@@ -37,4 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = homeNav
         window?.makeKeyAndVisible()
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        
+        if let items = UserDefaultManager.shareInstance.fetchReadingItems() {            
+            RealmManager.sharedInstance.addItemToRealm(from: items)
+            // Userdefaultに保存している記事情報を削除
+            UserDefaultManager.shareInstance.deleteReadingItems()
+            NotificationCenter.default.post(name: .updateReadingList, object: nil)
+        }
+    }
 }

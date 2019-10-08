@@ -21,5 +21,4 @@ target 'ShareExtension' do
   use_frameworks!
 
   # Pods for ShareExtension
-
 end

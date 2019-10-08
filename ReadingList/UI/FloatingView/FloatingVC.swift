@@ -40,11 +40,6 @@ class FloatingVC: UIViewController {
         articleTableView.separatorStyle = .none
         articleTableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
     }
-    
-    private func displayItemOption() {
-        SwiftMessageUtil.showWebHowtoView()
-        // performSegue(withIdentifier: "FinishedItemOption", sender: nil)
-    }
 }
 
 extension FloatingVC: UITableViewDataSource {

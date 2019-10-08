@@ -36,9 +36,9 @@ struct SwiftMessageUtil {
         case .Success:
             view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToFinishedList:
-            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.sugarPlum)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.cornFlower)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         case .ToReadingList:
-            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.myrtleGreen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.cornFlower)!, foregroundColor: UIColor.white, iconImage: nil, iconText: iconText)
         }
         
         // config
@@ -93,25 +93,36 @@ struct SwiftMessageUtil {
         SwiftMessages.show(config: config, view: view)
     }
     
-    static func showWebHowtoView() {
-        let howtoView = WebHowtoView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
-        let messageView = BaseView(frame: .zero)
-        messageView.layoutMargins = .zero
-        messageView.backgroundHeight = 300.0
-        do {
-            let backgroundView = CornerRoundingView()
-            backgroundView.layer.cornerRadius = 15
-            backgroundView.layer.masksToBounds = true
-            messageView.installBackgroundView(backgroundView)
-            messageView.installContentView(howtoView)
-            messageView.layoutMarginAdditions = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
-        }
-        messageView.configureDropShadow()
+    /// 既読記事にてオプションダイアログを表示
+    static func showTutorialDialog() {
+        let view: TutorialDialogView = try! SwiftMessages.viewFromNib()
         var config = SwiftMessages.defaultConfig
-        config.presentationStyle = .center
+        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
         config.duration = .forever
-        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-        SwiftMessages.show(config: config, view: messageView)
+        config.presentationStyle = .center
+        config.dimMode = .gray(interactive: true)
+        SwiftMessages.show(config: config, view: view)
     }
+    
+//    static func showWebHowtoView() {
+//        let howtoView = WebHowtoView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
+//        let messageView = BaseView(frame: .zero)
+//        messageView.layoutMargins = .zero
+//        messageView.backgroundHeight = 300.0
+//        do {
+//            let backgroundView = CornerRoundingView()
+//            backgroundView.layer.cornerRadius = 15
+//            backgroundView.layer.masksToBounds = true
+//            messageView.installBackgroundView(backgroundView)
+//            messageView.installContentView(howtoView)
+//            messageView.layoutMarginAdditions = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
+//        }
+//        messageView.configureDropShadow()
+//        var config = SwiftMessages.defaultConfig
+//        config.presentationStyle = .center
+//        config.duration = .forever
+//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+//        SwiftMessages.show(config: config, view: messageView)
+//    }
 
 }

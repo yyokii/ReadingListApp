@@ -11,68 +11,91 @@ import UIKit
 import RealmSwift
 
 class DeletedListVC: UIViewController {
+    
     @IBOutlet var tableView: UITableView!
     
-    private let cellIdentifier = "ListItemCell"
+    private var presenter: DeletedListPresenterInput!
     
-    private var displayItems: [ReadingItem]?
-    
-    /// ナビゲーション付きのwebviewを作成する
-    class func deleteVCInit() -> DeletedListVC {
-        let vc = UIStoryboard(name: "DeletedList", bundle: nil).instantiateInitialViewController() as! DeletedListVC
-        return vc
-    }
+    private var displayItems: [ReadingItem] = [ReadingItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
-        // 最近削除したものを上に表示するためにreverseにする
-        displayItems = RealmManager.sharedInstance.readDeletedItems()?.reversed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.prefersLargeTitles = false
+        
+        presenter.viewWillAppear()
+    }
+    
+    static func viewController() -> DeletedListVC {
+        let vc = UIStoryboard(name: "DeletedList", bundle: nil).instantiateInitialViewController() as! DeletedListVC
+        let deletedListModel = DeletedListModel()
+        let presenter = DeletedListPresenter(view: vc, model: deletedListModel)
+        vc.inject(presenter: presenter)
+        
+        return vc
+    }
+    
+    func inject(presenter: DeletedListPresenterInput) {
+        self.presenter = presenter
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: "ListItemCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
         tableView.separatorStyle = .none
+    }
+}
+
+extension DeletedListVC: DeletedListPresenterOutput {
+    func updateDeletedList(items: [ReadingItem]) {
+        displayItems = items
+        tableView.reloadData()
     }
 }
 
 extension DeletedListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let item = displayItems[indexPath.row]
+        let vc = ArticleWebVC.viewController(item: item)
+        present(vc, animated: true, completion: nil)
         
-        // TODO: タップアクションなくていいかも？スライドで
-        
-//        let displayItem = displayItems![indexPath.row]
-//        let webItem = WebItem(url: displayItem.url, title: displayItem.title, imageUrl: displayItem.imageUrl)
-//        let wevNav = ArticleWebVC.articleWebVCInit(webItem: webItem)
-//        present(wevNav, animated: true, completion: nil)
     }
 }
 
 extension DeletedListVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 178
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayItems?.count ?? 0
+        return displayItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListItemCell
-//        let item = displayItems![indexPath.row]
-//        cell?.configureView(row: indexPath.row, item: item, type: .DeletedList)
-//        cell?.selectionStyle = .none
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell {
+            
+            let item = displayItems[indexPath.row]
+            
+            cell.configureCell(row: indexPath.row, item: item, type: .DeletedList, tapOptionBtnAction: nil)
+            
+            cell.selectionStyle = .none
+            
+            return cell
+        }
         return UITableViewCell()
     }
 }

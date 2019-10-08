@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialDialogView" customModule="ReadingList" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7bV-JZ-X4e" userLabel="Card View" customClass="TutorialDialogView" customModule="ReadingList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="590"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="uin-3U-upc">
+                    <rect key="frame" x="23.5" y="8" width="349" height="582"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="uin-3U-upc" secondAttribute="height" multiplier="6:10" id="0Jl-AR-i8c"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOMUの使い方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4l-uW-v4z">
+                    <rect key="frame" x="143" y="16" width="110.5" height="15"/>
+                    <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="uin-3U-upc" secondAttribute="bottom" id="1qx-af-nIV"/>
+                <constraint firstItem="uin-3U-upc" firstAttribute="centerX" secondItem="7bV-JZ-X4e" secondAttribute="centerX" id="5N5-9K-IyP"/>
+                <constraint firstItem="k4l-uW-v4z" firstAttribute="top" secondItem="7bV-JZ-X4e" secondAttribute="top" constant="16" id="9el-ov-Rhp"/>
+                <constraint firstItem="k4l-uW-v4z" firstAttribute="centerX" secondItem="7bV-JZ-X4e" secondAttribute="centerX" id="rhp-vf-eLg"/>
+                <constraint firstItem="uin-3U-upc" firstAttribute="top" secondItem="7bV-JZ-X4e" secondAttribute="top" constant="8" id="t56-Y0-RaV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="bounceAnimationOffset">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="155.07246376811597" y="505.58035714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tutorial" width="300" height="500"/>
+    </resources>
+</document>
