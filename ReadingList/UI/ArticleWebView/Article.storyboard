@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8P7-Mf-ixy">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -37,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5Lk-Yv-NQW" firstAttribute="trailing" secondItem="FJ0-Ue-UUW" secondAttribute="trailing" id="7pQ-mG-Y0n"/>
-                            <constraint firstItem="8P7-Mf-ixy" firstAttribute="top" secondItem="5Lk-Yv-NQW" secondAttribute="top" id="I9v-z5-rAH"/>
+                            <constraint firstItem="8P7-Mf-ixy" firstAttribute="top" secondItem="zU9-mi-RHf" secondAttribute="top" id="I9v-z5-rAH"/>
                             <constraint firstItem="FJ0-Ue-UUW" firstAttribute="bottom" secondItem="zU9-mi-RHf" secondAttribute="bottom" id="ZZK-Fi-gAE"/>
                             <constraint firstItem="8P7-Mf-ixy" firstAttribute="leading" secondItem="5Lk-Yv-NQW" secondAttribute="leading" id="gzp-18-YHm"/>
                             <constraint firstItem="8P7-Mf-ixy" firstAttribute="trailing" secondItem="5Lk-Yv-NQW" secondAttribute="trailing" id="vwp-bQ-lVs"/>
@@ -46,6 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Lk-Yv-NQW"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="toolBarBottomConstraint" destination="ZZK-Fi-gAE" id="Bgf-mi-Vr6"/>
                         <outlet property="toolBarHeight" destination="5Wv-te-Uva" id="idX-F8-gPX"/>

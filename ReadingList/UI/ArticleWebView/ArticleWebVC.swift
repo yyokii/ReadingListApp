@@ -27,6 +27,7 @@ class ArticleWebVC: UIViewController {
         presenter.item = item
         vc.inject(presenter: presenter)
         let nav = UINavigationController(rootViewController: vc)
+        nav.navigationBar.barTintColor = UIColor.white
         return nav
     }
     
@@ -41,16 +42,17 @@ class ArticleWebVC: UIViewController {
         presenter.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-    }
-    
     private func configureWebView() {
         webView.navigationDelegate = self
         webView.scrollView.delegate = self
         toolbarView.delegate = self
+        
+//        let a = navigationController?.navigationBar.frame.height
+//        let b = UIApplication.shared.statusBarFrame.height
+//        
+//        let edgeInsets = UIEdgeInsets(top: navigationController?.navigationBar.frame.height ?? 0 + UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
+//        // webview上の余白部分
+//        webView.scrollView.contentInset = edgeInsets
     }
 }
 
@@ -113,22 +115,28 @@ extension ArticleWebVC: UIScrollViewDelegate {
         
         if(velocity.y>0) {
             // 下にスクロール（ヘッダーフッターを隠す）
-            UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: {                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 
-                self.toolBarBottomConstraint?.isActive = false
-                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: self.toolBarHeight.constant)
-                self.toolBarBottomConstraint?.isActive = true
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                
+//                self.toolBarBottomConstraint?.isActive = false
+//                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: self.toolBarHeight.constant)
+//                self.toolBarBottomConstraint?.isActive = true
+                
+
+                self.toolbarView.frame = CGRect(x: 0, y: self.webView.frame.maxY, width: self.toolbarView.frame.width, height: self.toolbarView.frame.height)
                 
             }, completion: nil)
             
         } else {
             // 上にスクロール（ヘッダーフッターを表示する）
-            UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
                 
-                self.toolBarBottomConstraint?.isActive = false
-                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
-                self.toolBarBottomConstraint?.isActive = true
+//                self.toolBarBottomConstraint?.isActive = false
+//                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+//                self.toolBarBottomConstraint?.isActive = true
+                self.toolbarView.frame = CGRect(x: 0, y: self.webView.frame.maxY - self.toolbarView.frame.height, width: self.toolbarView.frame.width, height: self.toolbarView.frame.height)
                 
             }, completion: nil)
         }
@@ -137,6 +145,11 @@ extension ArticleWebVC: UIScrollViewDelegate {
 
 extension ArticleWebVC: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        title = webView.title
+        
+        if let navTitle = webView.title, !navTitle.isEmpty {
+            title = navTitle
+        } else {
+            title = "YOMU"
+        }
     }
 }

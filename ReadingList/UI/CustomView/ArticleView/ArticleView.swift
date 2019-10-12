@@ -80,10 +80,15 @@ class ArticleView: UIView {
         if let displayDate = item.createdDate {
             dateLbl.text = formatter.string(from: displayDate)
         }
+        
+        configureDudateBaseView(item: item)
+        
         self.setImage(imageUrl: item.imageUrl, url: item.url)
     }
     
     private func configureDudateBaseView(item: ReadingItem) {
+        
+        
         let now = Date()
         let diff = item.differenceDay(fromDate: now)
         

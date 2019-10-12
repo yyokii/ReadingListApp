@@ -62,9 +62,18 @@ class ReadingListTableVC: UITableViewController {
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
             }
             
+            cell.selectionStyle = .none
+            
             return cell
         }
         return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = displayReadingItems?[indexPath.row] {
+            let vc = ArticleWebVC.viewController(item: item)
+            present(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -72,7 +81,6 @@ extension ReadingListTableVC: ReadingListPresenterOutput {
     
     func updateReadingList(items: Results<ReadingItem>?) {
         displayReadingItems = items
-        print("テスト： \(displayReadingItems?.count)")
         tableView.reloadData()
     }
 }

@@ -65,9 +65,18 @@ class TodayDeleteTableVC: UITableViewController {
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
             }
             
+            cell.selectionStyle = .none
+            
             return cell
         }
         return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = displayTodayDeleteItems?[indexPath.row] {
+            let vc = ArticleWebVC.viewController(item: item)
+            present(vc, animated: true, completion: nil)
+        }
     }
 }
 
