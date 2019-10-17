@@ -11,16 +11,18 @@ import RealmSwift
 
 protocol HomePresenterInput {
     func tapOptionBtn(item: ReadingItem)
+    func tapDisplayTodayDeleteView()
     func viewDidLoad()
     func viewWillAppear()
 }
 
 protocol  HomePresenterOutput: AnyObject {
     func displayTutorialDialog()
-    func showNoTodayDeleteItemsView()
-    func showNoReadingItemsView()
     func displayReadingListDialog(item: ReadingItem)
     func displayUserData(dataViewModel: GraphViewModel)
+    func displayTodayDeleteView(items: [ReadingItem])
+    func showNoTodayDeleteItemsView()
+    func showNoReadingItemsView()
     func updateTodayDeleteList(items: [ReadingItem]?)
     func updateReadingList(items: [ReadingItem]?)
 }
@@ -73,18 +75,7 @@ final class  HomePresenter {
     
     private func updateTodayDeleteList(now: Date, notFinishedItems: Results<ReadingItem>?) {
         
-        guard let items = notFinishedItems else {
-            view.updateTodayDeleteList(items: nil)
-            view.showNoTodayDeleteItemsView()
-            return
-        }
-        
-        var todayDeleteItems: [ReadingItem] = [ReadingItem]()
-        
-        for item: ReadingItem in items where item.differenceDay(fromDate: now) <= 1 {
-            // 1日以内に削除される記事
-            todayDeleteItems.append(item)
-        }
+        let todayDeleteItems: [ReadingItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
 
         if todayDeleteItems.count > 0 {
             view.updateTodayDeleteList(items: todayDeleteItems)
@@ -114,6 +105,20 @@ final class  HomePresenter {
             view.updateReadingList(items: nil)
             view.showNoReadingItemsView()
         }
+    }
+    
+    private func getTodayDeleteItems(from items: Results<ReadingItem>?, now: Date) -> [ReadingItem] {
+        
+        var readingItems: [ReadingItem] = [ReadingItem]()
+        
+        guard let items = items else {
+            return readingItems
+        }
+        for item: ReadingItem in items where item.differenceDay(fromDate: now) <= 1 {
+            readingItems.append(item)
+        }
+        
+        return readingItems
     }
     
     /// シェアしたものを確認してRealmに保存
@@ -147,6 +152,11 @@ final class  HomePresenter {
 }
 
 extension  HomePresenter: HomePresenterInput {
+
+    func tapDisplayTodayDeleteView() {
+        let items = getTodayDeleteItems(from: notFinishedItems, now: Date())
+        view.displayTodayDeleteView(items: items)
+    }
     
     func tapOptionBtn(item: ReadingItem) {
         optionTappedItem = item

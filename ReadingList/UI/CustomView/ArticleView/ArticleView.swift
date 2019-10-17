@@ -81,32 +81,38 @@ class ArticleView: UIView {
             dateLbl.text = formatter.string(from: displayDate)
         }
         
-        configureDudateBaseView(item: item)
+        configureDueDateView(item: item)
         
         self.setImage(imageUrl: item.imageUrl, url: item.url)
     }
     
-    private func configureDudateBaseView(item: ReadingItem) {
-        
+    private func configureDueDateView(item: ReadingItem) {
         
         let now = Date()
         let diff = item.differenceDay(fromDate: now)
         
         switch diff {
-        case 1:
+        case 0, 1:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
+            dueDateLbl.text = "1"
         case 2:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.pinkSherbet)
+            dueDateLbl.text = "2"
         case 3:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
+            dueDateLbl.text = "3"
         case 4:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.caramel)
+            dueDateLbl.text = "4"
         case 5:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+            dueDateLbl.text = "5"
         case 6:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+            dueDateLbl.text = "6"
         case 7:
             dueDateBaseView.backgroundColor = UIColor.init(named: Constant.Color.cornFlower)
+            dueDateLbl.text = "7"
         default:
             break
         }

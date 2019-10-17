@@ -94,8 +94,7 @@ class HomeVC: UIViewController {
     
     @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
 
-        let todayDeleteVC = TodayDeleteTableVC.viewController()
-        navigationController?.pushViewController(todayDeleteVC, animated: true)
+        presenter.tapDisplayTodayDeleteView()
     }
     
     @IBAction func tapShowingReadingItems(_ sender: Any) {
@@ -126,6 +125,11 @@ extension HomeVC: HomePresenterOutput {
     
     func displayReadingListDialog(item: ReadingItem) {
         SwiftMessageUtil.showReadingListDialog(title: item.title)
+    }
+    
+    func displayTodayDeleteView(items: [ReadingItem]) {
+        let todayDeleteVC = TodayDeleteTableVC.viewController(items: items)
+        navigationController?.pushViewController(todayDeleteVC, animated: true)
     }
     
     func showNoTodayDeleteItemsView() {
@@ -182,6 +186,7 @@ extension HomeVC: UICollectionViewDataSource {
                 let optionTappedAction = {
                     self.presenter.tapOptionBtn(item: item)
                 }
+                cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             }
             return cell
@@ -194,6 +199,7 @@ extension HomeVC: UICollectionViewDataSource {
                 let optionTappedAction = {
                     self.presenter.tapOptionBtn(item: item)
                 }
+                cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             }
             return cell

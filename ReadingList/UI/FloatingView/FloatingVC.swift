@@ -63,6 +63,7 @@ extension FloatingVC: UITableViewDataSource {
                 let optionTappedAction = {
                     self.presenter.optionTapped(item: item)
                 }
+                cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: optionTappedAction)
             }
             

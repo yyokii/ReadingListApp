@@ -86,6 +86,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="footer_setting" id="4Y2-bY-qtJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="2Kp-o0-kwe" id="hDR-KR-cPl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0L-Px-Yaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

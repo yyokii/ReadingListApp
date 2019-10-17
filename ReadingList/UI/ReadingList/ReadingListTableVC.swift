@@ -59,6 +59,7 @@ class ReadingListTableVC: UITableViewController {
             
             if let items = displayReadingItems {
                 let item = items[indexPath.row]
+                cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
             }
             

@@ -14,12 +14,25 @@ struct GraphViewModel {
     let totalCount: Int
     
     let firstBarHeight: CGFloat
+    let firstItemsCount: Int
+    
     let secondBarHeight: CGFloat
+    let secondItemsCount: Int
+    
     let thirdBarHeight: CGFloat
+    let thirdItemsCount: Int
+    
     let fourthBarHeight: CGFloat
+    let fourthItemsCount: Int
+    
     let fifthBarHeight: CGFloat
+    let fifthItemsCount: Int
+    
     let sixthBarHeight: CGFloat
+    let sixthItemsCount: Int
+    
     let seventhBarHeight: CGFloat
+    let seventhItemsCount: Int
     
     let noDataHeight: CGFloat = 15
     let barMaxHeight: CGFloat = 180
@@ -28,31 +41,31 @@ struct GraphViewModel {
         
         let now = Date()
         
-        let firstItemsCount = items.filter({
+        firstItemsCount = items.filter({
             $0.differenceDay(fromDate: now) <= 1
         }).count
         
-        let secondItemsCount = items.filter({
+        secondItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 2
         }).count
         
-        let thirdItemsCount = items.filter({
+        thirdItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 3
         }).count
         
-        let fourthItemsCount = items.filter({
+        fourthItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 4
         }).count
         
-        let fifthItemsCount = items.filter({
+        fifthItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 5
         }).count
         
-        let sixthItemsCount = items.filter({
+        sixthItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 6
         }).count
         
-        let seventhItemsCount = items.filter({
+        seventhItemsCount = items.filter({
             $0.differenceDay(fromDate: now) == 7
         }).count
         

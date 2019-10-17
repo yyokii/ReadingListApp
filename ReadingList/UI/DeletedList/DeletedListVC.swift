@@ -89,7 +89,7 @@ extension DeletedListVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell {
             
             let item = displayItems[indexPath.row]
-            
+            cell.articleView.articleImage.image = nil
             cell.configureCell(row: indexPath.row, item: item, type: .DeletedList, tapOptionBtnAction: nil)
             
             cell.selectionStyle = .none

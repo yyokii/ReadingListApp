@@ -62,10 +62,22 @@
                             <subviews>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsH-7j-nrB" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tH-CG-ILc">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="fWl-Vc-4F4"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="CornFlower"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="15" id="Efl-PN-rCo"/>
+                                        <constraint firstAttribute="bottom" secondItem="9tH-CG-ILc" secondAttribute="bottom" id="JZc-O1-Xef"/>
+                                        <constraint firstAttribute="trailing" secondItem="9tH-CG-ILc" secondAttribute="trailing" id="TgW-ny-fdY"/>
+                                        <constraint firstItem="9tH-CG-ILc" firstAttribute="top" secondItem="FsH-7j-nrB" secondAttribute="top" id="ipi-Ex-kYI"/>
                                         <constraint firstAttribute="height" constant="180" id="lQd-zt-RDX"/>
+                                        <constraint firstItem="9tH-CG-ILc" firstAttribute="leading" secondItem="FsH-7j-nrB" secondAttribute="leading" id="moc-YY-i4O"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -75,7 +87,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dC-RB-5aj" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="72.5" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwz-hX-xob">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="uvL-fW-zk3"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="CornFlower"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Vwz-hX-xob" secondAttribute="bottom" id="PbQ-kt-Wd2"/>
+                                        <constraint firstItem="Vwz-hX-xob" firstAttribute="top" secondItem="2dC-RB-5aj" secondAttribute="top" id="Q7j-eS-W2V"/>
+                                        <constraint firstAttribute="trailing" secondItem="Vwz-hX-xob" secondAttribute="trailing" id="kQS-5p-jzg"/>
+                                        <constraint firstItem="Vwz-hX-xob" firstAttribute="leading" secondItem="2dC-RB-5aj" secondAttribute="leading" id="lNo-59-ObT"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
@@ -84,7 +110,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvE-u5-ze6" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="144.5" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6s-mV-UmT">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="Txx-ww-Amk"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="CornFlower"/>
+                                    <constraints>
+                                        <constraint firstItem="R6s-mV-UmT" firstAttribute="leading" secondItem="dvE-u5-ze6" secondAttribute="leading" id="nvg-YD-uGk"/>
+                                        <constraint firstAttribute="bottom" secondItem="R6s-mV-UmT" secondAttribute="bottom" id="tdb-2Z-SFJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="R6s-mV-UmT" secondAttribute="trailing" id="vOR-P1-2qm"/>
+                                        <constraint firstItem="R6s-mV-UmT" firstAttribute="top" secondItem="dvE-u5-ze6" secondAttribute="top" id="vR1-b9-K9v"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
@@ -93,7 +133,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiy-8p-v7n" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="217" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4f-lH-ehl">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="Kk4-Km-2Bo"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="Caramel"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="n4f-lH-ehl" secondAttribute="bottom" id="24l-Me-ocA"/>
+                                        <constraint firstAttribute="trailing" secondItem="n4f-lH-ehl" secondAttribute="trailing" id="IfH-VC-RtG"/>
+                                        <constraint firstItem="n4f-lH-ehl" firstAttribute="leading" secondItem="wiy-8p-v7n" secondAttribute="leading" id="NKn-nV-9Pk"/>
+                                        <constraint firstItem="n4f-lH-ehl" firstAttribute="top" secondItem="wiy-8p-v7n" secondAttribute="top" id="eTm-c7-lKa"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
@@ -102,7 +156,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giM-TE-lrb" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="289.5" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-CJ-SBj">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="5xu-qE-9sG"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="Caramel"/>
+                                    <constraints>
+                                        <constraint firstItem="yfD-CJ-SBj" firstAttribute="top" secondItem="giM-TE-lrb" secondAttribute="top" id="JP4-rN-wxp"/>
+                                        <constraint firstAttribute="trailing" secondItem="yfD-CJ-SBj" secondAttribute="trailing" id="StY-Lo-hiD"/>
+                                        <constraint firstItem="yfD-CJ-SBj" firstAttribute="leading" secondItem="giM-TE-lrb" secondAttribute="leading" id="alK-d2-H7L"/>
+                                        <constraint firstAttribute="bottom" secondItem="yfD-CJ-SBj" secondAttribute="bottom" id="fJb-sq-WhW"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
@@ -111,7 +179,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwx-Sb-xdH" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="361.5" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rk6-3s-4Hx">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="UYn-2c-MWc"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="PinkSherbet"/>
+                                    <constraints>
+                                        <constraint firstItem="Rk6-3s-4Hx" firstAttribute="top" secondItem="Uwx-Sb-xdH" secondAttribute="top" id="99v-xE-kSw"/>
+                                        <constraint firstAttribute="trailing" secondItem="Rk6-3s-4Hx" secondAttribute="trailing" id="I3y-vP-oPZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Rk6-3s-4Hx" secondAttribute="bottom" id="Y6V-Ol-WPh"/>
+                                        <constraint firstItem="Rk6-3s-4Hx" firstAttribute="leading" secondItem="Uwx-Sb-xdH" secondAttribute="leading" id="gAO-ZX-vAN"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>
@@ -120,7 +202,21 @@
                                 </view>
                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Oz-Ud-AWf" customClass="DesignableView" customModule="ReadingList" customModuleProvider="target">
                                     <rect key="frame" x="434" y="0.0" width="15" height="180"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wl7-Ux-qe5">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="180"/>
+                                            <connections>
+                                                <action selector="tapBarActionWithSender:" destination="-1" eventType="touchUpInside" id="yRs-Iq-woC"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" name="PinkSherbet"/>
+                                    <constraints>
+                                        <constraint firstItem="Wl7-Ux-qe5" firstAttribute="leading" secondItem="6Oz-Ud-AWf" secondAttribute="leading" id="7WT-gK-0U7"/>
+                                        <constraint firstAttribute="bottom" secondItem="Wl7-Ux-qe5" secondAttribute="bottom" id="JQy-E1-un0"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wl7-Ux-qe5" secondAttribute="trailing" id="UUu-5R-lLq"/>
+                                        <constraint firstItem="Wl7-Ux-qe5" firstAttribute="top" secondItem="6Oz-Ud-AWf" secondAttribute="top" id="lwr-6g-3ky"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="7.5"/>

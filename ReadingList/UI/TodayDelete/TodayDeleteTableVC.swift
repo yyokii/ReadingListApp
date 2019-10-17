@@ -11,12 +11,13 @@ import RealmSwift
 
 class TodayDeleteTableVC: UITableViewController {
     
-    var displayTodayDeleteItems: Results<ReadingItem>?
+    var displayTodayDeleteItems: [ReadingItem]!
     
     private var presenter: TodayDeletePresenterInput!
     
-    static func viewController() -> UIViewController {
+    static func viewController(items: [ReadingItem]) -> UIViewController {
         let todayDeleteVC = UIStoryboard(name: "TodayDelete", bundle: nil).instantiateInitialViewController() as! TodayDeleteTableVC
+        todayDeleteVC.displayTodayDeleteItems = items
         let todayDeleteModel = TodayDeleteModel()
         let todayDeletePresenter = TodayDeletePresenter(view: todayDeleteVC, model: todayDeleteModel)
         todayDeleteVC.inject(presenter: todayDeletePresenter)
@@ -37,24 +38,20 @@ class TodayDeleteTableVC: UITableViewController {
         
         navigationItem.title = "本日削除される未読記事"
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        presenter.viewWillAppear()
+        super.viewWillAppear(true)        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 178
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return displayTodayDeleteItems?.count ?? 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return displayTodayDeleteItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +59,7 @@ class TodayDeleteTableVC: UITableViewController {
             
             if let items = displayTodayDeleteItems {
                 let item = items[indexPath.row]
+                cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
             }
             
@@ -80,10 +78,4 @@ class TodayDeleteTableVC: UITableViewController {
     }
 }
 
-extension TodayDeleteTableVC: TodayDeletePresenterOutput {
-
-    func updateTodayDeleteList(items: Results<ReadingItem>?) {
-        displayTodayDeleteItems = items
-        tableView.reloadData()
-    }
-}
+extension TodayDeleteTableVC: TodayDeletePresenterOutput {}

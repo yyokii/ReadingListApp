@@ -7,6 +7,17 @@
 //
 
 import UIKit
+import AMPopTip
+
+enum ButtonType: Int {
+    case first = 1
+    case second = 2
+    case third = 3
+    case fourth = 4
+    case fifth = 5
+    case sixth = 6
+    case seventh = 7
+}
 
 class GraphView: UIView {
     
@@ -28,7 +39,10 @@ class GraphView: UIView {
     var thirdViewConstraint: NSLayoutConstraint!
     var secondViewConstraint: NSLayoutConstraint!
     var firstViewConstraint: NSLayoutConstraint!
+    
+    var datas: GraphViewModel!
 
+    let popTip = PopTip()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +62,10 @@ class GraphView: UIView {
     }
     
     func configureView(datas: GraphViewModel) {
+        self.datas = datas
+        
+        configurePopTip()
+        
         totalCountLabel.text = "\(datas.totalCount)"
         
         if let seventhConstraint = self.seventhViewConstraint {
@@ -92,5 +110,52 @@ class GraphView: UIView {
         
         firstViewConstraint = firstView.heightAnchor.constraint(equalToConstant: datas.firstBarHeight)
         firstViewConstraint.isActive = true
+    }
+    
+    private func configurePopTip() {
+        popTip.font = UIFont(name: "Avenir-Medium", size: 14)!
+        popTip.shouldDismissOnTap = true
+        popTip.shouldDismissOnTapOutside = true
+        popTip.shouldDismissOnSwipeOutside = true
+        // バブル部分左のマージン
+        popTip.edgeMargin = 0
+        // 左のオフセット
+        popTip.bubbleOffset = 0
+        // 対象との距離
+        popTip.offset = 2
+        // バブル内の上下左右
+        popTip.edgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    
+        popTip.actionAnimation = .bounce(8)
+    }
+    
+    @IBAction func tapBarAction(sender: UIButton) {
+        
+        guard let btnType = ButtonType.init(rawValue: sender.tag) else { return }
+        
+        switch btnType {
+        case .first:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.pinkSherbet)!
+            popTip.show(text: "\(datas.firstItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: firstView.frame)
+        case .second:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.pinkSherbet)!
+            popTip.show(text: "\(datas.secondItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: secondView.frame)
+        case .third:
+            
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.caramel)!
+            popTip.show(text: "\(datas.thirdItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: thirdView.frame)
+        case .fourth:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.caramel)!
+            popTip.show(text: "\(datas.fourthItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: fourthView.frame)
+        case .fifth:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.cornFlower)!
+            popTip.show(text: "\(datas.fifthItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: fifthView.frame)
+        case .sixth:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.cornFlower)!
+            popTip.show(text: "\(datas.sixthItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: sixthView.frame)
+        case .seventh:
+            popTip.bubbleColor = UIColor.init(named: Constant.Color.cornFlower)!
+            popTip.show(text: "\(datas.seventhItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: seventhView.frame)
+        }
     }
 }

@@ -113,29 +113,21 @@ extension ArticleWebVC: WebToolBarDelegate {
 extension ArticleWebVC: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
+        if(velocity.y > 0) {
             // 下にスクロール（ヘッダーフッターを隠す）
             UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
                 
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                
-//                self.toolBarBottomConstraint?.isActive = false
-//                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: self.toolBarHeight.constant)
-//                self.toolBarBottomConstraint?.isActive = true
-                
+                // self.navigationController?.setNavigationBarHidden(true, animated: true)
 
                 self.toolbarView.frame = CGRect(x: 0, y: self.webView.frame.maxY, width: self.toolbarView.frame.width, height: self.toolbarView.frame.height)
                 
             }, completion: nil)
             
-        } else {
+        } else if(velocity.y < 0) {
             // 上にスクロール（ヘッダーフッターを表示する）
             UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                // self.navigationController?.setNavigationBarHidden(false, animated: true)
                 
-//                self.toolBarBottomConstraint?.isActive = false
-//                self.toolBarBottomConstraint = self.toolbarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
-//                self.toolBarBottomConstraint?.isActive = true
                 self.toolbarView.frame = CGRect(x: 0, y: self.webView.frame.maxY - self.toolbarView.frame.height, width: self.toolbarView.frame.width, height: self.toolbarView.frame.height)
                 
             }, completion: nil)

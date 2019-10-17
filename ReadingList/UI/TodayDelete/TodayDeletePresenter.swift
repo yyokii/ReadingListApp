@@ -9,12 +9,9 @@
 import Foundation
 import RealmSwift
 
-protocol TodayDeletePresenterInput {
-    func viewWillAppear()
-}
+protocol TodayDeletePresenterInput {}
 
 protocol TodayDeletePresenterOutput: AnyObject {
-    func updateTodayDeleteList(items: Results<ReadingItem>?)
 }
 
 final class TodayDeletePresenter {
@@ -25,15 +22,6 @@ final class TodayDeletePresenter {
         self.view = view
         self.model = model
     }
-    
-    private func updateTodayDeleteList() {
-        let todayDelete = model.fetchTodayDeleteItems()
-        view.updateTodayDeleteList(items: todayDelete)
-    }
 }
 
-extension  TodayDeletePresenter: TodayDeletePresenterInput {
-    func viewWillAppear() {
-        updateTodayDeleteList()
-    }
-}
+extension  TodayDeletePresenter: TodayDeletePresenterInput {}

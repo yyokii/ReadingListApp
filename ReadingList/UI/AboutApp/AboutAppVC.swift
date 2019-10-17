@@ -12,6 +12,7 @@ import UserNotifications
 
 
 class AboutAppVC: UITableViewController {
+    
     private let aboutAppCellIdentifier = "AboutAppTableViewCell"
     private let notificationStateCellIdentifier = "NotificationAuthStateCell"
     let notificationCenter = NotificationCenter.default
@@ -25,6 +26,8 @@ class AboutAppVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.tintColor = .black
         navigationItem.title = "このアプリについて"
