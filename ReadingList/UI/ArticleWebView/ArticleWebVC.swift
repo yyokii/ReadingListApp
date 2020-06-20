@@ -45,14 +45,8 @@ class ArticleWebVC: UIViewController {
     private func configureWebView() {
         webView.navigationDelegate = self
         webView.scrollView.delegate = self
+        webView.uiDelegate = self
         toolbarView.delegate = self
-        
-//        let a = navigationController?.navigationBar.frame.height
-//        let b = UIApplication.shared.statusBarFrame.height
-//        
-//        let edgeInsets = UIEdgeInsets(top: navigationController?.navigationBar.frame.height ?? 0 + UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
-//        // webview上の余白部分
-//        webView.scrollView.contentInset = edgeInsets
     }
 }
 
@@ -132,6 +126,21 @@ extension ArticleWebVC: UIScrollViewDelegate {
                 
             }, completion: nil)
         }
+    }
+}
+
+extension ArticleWebVC: WKUIDelegate {
+    
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction,
+                 windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        if navigationAction.targetFrame?.isMainFrame != true {
+            webView.load(navigationAction.request)
+        }
+        
+        return nil
     }
 }
 

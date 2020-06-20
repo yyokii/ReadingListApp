@@ -36,7 +36,7 @@ class TodayDeleteTableVC: UITableViewController {
         
         tableView.separatorStyle = .none
         
-        navigationItem.title = "本日削除される未読記事"
+        navigationItem.title = "1日以内に削除される未読記事"
         tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
         
         tableView.reloadData()
