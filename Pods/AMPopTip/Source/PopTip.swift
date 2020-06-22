@@ -7,6 +7,13 @@
 //
 
 import UIKit
+#if canImport(SwiftUI) && canImport(Combine)
+import SwiftUI
+#endif
+
+//public enum PopTipAxis {
+//  case
+//}
 
 /// Enum that specifies the direction of the poptip
 public enum PopTipDirection {
@@ -18,8 +25,18 @@ public enum PopTipDirection {
   case left
   /// Right, the poptip will appear on the right of the element, arrow pointing left
   case right
+  /// Automatic, the poptip will decide where to pop by checking the available space
+  case auto
+  /// Automatic in the horizontal axis, the poptip will decide where to pop by checking the available space left and right
+  case autoHorizontal
+  /// Automatic in the vertical axis, the poptip will decide where to pop by checking the available space top and bottom
+  case autoVertical
   /// None, the poptip will appear above the element with no arrow
   case none
+  
+  var isAuto: Bool {
+    return self == .autoVertical || self == .autoHorizontal || self == .auto
+  }
 }
 
 /** Enum that specifies the type of entrance animation. Entrance animations are performed while showing the poptip.
@@ -226,6 +243,7 @@ open class PopTip: UIView {
   fileprivate var textBounds = CGRect.zero
   fileprivate var maxWidth = CGFloat(0)
   fileprivate var customView: UIView?
+  fileprivate var hostingController: UIViewController?
   fileprivate var isApplicationInBackground: Bool?
   fileprivate var label: UILabel = {
     let label = UILabel()
@@ -396,6 +414,23 @@ open class PopTip: UIView {
     var rect = CGRect.zero
     backgroundColor = .clear
     
+    // Decide the direction if not specified
+    if direction.isAuto {
+      var spaces: [PopTipDirection: CGFloat] = [:]
+      
+      if direction == .autoHorizontal || direction == .auto {
+        spaces[.left] = from.minX - containerView.frame.minX
+        spaces[.right] = containerView.frame.maxX - from.maxX
+      }
+      
+      if direction == .autoVertical || direction == .auto {
+        spaces[.up] = from.minY - containerView.frame.minY
+        spaces[.down] = containerView.frame.maxY - from.maxY
+      }
+      
+      direction = spaces.sorted(by: { $0.1 > $1.1 }).first!.key
+    }
+    
     if direction == .left {
       maxWidth = CGFloat.minimum(maxWidth, from.origin.x - padding * 2 - edgeInsets.horizontal - arrowSize.width)
     }
@@ -405,7 +440,9 @@ open class PopTip: UIView {
     
     textBounds = textBounds(for: text, attributedText: attributedText, view: customView, with: font, padding: padding, edges: edgeInsets, in: maxWidth)
     
+    
     switch direction {
+    case .auto, .autoHorizontal, .autoVertical: break // The decision will be made at this point
     case .up:
       let dimensions = setupVertically()
       rect = dimensions.0
@@ -497,8 +534,7 @@ open class PopTip: UIView {
     }
     
     let path = PopTip.pathWith(rect: rect, frame: frame, direction: direction, arrowSize: arrowSize, arrowPosition: arrowPosition, arrowRadius: arrowRadius, borderWidth: borderWidth, radius: cornerRadius)
-    
-    layer.shadowPath = path.cgPath
+
     layer.shadowOpacity = shadowOpacity
     layer.shadowRadius = CGFloat(shadowRadius)
     layer.shadowOffset = shadowOffset
@@ -598,11 +634,45 @@ open class PopTip: UIView {
     self.customView?.removeFromSuperview()
     self.customView = customView
     addSubview(customView)
-    customView.layoutIfNeeded()
     from = frame
     
     show(duration: duration)
   }
+    
+#if canImport(SwiftUI) && canImport(Combine)
+  /// Shows an animated poptip in a given view, from a given rectangle. The property `isVisible` will be `true` as soon as the poptip is added to the given view.
+  ///
+  /// - Parameters:
+  ///   - rootView: A SwiftUI view
+  ///   - direction: The direction of the poptip in relation to the element that generates it
+  ///   - view: The view that will hold the poptip as a subview.
+  ///   - frame: The originating frame. The poptip's arrow will point to the center of this frame.
+  ///   - parent: The controller that holds the view that will hold the poptip. Needed as SwiftUI views have to be embed in a child UIHostingController.
+  ///   - duration: Optional time interval that determines when the poptip will self-dismiss.
+  @available(iOS 13.0, *)
+  open func show<V: View>(rootView: V, direction: PopTipDirection, in view: UIView, from frame: CGRect, parent: UIViewController, duration: TimeInterval? = nil) {
+    resetView()
+
+    text = nil
+    attributedText = nil
+    self.direction = direction
+    containerView = view
+    let controller = UIHostingController(rootView: rootView)
+    controller.view.backgroundColor = .clear
+    controller.view.frame.size = controller.view.intrinsicContentSize
+    maxWidth = controller.view.frame.size.width
+    self.customView?.removeFromSuperview()
+    self.customView = controller.view
+    parent.addChild(controller)
+    addSubview(controller.view)
+    controller.didMove(toParent: parent)
+    controller.view.layoutIfNeeded()
+    from = frame
+    hostingController = controller
+
+    show(duration: duration)
+  }
+#endif
   
   /// Update the current text
   ///
@@ -649,7 +719,9 @@ open class PopTip: UIView {
     }
     
     let completion = {
+      self.hostingController?.willMove(toParent: nil)
       self.customView?.removeFromSuperview()
+      self.hostingController?.removeFromParent()
       self.customView = nil
       self.dismissActionAnimation()
       self.backgroundMask?.removeFromSuperview()
@@ -691,6 +763,14 @@ open class PopTip: UIView {
     stopActionAnimation {
       UIView.animate(withDuration: 0.2, delay: 0, options: [.transitionCrossDissolve, .beginFromCurrentState], animations: {
         self.setup()
+        
+        let path = PopTip.pathWith(rect: self.frame, frame: self.frame, direction: self.direction, arrowSize: self.arrowSize, arrowPosition: self.arrowPosition, arrowRadius: self.arrowRadius, borderWidth: self.borderWidth, radius: self.cornerRadius)
+
+        let shadowAnimation = CABasicAnimation(keyPath: "shadowPath")
+        shadowAnimation.duration = 0.2
+        shadowAnimation.toValue = path.cgPath
+        shadowAnimation.isRemovedOnCompletion = true
+        self.layer.add(shadowAnimation, forKey: "shadowAnimation")
       }) { (_) in
         self.startActionAnimation()
       }
@@ -703,6 +783,8 @@ open class PopTip: UIView {
     
     setNeedsLayout()
     performEntranceAnimation {
+      self.customView?.layoutIfNeeded()
+
       if let tapRemoveGesture = self.tapRemoveGestureRecognizer {
         self.containerView?.addGestureRecognizer(tapRemoveGesture)
       }
@@ -783,6 +865,7 @@ open class PopTip: UIView {
     var offsetX = CGFloat(0)
     var offsetY = CGFloat(0)
     switch direction {
+    case .auto, .autoHorizontal, .autoVertical: break // The decision will be made at this point
     case .up, .none:
       offsetY = -offset
     case .left:

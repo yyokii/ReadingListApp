@@ -50,14 +50,14 @@ class ConnectivityMonitor {
 
   /** Creates a platform-specific connectivity monitor. */
   static std::unique_ptr<ConnectivityMonitor> Create(
-      util::AsyncQueue* worker_queue);
+      const std::shared_ptr<util::AsyncQueue>& worker_queue);
 
-  explicit ConnectivityMonitor(util::AsyncQueue* worker_queue)
+  explicit ConnectivityMonitor(
+      const std::shared_ptr<util::AsyncQueue>& worker_queue)
       : worker_queue_{worker_queue} {
   }
 
-  virtual ~ConnectivityMonitor() {
-  }
+  virtual ~ConnectivityMonitor() = default;
 
   void AddCallback(Callback&& callback) {
     callbacks_.push_back(std::move(callback));
@@ -71,12 +71,15 @@ class ConnectivityMonitor {
   // Invokes callbacks only if the status changed.
   void MaybeInvokeCallbacks(NetworkStatus new_status);
 
-  util::AsyncQueue* queue() {
+  // Invokes callbacks and sets net status to `new_status`.
+  void InvokeCallbacks(NetworkStatus new_status);
+
+  const std::shared_ptr<util::AsyncQueue>& queue() {
     return worker_queue_;
   }
 
  private:
-  util::AsyncQueue* worker_queue_ = nullptr;
+  std::shared_ptr<util::AsyncQueue> worker_queue_;
   std::vector<Callback> callbacks_;
   absl::optional<NetworkStatus> status_;
 };

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,14 @@
 #include "Firestore/core/src/firebase/firestore/remote/grpc_call.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_completion.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
-#include "Firestore/core/src/firebase/firestore/util/status.h"
-#include "Firestore/core/src/firebase/firestore/util/statusor.h"
+#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "Firestore/core/src/firebase/firestore/util/warnings.h"
 #include "grpcpp/client_context.h"
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdocumentation"
-#include "grpcpp/generic/generic_stub.h"
-#pragma clang diagnostic pop
 #include "grpcpp/support/byte_buffer.h"
+
+SUPPRESS_DOCUMENTATION_WARNINGS_BEGIN()
+#include "grpcpp/generic/generic_stub.h"
+SUPPRESS_END()
 
 namespace firebase {
 namespace firestore {
@@ -49,7 +49,7 @@ class GrpcUnaryCall : public GrpcCall {
 
   GrpcUnaryCall(std::unique_ptr<grpc::ClientContext> context,
                 std::unique_ptr<grpc::GenericClientAsyncResponseReader> call,
-                util::AsyncQueue* worker_queue,
+                const std::shared_ptr<util::AsyncQueue>& worker_queue,
                 GrpcConnection* grpc_connection,
                 const grpc::ByteBuffer& request);
   ~GrpcUnaryCall();
@@ -99,10 +99,10 @@ class GrpcUnaryCall : public GrpcCall {
   // Stored to avoid lifetime issues with gRPC.
   grpc::ByteBuffer request_;
 
-  util::AsyncQueue* worker_queue_ = nullptr;
+  std::shared_ptr<util::AsyncQueue> worker_queue_;
   GrpcConnection* grpc_connection_ = nullptr;
 
-  GrpcCompletion* finish_completion_ = nullptr;
+  std::shared_ptr<GrpcCompletion> finish_completion_;
   Callback callback_;
 };
 

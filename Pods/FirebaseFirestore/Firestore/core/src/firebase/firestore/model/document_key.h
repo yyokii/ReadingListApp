@@ -19,21 +19,20 @@
 
 #include <functional>
 #include <initializer_list>
+#include <iosfwd>
 #include <memory>
 #include <string>
 
-#if defined(__OBJC__)
-#import "Firestore/Source/Model/FSTDocumentKey.h"
-#endif  // defined(__OBJC__)
-
-#include "Firestore/core/src/firebase/firestore/model/resource_path.h"
-#include "Firestore/core/src/firebase/firestore/util/comparison.h"
-#include "Firestore/core/src/firebase/firestore/util/hashing.h"
-#include "absl/strings/string_view.h"
-
 namespace firebase {
 namespace firestore {
+
+namespace util {
+enum class ComparisonResult;
+}  // namespace util
+
 namespace model {
+
+class ResourcePath;
 
 /**
  * DocumentKey represents the location of a document in the Firestore database.
@@ -41,8 +40,7 @@ namespace model {
 class DocumentKey {
  public:
   /** Creates a "blank" document key not associated with any document. */
-  DocumentKey() : path_{std::make_shared<ResourcePath>()} {
-  }
+  DocumentKey();
 
   /** Creates a new document key containing a copy of the given path. */
   explicit DocumentKey(const ResourcePath& path);
@@ -50,45 +48,36 @@ class DocumentKey {
   /** Creates a new document key, taking ownership of the given path. */
   explicit DocumentKey(ResourcePath&& path);
 
-#if defined(__OBJC__)
-  operator FSTDocumentKey*() const {
-    return [FSTDocumentKey keyWithDocumentKey:*this];
-  }
-
-  NSUInteger Hash() const {
-    return util::Hash(ToString());
-  }
-#endif  // defined(__OBJC__)
-
-  std::string ToString() const {
-    return path().CanonicalString();
-  }
-
   /**
    * Creates and returns a new document key using '/' to split the string into
    * segments.
    */
-  static DocumentKey FromPathString(const absl::string_view path) {
-    return DocumentKey{ResourcePath::FromString(path)};
-  }
+  static DocumentKey FromPathString(const std::string& path);
 
   /** Creates and returns a new document key with the given segments. */
-  static DocumentKey FromSegments(std::initializer_list<std::string> list) {
-    return DocumentKey{ResourcePath{list}};
-  }
+  static DocumentKey FromSegments(std::initializer_list<std::string> list);
 
   /** Returns a shared instance of an empty document key. */
   static const DocumentKey& Empty();
 
   /** Returns true iff the given path is a path to a document. */
-  static bool IsDocumentKey(const ResourcePath& path) {
-    return path.size() % 2 == 0;
-  }
+  static bool IsDocumentKey(const ResourcePath& path);
+
+  util::ComparisonResult CompareTo(const DocumentKey& other) const;
+
+  friend bool operator==(const DocumentKey& lhs, const DocumentKey& rhs);
+
+  size_t Hash() const;
+
+  std::string ToString() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const DocumentKey& key);
 
   /** The path to the document. */
-  const ResourcePath& path() const {
-    return path_ ? *path_ : Empty().path();
-  }
+  const ResourcePath& path() const;
+
+  /** Returns true if the document is in the specified collection_id. */
+  bool HasCollectionId(const std::string& collection_id) const;
 
  private:
   // This is an optimization to make passing DocumentKey around cheaper (it's
@@ -96,53 +85,26 @@ class DocumentKey {
   std::shared_ptr<const ResourcePath> path_;
 };
 
-inline bool operator==(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() == rhs.path();
-}
 inline bool operator!=(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() != rhs.path();
+  return !(lhs == rhs);
 }
-inline bool operator<(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() < rhs.path();
-}
+
+bool operator<(const DocumentKey& lhs, const DocumentKey& rhs);
+bool operator>(const DocumentKey& lhs, const DocumentKey& rhs);
+
 inline bool operator<=(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() <= rhs.path();
+  return !(rhs < lhs);
 }
-inline bool operator>(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() > rhs.path();
-}
+
 inline bool operator>=(const DocumentKey& lhs, const DocumentKey& rhs) {
-  return lhs.path() >= rhs.path();
+  return !(lhs < rhs);
 }
 
 struct DocumentKeyHash {
-  size_t operator()(const DocumentKey& key) const {
-    return util::Hash(key.path());
-  }
+  size_t operator()(const DocumentKey& key) const;
 };
 
-#if defined(__OBJC__)
-inline NSComparisonResult CompareKeys(const DocumentKey& lhs,
-                                      const DocumentKey& rhs) {
-  if (lhs < rhs) {
-    return NSOrderedAscending;
-  }
-  if (lhs > rhs) {
-    return NSOrderedDescending;
-  }
-  return NSOrderedSame;
-}
-
-#endif  // defined(__OBJC__)
-
 }  // namespace model
-
-namespace util {
-
-template <>
-struct Comparator<model::DocumentKey> : public std::less<model::DocumentKey> {};
-
-}  // namespace util
 }  // namespace firestore
 }  // namespace firebase
 

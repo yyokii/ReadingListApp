@@ -1,60 +1,87 @@
+name: abseil, nameSpecified: 
+body: 
+                   …
+version: 0.20190808
+
 name: Alamofire, nameSpecified: 
-body: Copyright (c) 2014 A…
-version: 4.8.1
+body: Copyright (c) 2014-2…
+version: 5.1.0
 
 name: AlamofireImage, nameSpecified: 
-body: Copyright (c) 2015-2…
-version: 3.5.0
+body: Copyright (c) 2015 A…
+version: 4.1.0
 
 name: AMPopTip, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.5.0
 
 name: BoringSSL-GRPC, nameSpecified: 
 body: BoringSSL is a fork …
-version: 0.0.2
+version: 0.0.3
 
 name: Firebase, nameSpecified: 
-body: Copyright 2019 Googl…
-version: 5.16.0
+body: 
+                   …
+version: 6.23.0
 
 name: FirebaseAnalytics, nameSpecified: 
-body: Copyright 2019 Googl…
-version: 5.5.0
+body: Copyright 2020 Googl…
+version: 6.4.2
 
 name: FirebaseAuthInterop, nameSpecified: 
 body: 
                    …
-version: 1.0.0
+version: 1.1.0
 
 name: FirebaseCore, nameSpecified: 
 body: 
                    …
-version: 5.2.0
+version: 6.6.7
+
+name: FirebaseCoreDiagnostics, nameSpecified: 
+body: 
+                   …
+version: 1.2.4
+
+name: FirebaseCoreDiagnosticsInterop, nameSpecified: 
+body: 
+                   …
+version: 1.2.0
 
 name: FirebaseFirestore, nameSpecified: 
 body: 
                    …
-version: 1.0.0
+version: 1.12.1
 
-name: FirebaseInstanceID, nameSpecified: 
-body: Copyright 2019 Googl…
-version: 3.4.0
+name: FirebaseInstallations, nameSpecified: 
+body: 
+                   …
+version: 1.2.0
 
 name: FloatingPanel, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 1.6.4
+version: 1.7.4
 
 name: GoogleAppMeasurement, nameSpecified: 
-body: Copyright 2019 Googl…
-version: 5.5.0
+body: Copyright 2020 Googl…
+version: 6.4.2
+
+name: GoogleDataTransport, nameSpecified: 
+body: 
+                   …
+version: 6.0.0
+
+name: GoogleDataTransportCCTSupport, nameSpecified: 
+body: 
+                   …
+version: 3.0.0
 
 name: GoogleUtilities, nameSpecified: 
 body: 
                    …
-version: 5.3.7
+version: 6.6.0
 
 name: gRPC-C++, nameSpecified: 
 body: 
@@ -64,37 +91,38 @@ version:
 name: gRPC-Core, nameSpecified: 
 body: 
                    …
-version: 1.17.0
+version: 1.21.0
 
 name: leveldb-library, nameSpecified: 
 body: Copyright (c) 2011 T…
-version: 1.20
+version: 1.22
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 2.1.0
+version: 2.15.1
 
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
-version: 0.3.901
+version: 0.3.9011
 
-name: Protobuf, nameSpecified: 
-body: Copyright 2008 Googl…
-version: 3.6.1
+name: PromisesObjC, nameSpecified: 
+body: 
+                   …
+version: 1.2.8
 
 name: Realm, nameSpecified: 
 body: TABLE OF CONTENTS
 
 1…
-version: 3.18.0
+version: 4.4.1
 
 name: RealmSwift, nameSpecified: 
 body: TABLE OF CONTENTS
 
 1…
-version: 3.18.0
+version: 4.4.1
 
 name: SwiftLinkPreview, nameSpecified: 
 body: The MIT License (MIT…
@@ -102,8 +130,10 @@ version: 3.0.1
 
 name: SwiftMessages, nameSpecified: 
 body: Copyright (c) 2016 S…
-version: 7.0.0
+version: 7.0.1
+
+name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.16.0
 
 add-version-numbers: false
 
-LicensePlist Version: 1.8.3
+LicensePlist Version: 2.15.0
