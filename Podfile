@@ -6,13 +6,15 @@ target 'ReadingList' do
 
   # Pods for ReadingList
   pod 'AlamofireImage'
-  pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Analytics'
   pod 'FloatingPanel', '>= 1.6.4'
   pod 'LicensePlist'
   pod 'AMPopTip'
   pod 'RealmSwift',  '>= 3.18.0'
   pod 'SwiftMessages'
   pod 'SwiftLinkPreview', '~> 3.0.1'
+  
+  # ターゲットごとに入れるもの制限したいねと
 
 end
