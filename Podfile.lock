@@ -292,7 +292,7 @@ DEPENDENCIES:
   - SwiftMessages
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - abseil
     - Alamofire
     - AlamofireImage
@@ -354,4 +354,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 425ece350c240065d70f3833cc47bddd09c050c7
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3

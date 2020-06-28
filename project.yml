@@ -95,55 +95,7 @@ targets:
           SWIFT_VERSION: 4.2
           TARGETED_DEVICE_FAMILY: 1
     sources:
-    - ReadingList/AppDelegate.swift
-    - name: Constants
-      path: ReadingList/Constants
-    - ReadingList/DB/Entity/ReadingItem.swift
-    - ReadingList/DB/RealmManager.swift
-    - ReadingList/DB/UserDefaultManager.swift
-    - name: Extension
-      path: ReadingList/Extension
-    - ReadingList/GoogleService-Info.plist
-    - ReadingList/Settings.bundle
-    - name: Support
-      path: ReadingList/Support
-    - ReadingList/UI/AboutApp/AboutApp.storyboard
-    - ReadingList/UI/AboutApp/AboutAppVC.swift
-    - ReadingList/UI/AboutApp/Component/AboutAppTableViewCell.swift
-    - ReadingList/UI/AboutApp/Component/AboutAppTableViewCell.xib
-    - ReadingList/UI/AboutApp/Component/SwitchBtnTableViewCell.swift
-    - ReadingList/UI/AboutApp/Component/SwitchBtnTableViewCell.xib
-    - name: ArticleWebView
-      path: ReadingList/UI/ArticleWebView
-    - name: ArticleView
-      path: ReadingList/UI/CustomView/ArticleView
-    - ReadingList/UI/CustomView/GradationView.swift
-    - name: GraphView
-      path: ReadingList/UI/CustomView/GraphView
-    - ReadingList/UI/CustomView/Indicator.swift
-    - ReadingList/UI/CustomView/Indicator.xib
-    - name: NoContentView
-      path: ReadingList/UI/CustomView/NoContentView
-    - name: OptionDialog
-      path: ReadingList/UI/CustomView/OptionDialog
-    - name: TutorialDialog
-      path: ReadingList/UI/CustomView/TutorialDialog
-    - name: WebTooBar
-      path: ReadingList/UI/CustomView/WebTooBar
-    - name: DeletedList
-      path: ReadingList/UI/DeletedList
-    - name: FloatingView
-      path: ReadingList/UI/FloatingView
-    - ReadingList/UI/Home/Home.storyboard
-    - ReadingList/UI/Home/HomeModel.swift
-    - ReadingList/UI/Home/HomePresenter.swift
-    - ReadingList/UI/Home/HomeVC.swift
-    - name: ReadingList
-      path: ReadingList/UI/ReadingList
-    - name: TodayDelete
-      path: ReadingList/UI/TodayDelete
-    - name: Utility
-      path: ReadingList/Utility
+      - ReadingList
     type: application
   ShareExtension:
     dependencies:

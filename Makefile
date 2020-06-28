@@ -13,7 +13,7 @@ TEST_DESTINATION := 'platform=${TEST_PLATFORM},name=${TEST_DEVICE},OS=${TEST_OS}
 .PHONY: start
 start:
 	make bootstrap
-	# make install-bundler
+	make install-bundler
 	make create-project
 	make open
 
@@ -23,16 +23,14 @@ bootstrap:
 	brew install mint
 	mint bootstrap
 
-#  エラーになる
-# .PHONY: install-bundler
-# install-bundler:
-# 	bundle config path vendor/bundle
-# 	bundle install --jobs 4 --retry 3
+.PHONY: install-bundler
+install-bundler:
+	bundle config path vendor/bundle
+	bundle install --jobs 4 --retry 3
 
 .PHONY: install-cocoapods
 install-cocoapods:
-	# bundle exec pod install
-	pod install
+	bundle exec pod install
 
 .PHONY: create-project
 create-project:
