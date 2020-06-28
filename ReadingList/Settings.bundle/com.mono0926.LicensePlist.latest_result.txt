@@ -1,7 +1,7 @@
 name: abseil, nameSpecified: 
 body: 
                    …
-version: 0.20190808
+version: 0.20200225.0
 
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014-2…
@@ -17,46 +17,36 @@ version: 4.5.0
 
 name: BoringSSL-GRPC, nameSpecified: 
 body: BoringSSL is a fork …
-version: 0.0.3
+version: 0.0.7
 
 name: Firebase, nameSpecified: 
 body: 
                    …
-version: 6.23.0
+version: 6.27.0
 
 name: FirebaseAnalytics, nameSpecified: 
 body: Copyright 2020 Googl…
-version: 6.4.2
-
-name: FirebaseAuthInterop, nameSpecified: 
-body: 
-                   …
-version: 1.1.0
+version: 6.6.1
 
 name: FirebaseCore, nameSpecified: 
 body: 
                    …
-version: 6.6.7
+version: 6.8.0
 
 name: FirebaseCoreDiagnostics, nameSpecified: 
 body: 
                    …
-version: 1.2.4
-
-name: FirebaseCoreDiagnosticsInterop, nameSpecified: 
-body: 
-                   …
-version: 1.2.0
+version: 1.4.0
 
 name: FirebaseFirestore, nameSpecified: 
 body: 
                    …
-version: 1.12.1
+version: 1.16.0
 
 name: FirebaseInstallations, nameSpecified: 
 body: 
                    …
-version: 1.2.0
+version: 1.4.0
 
 name: FloatingPanel, nameSpecified: 
 body: MIT License
@@ -66,17 +56,17 @@ version: 1.7.4
 
 name: GoogleAppMeasurement, nameSpecified: 
 body: Copyright 2020 Googl…
-version: 6.4.2
+version: 6.6.1
 
 name: GoogleDataTransport, nameSpecified: 
 body: 
                    …
-version: 6.0.0
+version: 6.2.1
 
 name: GoogleDataTransportCCTSupport, nameSpecified: 
 body: 
                    …
-version: 3.0.0
+version: 3.2.0
 
 name: GoogleUtilities, nameSpecified: 
 body: 
@@ -91,7 +81,7 @@ version:
 name: gRPC-Core, nameSpecified: 
 body: 
                    …
-version: 1.21.0
+version: 1.28.2
 
 name: leveldb-library, nameSpecified: 
 body: Copyright (c) 2011 T…
@@ -105,12 +95,12 @@ version: 2.15.1
 
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
-version: 0.3.9011
+version: 1.30905.0
 
 name: PromisesObjC, nameSpecified: 
 body: 
                    …
-version: 1.2.8
+version: 1.2.9
 
 name: Realm, nameSpecified: 
 body: TABLE OF CONTENTS

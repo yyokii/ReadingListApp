@@ -6,7 +6,6 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
-import Foundation
 import GateWay
 
 // Input
@@ -23,15 +22,19 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     
     // 外側のオブジェクトはプロパティとしてあとからセットする
     var output: ReadingListUseCaseOutput! { get set }
-//    var reposGateway: ReposGatewayProtocol! { get set }
 }
 
 // Output
 protocol ReadingListUseCaseOutput {
-    // GitHubリポジトリ（＋お気に入りON/OFF）の情報が更新されたときに呼ばれる
-    func useCaseDidUpdateStatuses(_ repoStatuses: [GitHubRepoStatus])
-    // お気に入り一覧情報が更新されたときに呼ばれる
-    func useCaseDidUpdateLikesList(_ likesList: [GitHubRepoStatus])
+    // 読み終わったもの一覧が更新されたときに呼ばれる
+    func didUpdateFinishedReadingItems(_ repoStatuses: Data)
+    
+    //  読み終わっていない and 近い内に削除予定のもの一覧が更新されたときに呼ばれる
+    func didUpdateReadingItemsWillDelete(_ repoStatuses: Data)
+    
+    // 読み終わっていない and 削除されるまで時間があるもの一覧が更新されたときに呼ばれる
+    func didUpdateReadingItems(_ repoStatuses: Data)
+    
     // Use Caseの関係する処理でエラーがあったときに呼ばれる
     func useCaseDidReceiveError(_ error: Error)
 }
