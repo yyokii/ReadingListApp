@@ -334,7 +334,7 @@ PODS:
   - Realm/Headers (4.4.1)
   - RealmSwift (4.4.1):
     - Realm (= 4.4.1)
-  - SwiftLinkPreview (3.0.1)
+  - SwiftLinkPreview (3.1.0)
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
@@ -347,7 +347,7 @@ DEPENDENCIES:
   - FloatingPanel (>= 1.6.4)
   - LicensePlist
   - RealmSwift (>= 3.18.0)
-  - SwiftLinkPreview (~> 3.0.1)
+  - SwiftLinkPreview (~> 3.1)
   - SwiftMessages
 
 SPEC REPOS:
@@ -359,7 +359,6 @@ SPEC REPOS:
     - LicensePlist
     - Realm
     - RealmSwift
-    - SwiftLinkPreview
     - SwiftMessages
   trunk:
     - abseil
@@ -379,6 +378,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SwiftLinkPreview
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -405,9 +405,9 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
-  SwiftLinkPreview: 7524438c43bf63a5041615713777c3d8f19a9a31
+  SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
 
-PODFILE CHECKSUM: 80a28a7926deafb1cfb65e1f109a970159139e28
+PODFILE CHECKSUM: a32e1301adce392fc6d27c9481d6b8924c0b0027
 
 COCOAPODS: 1.9.3

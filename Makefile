@@ -39,7 +39,7 @@ create-project:
 
 .PHONY: open
 open:
-	open ./${PROJECT_NAME}.xcworkspace
+	open ./${PRODUCT_NAME}.xcworkspace
 
 .PHONY: show-devices
 show-devices:

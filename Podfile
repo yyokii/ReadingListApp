@@ -13,7 +13,7 @@ target 'ReadingList' do
   pod 'AMPopTip'
   pod 'RealmSwift',  '>= 3.18.0'
   pod 'SwiftMessages'
-  pod 'SwiftLinkPreview', '~> 3.0.1'
+  pod 'SwiftLinkPreview', '~> 3.1'
   
   # ターゲットごとに入れるもの制限したいねと
 

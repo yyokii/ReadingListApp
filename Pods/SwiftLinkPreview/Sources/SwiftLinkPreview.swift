@@ -169,7 +169,7 @@ open class SwiftLinkPreview: NSObject {
 
             if let range = absoluteString.range(of: "&"),
                 let firstChar = absoluteString.first,
-                let firstCharIndex = absoluteString.index(of: firstChar) {
+                let firstCharIndex = absoluteString.firstIndex(of: firstChar) {
                 absoluteString = String(absoluteString[firstCharIndex ..< absoluteString.index(before: range.upperBound)])
 
                 if let decoded = absoluteString.removingPercentEncoding, let newURL = URL(string: decoded) {
@@ -356,6 +356,8 @@ extension SwiftLinkPreview {
                         if !cancellable.isCancelled {
                             self.parseHtmlString(source as String, response: response, completion: completion)
                         }
+                    } else {
+                        onError(.cannotBeOpened(sourceUrl.absoluteString))
                     }
                 } catch _ {
                     if !cancellable.isCancelled {
@@ -627,7 +629,7 @@ extension SwiftLinkPreview {
 
         var image = image
 
-        if let index = image.index(of: "?") { image = String(image[..<index]) }
+        if let index = image.firstIndex(of: "?") { image = String(image[..<index]) }
 
         return image
 
