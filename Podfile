@@ -4,10 +4,10 @@ target 'ReadingList' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ReadingList
   pod 'AlamofireImage'
-  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Firestore'
   pod 'FloatingPanel', '>= 1.6.4'
   pod 'LicensePlist'
   pod 'AMPopTip'
@@ -15,6 +15,8 @@ target 'ReadingList' do
   pod 'SwiftMessages'
   pod 'SwiftLinkPreview', '~> 3.1'
   
-  # ターゲットごとに入れるもの制限したいねと
+end
 
+target 'GateWay' do
+  use_frameworks!
 end

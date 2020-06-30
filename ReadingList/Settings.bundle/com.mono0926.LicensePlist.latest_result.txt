@@ -28,6 +28,11 @@ name: FirebaseAnalytics, nameSpecified:
 body: Copyright 2020 Googl…
 version: 6.6.1
 
+name: FirebaseAuth, nameSpecified: 
+body: 
+                   …
+version: 6.6.0
+
 name: FirebaseCore, nameSpecified: 
 body: 
                    …
@@ -82,6 +87,11 @@ name: gRPC-Core, nameSpecified:
 body: 
                    …
 version: 1.28.2
+
+name: GTMSessionFetcher, nameSpecified: 
+body: 
+                   …
+version: 1.4.0
 
 name: leveldb-library, nameSpecified: 
 body: Copyright (c) 2011 T…
