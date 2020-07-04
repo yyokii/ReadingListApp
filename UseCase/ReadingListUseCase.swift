@@ -7,18 +7,26 @@
 //
 
 // Input
-// Use Caseが外側に公開するインターフェイス
 protocol ReadingListUseCaseProtocol: AnyObject {
-    // 読み終わったもの一覧取得
+    /// 読み終わったもの一覧取得
     func fetchFinishedItems()
     
-    // 読み終わっていない and 近い内に削除予定のもの一覧取得
+    /// 読み終わっていない and 近い内に削除予定のもの一覧取得
     func fetchReadingItemsWillDelete()
     
-    // 読み終わっていない and 削除されるまで時間があるもの一覧取得
+    /// 読み終わっていない and 削除されるまで時間があるもの一覧取得
     func fetchReadingItems()
     
-    // 外側のオブジェクトはプロパティとしてあとからセットする
+    /// 保存
+    func saveReadingItem()
+
+    /// 削除
+    func deleteReadingItem()
+    
+    /// 読み終わり
+    func finishReading()
+    
+    /// 外側のオブジェクトはプロパティとしてあとからセットする
     var output: ReadingListUseCaseOutput! { get set }
 }
 

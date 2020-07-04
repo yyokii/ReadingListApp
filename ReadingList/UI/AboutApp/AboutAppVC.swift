@@ -20,7 +20,7 @@ class AboutAppVC: UITableViewController {
     private let cellTitles = [
         ["「Yomu」の使い方"],
         ["最近削除したもの", "通知設定"],
-        ["いいねする", "お問い合わせ", "開発した人"],
+        ["開発した人"],
     ]
     
     override func viewDidLoad() {
@@ -33,14 +33,6 @@ class AboutAppVC: UITableViewController {
         navigationItem.title = "このアプリについて"
         notificationCenter.addObserver(self, selector: #selector(updateNorificationAuthState), name: UIApplication.willEnterForegroundNotification, object: nil)
         confirureTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        
     }
     
     func confirureTableView() {
@@ -104,14 +96,6 @@ class AboutAppVC: UITableViewController {
         case 2:
             switch indexPath.row {
             case 0:
-                if #available(iOS 10.3, *) {
-                    SKStoreReviewController.requestReview()
-                } else {
-                    //                    MDCAlert.showAlert(vc: self, title: "😥", message: "申し訳ございません。現在のOSバージョンではご利用になれません。", isEnableOutsideScreenTouch: true, positiveAction: {})
-                }
-            case 1:
-                break
-            case 2:
                 let url = URL(string: "https://twitter.com/enyyokii")!
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)

@@ -8,7 +8,7 @@
 
 // Input
 // Use Caseが外側に公開するインターフェイス
-protocol AuthUseCaseProtocol: AnyObject {
+protocol AuthUseCaseProtocol: AnyObject {    
     // 匿名ログイン
     func signSignInAnonymously()
     
