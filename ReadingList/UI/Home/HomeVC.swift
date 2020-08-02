@@ -22,10 +22,18 @@ class HomeVC: UIViewController {
     var displayTodayDeleteItems: [ReadingItem]?
     var displayReadingItems: [ReadingItem]?
     
-    private var presenter: HomePresenterInput!
+    private weak var presenter: HomePresenterInput!
     
-    func inject(presenter: HomePresenterInput) {
-        self.presenter = presenter
+    static func vc() -> HomeVC {
+        let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
+        // todo: modelを後から外したい
+        let homeModel = HomeModel()
+        let authUseCase: AuthUseCase! = Application.shared.authUseCase
+        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, model: homeModel)
+        authUseCase.output = homePresenter
+        
+        homeVC.inject(homePresenter: homePresenter)
+        return homeVC
     }
     
     override func viewDidLoad() {
@@ -107,6 +115,12 @@ class HomeVC: UIViewController {
         
         let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
         navigationController?.pushViewController(aboutAppVC, animated: true)
+    }
+}
+
+extension HomeVC: HomePresenterInjectable {
+    func inject(homePresenter: HomePresenterInput) {
+        presenter = homePresenter
     }
 }
 

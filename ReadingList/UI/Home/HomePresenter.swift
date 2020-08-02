@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-protocol HomePresenterInput {
+protocol HomePresenterInput: AnyObject {
     func tapOptionBtn(item: ReadingItem)
     func tapDisplayTodayDeleteView()
     func viewDidLoad()
@@ -28,7 +28,8 @@ protocol  HomePresenterOutput: AnyObject {
 }
 
 final class  HomePresenter {
-    private weak var view: HomePresenterOutput!
+    private var view: HomePresenterOutput!
+    private weak var authUsecase: AuthUseCaseProtocol!
     private var model: HomeModelInput
     
     let notificationCenter = NotificationCenter.default
@@ -37,8 +38,9 @@ final class  HomePresenter {
     
     private var notFinishedItems: Results<ReadingItem>?
     
-    init(view:  HomePresenterOutput, model: HomeModelInput) {
+    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, model: HomeModelInput) {
         self.view = view
+        self.authUsecase = authUseCase
         self.model = model
         
         // （オプションボタンのアクション）リーディングリストの削除を検知
@@ -164,14 +166,28 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func viewDidLoad() {
-        
         if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
+            // 初回表示時
             view.displayTutorialDialog()
             UserDefaultManager.shareInstance.setFirstOpenArticleView()
         }
+        
+        authUsecase.fetchUser()
+        
     }
     
     func viewWillAppear() {
         fetchAndUpdateList()
+    }
+}
+
+extension HomePresenter: AuthUseCaseOutput {
+    func didsignSignInAnonymously() {
+    }
+    
+    func didsignIn(_ repoStatuses: String) {
+    }
+    
+    func useCaseDidReceiveError(_ error: WebClientError) {
     }
 }

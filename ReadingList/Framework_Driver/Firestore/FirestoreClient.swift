@@ -8,37 +8,24 @@
 
 import FirebaseAuth
 
-protocol FirestoreClientProtocol {
-    
-    /// リーディングリスト情報取得
-    func fetchReadingList( completion: @escaping () -> Void)
-    
-    /// 任意のアイテムを削除
-    func deleteReadingItem()
-    
-    /// 匿名ログイン
-    func signSignInAnonymously(completion: @escaping (Result<User, WebClientError>) -> Void)
-    
-    /// 匿名ユーザーから昇格させる（メールアドレスとパスワード）
-    func convertToPermanent(user: User, email: String, pass: String, completion: @escaping (Result<User, WebClientError>) -> Void)
-    
-    /// Emailログイン
-    func signIn(email: String, pass: String, completion: @escaping (Result<User, WebClientError>) -> Void)
-    
-    /// ログアウト（Emailログインしている場合）
-    func signOut(completion: @escaping (Result<Bool, WebClientError>) -> Void)
-}
-
 final class FireStoreClient: FirestoreClientProtocol {
     
-    func fetchReadingList( completion: @escaping () -> Void) {
+    private var user: User?
+    let auth = Auth.auth()
+    
+    func fetchReadingList(completion: @escaping () -> Void) {
+    }
+    
+    func fetchUser(completion: @escaping (AppUser) -> Void) {
+        user = auth.currentUser
+        completion(AppUser(from: user))
     }
     
     func deleteReadingItem() {
     }
     
-    func signSignInAnonymously(completion: @escaping (Result<User, WebClientError>) -> Void) {
-
+    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+        
         Auth.auth().signInAnonymously() { (authResult, error) in
             
             if let error = error {
@@ -48,29 +35,31 @@ final class FireStoreClient: FirestoreClientProtocol {
                     completion(.failure(.other(nil)))
                     return
                 }
-                completion(.success(user))
+                self.user = user
+                completion(.success(AppUser(from: self.user)))
             }
         }
     }
     
-    func convertToPermanent(user: User, email: String, pass: String, completion: @escaping (Result<User, WebClientError>) -> Void) {
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
         let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
         
-        user.link(with: credential) { (authResult, error) in
+        user?.link(with: credential) { (authResult, error) in
             
-           if let error = error {
+            if let error = error {
                 completion(.failure(.serverError(error)))
             } else {
                 guard let user = authResult?.user else {
                     completion(.failure(.other(nil)))
                     return
                 }
-                completion(.success(user))
+                self.user = user
+                completion(.success(AppUser(from: self.user)))
             }
         }
     }
     
-    func signIn(email: String, pass: String, completion: @escaping (Result<User, WebClientError>) -> Void) {
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
         
         Auth.auth().signIn(withEmail: email, password: pass) { (authResult, error) in
             
@@ -81,20 +70,42 @@ final class FireStoreClient: FirestoreClientProtocol {
                     completion(.failure(.other(nil)))
                     return
                 }
-                completion(.success(user))
+                //                completion(.success(user))
             }
         }
     }
     
     // ログアウト（Emailログインしている場合）
     func signOut(completion: @escaping (Result<Bool, WebClientError>) -> Void) {
-
+        
         do {
             try Auth.auth().signOut()
             completion(.success(true))
         } catch let signOutError as NSError {
             print ("エラー サインアウト: %@", signOutError)
             completion(.failure(.serverError(signOutError)))
+        }
+    }
+}
+
+extension AppUser {
+    init(from firebaseUser: User?) {
+        
+        if  firebaseUser == nil {
+            // 未認証
+            id = ""
+            name = ""
+            status = .uninitialized
+        } else if firebaseUser!.isAnonymous {
+            // 匿名ログイン
+            id = firebaseUser!.uid
+            name = ""
+            status = .authenticatedAnonymously
+        } else {
+            // ログイン済
+            id = firebaseUser!.uid
+            name = ""
+            status = .authenticatedAnonymously
         }
     }
 }

@@ -7,9 +7,16 @@
 //
 
 struct AppUser {
-    let id: Int
-    let fullName: String
-    let description: String
-    let language: String
-    let stargazersCount: Int
+    let id: String
+    let name: String
+    let status: UserStatus
+}
+
+enum UserStatus {
+    // ユーザー情報が未作成
+    case uninitialized
+    // ログイン状態
+    case authenticated
+    // 匿名ログイン状態
+    case authenticatedAnonymously
 }

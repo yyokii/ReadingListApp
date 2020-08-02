@@ -15,27 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         FirebaseApp.configure()
 
         let now = Date()
         RealmManager.sharedInstance.deleteExpiredItem(now: now)
         RealmManager.sharedInstance.deleteItem(now: now)
         
-        configireUI()
-        return true
-    }
-    
-    private func configireUI() {
-        let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
-        let homeModel = HomeModel()
-        let homePresenter = HomePresenter(view: homeVC, model: homeModel)
-        homeVC.inject(presenter: homePresenter)
-        let homeNav = UINavigationController()
-        homeNav.viewControllers = [homeVC]
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = homeNav
+        // Clean Architectureのレイヤーを構築
+        Application.shared.configure(with: self.window!)
         window?.makeKeyAndVisible()
+
+        return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
