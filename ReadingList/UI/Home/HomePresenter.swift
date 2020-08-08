@@ -30,6 +30,8 @@ protocol  HomePresenterOutput: AnyObject {
 final class  HomePresenter {
     private var view: HomePresenterOutput!
     private weak var authUsecase: AuthUseCaseProtocol!
+    private weak var readingListUseCase:  ReadingListUseCaseProtocol!
+    // TODO: これなくしたいなあ
     private var model: HomeModelInput
     
     let notificationCenter = NotificationCenter.default
@@ -38,10 +40,16 @@ final class  HomePresenter {
     
     private var notFinishedItems: Results<ReadingItem>?
     
-    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, model: HomeModelInput) {
+    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, model: HomeModelInput) {
         self.view = view
         self.authUsecase = authUseCase
+        self.readingListUseCase = readingListUseCase
+        
         self.model = model
+
+        self.readingListUseCase.output = self
+        self.authUsecase.output = self
+        
         
         // （オプションボタンのアクション）リーディングリストの削除を検知
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
@@ -182,12 +190,28 @@ extension  HomePresenter: HomePresenterInput {
 }
 
 extension HomePresenter: AuthUseCaseOutput {
-    func didsignSignInAnonymously() {
+
+    func didFetchUser() {
+        readingListUseCase.fetchReadingItems()
     }
     
     func didsignIn(_ repoStatuses: String) {
     }
     
     func useCaseDidReceiveError(_ error: WebClientError) {
+    }
+}
+
+extension HomePresenter: ReadingListUseCaseOutput {
+    func didUpdateFinishedReadingItems(_ repoStatuses: String) {
+    }
+    
+    func didUpdateReadingItemsWillDelete(_ repoStatuses: String) {
+    }
+    
+    func didUpdateReadingItems(_ repoStatuses: String) {
+    }
+    
+    func useCaseDidReceiveError(_ error: Error) {
     }
 }

@@ -44,3 +44,34 @@ protocol ReadingListUseCaseOutput {
     // Use Caseの関係する処理でエラーがあったときに呼ばれる
     func useCaseDidReceiveError(_ error: Error)
 }
+
+final class ReadingListUseCase: ReadingListUseCaseProtocol {
+    
+    var userGateway: UserGatewayProtocol!
+    
+    func fetchFinishedItems() {
+        
+    }
+    
+    func fetchReadingItemsWillDelete() {
+    }
+    
+    func fetchReadingItems() {
+        userGateway.fetchReadingList { items in
+            print(items)
+        }
+    }
+    
+    func saveReadingItem() {
+    }
+    
+    func deleteReadingItem() {
+    }
+    
+    func finishReading() {
+    }
+    
+    var output: ReadingListUseCaseOutput!
+    
+    
+}

@@ -8,10 +8,7 @@
 
 // Input
 // Use Caseが外側に公開するインターフェイス
-protocol AuthUseCaseProtocol: AnyObject {    
-    // 匿名ログイン
-    func signSignInAnonymously()
-    
+protocol AuthUseCaseProtocol: AnyObject {
     // ユーザー情報取得
     func fetchUser()
     
@@ -27,8 +24,8 @@ protocol AuthUseCaseProtocol: AnyObject {
 
 // Output
 protocol AuthUseCaseOutput {
-    // 匿名ログイン完了
-    func didsignSignInAnonymously()
+    // ユーザー情報取得完了
+    func didFetchUser()
     
     // Emailログイン完了
     func didsignIn(_ repoStatuses: String)
@@ -39,6 +36,9 @@ protocol AuthUseCaseOutput {
 
 
 protocol UserGatewayProtocol {
+    /// リーディングリスト情報取得
+    func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void)
+    
     /// ユーザー情報取得
     func fetchUser(completion: @escaping (AppUser) -> Void)
     
@@ -53,9 +53,6 @@ final class AuthUseCase: AuthUseCaseProtocol {
     var userGateway: UserGatewayProtocol!
     var output: AuthUseCaseOutput!
     
-    func signSignInAnonymously() {
-    }
-    
     func fetchUser() {
         userGateway.fetchUser {[weak self] user in
             
@@ -66,14 +63,18 @@ final class AuthUseCase: AuthUseCaseProtocol {
                 self.userGateway.signSignInAnonymously { (res) in
                     switch res {
                     case .success(let appUser):
+                        self.output.didFetchUser()
                         break
                     case .failure(let error):
+                        self.output.useCaseDidReceiveError(error)
                         break
                     }
                 }
             case .authenticatedAnonymously:
+                self.output.didFetchUser()
                 break
             case .authenticated:
+                self.output.didFetchUser()
                 break
             }
         }
@@ -85,5 +86,4 @@ final class AuthUseCase: AuthUseCaseProtocol {
     func signOut() {
         
     }
-    
 }

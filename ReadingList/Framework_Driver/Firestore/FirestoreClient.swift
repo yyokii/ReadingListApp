@@ -7,13 +7,31 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 
 final class FireStoreClient: FirestoreClientProtocol {
     
-    private var user: User?
+    private var user: User!
     let auth = Auth.auth()
+    let fireStore = Firestore.firestore()
     
     func fetchReadingList(completion: @escaping () -> Void) {
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+
+        ref.getDocuments { (shapShot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                
+                let items = shapShot!.documents.map {
+                     try? $0.data(as: ReadingListItem.self)
+                }
+                print(items)
+            }
+        }
     }
     
     func fetchUser(completion: @escaping (AppUser) -> Void) {

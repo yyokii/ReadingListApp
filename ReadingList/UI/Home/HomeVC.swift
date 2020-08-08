@@ -29,7 +29,8 @@ class HomeVC: UIViewController {
         // todo: modelを後から外したい
         let homeModel = HomeModel()
         let authUseCase: AuthUseCase! = Application.shared.authUseCase
-        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, model: homeModel)
+        let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
+        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, model: homeModel)
         authUseCase.output = homePresenter
         
         homeVC.inject(homePresenter: homePresenter)

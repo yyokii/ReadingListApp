@@ -96,8 +96,9 @@
 		F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */; };
 		F54961D724A8CAD200426D92 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961D624A8CAD200426D92 /* FirestoreClient.swift */; };
 		F54961D924A8ECCD00426D92 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961D824A8ECCD00426D92 /* AppError.swift */; };
-		F564C5B824B0AAD70076E770 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564C5B724B0AAD70076E770 /* ReadingListItem.swift */; };
 		F564C5BA24B1F22B0076E770 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564C5B924B1F22B0076E770 /* Application.swift */; };
+		F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */; };
+		F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F7B75A3871378CB10E6C603D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */; };
 		F7F97F5544AA97CAF7318105 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABAFCC851975C7C9F72326 /* HomeVC.swift */; };
 		F9577E6F2196621272C4747A /* TodayDeleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6719619F55E0F84AC4D0126 /* TodayDeleteTableVC.swift */; };
@@ -128,7 +129,6 @@
 		3D11ED2415881B874B286341 /* NoReadingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReadingListItemView.swift; sourceTree = "<group>"; };
 		3E175A2B09E40C2A3FF85940 /* WebHowtoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebHowtoView.swift; sourceTree = "<group>"; };
 		41F5814CF21086B8B70B3DE1 /* TutorialDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialDialogView.xib; sourceTree = "<group>"; };
-		44015697F6EAE116E2CE1EE1 /* Pods_GateWay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GateWay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D7335CB3015E1F2D3C20CE /* SwitchBtnTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchBtnTableViewCell.xib; sourceTree = "<group>"; };
 		49A6659F58B80AB592D370BF /* ArticleWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebPresenter.swift; sourceTree = "<group>"; };
 		4A2EF2388A63CDB5197B7D29 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
@@ -146,12 +146,10 @@
 		7E8ED9D760D7024FCCA613D9 /* ReadingItemDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadingItemDialogView.xib; sourceTree = "<group>"; };
 		7E910F2A44961E141098CA27 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		7EC47CDA185202B4E75803A9 /* NoFinishedListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFinishedListItemView.xib; sourceTree = "<group>"; };
-		805BF80E7730D50CB654F67B /* Pods-GateWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GateWay.debug.xcconfig"; path = "Target Support Files/Pods-GateWay/Pods-GateWay.debug.xcconfig"; sourceTree = "<group>"; };
 		8094DF20AFA7919FD13055A0 /* ArticleListPanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListPanelLayout.swift; sourceTree = "<group>"; };
 		825F9769118B15541457BA03 /* ItemOptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionVC.swift; sourceTree = "<group>"; };
 		85698107CB94F3D56AB48F0E /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		87E1F29CBAB67BA5BD37F232 /* NoReadingListItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReadingListItemView.xib; sourceTree = "<group>"; };
-		8A7F4EB9EC970E2A137FD5E3 /* Entity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Entity.framework; sourceTree = "<group>"; };
 		8F34ECA6EAFAF086541F0A54 /* Pods-ReadingList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadingList.release.xcconfig"; path = "Target Support Files/Pods-ReadingList/Pods-ReadingList.release.xcconfig"; sourceTree = "<group>"; };
 		90A30BFA0BA34CB28F2CD2C6 /* ReadingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListModel.swift; sourceTree = "<group>"; };
 		93D24349AFF6354562AA6388 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 		B76DF926B5E6426F3BA30A54 /* DeletedList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeletedList.storyboard; sourceTree = "<group>"; };
 		B7FEF1D64A7958A79E6BFB95 /* ReadingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadingList.entitlements; sourceTree = "<group>"; };
 		BF13F0D57CE978508BB6EBDB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		BF85118FB8FD0BD9F82EECE0 /* GateWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GateWay.framework; sourceTree = "<group>"; };
 		C4B3E9040A0EAB7C7FF77579 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C532105F3D7689B79F20D604 /* GraphView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GraphView.xib; sourceTree = "<group>"; };
 		C686FBF65D7715214576E945 /* ReadingItemDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItemDialogView.swift; sourceTree = "<group>"; };
@@ -177,12 +174,10 @@
 		C92D7D2308ECC3E2A72B6DB5 /* FinishedItemDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishedItemDialogView.xib; sourceTree = "<group>"; };
 		C97191A80A5F02821F97EEDF /* AboutAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppVC.swift; sourceTree = "<group>"; };
 		C9DB3C08DE8D4E2DCF543477 /* WebToolBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebToolBarView.xib; sourceTree = "<group>"; };
-		CB2641A5B8F69CA084946ED7 /* UseCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UseCase.framework; sourceTree = "<group>"; };
 		CCFFDE9209722443F9C2DFFA /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		CDA33D3373B28D4407A21B31 /* AboutAppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutAppTableViewCell.xib; sourceTree = "<group>"; };
 		D055150BE8233884EFC0C375 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D2294AEE48E32223268C493C /* DeletedListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedListVC.swift; sourceTree = "<group>"; };
-		D5316650678A45B7807D2D61 /* Pods-GateWay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GateWay.release.xcconfig"; path = "Target Support Files/Pods-GateWay/Pods-GateWay.release.xcconfig"; sourceTree = "<group>"; };
 		D6719619F55E0F84AC4D0126 /* TodayDeleteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDeleteTableVC.swift; sourceTree = "<group>"; };
 		D8CFCB72041B2F0A55F89EE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB671CB3F4CD3F5C7EE8EF12 /* ReadingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItem.swift; sourceTree = "<group>"; };
@@ -200,9 +195,10 @@
 		F54961D824A8ECCD00426D92 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		F54961DA24A8FE7900426D92 /* UserGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
 		F54961DC24AA301B00426D92 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
-		F564C5B724B0AAD70076E770 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		F564C5B924B1F22B0076E770 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		F56AD8EE7F2D3F7DDDA333CB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreKeyConstant.swift; sourceTree = "<group>"; };
+		F5AAE84524D866DF004DE177 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		FA04E861EC759E7B475FBA2C /* ReadingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadingList.storyboard; sourceTree = "<group>"; };
 		FC002330B7EB54BA1A678A52 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -294,8 +290,6 @@
 			children = (
 				34E93240C19642FC51C460C0 /* Pods-ReadingList.debug.xcconfig */,
 				8F34ECA6EAFAF086541F0A54 /* Pods-ReadingList.release.xcconfig */,
-				805BF80E7730D50CB654F67B /* Pods-GateWay.debug.xcconfig */,
-				D5316650678A45B7807D2D61 /* Pods-GateWay.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -531,12 +525,8 @@
 		B9CE6C896D7FFC4AE8CF20D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8A7F4EB9EC970E2A137FD5E3 /* Entity.framework */,
-				BF85118FB8FD0BD9F82EECE0 /* GateWay.framework */,
 				EC1E12C8769A18F2E92EB233 /* Pods_ReadingList.framework */,
-				CB2641A5B8F69CA084946ED7 /* UseCase.framework */,
 				1B6999D76AEC8A3D4AB9AD3F /* WebKit.framework */,
-				44015697F6EAE116E2CE1EE1 /* Pods_GateWay.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -574,7 +564,7 @@
 			children = (
 				F54961D824A8ECCD00426D92 /* AppError.swift */,
 				F54961DC24AA301B00426D92 /* AppUser.swift */,
-				F564C5B724B0AAD70076E770 /* ReadingListItem.swift */,
+				F5AAE84524D866DF004DE177 /* ReadingListItem.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -634,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				F54961D624A8CAD200426D92 /* FirestoreClient.swift */,
+				F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -856,9 +847,9 @@
 				9D09A083E0C9879AAE8A0C50 /* AboutAppTableViewCell.swift in Sources */,
 				DA099F09539F0895727485E0 /* AboutAppVC.swift in Sources */,
 				F7B75A3871378CB10E6C603D /* AppDelegate.swift in Sources */,
+				F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */,
 				6B26C57E7D2985A35C3D72B7 /* ArticleCollectionViewCell.swift in Sources */,
 				F54961D724A8CAD200426D92 /* FirestoreClient.swift in Sources */,
-				F564C5B824B0AAD70076E770 /* ReadingListItem.swift in Sources */,
 				333E80E8B1A9BE0BB7ABC5FE /* ArticleListGridVC.swift in Sources */,
 				CFCD4A026927EA38030C3C69 /* ArticleListPanelLayout.swift in Sources */,
 				4F74B06788F2843FC40E808F /* ArticleTableViewCell.swift in Sources */,
@@ -908,6 +899,7 @@
 				361A5133061B752F4161B3AE /* TutorialDialogView.swift in Sources */,
 				C871C1C5004C46F1B74069BD /* UIImageView+Extension.swift in Sources */,
 				1835B707AABB5CB8A823BF1D /* UIView+Extension.swift in Sources */,
+				F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */,
 				8460D33E35F2629FA00DDC5F /* UserDefaultManager.swift in Sources */,
 				47EDEDBE804BA72F4C77EB4F /* WebHowtoView.swift in Sources */,
 				46261E4728C150CE36D7BAE2 /* WebToolBarView.swift in Sources */,

@@ -8,6 +8,8 @@
 
 import Foundation
 
+// 全部ここにおいても見ないから、個別に書いたほうがよくない？そしたら散乱するかね？まとめることの意味あるかな？設計にもよるか、せめて各階層ごとに定数定義するようにしないとねと。
+
 enum ListType {
     case ReadingList
     case FinishedList

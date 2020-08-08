@@ -9,7 +9,7 @@
 protocol FirestoreClientProtocol {
     
     /// リーディングリスト情報取得
-    func fetchReadingList( completion: @escaping () -> Void)
+    func    fetchReadingList( completion: @escaping () -> Void)
     
     /// 任意のアイテムを削除
     func deleteReadingItem()
@@ -40,6 +40,12 @@ final class UserGateway: UserGatewayProtocol {
     
     init(useCase: AuthUseCaseProtocol) {
         self.useCase = useCase
+    }
+    
+    func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void) {
+        fireStoreClient.fetchReadingList {
+//            completion()
+        }
     }
     
     func fetchUser(completion: @escaping (AppUser) -> Void) {

@@ -8,6 +8,7 @@ target 'ReadingList' do
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
   pod 'FloatingPanel', '>= 1.6.4'
   pod 'LicensePlist'
   pod 'AMPopTip'
@@ -15,8 +16,4 @@ target 'ReadingList' do
   pod 'SwiftMessages'
   pod 'SwiftLinkPreview', '~> 3.1'
   
-end
-
-target 'GateWay' do
-  use_frameworks!
 end

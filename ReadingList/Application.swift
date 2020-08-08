@@ -15,7 +15,7 @@ class Application {
 
     // ユースケース
     private(set) var authUseCase: AuthUseCase!
-//    private(set) var redingListUseCase: !
+    private(set) var redingListUseCase: ReadingListUseCase!
 
     func configure(with window: UIWindow) {
         buildLayer()
@@ -30,18 +30,20 @@ class Application {
 
         // -- Use Case
         authUseCase = AuthUseCase()
+        redingListUseCase = ReadingListUseCase()
 
         // -- Interface Adapters
         let userGateway = UserGateway(useCase: authUseCase)
-
-        // Use Caseとのバインド
-        authUseCase.userGateway = userGateway
 
         // -- Framework & Drivers
         let fireStoreClient = FireStoreClient()
 
         // Interface Adaptersとのバインド
         userGateway.fireStoreClient = fireStoreClient
+        
+        // Use Caseとのバインド
+        authUseCase.userGateway = userGateway
+        redingListUseCase.userGateway = userGateway
         
         // Presenterの作成・バインドは各ViewControllerを生成するクラスが実施
     }

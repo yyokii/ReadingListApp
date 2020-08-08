@@ -28,17 +28,6 @@ class UserDefaultManager {
         sharedDefaults.set(false, forKey: Constant.UserDefault.firstOpenArticleView)
     }
     
-    /// リーディングリスト画面が起動済みかどうか
-    func isFirstOpenReadingListView() -> Bool {
-        sharedDefaults.register(defaults: [Constant.UserDefault.firstOpenReadingListView: true])
-        return sharedDefaults.bool(forKey: Constant.UserDefault.firstOpenReadingListView)
-    }
-    
-    /// リーディングリスト画面が起動済みであることを保存する
-    func setFirstOpenReadingListView() {
-        sharedDefaults.set(false, forKey: Constant.UserDefault.firstOpenReadingListView)
-    }
-    
     /// webViewが起動済みかどうか
     func isFirstOpenArticleWebView() -> Bool {
         sharedDefaults.register(defaults: [Constant.UserDefault.firstOpenArticleWebView: true])
@@ -62,6 +51,8 @@ class UserDefaultManager {
             sharedDefaults.set([readingItem], forKey: Constant.UserDefault.readingItem)
         }
     }
+    
+    // TODO: これcodableでやればいいのに
     
     /// 保存している記事情報を取得
     func fetchReadingItems() -> [[String:String]]? {
