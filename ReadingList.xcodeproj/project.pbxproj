@@ -102,6 +102,13 @@
 		F5AAE88524DFC274004DE177 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFFDE9209722443F9C2DFFA /* UserDefaultManager.swift */; };
 		F5AAE88724DFD447004DE177 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85698107CB94F3D56AB48F0E /* Date+Extension.swift */; };
 		F5AAE88924E048D1004DE177 /* ReadingListGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE88824E048D0004DE177 /* ReadingListGateway.swift */; };
+		F5AAE88B24E04A57004DE177 /* FirestoreClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE88A24E04A57004DE177 /* FirestoreClientProtocol.swift */; };
+		F5AAE88D24E04AA4004DE177 /* UserGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE88C24E04AA4004DE177 /* UserGatewayProtocol.swift */; };
+		F5AAE88F24E04AC6004DE177 /* AuthUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE88E24E04AC6004DE177 /* AuthUseCaseProtocol.swift */; };
+		F5AAE89124E04AF7004DE177 /* ReadingListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE89024E04AF7004DE177 /* ReadingListUseCaseProtocol.swift */; };
+		F5AAE89324E04BE8004DE177 /* ReadingListGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE89224E04BE8004DE177 /* ReadingListGatewayProtocol.swift */; };
+		F5AAE89524E04D59004DE177 /* UserDefaultsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE89424E04D59004DE177 /* UserDefaultsDataStore.swift */; };
+		F5AAE89724E04E3D004DE177 /* DataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE89624E04E3D004DE177 /* DataStoreProtocol.swift */; };
 		F7B75A3871378CB10E6C603D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */; };
 		F7F97F5544AA97CAF7318105 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECABAFCC851975C7C9F72326 /* HomeVC.swift */; };
 		F9577E6F2196621272C4747A /* TodayDeleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6719619F55E0F84AC4D0126 /* TodayDeleteTableVC.swift */; };
@@ -232,6 +239,13 @@
 		F5AAE88024DFC164004DE177 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		F5AAE88624DFC2EF004DE177 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		F5AAE88824E048D0004DE177 /* ReadingListGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListGateway.swift; sourceTree = "<group>"; };
+		F5AAE88A24E04A57004DE177 /* FirestoreClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClientProtocol.swift; sourceTree = "<group>"; };
+		F5AAE88C24E04AA4004DE177 /* UserGatewayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGatewayProtocol.swift; sourceTree = "<group>"; };
+		F5AAE88E24E04AC6004DE177 /* AuthUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCaseProtocol.swift; sourceTree = "<group>"; };
+		F5AAE89024E04AF7004DE177 /* ReadingListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListUseCaseProtocol.swift; sourceTree = "<group>"; };
+		F5AAE89224E04BE8004DE177 /* ReadingListGatewayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListGatewayProtocol.swift; sourceTree = "<group>"; };
+		F5AAE89424E04D59004DE177 /* UserDefaultsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataStore.swift; sourceTree = "<group>"; };
+		F5AAE89624E04E3D004DE177 /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
 		FA04E861EC759E7B475FBA2C /* ReadingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadingList.storyboard; sourceTree = "<group>"; };
 		FC002330B7EB54BA1A678A52 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -403,6 +417,10 @@
 		32F2DD9E56C7232D186B90B8 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				F5AAE88C24E04AA4004DE177 /* UserGatewayProtocol.swift */,
+				F5AAE89224E04BE8004DE177 /* ReadingListGatewayProtocol.swift */,
+				F5AAE88E24E04AC6004DE177 /* AuthUseCaseProtocol.swift */,
+				F5AAE89024E04AF7004DE177 /* ReadingListUseCaseProtocol.swift */,
 				0A81377A62EC4B33B0B85634 /* AuthUseCase.swift */,
 				25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */,
 			);
@@ -562,6 +580,8 @@
 		C526CABFEAA7F016B8E09CEF /* Gateway */ = {
 			isa = PBXGroup;
 			children = (
+				F5AAE89624E04E3D004DE177 /* DataStoreProtocol.swift */,
+				F5AAE88A24E04A57004DE177 /* FirestoreClientProtocol.swift */,
 				F5AAE84824DEC0A1004DE177 /* UserGateway.swift */,
 				F5AAE88824E048D0004DE177 /* ReadingListGateway.swift */,
 			);
@@ -645,6 +665,7 @@
 		F54961D424A8CAA300426D92 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				F5AAE89424E04D59004DE177 /* UserDefaultsDataStore.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -903,6 +924,7 @@
 				F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */,
 				6B26C57E7D2985A35C3D72B7 /* ArticleCollectionViewCell.swift in Sources */,
 				F54961D724A8CAD200426D92 /* FirestoreClient.swift in Sources */,
+				F5AAE89324E04BE8004DE177 /* ReadingListGatewayProtocol.swift in Sources */,
 				333E80E8B1A9BE0BB7ABC5FE /* ArticleListGridVC.swift in Sources */,
 				F5AAE88924E048D1004DE177 /* ReadingListGateway.swift in Sources */,
 				CFCD4A026927EA38030C3C69 /* ArticleListPanelLayout.swift in Sources */,
@@ -920,6 +942,8 @@
 				CD659F196D339BAD3FAC1075 /* DeletedListVC.swift in Sources */,
 				62D121F9E5D10C3AFC944FCC /* FinishedItemDialogView.swift in Sources */,
 				6E079E80AE41855A75EE26F5 /* FloatingVC.swift in Sources */,
+				F5AAE88D24E04AA4004DE177 /* UserGatewayProtocol.swift in Sources */,
+				F5AAE89124E04AF7004DE177 /* ReadingListUseCaseProtocol.swift in Sources */,
 				F54961D924A8ECCD00426D92 /* AppError.swift in Sources */,
 				56FDF905122D2C96D9EDF3FC /* FloatingViewModel.swift in Sources */,
 				99B2ED249D4EF22EBBC5EE6E /* FloatingViewPresenter.swift in Sources */,
@@ -929,17 +953,21 @@
 				119CCFB0E6D5DEB4BCAC2884 /* HomeModel.swift in Sources */,
 				A8A0369260C9A2B9E2B585E9 /* HomePresenter.swift in Sources */,
 				F7F97F5544AA97CAF7318105 /* HomeVC.swift in Sources */,
+				F5AAE88F24E04AC6004DE177 /* AuthUseCaseProtocol.swift in Sources */,
 				F1A402723B35C234ADE3153E /* Indicator.swift in Sources */,
 				D03DFC12BFE2E87FF9D0722D /* ItemOptionVC.swift in Sources */,
 				AFF330D97678CC4F1997A4CF /* NoFinishedListItemView.swift in Sources */,
+				F5AAE88B24E04A57004DE177 /* FirestoreClientProtocol.swift in Sources */,
 				DF24E97DAD1B0A706402D06C /* NoReadingListItemView.swift in Sources */,
 				F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */,
 				0E39BBD0C8FAC0355536B24D /* Notification+Extension.swift in Sources */,
 				732BB65B392840B544E52943 /* NotificationManager.swift in Sources */,
+				F5AAE89524E04D59004DE177 /* UserDefaultsDataStore.swift in Sources */,
 				F535AEA524AB783900FCB375 /* AppUser.swift in Sources */,
 				C004C29ECAB10B6FF85CE8FC /* ReadingItem.swift in Sources */,
 				56131DCD262892FDB0344743 /* ReadingItemDialogView.swift in Sources */,
 				A0A92C56F1FB09615381F19F /* ReadingListModel.swift in Sources */,
+				F5AAE89724E04E3D004DE177 /* DataStoreProtocol.swift in Sources */,
 				3E8FBD3728A5B70BD632385B /* ReadingListPresenter.swift in Sources */,
 				38EF4FBB11C56A4E8A6D70A7 /* ReadingListTableVC.swift in Sources */,
 				41E0B43B41E5B91CA9C956F0 /* RealmManager.swift in Sources */,

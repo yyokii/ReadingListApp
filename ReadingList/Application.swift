@@ -34,16 +34,20 @@ class Application {
 
         // -- Interface Adapters
         let userGateway = UserGateway(useCase: authUseCase)
+        let readingListGateway = ReadingListGateway(useCase: redingListUseCase)
 
         // -- Framework & Drivers
         let fireStoreClient = FireStoreClient()
-
+        let userDefaultsDataStore = UserDefaultsDataStore(userDefaults: UserDefaults.standard)
+        
         // Interface Adaptersとのバインド
         userGateway.fireStoreClient = fireStoreClient
+        readingListGateway.fireStoreClient = fireStoreClient
+        readingListGateway.dataStore = userDefaultsDataStore
         
         // Use Caseとのバインド
         authUseCase.userGateway = userGateway
-        redingListUseCase.userGateway = userGateway
+        redingListUseCase.readingListGateway = readingListGateway
         
         // Presenterの作成・バインドは各ViewControllerを生成するクラスが実施
     }

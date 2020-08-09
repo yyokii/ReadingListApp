@@ -6,52 +6,6 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
-// Input
-// Use Caseが外側に公開するインターフェイス
-protocol AuthUseCaseProtocol: AnyObject {
-    // ユーザー情報取得
-    func fetchUser()
-    
-    // Emailログイン
-    func signIn()
-    
-    // ログアウト（Emailログインしている場合）
-    func signOut()
-    
-    var output: AuthUseCaseOutput! { get set }
-    var userGateway: UserGatewayProtocol! { get set }
-}
-
-// Output
-protocol AuthUseCaseOutput {
-    // ユーザー情報取得完了
-    func didFetchUser()
-    
-    // Emailログイン完了
-    func didsignIn(_ repoStatuses: String)
-    
-    // Use Caseの関係する処理でエラーがあったときに呼ばれる
-    func useCaseDidReceiveError(_ error: WebClientError)
-}
-
-
-protocol UserGatewayProtocol {
-    
-    func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
-    
-    /// リーディングリスト情報取得
-    func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void)
-    
-    /// ユーザー情報取得
-    func fetchUser(completion: @escaping (AppUser) -> Void)
-    
-    /// Emailログイン
-    func signIn(with email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
-    
-    /// 匿名ログイン
-    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void)
-}
-
 final class AuthUseCase: AuthUseCaseProtocol {
     var userGateway: UserGatewayProtocol!
     var output: AuthUseCaseOutput!

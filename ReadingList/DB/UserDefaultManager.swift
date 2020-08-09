@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 
+// TODO: これも消したい userdefaultsdatastoreに移行したい
 class UserDefaultManager {
     static let shareInstance = UserDefaultManager()
     var sharedDefaults = UserDefaults(suiteName: Constant.UserDefault.suiteName)!

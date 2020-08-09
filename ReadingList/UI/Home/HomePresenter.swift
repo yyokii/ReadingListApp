@@ -63,7 +63,7 @@ final class  HomePresenter {
         
         // アプリがフォアグラウンドになってことを検知
         notificationCenter.addObserver(
-            self, selector: #selector(addReadingItem), name: UIApplication.didBecomeActiveNotification, object: nil
+            self, selector: #selector(saveReadingItem), name: UIApplication.didBecomeActiveNotification, object: nil
         )
     }
     
@@ -81,7 +81,7 @@ final class  HomePresenter {
     @objc private func fetchAndUpdateList() {
         
         // 記事情報更新 // TODO: viewWillappearでもuserdefult見にいく必要ある？多分ない
-        addReadingItem()
+        saveReadingItem()
         // 未読アイテム取得
         notFinishedItems = model.fetchNotFinishedItems()
         let now = Date()
@@ -140,12 +140,9 @@ final class  HomePresenter {
         return readingItems
     }
     
-    /// シェアしたものを確認してRealmに保存
-    @objc private func addReadingItem() {
-                
-        if let items = UserDefaultManager.shareInstance.fetchReadingItems() {
-            readingListUseCase.saveReadingItem(items: items)
-        }
+    
+    @objc private func saveReadingItem() {
+        readingListUseCase.saveReadingItem()
     }
     
     /// 削除アクションされたアイテムを削除しリストを更新
