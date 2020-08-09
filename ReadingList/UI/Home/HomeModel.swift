@@ -10,18 +10,20 @@ import Foundation
 import RealmSwift
 
 protocol HomeModelInput {
-    func addItemToRealm(from dicItems: [[String:String]])
+
+    //    func addItemToRealm(from dicItems: [[String:String]])
     func fetchNotFinishedItems() -> Results<ReadingItem>?
     func deleteItem(readingItem: ReadingItem)
     func changeItemStateToReading(item: ReadingItem)
 }
 
 final class HomeModel: HomeModelInput {
-    /// 配列に格納されているアイテムをrealmに変換し保存
-    func addItemToRealm(from dicItems: [[String:String]]) {
-        
-        RealmManager.sharedInstance.addItemToRealm(from: dicItems)
-    }
+    
+//    /// 配列に格納されているアイテムをrealmに変換し保存
+//    func addItemToRealm(from dicItems: [[String:String]]) {
+//
+//        RealmManager.sharedInstance.addItemToRealm(from: dicItems)
+//    }
     
     /// 特定のアイテムを削除
     func deleteItem(readingItem: ReadingItem) {

@@ -8,6 +8,7 @@
 
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class FireStoreClient: FirestoreClientProtocol {
     
@@ -15,19 +16,47 @@ final class FireStoreClient: FirestoreClientProtocol {
     let auth = Auth.auth()
     let fireStore = Firestore.firestore()
     
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        // FireStoreに保存するデータ整形
+        let saveItems = items.map {
+            [Constant.ReadingItem.title : $0[Constant.ReadingItem.title] as! String, Constant.ReadingItem.url: $0[Constant.ReadingItem.url] as! String, Constant.ReadingItem.createdDate: Timestamp(date: $0[Constant.ReadingItem.createdDate] as! Date) , Constant.ReadingItem.dueDate: Timestamp(date: $0[Constant.ReadingItem.dueDate] as! Date), Constant.ReadingItem.isDeleted: false]
+        }
+        
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+        
+        // バッチ書き込み
+        let batch: WriteBatch = fireStore.batch()
+        
+        saveItems.forEach {
+            batch.setData($0, forDocument: ref.document())
+        }
+        
+        batch.commit() { err in
+            if let err = err {
+                completion(.failure(.serverError(err)))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+    
     func fetchReadingList(completion: @escaping () -> Void) {
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
             .document(user.uid)
             .collection(FiryeStoreKeyConstant.items)
-
+        
         ref.getDocuments { (shapShot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 
                 let items = shapShot!.documents.map {
-                     try? $0.data(as: ReadingListItem.self)
+                    try? $0.data(as: ReadingListItem.self)
                 }
                 print(items)
             }
@@ -102,28 +131,6 @@ final class FireStoreClient: FirestoreClientProtocol {
         } catch let signOutError as NSError {
             print ("エラー サインアウト: %@", signOutError)
             completion(.failure(.serverError(signOutError)))
-        }
-    }
-}
-
-extension AppUser {
-    init(from firebaseUser: User?) {
-        
-        if  firebaseUser == nil {
-            // 未認証
-            id = ""
-            name = ""
-            status = .uninitialized
-        } else if firebaseUser!.isAnonymous {
-            // 匿名ログイン
-            id = firebaseUser!.uid
-            name = ""
-            status = .authenticatedAnonymously
-        } else {
-            // ログイン済
-            id = firebaseUser!.uid
-            name = ""
-            status = .authenticatedAnonymously
         }
     }
 }

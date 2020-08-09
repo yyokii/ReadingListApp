@@ -9,7 +9,10 @@
 protocol FirestoreClientProtocol {
     
     /// リーディングリスト情報取得
-    func    fetchReadingList( completion: @escaping () -> Void)
+    func fetchReadingList(completion: @escaping () -> Void)
+    
+    /// アイテムを保存
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// 任意のアイテムを削除
     func deleteReadingItem()
@@ -42,9 +45,22 @@ final class UserGateway: UserGatewayProtocol {
         self.useCase = useCase
     }
     
+    func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        fireStoreClient.addReadingItems(items: items) { res in
+            
+            switch res {
+            case .success:
+                completion(.success(nil))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
+    }
+    
     func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void) {
         fireStoreClient.fetchReadingList {
-//            completion()
+            //            completion()
         }
     }
     

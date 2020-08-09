@@ -10,7 +10,8 @@ import Foundation
 
 extension Notification.Name {
     
-    // MARL: アイテムオプション
+    // TODO: これ不要そうだからけしたいなあ
+    // MARK: アイテムオプション
     
     // リーディングリストに戻す
     static let changeItemStateToReading = Notification.Name("changeItemStateToReading")

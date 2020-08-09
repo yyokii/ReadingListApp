@@ -2,13 +2,14 @@
 //  ShareViewController.swift
 //  ShareExtension
 //
-//  Created by Yoki Higashihara on 2019/04/14.
-//  Copyright © 2019 Yoki Higashihara. All rights reserved.
+//  Created by 東原与生 on 2020/08/09.
+//  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
 import UIKit
 import Social
 import MobileCoreServices
+import FirebaseFirestore
 
 class ShareViewController: SLComposeServiceViewController {
     
@@ -25,11 +26,11 @@ class ShareViewController: SLComposeServiceViewController {
         controller.navigationItem.leftBarButtonItem!.title = "戻る⏪"
         
     }
-
+    
     override func isContentValid() -> Bool {
         return true
     }
-
+    
     override func didSelectPost() {
         let extensionItem: NSExtensionItem = self.extensionContext?.inputItems.first as! NSExtensionItem
         let itemProvider = (extensionItem.attachments?.first)!
@@ -44,28 +45,29 @@ class ShareViewController: SLComposeServiceViewController {
                     }
                     
                     let now = Date()
-                    // 日付取得
-                    let formatter = Date.getFormatter()
-                    let dateString = formatter.string(from: now)
+                    //                    // 日付取得
+                    //                    let formatter = Date.getFormatter()
+                    //                    let dateString = formatter.string(from: now)
                     
                     // 一週間後の日付（=読み終わり予定の期限日）を取得
                     let calendar = Calendar.current
                     let dueDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: now)
                     guard let due = dueDate else { return }
-                    let dueDateString = formatter.string(from: due)
+                    //                    let dueDateString = formatter.string(from: due)
                     
                     // 保存
-                    var itemDic = Dictionary<String, String>()
-                    itemDic = [Constant.ReadingItem.title : title, Constant.ReadingItem.url: itemUrl, Constant.ReadingItem.createdDate: dateString, Constant.ReadingItem.dueDate: dueDateString, Constant.ReadingItem.finishedDate: ""]
+                    var itemDic = Dictionary<String, Any>()
+                    itemDic = [Constant.ReadingItem.title : title, Constant.ReadingItem.url: itemUrl, Constant.ReadingItem.createdDate: now, Constant.ReadingItem.dueDate: due]
                     UserDefaultManager.shareInstance.addReadingItem(readingItem: itemDic)
                 }
                 self?.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
             })
         }
     }
-
+    
     // 追加項目の設定
     override func configurationItems() -> [Any]! {
         return []
     }
 }
+

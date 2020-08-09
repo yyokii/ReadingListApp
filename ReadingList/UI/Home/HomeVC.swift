@@ -48,7 +48,6 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
-        presenter.viewWillAppear()
     }
     
     private func configureView() {        
@@ -62,11 +61,6 @@ class HomeVC: UIViewController {
     private func configureFloatingPanel() {
         floatingPanelController = FloatingPanelController()
         floatingPanelController.delegate = self
-        //        if #available(iOS 11, *) {
-        //            floatingPanelController.surfaceView.cornerRadius =
-        //        } else {
-        //            floatingPanelController.surfaceView.cornerRadius = 0.0
-        //        }
         let storyboard: UIStoryboard = UIStoryboard(name: "FloatingVC", bundle: nil)
         let floatingVC = storyboard.instantiateInitialViewController() as! FloatingVC
         let floatingViewModel = FloatingViewModel()

@@ -36,6 +36,9 @@ protocol AuthUseCaseOutput {
 
 
 protocol UserGatewayProtocol {
+    
+    func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    
     /// リーディングリスト情報取得
     func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void)
     

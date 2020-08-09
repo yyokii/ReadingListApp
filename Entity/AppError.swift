@@ -18,7 +18,7 @@ extension WebClientError: LocalizedError {
     var localizedDescription: String {
         switch self {
         case let .serverError(error):
-            return "サーバーエラー: \(error.localizedDescription)"
+            return "エラー: \(error.localizedDescription)"
         case .requestCouldNotBeBuilt:
             return "リクエストが送れませんでした"
         case let .other(error):

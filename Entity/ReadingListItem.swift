@@ -13,7 +13,10 @@ struct ReadingListItem: Codable {
     @DocumentID var id: String?
     let status: String
     let title: String
+    let url: String
     let createdAt: Timestamp
-    let updatedAt: Timestamp
-
+    var dueDate: Timestamp?
+    var finishedReadingDate: Timestamp?
+    var isDeleted: Bool
+    
 }

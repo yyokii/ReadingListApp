@@ -18,8 +18,8 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     func fetchReadingItems()
     
     /// 保存
-    func saveReadingItem()
-
+    func saveReadingItem(items: [[String: Any]])
+    
     /// 削除
     func deleteReadingItem()
     
@@ -32,6 +32,9 @@ protocol ReadingListUseCaseProtocol: AnyObject {
 
 // Output
 protocol ReadingListUseCaseOutput {
+    
+    func didSaveReadingItem()
+    
     // 読み終わったもの一覧が更新されたときに呼ばれる
     func didUpdateFinishedReadingItems(_ repoStatuses: String)
     
@@ -62,7 +65,24 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
         }
     }
     
-    func saveReadingItem() {
+    func saveReadingItem(items: [[String: Any]]) {
+        
+        userGateway.saveItems(items: items) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didSaveReadingItem()
+                // TODO: ここで通知設定を行う
+                // TODO: ここでuserDefaultsのデータを削除する、gatewayを呼ぶ
+                UserDefaultManager.shareInstance.deleteReadingItems()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error)
+                break
+            }
+        }
     }
     
     func deleteReadingItem() {

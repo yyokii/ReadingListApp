@@ -39,7 +39,8 @@ struct Constant {
         static let url = "url"
         static let createdDate = "createdDate"
         static let dueDate = "dueDate"
-        static let finishedDate = "finishedDate"
+        static let finishedDate = "finishedReadingDate"
+        static let isDeleted = "isDeleted"
     }
     
     struct ViewTag {

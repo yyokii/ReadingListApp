@@ -17,3 +17,11 @@ target 'ReadingList' do
   pod 'SwiftLinkPreview', '~> 3.1'
   
 end
+
+target 'ShareExtension' do
+
+  use_frameworks!
+  pod 'AlamofireImage'
+  pod 'FirebaseFirestoreSwift'
+
+end

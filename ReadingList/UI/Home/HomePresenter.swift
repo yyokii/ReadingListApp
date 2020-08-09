@@ -46,20 +46,29 @@ final class  HomePresenter {
         self.readingListUseCase = readingListUseCase
         
         self.model = model
-
+        
         self.readingListUseCase.output = self
         self.authUsecase.output = self
         
-        
+        setupNotificationCenter()
+    }
+    
+    private func setupNotificationCenter() {
+        // TODO: 不要な気がするから削除したい
         // （オプションボタンのアクション）リーディングリストの削除を検知
         notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
         // （オプションボタンのアクション）既読リストへの追加を検知
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
         notificationCenter.addObserver(self, selector: #selector(fetchAndUpdateList), name: .updateReadingList, object: nil)
+        
+        // アプリがフォアグラウンドになってことを検知
+        notificationCenter.addObserver(
+            self, selector: #selector(addReadingItem), name: UIApplication.didBecomeActiveNotification, object: nil
+        )
     }
     
     private func updateUserData(items: Results<ReadingItem>?) {
-
+        
         guard let readingItems = items else {
             return
         }
@@ -71,7 +80,7 @@ final class  HomePresenter {
     
     @objc private func fetchAndUpdateList() {
         
-        // 記事情報更新
+        // 記事情報更新 // TODO: viewWillappearでもuserdefult見にいく必要ある？多分ない
         addReadingItem()
         // 未読アイテム取得
         notFinishedItems = model.fetchNotFinishedItems()
@@ -86,7 +95,7 @@ final class  HomePresenter {
     private func updateTodayDeleteList(now: Date, notFinishedItems: Results<ReadingItem>?) {
         
         let todayDeleteItems: [ReadingItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
-
+        
         if todayDeleteItems.count > 0 {
             view.updateTodayDeleteList(items: todayDeleteItems)
         } else {
@@ -132,11 +141,10 @@ final class  HomePresenter {
     }
     
     /// シェアしたものを確認してRealmに保存
-    private func addReadingItem() {
+    @objc private func addReadingItem() {
+                
         if let items = UserDefaultManager.shareInstance.fetchReadingItems() {
-            model.addItemToRealm(from: items)
-            // Userdefaultに保存している記事情報を削除
-            UserDefaultManager.shareInstance.deleteReadingItems()
+            readingListUseCase.saveReadingItem(items: items)
         }
     }
     
@@ -162,7 +170,7 @@ final class  HomePresenter {
 }
 
 extension  HomePresenter: HomePresenterInput {
-
+    
     func tapDisplayTodayDeleteView() {
         let items = getTodayDeleteItems(from: notFinishedItems, now: Date())
         view.displayTodayDeleteView(items: items)
@@ -184,13 +192,11 @@ extension  HomePresenter: HomePresenterInput {
         
     }
     
-    func viewWillAppear() {
-        fetchAndUpdateList()
-    }
+    func viewWillAppear() {}
 }
 
 extension HomePresenter: AuthUseCaseOutput {
-
+    
     func didFetchUser() {
         readingListUseCase.fetchReadingItems()
     }
@@ -203,6 +209,9 @@ extension HomePresenter: AuthUseCaseOutput {
 }
 
 extension HomePresenter: ReadingListUseCaseOutput {
+    func didSaveReadingItem() {
+    }
+    
     func didUpdateFinishedReadingItems(_ repoStatuses: String) {
     }
     

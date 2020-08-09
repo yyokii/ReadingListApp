@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class UserDefaultManager {
     static let shareInstance = UserDefaultManager()
-    var defaultsStandard = UserDefaults.standard
     var sharedDefaults = UserDefaults(suiteName: Constant.UserDefault.suiteName)!
     
     private init() {}
@@ -42,7 +43,7 @@ class UserDefaultManager {
     // MARK: 記事情報
     
     /// 記事アイテムを追加
-    func addReadingItem(readingItem: [String:String]) {
+    func addReadingItem(readingItem: [String: Any]) {
         if var savedItems = fetchReadingItems() {
             // 保存済みアイテムあり
             savedItems.append(readingItem)
@@ -51,16 +52,14 @@ class UserDefaultManager {
             sharedDefaults.set([readingItem], forKey: Constant.UserDefault.readingItem)
         }
     }
-    
-    // TODO: これcodableでやればいいのに
-    
+        
     /// 保存している記事情報を取得
-    func fetchReadingItems() -> [[String:String]]? {
-        return sharedDefaults.array(forKey: Constant.UserDefault.readingItem) as? [[String:String]]
+    func fetchReadingItems() -> [[String: Any]]? {
+        return sharedDefaults.array(forKey: Constant.UserDefault.readingItem) as? [[String: Any]]
     }
     
     /// 保存している記事情報を空にする = 削除
     func deleteReadingItems() {
-        sharedDefaults.set([[String:String]](), forKey: Constant.UserDefault.readingItem)
+        sharedDefaults.removeObject(forKey: Constant.UserDefault.readingItem)
     }
 }
