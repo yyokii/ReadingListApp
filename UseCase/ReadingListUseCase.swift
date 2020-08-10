@@ -31,6 +31,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 let lessOneDayItems = items.filter { $0.differenceDay(fromDate: now) <= 1 }
                 let moreThanOneDayItems = items.filter { $0.differenceDay(fromDate: now) > 1 }
                 
+                self.output.didUpdateReadingItemsData(items)
                 self.output.didUpdateReadingItemsWillDelete(lessOneDayItems)
                 self.output.didUpdateReadingItems(moreThanOneDayItems)
                 

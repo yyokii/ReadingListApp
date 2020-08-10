@@ -40,7 +40,7 @@ class GraphView: UIView {
     var secondViewConstraint: NSLayoutConstraint!
     var firstViewConstraint: NSLayoutConstraint!
     
-    var datas: GraphViewModel!
+    var datas: GraphViewData!
 
     let popTip = PopTip()
     
@@ -61,7 +61,7 @@ class GraphView: UIView {
         }
     }
     
-    func configureView(datas: GraphViewModel) {
+    func configureView(datas: GraphViewData) {
         self.datas = datas
         
         configurePopTip()

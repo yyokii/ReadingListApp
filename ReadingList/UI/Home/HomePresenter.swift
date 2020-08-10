@@ -19,7 +19,7 @@ protocol HomePresenterInput: AnyObject {
 protocol  HomePresenterOutput: AnyObject {
     func displayTutorialDialog()
     func displayReadingListDialog(item: ReadingListItem)
-    func displayUserData(dataViewModel: GraphViewModel)
+    func displayUserData(viewData: GraphViewData)
     func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
@@ -70,12 +70,7 @@ final class  HomePresenter {
         )
     }
     
-    private func updateUserData(items: [ReadingListItem]) {
-        
-        let dataViewModel = GraphViewModel(items: items)
-        view.displayUserData(dataViewModel: dataViewModel)
-    }
-    
+    // 削除したい
     @objc private func fetchAndUpdateList() {
         
         // 記事情報更新 // TODO: viewWillappearでもuserdefult見にいく必要ある？多分ない
@@ -85,7 +80,7 @@ final class  HomePresenter {
         let now = Date()
         
         // グラフとリスト更新
-        updateUserData(items: notFinishedItems)
+        // updateUserData(items: notFinishedItems)
         updateTodayDeleteList(now: now, notFinishedItems: notFinishedItems)
         updateReadingList(now: now)
     }
@@ -202,6 +197,11 @@ extension HomePresenter: AuthUseCaseOutput {
 }
 
 extension HomePresenter: ReadingListUseCaseOutput {
+    
+    func didUpdateReadingItemsData(_ items: [ReadingListItem]) {
+        let viewData = GraphViewData(items: items)
+        view.displayUserData(viewData: viewData)
+    }
     
     func didUpdateFinishedReadingItems(_ items: [ReadingListItem]) {
     }

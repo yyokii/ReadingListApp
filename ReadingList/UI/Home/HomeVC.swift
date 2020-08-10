@@ -150,8 +150,8 @@ extension HomeVC: HomePresenterOutput {
         noReadingItemsLbl.isHidden = false
     }
     
-    func displayUserData(dataViewModel: GraphViewModel) {
-        graphView.configureView(datas: dataViewModel)
+    func displayUserData(viewData: GraphViewData) {
+        graphView.configureView(datas: viewData)
     }
     
     func displayTutorialDialog() {
