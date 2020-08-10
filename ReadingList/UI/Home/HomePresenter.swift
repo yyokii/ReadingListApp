@@ -23,8 +23,8 @@ protocol  HomePresenterOutput: AnyObject {
     func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
-    func updateTodayDeleteList(items: [ReadingListItem]?)
-    func updateReadingList(items: [ReadingListItem]?)
+    func updateTodayDeleteList(items: [ReadingListItem])
+    func updateReadingList(items: [ReadingListItem])
 }
 
 final class  HomePresenter {
@@ -64,14 +64,14 @@ final class  HomePresenter {
         notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
         notificationCenter.addObserver(self, selector: #selector(fetchAndUpdateList), name: .updateReadingList, object: nil)
         
-        // アプリがフォアグラウンドになってことを検知
+        // アプリがフォアグラウンドになったことを検知
         notificationCenter.addObserver(
             self, selector: #selector(saveReadingItem), name: UIApplication.didBecomeActiveNotification, object: nil
         )
     }
     
     private func updateUserData(items: [ReadingListItem]) {
-
+        
         let dataViewModel = GraphViewModel(items: items)
         view.displayUserData(dataViewModel: dataViewModel)
     }
@@ -90,6 +90,7 @@ final class  HomePresenter {
         updateReadingList(now: now)
     }
     
+    // 削除したいかも
     private func updateTodayDeleteList(now: Date, notFinishedItems: [ReadingListItem]) {
         
         let todayDeleteItems: [ReadingListItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
@@ -97,15 +98,16 @@ final class  HomePresenter {
         if todayDeleteItems.count > 0 {
             view.updateTodayDeleteList(items: todayDeleteItems)
         } else {
-            view.updateTodayDeleteList(items: nil)
+            view.updateTodayDeleteList(items: [ReadingListItem]())
             view.showNoTodayDeleteItemsView()
         }
     }
     
+    // 削除したいかも
     @objc private func updateReadingList(now: Date) {
         
         guard let items = notFinishedItems else {
-            view.updateReadingList(items: nil)
+            view.updateReadingList(items: [ReadingListItem]())
             view.showNoReadingItemsView()
             return
         }
@@ -119,7 +121,7 @@ final class  HomePresenter {
         if readingItems.count > 0 {
             view.updateReadingList(items: readingItems)
         } else {
-            view.updateReadingList(items: nil)
+            view.updateReadingList(items: [ReadingListItem]())
             view.showNoReadingItemsView()
         }
     }
@@ -205,12 +207,23 @@ extension HomePresenter: ReadingListUseCaseOutput {
     }
     
     func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem]) {
+        
+        if items.count > 0 {
+            view.updateTodayDeleteList(items: items)
+        } else {
+            view.updateTodayDeleteList(items: [ReadingListItem]())
+            view.showNoTodayDeleteItemsView()
+        }
     }
     
     func didUpdateReadingItems(_ items: [ReadingListItem]) {
-        // TODO: 値の取得は確認できたので、表示対応をする
-        print("-----------")
-        print(items)
+        
+        if items.count > 0 {
+            view.updateReadingList(items: items)
+        } else {
+            view.updateReadingList(items: [ReadingListItem]())
+            view.showNoReadingItemsView()
+        }
     }
     
     func didSaveReadingItem() {

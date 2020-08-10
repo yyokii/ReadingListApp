@@ -6,6 +6,8 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
+import Foundation
+
 final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
     var readingListGateway: ReadingListGatewayProtocol!
@@ -23,7 +25,14 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
         readingListGateway.fetchReadingList { res in
             switch res {
             case .success(let items):
-                self.output.didUpdateReadingItems(items)
+                
+                let now = Date()
+                
+                let lessOneDayItems = items.filter { $0.differenceDay(fromDate: now) <= 1 }
+                let moreThanOneDayItems = items.filter { $0.differenceDay(fromDate: now) > 1 }
+                
+                self.output.didUpdateReadingItemsWillDelete(lessOneDayItems)
+                self.output.didUpdateReadingItems(moreThanOneDayItems)
                 
                 break
             case .failure(let error):

@@ -19,8 +19,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var noReadingItemsLbl: UILabel!
     
     var floatingPanelController: FloatingPanelController!
-    var displayTodayDeleteItems: [ReadingListItem]?
-    var displayReadingItems: [ReadingListItem]?
+    var displayTodayDeleteItems: [ReadingListItem] = [ReadingListItem]()
+    var displayReadingItems: [ReadingListItem] = [ReadingListItem]()
     
     private weak var presenter: HomePresenterInput!
     
@@ -97,12 +97,12 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
-
+        
         presenter.tapDisplayTodayDeleteView()
     }
     
     @IBAction func tapShowingReadingItems(_ sender: Any) {
-
+        
         let readingListVC = ReadingListTableVC.viewController()
         navigationController?.pushViewController(readingListVC, animated: true)
     }
@@ -121,13 +121,13 @@ extension HomeVC: HomePresenterInjectable {
 }
 
 extension HomeVC: HomePresenterOutput {
-    func updateTodayDeleteList(items: [ReadingListItem]?) {
+    func updateTodayDeleteList(items: [ReadingListItem]) {
         noTodayDeleteItemsLbl.isHidden = true
         displayTodayDeleteItems = items
         todayDeleteCollectionView.reloadData()
     }
     
-    func updateReadingList(items: [ReadingListItem]?) {
+    func updateReadingList(items: [ReadingListItem]) {
         noReadingItemsLbl.isHidden = true
         displayReadingItems = items
         readingCollectionView.reloadData()
@@ -149,7 +149,7 @@ extension HomeVC: HomePresenterOutput {
     func showNoReadingItemsView() {
         noReadingItemsLbl.isHidden = false
     }
-
+    
     func displayUserData(dataViewModel: GraphViewModel) {
         graphView.configureView(datas: dataViewModel)
     }
@@ -179,9 +179,9 @@ extension HomeVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == todayDeleteCollectionView {
-            return displayTodayDeleteItems?.count ?? 0
+            return displayTodayDeleteItems.count
         } else if collectionView == readingCollectionView {
-            return displayReadingItems?.count ?? 0
+            return displayReadingItems.count
         } else {
             return 0
         }
@@ -191,29 +191,25 @@ extension HomeVC: UICollectionViewDataSource {
         if collectionView == todayDeleteCollectionView {
             
             let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
-            if let items = displayTodayDeleteItems {
-                let item = items[indexPath.row]
-                let optionTappedAction = {
-                    self.presenter.tapOptionBtn(item: item)
-                }
-                cell.articleView.articleImage.image = nil
-                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
+            let item = displayTodayDeleteItems[indexPath.row]
+            let optionTappedAction = {
+                self.presenter.tapOptionBtn(item: item)
             }
+            cell.articleView.articleImage.image = nil
+            cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             return cell
             
         } else if collectionView == readingCollectionView {
             
             let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
-            if let items = displayReadingItems {
-                let item = items[indexPath.row]
-                let optionTappedAction = {
-                    self.presenter.tapOptionBtn(item: item)
-                }
-                cell.articleView.articleImage.image = nil
-                cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
+            let item = displayReadingItems[indexPath.row]
+            let optionTappedAction = {
+                self.presenter.tapOptionBtn(item: item)
             }
+            cell.articleView.articleImage.image = nil
+            cell.configureCell(row: indexPath.row, item: item, type: .ReadingList, tapOptionBtnAction: optionTappedAction)
             return cell
-
+            
         } else {
             
             return UICollectionViewCell()
@@ -226,9 +222,9 @@ extension HomeVC: UICollectionViewDelegate {
         
         var item: ReadingListItem?
         if collectionView == todayDeleteCollectionView {
-            item = displayTodayDeleteItems?[indexPath.row]
+            item = displayTodayDeleteItems[indexPath.row]
         } else if collectionView == readingCollectionView {
-            item = displayReadingItems?[indexPath.row]
+            item = displayReadingItems[indexPath.row]
         }
         guard let selectedItem = item else { return }
         let vc = ArticleWebVC.viewController(item: selectedItem)
