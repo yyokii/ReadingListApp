@@ -70,8 +70,8 @@ class NotificationManager {
 //        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 //    }
     
-    func addNotification(item: ReadingItem, type: LocalNotificationType) {
-        guard let dueDate = item.dueDate else { return }
+    func addNotification(item: ReadingListItem, type: LocalNotificationType) {
+        guard let dueDate = item.dueDate?.dateValue() else { return }
         
         var trigger: UNNotificationTrigger!
         // 通知指定日時
@@ -126,7 +126,7 @@ class NotificationManager {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    func deleteNotification(item: ReadingItem) {
+    func deleteNotification(item: ReadingListItem) {
         let id1 = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
         let id2 = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
         

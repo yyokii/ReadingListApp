@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 
 protocol FloatingViewPresenterInput {
-    func optionTapped(item: ReadingItem)
+    func optionTapped(item: ReadingListItem)
     func viewWillAppear()
 }
 
 protocol FloatingViewPresenterOutput: AnyObject {
-    func updateList(results: Results<ReadingItem>)
-    func displayFinishedListDialog(item: ReadingItem)
+    func updateList(results: [ReadingListItem])
+    func displayFinishedListDialog(item: ReadingListItem)
     func displayNoContentView()
     func dismissNoContentView()
 }
@@ -26,7 +26,7 @@ final class  FloatingViewPresenter {
     private var model: FloatingViewModelInput
     
     // オプションをタップされたアイテム
-    var optionTappedItem: ReadingItem!
+    var optionTappedItem: ReadingListItem!
     
     let notificationCenter = NotificationCenter.default
     
@@ -43,16 +43,13 @@ final class  FloatingViewPresenter {
     }
     
     @objc private func fetchFinishedList() {
-        if let items = model.fetchFinishedItems() {
-            if items.count == 0 {
-                view.updateList(results: items)
-                // view.displayNoContentView()
-            } else {
-                view.updateList(results: items)
-                // view.dismissNoContentView()
-            }
-        } else {
+        let items = model.fetchFinishedItems()
+        if items.count == 0 {
+            view.updateList(results: items)
             // view.displayNoContentView()
+        } else {
+            view.updateList(results: items)
+            // view.dismissNoContentView()
         }
     }
     
@@ -78,7 +75,7 @@ final class  FloatingViewPresenter {
 }
 
 extension  FloatingViewPresenter: FloatingViewPresenterInput {
-    func optionTapped(item: ReadingItem) {
+    func optionTapped(item: ReadingListItem) {
         optionTappedItem = item
         view.displayFinishedListDialog(item: item)
     }

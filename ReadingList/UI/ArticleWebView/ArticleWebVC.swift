@@ -20,7 +20,7 @@ class ArticleWebVC: UIViewController {
     private var presenter: ArticleWebPresenterInput!
     
     /// ナビゲーション付きのwebviewを作成する
-    class func viewController (item: ReadingItem) -> UIViewController {
+    class func viewController (item: ReadingListItem) -> UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
         let model = ArticleWebModel()
         let presenter = ArticleWebPresenter.init(view: vc, model: model)

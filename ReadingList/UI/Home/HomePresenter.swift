@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol HomePresenterInput: AnyObject {
-    func tapOptionBtn(item: ReadingItem)
+    func tapOptionBtn(item: ReadingListItem)
     func tapDisplayTodayDeleteView()
     func viewDidLoad()
     func viewWillAppear()
@@ -18,13 +18,13 @@ protocol HomePresenterInput: AnyObject {
 
 protocol  HomePresenterOutput: AnyObject {
     func displayTutorialDialog()
-    func displayReadingListDialog(item: ReadingItem)
+    func displayReadingListDialog(item: ReadingListItem)
     func displayUserData(dataViewModel: GraphViewModel)
-    func displayTodayDeleteView(items: [ReadingItem])
+    func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
-    func updateTodayDeleteList(items: [ReadingItem]?)
-    func updateReadingList(items: [ReadingItem]?)
+    func updateTodayDeleteList(items: [ReadingListItem]?)
+    func updateReadingList(items: [ReadingListItem]?)
 }
 
 final class  HomePresenter {
@@ -38,9 +38,9 @@ final class  HomePresenter {
     
     let notificationCenter = NotificationCenter.default
     
-    private var optionTappedItem: ReadingItem!
+    private var optionTappedItem: ReadingListItem!
     
-    private var notFinishedItems: Results<ReadingItem>?
+    private var notFinishedItems: [ReadingListItem]!
     
     init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, dataStore: DataStoreProtocol, model: HomeModelInput) {
         self.view = view
@@ -70,14 +70,9 @@ final class  HomePresenter {
         )
     }
     
-    private func updateUserData(items: Results<ReadingItem>?) {
-        
-        guard let readingItems = items else {
-            return
-        }
-        
-        let dataViewModel = GraphViewModel(items: readingItems)
-        
+    private func updateUserData(items: [ReadingListItem]) {
+
+        let dataViewModel = GraphViewModel(items: items)
         view.displayUserData(dataViewModel: dataViewModel)
     }
     
@@ -95,9 +90,9 @@ final class  HomePresenter {
         updateReadingList(now: now)
     }
     
-    private func updateTodayDeleteList(now: Date, notFinishedItems: Results<ReadingItem>?) {
+    private func updateTodayDeleteList(now: Date, notFinishedItems: [ReadingListItem]) {
         
-        let todayDeleteItems: [ReadingItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
+        let todayDeleteItems: [ReadingListItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
         
         if todayDeleteItems.count > 0 {
             view.updateTodayDeleteList(items: todayDeleteItems)
@@ -115,9 +110,9 @@ final class  HomePresenter {
             return
         }
         
-        var readingItems: [ReadingItem] = [ReadingItem]()
+        var readingItems: [ReadingListItem] = [ReadingListItem]()
         
-        for item: ReadingItem in items where item.differenceDay(fromDate: now) > 1 {
+        for item: ReadingListItem in items where item.differenceDay(fromDate: now) > 1 {
             readingItems.append(item)
         }
         
@@ -129,14 +124,11 @@ final class  HomePresenter {
         }
     }
     
-    private func getTodayDeleteItems(from items: Results<ReadingItem>?, now: Date) -> [ReadingItem] {
+    private func getTodayDeleteItems(from items: [ReadingListItem], now: Date) -> [ReadingListItem] {
         
-        var readingItems: [ReadingItem] = [ReadingItem]()
+        var readingItems: [ReadingListItem] = [ReadingListItem]()
         
-        guard let items = items else {
-            return readingItems
-        }
-        for item: ReadingItem in items where item.differenceDay(fromDate: now) <= 1 {
+        for item: ReadingListItem in items where item.differenceDay(fromDate: now) <= 1 {
             readingItems.append(item)
         }
         
@@ -176,7 +168,7 @@ extension  HomePresenter: HomePresenterInput {
         view.displayTodayDeleteView(items: items)
     }
     
-    func tapOptionBtn(item: ReadingItem) {
+    func tapOptionBtn(item: ReadingListItem) {
         optionTappedItem = item
         view.displayReadingListDialog(item: item)
     }

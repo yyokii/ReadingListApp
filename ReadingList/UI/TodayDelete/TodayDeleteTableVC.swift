@@ -11,11 +11,11 @@ import RealmSwift
 
 class TodayDeleteTableVC: UITableViewController {
     
-    var displayTodayDeleteItems: [ReadingItem]!
+    var displayTodayDeleteItems: [ReadingListItem]!
     
     private var presenter: TodayDeletePresenterInput!
     
-    static func viewController(items: [ReadingItem]) -> UIViewController {
+    static func viewController(items: [ReadingListItem]) -> UIViewController {
         let todayDeleteVC = UIStoryboard(name: "TodayDelete", bundle: nil).instantiateInitialViewController() as! TodayDeleteTableVC
         todayDeleteVC.displayTodayDeleteItems = items
         let todayDeleteModel = TodayDeleteModel()

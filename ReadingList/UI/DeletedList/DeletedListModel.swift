@@ -10,12 +10,12 @@ import Foundation
 import RealmSwift
 
 protocol DeletedListModelInput {
-    func fetchDeletedItems() -> Results<ReadingItem>?
+    func fetchDeletedItems() -> [ReadingListItem]
 }
 
 class DeletedListModel: DeletedListModelInput {
     
-    func fetchDeletedItems() -> Results<ReadingItem>? {
-        return RealmManager.sharedInstance.readDeletedItems()
+    func fetchDeletedItems() -> [ReadingListItem] {
+        return [ReadingListItem]()
     }
 }

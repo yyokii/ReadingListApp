@@ -37,7 +37,7 @@ struct GraphViewModel {
     let noDataHeight: CGFloat = 15
     let barMaxHeight: CGFloat = 180
     
-    init(items: Results<ReadingItem>) {
+    init(items: [ReadingListItem]) {
         
         let now = Date()
         

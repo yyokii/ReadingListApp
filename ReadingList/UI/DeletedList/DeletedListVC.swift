@@ -16,7 +16,7 @@ class DeletedListVC: UIViewController {
     
     private var presenter: DeletedListPresenterInput!
     
-    private var displayItems: [ReadingItem] = [ReadingItem]()
+    private var displayItems: [ReadingListItem] = [ReadingListItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class DeletedListVC: UIViewController {
 }
 
 extension DeletedListVC: DeletedListPresenterOutput {
-    func updateDeletedList(items: [ReadingItem]) {
+    func updateDeletedList(items: [ReadingListItem]) {
         displayItems = items
         tableView.reloadData()
     }

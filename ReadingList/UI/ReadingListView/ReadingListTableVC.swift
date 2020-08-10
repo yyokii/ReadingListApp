@@ -11,7 +11,7 @@ import RealmSwift
 
 class ReadingListTableVC: UITableViewController {
     
-    var displayReadingItems: Results<ReadingItem>?
+    var displayReadingItems: [ReadingListItem] = [ReadingListItem]()
     
     private var presenter: ReadingListPresenterInput!
     
@@ -51,17 +51,15 @@ class ReadingListTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayReadingItems?.count ?? 0
+        return displayReadingItems.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell {
             
-            if let items = displayReadingItems {
-                let item = items[indexPath.row]
-                cell.articleView.articleImage.image = nil
-                cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
-            }
+            let item = displayReadingItems[indexPath.row]
+            cell.articleView.articleImage.image = nil
+            cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: nil)
             
             cell.selectionStyle = .none
             
@@ -71,16 +69,15 @@ class ReadingListTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = displayReadingItems?[indexPath.row] {
-            let vc = ArticleWebVC.viewController(item: item)
-            present(vc, animated: true, completion: nil)
-        }
+        let item = displayReadingItems[indexPath.row]
+        let vc = ArticleWebVC.viewController(item: item)
+        present(vc, animated: true, completion: nil)
     }
 }
 
 extension ReadingListTableVC: ReadingListPresenterOutput {
     
-    func updateReadingList(items: Results<ReadingItem>?) {
+    func updateReadingList(items: [ReadingListItem]) {
         displayReadingItems = items
         tableView.reloadData()
     }

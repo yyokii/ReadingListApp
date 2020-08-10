@@ -52,14 +52,17 @@ class RealmManager {
     
     /// 辞書型データをRealmへ保存
     func addItemToRealm(from dicItems: [[String:String]]) {
-        dicItems.forEach { (item: [String:String]) in
-            let obj = RealmManager.sharedInstance.createRealmObj(itemDic: item)
-            guard let readingItem = obj else { return }
-            RealmManager.sharedInstance.addReadingItem(object: readingItem)
-            // duedate前の通知設定
-            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
-            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
-        }
+        
+        // TODO: fix, 保存とローカルプッシュ設定
+        
+//        dicItems.forEach { (item: [String:String]) in
+//            let obj = RealmManager.sharedInstance.createRealmObj(itemDic: item)
+//            guard let readingItem = obj else { return }
+//            RealmManager.sharedInstance.addReadingItem(object: readingItem)
+//            // duedate前の通知設定
+//            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
+//            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
+//        }
     }
     
     /// dicからRealmオブジェクトを生成

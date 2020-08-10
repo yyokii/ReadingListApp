@@ -14,7 +14,7 @@ protocol ReadingListPresenterInput {
 }
 
 protocol ReadingListPresenterOutput: AnyObject {
-    func updateReadingList(items: Results<ReadingItem>?)
+    func updateReadingList(items: [ReadingListItem])
 }
 
 final class ReadingListPresenter {

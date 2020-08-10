@@ -19,8 +19,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var noReadingItemsLbl: UILabel!
     
     var floatingPanelController: FloatingPanelController!
-    var displayTodayDeleteItems: [ReadingItem]?
-    var displayReadingItems: [ReadingItem]?
+    var displayTodayDeleteItems: [ReadingListItem]?
+    var displayReadingItems: [ReadingListItem]?
     
     private weak var presenter: HomePresenterInput!
     
@@ -121,23 +121,23 @@ extension HomeVC: HomePresenterInjectable {
 }
 
 extension HomeVC: HomePresenterOutput {
-    func updateTodayDeleteList(items: [ReadingItem]?) {
+    func updateTodayDeleteList(items: [ReadingListItem]?) {
         noTodayDeleteItemsLbl.isHidden = true
         displayTodayDeleteItems = items
         todayDeleteCollectionView.reloadData()
     }
     
-    func updateReadingList(items: [ReadingItem]?) {
+    func updateReadingList(items: [ReadingListItem]?) {
         noReadingItemsLbl.isHidden = true
         displayReadingItems = items
         readingCollectionView.reloadData()
     }
     
-    func displayReadingListDialog(item: ReadingItem) {
+    func displayReadingListDialog(item: ReadingListItem) {
         SwiftMessageUtil.showReadingListDialog(title: item.title)
     }
     
-    func displayTodayDeleteView(items: [ReadingItem]) {
+    func displayTodayDeleteView(items: [ReadingListItem]) {
         let todayDeleteVC = TodayDeleteTableVC.viewController(items: items)
         navigationController?.pushViewController(todayDeleteVC, animated: true)
     }
@@ -224,7 +224,7 @@ extension HomeVC: UICollectionViewDataSource {
 extension HomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        var item: ReadingItem?
+        var item: ReadingListItem?
         if collectionView == todayDeleteCollectionView {
             item = displayTodayDeleteItems?[indexPath.row]
         } else if collectionView == readingCollectionView {

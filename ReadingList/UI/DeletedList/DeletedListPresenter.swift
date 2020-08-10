@@ -14,7 +14,7 @@ protocol DeletedListPresenterInput {
 }
 
 protocol DeletedListPresenterOutput: AnyObject {
-    func updateDeletedList(items: [ReadingItem])
+    func updateDeletedList(items: [ReadingListItem])
 }
 
 final class  DeletedListPresenter {
@@ -35,8 +35,6 @@ final class  DeletedListPresenter {
 
 extension  DeletedListPresenter: DeletedListPresenterInput {
     func viewWillAppear() {
-        if let items = model.fetchDeletedItems() {
-            view.updateDeletedList(items: items.reversed())
-        }
+        view.updateDeletedList(items: model.fetchDeletedItems().reversed())
     }
 }

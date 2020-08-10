@@ -26,7 +26,7 @@ protocol ArticleWebPresenterOutput: AnyObject {
 
 final class ArticleWebPresenter {
     
-    var item: ReadingItem!
+    var item: ReadingListItem!
     
     private weak var view: ArticleWebPresenterOutput!
     private var model: ArticleWebModelInput
@@ -37,7 +37,7 @@ final class ArticleWebPresenter {
     }
     
     private func updateActionBtnState() {
-        if item.finishedDate == nil {
+        if item.finishedReadingDate == nil {
             // リーディングリストにあるもの
             view.showAddFinishedListBtn()
         } else {
@@ -66,15 +66,21 @@ extension  ArticleWebPresenter: ArticleWebPresenterInput {
     
     func tapItemActionButton() {
         
-        if item.finishedDate == nil {
+        if item.finishedReadingDate == nil {
             // リーディングリストのもの
-            model.addItemToFinishedList(item: item)
+            
+            // TODO: fix
+            // model.addItemToFinishedList(item: item)
+            
             view.showSuccessAddFinishedListDialog()
             // view.showAddReadinListBtn()
             
         } else {
             // 既読リストなど、リーディングリストにはいっていないもの
-            model.addItemToReadingList(item: item)
+            
+            // TODO: fix
+            // model.addItemToReadingList(item: item)
+            
             view.showSuccessAddReadingListDialog()
             // view.showAddFinishedListBtn()
         }

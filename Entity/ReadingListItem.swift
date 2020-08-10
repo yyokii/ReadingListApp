@@ -18,4 +18,8 @@ struct ReadingListItem: Codable {
     var finishedReadingDate: Timestamp?
     var isDeleted: Bool
     
+    func differenceDay(fromDate: Date) -> Int {
+        // TODO: fix
+        return 1
+    }
 }

@@ -48,7 +48,7 @@ class ArticleView: UIView {
         rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
     }
     
-    func configureView(row: Int, item: ReadingItem, type: ListType, tapOptionBtnAction: (() -> Void)?) {
+    func configureView(row: Int, item: ReadingListItem, type: ListType, tapOptionBtnAction: (() -> Void)?) {
         
         self.tapOptionBtnAction = tapOptionBtnAction
         
@@ -76,20 +76,20 @@ class ArticleView: UIView {
         
         titleLbl.text = item.title
         let formatter = Date.getFormatter()
-        
-        if let displayDate = item.createdDate {
-            dateLbl.text = formatter.string(from: displayDate)
-        }
+        dateLbl.text = formatter.string(from: item.createdAt.dateValue())
         
         configureDueDateView(item: item)
         
-        self.setImage(imageUrl: item.imageUrl, url: item.url)
+        // TODO: ここimageurl消してよくね？
+        self.setImage(imageUrl: "", url: item.url)
     }
     
-    private func configureDueDateView(item: ReadingItem) {
+    private func configureDueDateView(item: ReadingListItem) {
         
         let now = Date()
-        let diff = item.differenceDay(fromDate: now)
+        
+        // TOOD: fix
+        let diff = 0
         
         switch diff {
         case 0, 1:

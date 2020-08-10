@@ -14,7 +14,7 @@ class FloatingVC: UIViewController {
     @IBOutlet weak var articleTableView: UITableView!
     
     // 表示するアイテムの配列
-    private var displayItems: Results<ReadingItem>?
+    private var displayItems: [ReadingListItem]?
     private var presenter: FloatingViewPresenterInput!
     
     func inject(presenter: FloatingViewPresenterInput) {
@@ -87,11 +87,11 @@ extension FloatingVC: UITableViewDelegate {
 }
 
 extension FloatingVC: FloatingViewPresenterOutput {
-    func displayFinishedListDialog(item: ReadingItem) {
+    func displayFinishedListDialog(item: ReadingListItem) {
         SwiftMessageUtil.showFinishedListDialog(title: item.title)
     }
     
-    func updateList(results: Results<ReadingItem>) {
+    func updateList(results: [ReadingListItem]) {
         displayItems = results
         articleTableView.reloadData()
     }

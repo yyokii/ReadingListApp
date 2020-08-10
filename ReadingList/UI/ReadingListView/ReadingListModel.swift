@@ -10,12 +10,14 @@ import Foundation
 import RealmSwift
 
 protocol ReadingListModelInput {
-    func fetchReadingItems() -> Results<ReadingItem>?
+    func fetchReadingItems() -> [ReadingListItem]
 }
 
 final class ReadingListModel: ReadingListModelInput {
     
-    func fetchReadingItems() -> Results<ReadingItem>? {
-        return RealmManager.sharedInstance.readNotFinishedItems()
+    func fetchReadingItems() -> [ReadingListItem] {
+
+        // TODO: fix
+        return [ReadingListItem]()
     }
 }

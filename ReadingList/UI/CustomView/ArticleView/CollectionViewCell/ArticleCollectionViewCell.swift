@@ -21,7 +21,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         articleView.fillSuperview()
     }
 
-    func configureCell(row: Int, item: ReadingItem, type: ListType, tapOptionBtnAction: (() ->  Void)?) {
+    func configureCell(row: Int, item: ReadingListItem, type: ListType, tapOptionBtnAction: (() ->  Void)?) {
         articleView.configureView(row: row, item: item, type: type, tapOptionBtnAction: tapOptionBtnAction)
     }
 }
