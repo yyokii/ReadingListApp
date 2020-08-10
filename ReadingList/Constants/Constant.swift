@@ -37,9 +37,9 @@ struct Constant {
     struct ReadingItem {
         static let title = "title"
         static let url = "url"
-        static let createdDate = "createdDate"
+        static let createdAt = "createdAt"
         static let dueDate = "dueDate"
-        static let finishedDate = "finishedReadingDate"
+        static let finishedAt = "finishedReadingAt"
         static let isDeleted = "isDeleted"
     }
     

@@ -9,7 +9,7 @@
 protocol FirestoreClientProtocol {
     
     /// リーディングリスト情報取得
-    func fetchReadingList(completion: @escaping () -> Void)
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
     
     /// アイテムを保存
     func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)

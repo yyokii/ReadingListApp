@@ -11,7 +11,6 @@ import FirebaseFirestore
 
 struct ReadingListItem: Codable {
     @DocumentID var id: String?
-    let status: String
     let title: String
     let url: String
     let createdAt: Timestamp

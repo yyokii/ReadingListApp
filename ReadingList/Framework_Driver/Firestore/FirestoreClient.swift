@@ -20,7 +20,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         
         // FireStoreに保存するデータ整形
         let saveItems = items.map {
-            [Constant.ReadingItem.title : $0[Constant.ReadingItem.title] as! String, Constant.ReadingItem.url: $0[Constant.ReadingItem.url] as! String, Constant.ReadingItem.createdDate: Timestamp(date: $0[Constant.ReadingItem.createdDate] as! Date) , Constant.ReadingItem.dueDate: Timestamp(date: $0[Constant.ReadingItem.dueDate] as! Date), Constant.ReadingItem.isDeleted: false]
+            [Constant.ReadingItem.title : $0[Constant.ReadingItem.title] as! String, Constant.ReadingItem.url: $0[Constant.ReadingItem.url] as! String, Constant.ReadingItem.createdAt: Timestamp(date: $0[Constant.ReadingItem.createdAt] as! Date) , Constant.ReadingItem.dueDate: Timestamp(date: $0[Constant.ReadingItem.dueDate] as! Date), Constant.ReadingItem.isDeleted: false]
         }
         
         let ref = fireStore
@@ -44,7 +44,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func fetchReadingList(completion: @escaping () -> Void) {
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
             .document(user.uid)
@@ -52,13 +52,12 @@ final class FireStoreClient: FirestoreClientProtocol {
         
         ref.getDocuments { (shapShot, error) in
             if let error = error {
-                print("Error getting documents: \(error)")
+                completion(.failure(.serverError(error)))
             } else {
-                
-                let items = shapShot!.documents.map {
-                    try? $0.data(as: ReadingListItem.self)
+                let items = shapShot!.documents.compactMap {
+                    try! $0.data(as: ReadingListItem.self)
                 }
-                print(items)
+                completion(.success(items))
             }
         }
     }

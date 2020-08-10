@@ -397,13 +397,13 @@
 		3171BF0DEABE0B0ACD6173FF /* ReadingList */ = {
 			isa = PBXGroup;
 			children = (
-				F54961D324A8CA4B00426D92 /* Framework_Driver */,
 				FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */,
 				F564C5B924B1F22B0076E770 /* Application.swift */,
 				9B5733F6E22798B530AB2F50 /* GoogleService-Info.plist */,
 				087B20B8D81627CD0CEFA37E /* Info.plist */,
 				B7FEF1D64A7958A79E6BFB95 /* ReadingList.entitlements */,
 				75A6C5E78D9EFD6FFB5FA922 /* Settings.bundle */,
+				F54961D324A8CA4B00426D92 /* Framework_Driver */,
 				21AC35FEBEED29476BC5A19B /* Constants */,
 				54E45C027D38352433D02E2F /* DB */,
 				5A971907BC44B492A333148E /* Extension */,

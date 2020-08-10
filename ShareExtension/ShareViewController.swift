@@ -57,7 +57,7 @@ class ShareViewController: SLComposeServiceViewController {
                     
                     // 保存
                     var itemDic = Dictionary<String, Any>()
-                    itemDic = [Constant.ReadingItem.title : title, Constant.ReadingItem.url: itemUrl, Constant.ReadingItem.createdDate: now, Constant.ReadingItem.dueDate: due]
+                    itemDic = [Constant.ReadingItem.title : title, Constant.ReadingItem.url: itemUrl, Constant.ReadingItem.createdAt: now, Constant.ReadingItem.dueDate: due]
                     UserDefaultManager.shareInstance.addReadingItem(readingItem: itemDic)
                 }
                 self?.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)

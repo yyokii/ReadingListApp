@@ -31,6 +31,8 @@ final class  HomePresenter {
     private var view: HomePresenterOutput!
     private weak var authUsecase: AuthUseCaseProtocol!
     private weak var readingListUseCase:  ReadingListUseCaseProtocol!
+    private var dataStore: DataStoreProtocol!
+    
     // TODO: これなくしたいなあ
     private var model: HomeModelInput
     
@@ -40,10 +42,11 @@ final class  HomePresenter {
     
     private var notFinishedItems: Results<ReadingItem>?
     
-    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, model: HomeModelInput) {
+    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, dataStore: DataStoreProtocol, model: HomeModelInput) {
         self.view = view
         self.authUsecase = authUseCase
         self.readingListUseCase = readingListUseCase
+        self.dataStore = dataStore
         
         self.model = model
         
@@ -179,14 +182,13 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func viewDidLoad() {
-        if UserDefaultManager.shareInstance.isFirstOpenArticleView() {
+        if dataStore.isFirstOpenArticleView() {
             // 初回表示時
             view.displayTutorialDialog()
-            UserDefaultManager.shareInstance.setFirstOpenArticleView()
+            dataStore.setFirstOpenArticleView()
         }
         
         authUsecase.fetchUser()
-        
     }
     
     func viewWillAppear() {}
@@ -206,16 +208,20 @@ extension HomePresenter: AuthUseCaseOutput {
 }
 
 extension HomePresenter: ReadingListUseCaseOutput {
+    
+    func didUpdateFinishedReadingItems(_ items: [ReadingListItem]) {
+    }
+    
+    func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem]) {
+    }
+    
+    func didUpdateReadingItems(_ items: [ReadingListItem]) {
+        // TODO: 値の取得は確認できたので、表示対応をする
+        print("-----------")
+        print(items)
+    }
+    
     func didSaveReadingItem() {
-    }
-    
-    func didUpdateFinishedReadingItems(_ repoStatuses: String) {
-    }
-    
-    func didUpdateReadingItemsWillDelete(_ repoStatuses: String) {
-    }
-    
-    func didUpdateReadingItems(_ repoStatuses: String) {
     }
     
     func useCaseDidReceiveError(_ error: Error) {

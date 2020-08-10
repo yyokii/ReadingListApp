@@ -13,6 +13,7 @@ import FirebaseFirestore
 // TODO: これも消したい userdefaultsdatastoreに移行したい
 class UserDefaultManager {
     static let shareInstance = UserDefaultManager()
+    // これ多分一致させなくても、groupでやってるからうまくいくのでは。あ、でも既存のと一致させるなら必要か。
     var sharedDefaults = UserDefaults(suiteName: Constant.UserDefault.suiteName)!
     
     private init() {}

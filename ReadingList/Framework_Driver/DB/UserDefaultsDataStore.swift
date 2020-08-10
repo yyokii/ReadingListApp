@@ -22,7 +22,7 @@ final class UserDefaultsDataStore: DataStoreProtocol {
     
     let userDefaults: UserDefaultsProtocol
 
-    init(userDefaults: UserDefaultsProtocol) {
+    init(userDefaults: UserDefaultsProtocol = UserDefaults(suiteName: Constant.UserDefault.suiteName)!) {
         self.userDefaults = userDefaults
     }
     

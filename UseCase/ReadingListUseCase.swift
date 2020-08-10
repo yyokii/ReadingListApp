@@ -19,8 +19,17 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     }
     
     func fetchReadingItems() {
-        readingListGateway.fetchReadingList { items in
-            print(items)
+        
+        readingListGateway.fetchReadingList { res in
+            switch res {
+            case .success(let items):
+                self.output.didUpdateReadingItems(items)
+                
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error)
+                break
+            }
         }
     }
     
@@ -39,8 +48,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             case .success:
                 self.output.didSaveReadingItem()
                 // TODO: ここで通知設定を行う
-                // TODO: ここでuserDefaultsのデータを削除する、gatewayを呼ぶ
-                UserDefaultManager.shareInstance.deleteReadingItems()
+                self.readingListGateway.deleteLocalReadingListDatas()
                 break
             case .failure(let error):
                 self.output.useCaseDidReceiveError(error)

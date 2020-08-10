@@ -30,7 +30,8 @@ class HomeVC: UIViewController {
         let homeModel = HomeModel()
         let authUseCase: AuthUseCase! = Application.shared.authUseCase
         let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
-        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, model: homeModel)
+        let dataStore = UserDefaultsDataStore()
+        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, dataStore: dataStore, model: homeModel)
         authUseCase.output = homePresenter
         
         homeVC.inject(homePresenter: homePresenter)

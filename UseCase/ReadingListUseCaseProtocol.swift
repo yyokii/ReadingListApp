@@ -36,14 +36,14 @@ protocol ReadingListUseCaseOutput {
     func didSaveReadingItem()
     
     // 読み終わったもの一覧が更新されたときに呼ばれる
-    func didUpdateFinishedReadingItems(_ repoStatuses: String)
+    func didUpdateFinishedReadingItems(_ items: [ReadingListItem])
     
     //  読み終わっていない and 近い内に削除予定のもの一覧が更新されたときに呼ばれる
-    func didUpdateReadingItemsWillDelete(_ repoStatuses: String)
+    func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem])
     
     // 読み終わっていない and 削除されるまで時間があるもの一覧が更新されたときに呼ばれる
-    func didUpdateReadingItems(_ repoStatuses: String)
+    func didUpdateReadingItems(_ items: [ReadingListItem])
     
     // Use Caseの関係する処理でエラーがあったときに呼ばれる
-    func useCaseDidReceiveError(_ error: Error)
+    func useCaseDidReceiveError(_ error: WebClientError)
 }

@@ -38,7 +38,7 @@ class Application {
 
         // -- Framework & Drivers
         let fireStoreClient = FireStoreClient()
-        let userDefaultsDataStore = UserDefaultsDataStore(userDefaults: UserDefaults.standard)
+        let userDefaultsDataStore = UserDefaultsDataStore()
         
         // Interface Adaptersとのバインド
         userGateway.fireStoreClient = fireStoreClient

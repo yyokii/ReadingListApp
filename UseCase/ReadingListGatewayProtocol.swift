@@ -14,7 +14,7 @@ protocol ReadingListGatewayProtocol {
     func fetchReadingListFromLocal() -> [[String: Any]]?
     
     /// リーディングリスト情報取得
-    func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void)
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
     
     /// ローカルに保存されているリーディングリスト情報をデータを削除
     func deleteLocalReadingListDatas()

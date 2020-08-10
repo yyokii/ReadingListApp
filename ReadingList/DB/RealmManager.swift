@@ -66,9 +66,9 @@ class RealmManager {
     func createRealmObj(itemDic: [String:String]) -> ReadingItem? {
         if let title = itemDic[Constant.ReadingItem.title],
             let url = itemDic[Constant.ReadingItem.url],
-            let createdDate = itemDic[Constant.ReadingItem.createdDate],
+            let createdDate = itemDic[Constant.ReadingItem.createdAt],
             let dueDate = itemDic[Constant.ReadingItem.dueDate],
-            let finishedDate = itemDic[Constant.ReadingItem.finishedDate] {
+            let finishedDate = itemDic[Constant.ReadingItem.finishedAt] {
             
             let readingItem = ReadingItem()
             readingItem.title = title

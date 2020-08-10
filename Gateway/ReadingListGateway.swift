@@ -21,6 +21,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
     }
     
     func deleteLocalReadingListDatas() {
+        dataStore.deleteReadingItems()
     }
     
     func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
@@ -36,9 +37,16 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    func fetchReadingList( completion: @escaping ([ReadingItem]) -> Void) {
-        fireStoreClient.fetchReadingList {
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
+        
+        fireStoreClient.fetchReadingList { res in
             //            completion()
+            switch res {
+            case .success(let items):
+                completion(.success(items))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
         }
     }
 }
