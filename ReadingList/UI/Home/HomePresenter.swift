@@ -12,6 +12,8 @@ import RealmSwift
 protocol HomePresenterInput: AnyObject {
     func tapOptionBtn(item: ReadingListItem)
     func tapDisplayTodayDeleteView()
+    func tapMoveItemToReadingList()
+    func tapDeleteItem()
     func viewDidLoad()
     func viewWillAppear()
 }
@@ -23,6 +25,7 @@ protocol  HomePresenterOutput: AnyObject {
     func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
+    func updateFinishedReadingList(items: [ReadingListItem])
     func updateTodayDeleteList(items: [ReadingListItem])
     func updateReadingList(items: [ReadingListItem])
 }
@@ -140,7 +143,7 @@ final class  HomePresenter {
     /// 削除アクションされたアイテムを削除しリストを更新
     @objc private func deleteItem() {
         
-        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
+        NotificationManager.deleteNotification(item: optionTappedItem)
         model.deleteItem(readingItem: optionTappedItem)
         
         fetchAndUpdateList()
@@ -149,7 +152,7 @@ final class  HomePresenter {
     /// アイテムを既読リストに移しリストを更新
     @objc private func changeItemStateToFinished() {
         
-        NotificationManager.sharedInstance.deleteNotification(item: optionTappedItem)
+        NotificationManager.deleteNotification(item: optionTappedItem)
         model.changeItemStateToReading(item: optionTappedItem)
         // リスト更新
         fetchAndUpdateList()
@@ -159,6 +162,21 @@ final class  HomePresenter {
 }
 
 extension  HomePresenter: HomePresenterInput {
+    
+    func tapMoveItemToReadingList() {
+        
+        guard let id = optionTappedItem.id else {
+            return
+        }
+        readingListUseCase.saveToReadingList(id)
+    }
+    
+    func tapDeleteItem() {
+        guard let id = optionTappedItem.id else {
+            return
+        }
+        readingListUseCase.deleteReadingItem(id)
+    }
     
     func tapDisplayTodayDeleteView() {
         let items = getTodayDeleteItems(from: notFinishedItems, now: Date())
@@ -198,12 +216,17 @@ extension HomePresenter: AuthUseCaseOutput {
 
 extension HomePresenter: ReadingListUseCaseOutput {
     
+    func didUpdateItemData() {
+        readingListUseCase.fetchReadingItems()
+    }
+    
     func didUpdateReadingItemsData(_ items: [ReadingListItem]) {
         let viewData = GraphViewData(items: items)
         view.displayUserData(viewData: viewData)
     }
     
     func didUpdateFinishedReadingItems(_ items: [ReadingListItem]) {
+        view.updateFinishedReadingList(items: items)
     }
     
     func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem]) {

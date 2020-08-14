@@ -8,6 +8,7 @@
 
 // Input
 protocol ReadingListUseCaseProtocol: AnyObject {
+    
     /// 読み終わったもの一覧取得
     func fetchFinishedItems()
     
@@ -21,12 +22,15 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     func saveReadingItem()
     
     /// 削除
-    func deleteReadingItem()
+    func deleteReadingItem(_ id: String)
     
-    /// 読み終わり
-    func finishReading()
+    /// 既存アイテムのステータスを読み終わりにする
+    func finishReadingItem(_ id: String)
     
-    /// 外側のオブジェクトはプロパティとしてあとからセットする
+    /// 既存アイテムをリーディングリストに追加
+    func saveToReadingList(_ id: String)
+    
+    // 外側のオブジェクトはプロパティとしてあとからセットする
     var output: ReadingListUseCaseOutput! { get set }
 }
 
@@ -35,18 +39,21 @@ protocol ReadingListUseCaseOutput {
     
     func didSaveReadingItem()
     
-    // 読み終わったもの一覧が更新された時に呼ばれる
+    /// アイテムのデータが更新された時に呼ばれる
+    func didUpdateItemData()
+    
+    /// 読み終わったもの一覧が更新された時に呼ばれる
     func didUpdateFinishedReadingItems(_ items: [ReadingListItem])
     
-    // 読み終わってないもの一覧が更新された時に呼ばれる
+    /// 読み終わってないもの一覧が更新された時に呼ばれる
     func didUpdateReadingItemsData(_ items: [ReadingListItem])
 
-    //  読み終わっていない and 近い内に削除予定のもの一覧が更新された時に呼ばれる
+    ///  読み終わっていない and 近い内に削除予定のもの一覧が更新された時に呼ばれる
     func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem])
     
-    // 読み終わっていない and 削除されるまで時間があるもの一覧が更新された時に呼ばれる
+    /// 読み終わっていない and 削除されるまで時間があるもの一覧が更新された時に呼ばれる
     func didUpdateReadingItems(_ items: [ReadingListItem])
     
-    // Use Caseの関係する処理でエラーがあったときに呼ばれる
+    /// Use Caseの関係する処理でエラーがあったときに呼ばれる
     func useCaseDidReceiveError(_ error: WebClientError)
 }

@@ -44,6 +44,43 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
+    func changeFinishedState(docId: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+            .document(docId)
+        
+        let data: [String: Any] = [Constant.ReadingItem.finishedAt: isFinished ? FieldValue.serverTimestamp() : NSNull()]
+        
+        ref.updateData(data) { (error) in
+            if let error = error {
+                completion(.failure(.serverError(error)))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+    
+    func deleteReadingItem(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+            .document(docId)
+        
+        ref.updateData(
+        [Constant.ReadingItem.isDeleted: true]) { (error) in
+            if let error = error {
+                completion(.failure(.serverError(error)))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+    
+    
     func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)

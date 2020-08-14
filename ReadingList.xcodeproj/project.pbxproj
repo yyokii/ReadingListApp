@@ -561,7 +561,6 @@
 		B90763ADDECE63A44174CF3E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				F56AD8EE7F2D3F7DDDA333CB /* NotificationManager.swift */,
 				FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */,
 			);
 			path = Utility;
@@ -656,6 +655,7 @@
 		F54961D324A8CA4B00426D92 /* Framework_Driver */ = {
 			isa = PBXGroup;
 			children = (
+				F56AD8EE7F2D3F7DDDA333CB /* NotificationManager.swift */,
 				F54961D524A8CAAE00426D92 /* Firestore */,
 				F54961D424A8CAA300426D92 /* DB */,
 			);

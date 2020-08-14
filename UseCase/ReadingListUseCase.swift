@@ -13,6 +13,40 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     var readingListGateway: ReadingListGatewayProtocol!
     var output: ReadingListUseCaseOutput!
     
+    func deleteReadingItem(_ id: String) {
+        
+        readingListGateway.deleteReadingItem(id: id) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didUpdateItemData()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error)
+                break
+            }
+        }
+    }
+    
+    func finishReadingItem(_ id: String) {
+        
+        readingListGateway.changeFinishedState(id: id, isFinished: true) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didUpdateItemData()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error)
+                break
+            }
+        }
+    }
+    
     func fetchFinishedItems() {
         
     }
@@ -22,18 +56,28 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
     func fetchReadingItems() {
         
-        readingListGateway.fetchReadingList { res in
+        readingListGateway.fetchReadingList { [weak self] res in
+            
+            guard let self = self else { return }
+            
             switch res {
-            case .success(let items):
+            case .success(var items):
                 
                 let now = Date()
                 
-                let lessOneDayItems = items.filter { $0.differenceDay(fromDate: now) <= 1 }
-                let moreThanOneDayItems = items.filter { $0.differenceDay(fromDate: now) > 1 }
+                items.sort {
+                    $0.createdAt.dateValue() < $1.createdAt.dateValue()
+                }
+                
+                let lessOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) <= 1 }
+                let moreThanOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) > 1 }
+                let finishedReadingItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt != nil }
                 
                 self.output.didUpdateReadingItemsData(items)
                 self.output.didUpdateReadingItemsWillDelete(lessOneDayItems)
                 self.output.didUpdateReadingItems(moreThanOneDayItems)
+                self.output.didUpdateFinishedReadingItems(finishedReadingItems)
+                
                 
                 break
             case .failure(let error):
@@ -57,7 +101,12 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             switch res {
             case .success:
                 self.output.didSaveReadingItem()
-                // TODO: ここで通知設定を行う
+                // 通知設定
+                items.forEach {
+                    NotificationManager.addNotification(title: $0[Constant.ReadingItem.title] as! String, targetDate: $0[Constant.ReadingItem.dueDate] as! Date, type: .OneDayBefore )
+                    NotificationManager.addNotification(title: $0[Constant.ReadingItem.title] as! String, targetDate: $0[Constant.ReadingItem.dueDate] as! Date, type: .TwoDaysBefore )
+                }
+                
                 self.readingListGateway.deleteLocalReadingListDatas()
                 break
             case .failure(let error):
@@ -67,9 +116,20 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
         }
     }
     
-    func deleteReadingItem() {
-    }
-    
-    func finishReading() {
+    func saveToReadingList(_ id: String) {
+        
+        readingListGateway.changeFinishedState(id: id, isFinished: true) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didUpdateItemData()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error)
+                break
+            }
+        }
     }
 }

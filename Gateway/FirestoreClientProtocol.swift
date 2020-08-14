@@ -14,8 +14,11 @@ protocol FirestoreClientProtocol {
     /// アイテムを保存
     func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
-    /// 任意のアイテムを削除
-    func deleteReadingItem()
+    /// 任意のアイテムの読み終わりステータスを更新
+    func changeFinishedState(docId: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    
+    /// 任意のアイテムを論理削除
+    func deleteReadingItem(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// ユーザー情報取得
     func fetchUser(completion: @escaping (AppUser) -> Void)

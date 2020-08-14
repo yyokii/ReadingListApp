@@ -37,7 +37,7 @@ final class ArticleWebPresenter {
     }
     
     private func updateActionBtnState() {
-        if item.finishedReadingDate == nil {
+        if item.finishedReadingAt == nil {
             // リーディングリストにあるもの
             view.showAddFinishedListBtn()
         } else {
@@ -66,7 +66,7 @@ extension  ArticleWebPresenter: ArticleWebPresenterInput {
     
     func tapItemActionButton() {
         
-        if item.finishedReadingDate == nil {
+        if item.finishedReadingAt == nil {
             // リーディングリストのもの
             
             // TODO: fix

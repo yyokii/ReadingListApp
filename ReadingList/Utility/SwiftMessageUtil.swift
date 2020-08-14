@@ -68,8 +68,9 @@ struct SwiftMessageUtil {
     }
     
     /// 未読記事（リーディングリスト）にてオプションダイアログを表示
-    static func showReadingListDialog(title: String) {
+    static func showReadingListDialog(title: String, delegate: ReadingItemDialogViewDelegate) {
         let view: ReadingItemDialogView = try! SwiftMessages.viewFromNib()
+        view.delegate = delegate
         view.title = title
         view.configureDropShadow()
         var config = SwiftMessages.defaultConfig
@@ -103,26 +104,4 @@ struct SwiftMessageUtil {
         config.dimMode = .gray(interactive: true)
         SwiftMessages.show(config: config, view: view)
     }
-    
-//    static func showWebHowtoView() {
-//        let howtoView = WebHowtoView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
-//        let messageView = BaseView(frame: .zero)
-//        messageView.layoutMargins = .zero
-//        messageView.backgroundHeight = 300.0
-//        do {
-//            let backgroundView = CornerRoundingView()
-//            backgroundView.layer.cornerRadius = 15
-//            backgroundView.layer.masksToBounds = true
-//            messageView.installBackgroundView(backgroundView)
-//            messageView.installContentView(howtoView)
-//            messageView.layoutMarginAdditions = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
-//        }
-//        messageView.configureDropShadow()
-//        var config = SwiftMessages.defaultConfig
-//        config.presentationStyle = .center
-//        config.duration = .forever
-//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-//        SwiftMessages.show(config: config, view: messageView)
-//    }
-
 }

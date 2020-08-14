@@ -9,9 +9,16 @@
 import UIKit
 import SwiftMessages
 
-class ReadingItemDialogView: MessageView {
+protocol ReadingItemDialogViewDelegate: AnyObject {
+    func tapToFinishedList()
+    func tapDelete()
+}
+
+final class ReadingItemDialogView: MessageView {
     
     @IBOutlet weak var titleLbl: UILabel!
+    
+    weak var delegate: ReadingItemDialogViewDelegate!
     
     var title: String = ""
     
@@ -28,14 +35,16 @@ class ReadingItemDialogView: MessageView {
     }
     
     @IBAction func tapToFinishedList() {
-        notificationCenter.post(name: .changeItemStateToFinishedReading,
-                                object: nil)
+//        notificationCenter.post(name: .changeItemStateToFinishedReading,
+//                                object: nil)
+        delegate.tapToFinishedList()
         SwiftMessages.hide()
     }
     
     @IBAction func tapDelete() {
-        notificationCenter.post(name: .deleteFinishedItem,
-                                object: nil)
+//        notificationCenter.post(name: .deleteFinishedItem,
+//                                object: nil)
+        delegate.tapDelete()
         SwiftMessages.hide()
     }
 }

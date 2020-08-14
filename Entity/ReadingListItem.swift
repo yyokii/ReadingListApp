@@ -15,7 +15,7 @@ struct ReadingListItem: Codable {
     let url: String
     let createdAt: Timestamp
     var dueDate: Timestamp?
-    var finishedReadingDate: Timestamp?
+    var finishedReadingAt: Timestamp?
     var isDeleted: Bool
     
     func differenceDay(fromDate: Date) -> Int {

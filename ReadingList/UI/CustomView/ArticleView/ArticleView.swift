@@ -87,9 +87,7 @@ class ArticleView: UIView {
     private func configureDueDateView(item: ReadingListItem) {
         
         let now = Date()
-        
-        // TOOD: fix
-        let diff = 0
+        let diff = item.differenceDay(fromDate: now)
         
         switch diff {
         case 0, 1:

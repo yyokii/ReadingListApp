@@ -8,6 +8,33 @@
 
 final class ReadingListGateway: ReadingListGatewayProtocol {
     
+    func changeFinishedState(id: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        fireStoreClient.changeFinishedState(docId: id, isFinished: isFinished) { res in
+            
+            switch res {
+            case .success:
+                completion(.success(nil))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
+    }
+    
+    func deleteReadingItem(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        fireStoreClient.deleteReadingItem(docId: id) { res in
+            
+            switch res {
+            case .success:
+                completion(.success(nil))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
+    }
+    
+    
     private weak var useCase: ReadingListUseCaseProtocol!
     var fireStoreClient: FirestoreClientProtocol!
     var dataStore: DataStoreProtocol!

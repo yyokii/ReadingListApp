@@ -121,6 +121,7 @@ extension HomeVC: HomePresenterInjectable {
 }
 
 extension HomeVC: HomePresenterOutput {
+    
     func updateTodayDeleteList(items: [ReadingListItem]) {
         noTodayDeleteItemsLbl.isHidden = true
         displayTodayDeleteItems = items
@@ -133,8 +134,14 @@ extension HomeVC: HomePresenterOutput {
         readingCollectionView.reloadData()
     }
     
+    func updateFinishedReadingList(items: [ReadingListItem]) {
+        guard let floatingVC = floatingPanelController.contentViewController as? FloatingVC  else { return }
+        
+        floatingVC.updateList(results: items)
+    }
+    
     func displayReadingListDialog(item: ReadingListItem) {
-        SwiftMessageUtil.showReadingListDialog(title: item.title)
+        SwiftMessageUtil.showReadingListDialog(title: item.title, delegate: self)
     }
     
     func displayTodayDeleteView(items: [ReadingListItem]) {
@@ -162,6 +169,17 @@ extension HomeVC: HomePresenterOutput {
 extension HomeVC: FloatingPanelControllerDelegate {
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         return ArticleListPanelLayout()
+    }
+}
+
+extension HomeVC: ReadingItemDialogViewDelegate {
+
+    func tapToFinishedList() {
+        presenter.tapMoveItemToReadingList()
+    }
+    
+    func tapDelete() {
+        presenter.tapDeleteItem()
     }
 }
 
@@ -203,6 +221,7 @@ extension HomeVC: UICollectionViewDataSource {
             
             let cell : ArticleCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArticleCollectionViewCell", for: indexPath) as! ArticleCollectionViewCell
             let item = displayReadingItems[indexPath.row]
+            #warning("ここ循環参照しないかな？")
             let optionTappedAction = {
                 self.presenter.tapOptionBtn(item: item)
             }

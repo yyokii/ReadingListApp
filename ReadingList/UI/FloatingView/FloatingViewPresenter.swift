@@ -62,8 +62,8 @@ final class  FloatingViewPresenter {
     /// アイテムをリーディングリストに戻し更新
     @objc private func changeItemStateToReading() {
         
-        NotificationManager.sharedInstance.addNotification(item: optionTappedItem, type: .OneDayBefore)
-        NotificationManager.sharedInstance.addNotification(item: optionTappedItem, type: .TwoDaysBefore)
+        NotificationManager.addNotification(item: optionTappedItem, type: .OneDayBefore)
+        NotificationManager.addNotification(item: optionTappedItem, type: .TwoDaysBefore)
 
         model.changeItemStateToReading(item: optionTappedItem)
         
