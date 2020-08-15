@@ -16,7 +16,7 @@ final class FireStoreClient: FirestoreClientProtocol {
     let auth = Auth.auth()
     let fireStore = Firestore.firestore()
     
-    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         
         // FireStoreに保存するデータ整形
         let saveItems = items.map {
@@ -31,15 +31,22 @@ final class FireStoreClient: FirestoreClientProtocol {
         // バッチ書き込み
         let batch: WriteBatch = fireStore.batch()
         
+        // 通信成功時に返却する、id付きのエンティティ配列
+        var saveItemsWithId: [ReadingListItem] = []
+        
         saveItems.forEach {
-            batch.setData($0, forDocument: ref.document())
+            
+            let docRef = ref.document()
+            batch.setData($0, forDocument: docRef)
+            
+            saveItemsWithId.append(ReadingListItem(id: docRef.documentID, title: $0[Constant.ReadingItem.title] as! String, url: $0[Constant.ReadingItem.url] as! String, createdAt: Timestamp(date: $0[Constant.ReadingItem.createdAt] as! Date), dueDate: Timestamp(date: $0[Constant.ReadingItem.dueDate] as! Date), finishedReadingAt: nil, isDeleted: false))
         }
         
         batch.commit() { err in
             if let err = err {
                 completion(.failure(.serverError(err)))
             } else {
-                completion(.success(nil))
+                completion(.success(saveItemsWithId))
             }
         }
     }

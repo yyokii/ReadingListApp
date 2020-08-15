@@ -12,8 +12,8 @@ protocol FirestoreClientProtocol {
     func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
     
     /// アイテムを保存
-    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
-    
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
+
     /// 任意のアイテムの読み終わりステータスを更新
     func changeFinishedState(docId: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     

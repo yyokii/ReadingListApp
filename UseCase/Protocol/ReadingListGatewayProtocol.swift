@@ -14,7 +14,7 @@ protocol ReadingListGatewayProtocol {
     /// 任意のアイテムを削除
     func deleteReadingItem(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
-    func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func saveItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
     
     /// リーディングリスト情報取得
     func fetchReadingListFromLocal() -> [[String: Any]]?

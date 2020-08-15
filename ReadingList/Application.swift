@@ -15,7 +15,7 @@ class Application {
 
     // ユースケース
     private(set) var authUseCase: AuthUseCase!
-    private(set) var redingListUseCase: ReadingListUseCase!
+    private(set) var readingListUseCase: ReadingListUseCase!
 
     func configure(with window: UIWindow) {
         buildLayer()
@@ -30,24 +30,28 @@ class Application {
 
         // -- Use Case
         authUseCase = AuthUseCase()
-        redingListUseCase = ReadingListUseCase()
+        readingListUseCase = ReadingListUseCase()
 
         // -- Interface Adapters
         let userGateway = UserGateway(useCase: authUseCase)
-        let readingListGateway = ReadingListGateway(useCase: redingListUseCase)
+        let readingListGateway = ReadingListGateway(useCase: readingListUseCase)
+        let localPushGateway = LocalPushGateway()
 
         // -- Framework & Drivers
         let fireStoreClient = FireStoreClient()
         let userDefaultsDataStore = UserDefaultsDataStore()
+        let notificationClient = NotificationClient()
         
         // Interface Adaptersとのバインド
         userGateway.fireStoreClient = fireStoreClient
         readingListGateway.fireStoreClient = fireStoreClient
         readingListGateway.dataStore = userDefaultsDataStore
+        localPushGateway.notificationClient = notificationClient
         
         // Use Caseとのバインド
         authUseCase.userGateway = userGateway
-        redingListUseCase.readingListGateway = readingListGateway
+        readingListUseCase.readingListGateway = readingListGateway
+        readingListUseCase.localPushGateway = localPushGateway
         
         // Presenterの作成・バインドは各ViewControllerを生成するクラスが実施
     }

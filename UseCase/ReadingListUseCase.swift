@@ -10,6 +10,7 @@ import Foundation
 
 final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
+    var localPushGateway: LocalPushGateway!
     var readingListGateway: ReadingListGatewayProtocol!
     var output: ReadingListUseCaseOutput!
     
@@ -22,6 +23,8 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             switch res {
             case .success:
                 self.output.didUpdateItemData()
+                // 通知の削除設定必要
+                
                 break
             case .failure(let error):
                 self.output.useCaseDidReceiveError(error)
@@ -91,12 +94,11 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             guard let self = self else { return }
             
             switch res {
-            case .success:
+            case .success(let items):
                 self.output.didUpdateItemData()
-                // 通知設定
                 items.forEach {
-                    NotificationManager.addNotification(title: $0[Constant.ReadingItem.title] as! String, targetDate: $0[Constant.ReadingItem.dueDate] as! Date, type: .OneDayBefore )
-                    NotificationManager.addNotification(title: $0[Constant.ReadingItem.title] as! String, targetDate: $0[Constant.ReadingItem.dueDate] as! Date, type: .TwoDaysBefore )
+                    self.localPushGateway.registerOneDayBeforePush(id: $0.id!, title: $0.title, targetDate: $0.dueDate!.dateValue())
+                    self.localPushGateway.registerTwoDaysBeforePush(id: $0.id!, title: $0.title, targetDate: $0.dueDate!.dateValue())
                 }
                 
                 self.readingListGateway.deleteLocalReadingListDatas()

@@ -27,7 +27,7 @@ class HomeVC: UIViewController {
     static func vc() -> HomeVC {
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
         let authUseCase: AuthUseCase! = Application.shared.authUseCase
-        let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
+        let readingListUseCase: ReadingListUseCase! = Application.shared.readingListUseCase
         let dataStore = UserDefaultsDataStore()
         let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, dataStore: dataStore)
 

@@ -8,6 +8,14 @@
 
 final class ReadingListGateway: ReadingListGatewayProtocol {
     
+    private weak var useCase: ReadingListUseCaseProtocol!
+    var fireStoreClient: FirestoreClientProtocol!
+    var dataStore: DataStoreProtocol!
+    
+    init(useCase: ReadingListUseCaseProtocol) {
+        self.useCase = useCase
+    }
+    
     func changeFinishedState(id: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
         fireStoreClient.changeFinishedState(docId: id, isFinished: isFinished) { res in
@@ -34,15 +42,6 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    
-    private weak var useCase: ReadingListUseCaseProtocol!
-    var fireStoreClient: FirestoreClientProtocol!
-    var dataStore: DataStoreProtocol!
-    
-    init(useCase: ReadingListUseCaseProtocol) {
-        self.useCase = useCase
-    }
-    
     func fetchReadingListFromLocal() -> [[String: Any]]? {
         return dataStore.fetchReadingItems()
     }
@@ -51,13 +50,13 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         dataStore.deleteReadingItems()
     }
     
-    func saveItems(items: [[String: Any]], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func saveItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         
         fireStoreClient.addReadingItems(items: items) { res in
             
             switch res {
-            case .success:
-                completion(.success(nil))
+            case .success(let items):
+                completion(.success(items))
             case .failure(let error):
                 completion(.failure(.serverError(error)))
             }

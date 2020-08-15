@@ -12,127 +12,44 @@ import UserNotifications
 import RealmSwift
 
 // notificationについて参考： https://qiita.com/aokiplayer/items/3f02453af743a54de718
-struct NotificationManager {
+final class NotificationClient: NotificationClientProtocol {
     
-    // TOOD: 許可タイミングの検討：　リーディングリスト画面に入って、初回ダイアログ消えた時
-    
-    static func requestAuthorize() {
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+    func requestAuthorize() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+            
+            if error != nil {
+                print("エラー：\(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            if granted {
+                print("通知許可")
                 
-                if error != nil {
-                    print("エラー：\(String(describing: error?.localizedDescription))")
-                    return
-                }
-                
-                if granted {
-                    print("通知許可")
-                    
-                } else {
-                    print("通知拒否")
-                }
-            })
-        }
+            } else {
+                print("通知拒否")
+            }
+        })
     }
     
-    // テスト、TODO: テストに移せばよくね
-    //    func testNotification(type: LocalNotificationType) {
-    //        var trigger: UNNotificationTrigger!
-    //        // 通知指定日時
-    //        var dateComponents: DateComponents!
-    //
-    //        let content = UNMutableNotificationContent()
-    //        content.sound = UNNotificationSound.default
-    //        var typeId: String!
-    //
-    //        switch type {
-    //        case .OneDayBefore:
-    //            content.title = "【積ん読注意🔥】Yomuについて知る"
-    //            content.body = Constant.LocalNotification.onwDayBeforeBody
-    //
-    //            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: 2019, month: 8, day: 4, hour: 4, minute: 43)
-    //            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-    //            typeId = "test1"
-    //        case .TwoDaysBefore:
-    //            content.title = "【積ん読注意🔥】リーディングリストって溜まりがち。。"
-    //            content.body = Constant.LocalNotification.twoDaysBeforeBody
-    //
-    //            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: 2019, month: 8, day: 4, hour: 4, minute: 44)
-    //            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-    //            typeId = "test2"
-    //        }
-    //        let request = UNNotificationRequest(identifier: typeId, content: content, trigger: trigger)
-    //        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    //    }
-    
-    static func addNotification(item: ReadingListItem, type: LocalNotificationType) {
-        guard let dueDate = item.dueDate?.dateValue() else { return }
+    func registerOneDayBeforePush(id: String, title: String, targetDate: Date) {
         
-        var trigger: UNNotificationTrigger!
-        // 通知指定日時
-        var dateComponents: DateComponents!
-        // 指定日時計算用Calender
-        let calendar = Calendar.current
-        // 通知指定日時（Date型）
-        var notificationDate: Date!
-        
-        let content = UNMutableNotificationContent()
-        content.title = "【積ん読注意🔥】\(item.title)"
-        content.sound = UNNotificationSound.default
-        var notificationId: String!
-        
-        switch type {
-        case .OneDayBefore:
-            content.body = Constant.LocalNotification.onwDayBeforeBody
-            
-            // 通知時間設定
-            notificationDate = calendar.date(byAdding: .day, value: -1, to: dueDate)
-            let year = calendar.component(.year, from: notificationDate)
-            let month = calendar.component(.month, from: notificationDate)
-            let day = calendar.component(.day, from: notificationDate)
-            let hour = calendar.component(.hour, from: notificationDate)
-            let minute = calendar.component(.minute, from: notificationDate)
-            
-            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: year, month: month, day: day, hour: hour, minute: minute)
-            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            
-            // 通知id
-            notificationId = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
-        case .TwoDaysBefore:
-            content.body = Constant.LocalNotification.twoDaysBeforeBody
-            
-            // 通知時間設定
-            notificationDate = calendar.date(byAdding: .day, value: -2, to: dueDate)
-            let year = calendar.component(.year, from: notificationDate)
-            let month = calendar.component(.month, from: notificationDate)
-            let day = calendar.component(.day, from: notificationDate)
-            let hour = calendar.component(.hour, from: notificationDate)
-            let minute = calendar.component(.minute, from: notificationDate)
-            
-            dateComponents = DateComponents(timeZone: TimeZone.init(identifier: TimeZone.current.identifier), year: year, month: month, day: day, hour: hour, minute: minute)
-            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            
-            // 通知id
-            notificationId = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
-        }
-        
-        // 通知内容を設定
-        let request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        addNotification(id: id, title: title, targetDate: targetDate, type: .OneDayBefore)
     }
     
-    static func deleteNotification(item: ReadingListItem) {
+    func registerTwoDaysBeforePush(id: String, title: String, targetDate: Date) {
         
-        let id1 = "\(Constant.LocalNotification.id.twoDaysBefore): \(item.title)"
-        let id2 = "\(Constant.LocalNotification.id.onwDayBefore): \(item.title)"
+        addNotification(id: id, title: title, targetDate: targetDate, type: .TwoDaysBefore)
+    }
+    
+    func deleteNotification(id: String) {
+        let id1 = "\(Constant.LocalNotification.id.twoDaysBefore): \(id)"
+        let id2 = "\(Constant.LocalNotification.id.onwDayBefore): \(id)"
         
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id1, id2])
     }
     
-    // TODO: 上記の2つの実装は消す
-    
-    static func addNotification(title: String, targetDate: Date, type: LocalNotificationType) {
+    private func addNotification(id: String, title: String, targetDate: Date, type: LocalNotificationType) {
         
         var trigger: UNNotificationTrigger!
         // 通知指定日時
@@ -179,19 +96,11 @@ struct NotificationManager {
             trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
             // 通知id
-            notificationId = "\(Constant.LocalNotification.id.onwDayBefore): \(title)"
+            notificationId = "\(Constant.LocalNotification.id.onwDayBefore): \(id)"
         }
         
         // 通知内容を設定
         let request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    }
-    
-    static func deleteNotification(title: String) {
-        
-        let id1 = "\(Constant.LocalNotification.id.twoDaysBefore): \(title)"
-        let id2 = "\(Constant.LocalNotification.id.onwDayBefore): \(title)"
-        
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id1, id2])
     }
 }
