@@ -35,15 +35,11 @@ final class ReadingItemDialogView: MessageView {
     }
     
     @IBAction func tapToFinishedList() {
-//        notificationCenter.post(name: .changeItemStateToFinishedReading,
-//                                object: nil)
         delegate.tapToFinishedList()
         SwiftMessages.hide()
     }
     
     @IBAction func tapDelete() {
-//        notificationCenter.post(name: .deleteFinishedItem,
-//                                object: nil)
         delegate.tapDelete()
         SwiftMessages.hide()
     }

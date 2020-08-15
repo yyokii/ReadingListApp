@@ -82,8 +82,9 @@ struct SwiftMessageUtil {
     }
     
     /// 既読記事にてオプションダイアログを表示
-    static func showFinishedListDialog(title: String) {
+    static func showFinishedListDialog(title: String, delegate: FinishedItemDialogViewDelegate) {
         let view: FinishedItemDialogView = try! SwiftMessages.viewFromNib()
+        view.delegate = delegate
         view.title = title
         view.configureDropShadow()
         var config = SwiftMessages.defaultConfig

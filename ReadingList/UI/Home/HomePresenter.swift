@@ -11,16 +11,19 @@ import RealmSwift
 
 protocol HomePresenterInput: AnyObject {
     func tapOptionBtn(item: ReadingListItem)
+    func tapFinishedListOptionBtn(item: ReadingListItem)
     func tapDisplayTodayDeleteView()
+    func tapMoveItemToFinishedList()
     func tapMoveItemToReadingList()
     func tapDeleteItem()
     func viewDidLoad()
     func viewWillAppear()
 }
 
-protocol  HomePresenterOutput: AnyObject {
+protocol  HomePresenterOutput {
     func displayTutorialDialog()
     func displayReadingListDialog(item: ReadingListItem)
+    func displayFinishedListDialog(item: ReadingListItem)
     func displayUserData(viewData: GraphViewData)
     func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
@@ -36,22 +39,17 @@ final class  HomePresenter {
     private weak var readingListUseCase:  ReadingListUseCaseProtocol!
     private var dataStore: DataStoreProtocol!
     
-    // TODO: これなくしたいなあ
-    private var model: HomeModelInput
-    
     let notificationCenter = NotificationCenter.default
     
     private var optionTappedItem: ReadingListItem!
     
     private var notFinishedItems: [ReadingListItem]!
     
-    init(view:  HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, dataStore: DataStoreProtocol, model: HomeModelInput) {
+    init(view: HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, dataStore: DataStoreProtocol) {
         self.view = view
         self.authUsecase = authUseCase
         self.readingListUseCase = readingListUseCase
         self.dataStore = dataStore
-        
-        self.model = model
         
         self.readingListUseCase.output = self
         self.authUsecase.output = self
@@ -60,68 +58,10 @@ final class  HomePresenter {
     }
     
     private func setupNotificationCenter() {
-        // TODO: 不要な気がするから削除したい
-        // （オプションボタンのアクション）リーディングリストの削除を検知
-        notificationCenter.addObserver(self, selector: #selector(deleteItem), name: .deleteReadingItem, object: nil)
-        // （オプションボタンのアクション）既読リストへの追加を検知
-        notificationCenter.addObserver(self, selector: #selector(changeItemStateToFinished), name: .changeItemStateToFinishedReading, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(fetchAndUpdateList), name: .updateReadingList, object: nil)
-        
         // アプリがフォアグラウンドになったことを検知
         notificationCenter.addObserver(
             self, selector: #selector(saveReadingItem), name: UIApplication.didBecomeActiveNotification, object: nil
         )
-    }
-    
-    // 削除したい
-    @objc private func fetchAndUpdateList() {
-        
-        // 記事情報更新 // TODO: viewWillappearでもuserdefult見にいく必要ある？多分ない
-        saveReadingItem()
-        // 未読アイテム取得
-        notFinishedItems = model.fetchNotFinishedItems()
-        let now = Date()
-        
-        // グラフとリスト更新
-        // updateUserData(items: notFinishedItems)
-        updateTodayDeleteList(now: now, notFinishedItems: notFinishedItems)
-        updateReadingList(now: now)
-    }
-    
-    // 削除したいかも
-    private func updateTodayDeleteList(now: Date, notFinishedItems: [ReadingListItem]) {
-        
-        let todayDeleteItems: [ReadingListItem] = getTodayDeleteItems(from: notFinishedItems, now: now)
-        
-        if todayDeleteItems.count > 0 {
-            view.updateTodayDeleteList(items: todayDeleteItems)
-        } else {
-            view.updateTodayDeleteList(items: [ReadingListItem]())
-            view.showNoTodayDeleteItemsView()
-        }
-    }
-    
-    // 削除したいかも
-    @objc private func updateReadingList(now: Date) {
-        
-        guard let items = notFinishedItems else {
-            view.updateReadingList(items: [ReadingListItem]())
-            view.showNoReadingItemsView()
-            return
-        }
-        
-        var readingItems: [ReadingListItem] = [ReadingListItem]()
-        
-        for item: ReadingListItem in items where item.differenceDay(fromDate: now) > 1 {
-            readingItems.append(item)
-        }
-        
-        if readingItems.count > 0 {
-            view.updateReadingList(items: readingItems)
-        } else {
-            view.updateReadingList(items: [ReadingListItem]())
-            view.showNoReadingItemsView()
-        }
     }
     
     private func getTodayDeleteItems(from items: [ReadingListItem], now: Date) -> [ReadingListItem] {
@@ -139,29 +79,16 @@ final class  HomePresenter {
     @objc private func saveReadingItem() {
         readingListUseCase.saveReadingItem()
     }
-    
-    /// 削除アクションされたアイテムを削除しリストを更新
-    @objc private func deleteItem() {
-        
-        NotificationManager.deleteNotification(item: optionTappedItem)
-        model.deleteItem(readingItem: optionTappedItem)
-        
-        fetchAndUpdateList()
-    }
-    
-    /// アイテムを既読リストに移しリストを更新
-    @objc private func changeItemStateToFinished() {
-        
-        NotificationManager.deleteNotification(item: optionTappedItem)
-        model.changeItemStateToReading(item: optionTappedItem)
-        // リスト更新
-        fetchAndUpdateList()
-        // 既読リスト更新
-        notificationCenter.post(name: .updateFinishedList, object: nil)
-    }
 }
 
 extension  HomePresenter: HomePresenterInput {
+    
+    func tapMoveItemToFinishedList() {
+        guard let id = optionTappedItem.id else {
+            return
+        }
+        readingListUseCase.finishReadingItem(id)
+    }
     
     func tapMoveItemToReadingList() {
         
@@ -186,6 +113,11 @@ extension  HomePresenter: HomePresenterInput {
     func tapOptionBtn(item: ReadingListItem) {
         optionTappedItem = item
         view.displayReadingListDialog(item: item)
+    }
+    
+    func tapFinishedListOptionBtn(item: ReadingListItem) {
+        optionTappedItem = item
+        view.displayFinishedListDialog(item: item)
     }
     
     func viewDidLoad() {
@@ -247,11 +179,5 @@ extension HomePresenter: ReadingListUseCaseOutput {
             view.updateReadingList(items: [ReadingListItem]())
             view.showNoReadingItemsView()
         }
-    }
-    
-    func didSaveReadingItem() {
-    }
-    
-    func useCaseDidReceiveError(_ error: Error) {
     }
 }

@@ -15,22 +15,31 @@ class FloatingVC: UIViewController {
     
     // 表示するアイテムの配列
     private var displayItems: [ReadingListItem]?
-    private var presenter: FloatingViewPresenterInput!
-    
-    func inject(presenter: FloatingViewPresenterInput) {
-        self.presenter = presenter
+    // ここweakにしたいけど、そうするとnilになる、なぜ？？、他で参照されないweakはnilになるってよ
+    // private var presenter: FloatingViewPresenterInput!
+    private weak var homePresenter: HomePresenterInput!
+
+    static func vc(homePresenter: HomePresenterInput) -> FloatingVC {
+        
+        let floatingVC: FloatingVC = UIStoryboard(name: "FloatingVC", bundle: nil).instantiateInitialViewController() as! FloatingVC
+//        let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
+//        let floatingPresenter = FloatingViewPresenter(view: floatingVC, readingListUseCase: readingListUseCase)
+        floatingVC.inject(homePresenter: homePresenter)
+        
+        return floatingVC
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("テスト: viewDidLoad")
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter.viewWillAppear()
+      //  presenter.viewWillAppear()
     }
     
     private func configureTableView() {
@@ -61,7 +70,8 @@ extension FloatingVC: UITableViewDataSource {
             if let items = displayItems {
                 let item = items[indexPath.row]
                 let optionTappedAction = {
-                    self.presenter.optionTapped(item: item)
+                    #warning("ここ循環参照しないの？")
+                    self.homePresenter.tapFinishedListOptionBtn(item: item)
                 }
                 cell.articleView.articleImage.image = nil
                 cell.configureCell(row: indexPath.row, item: item, type: .FinishedList, tapOptionBtnAction: optionTappedAction)
@@ -86,19 +96,27 @@ extension FloatingVC: UITableViewDelegate {
     }   
 }
 
-extension FloatingVC: FloatingViewPresenterOutput {
-    func displayFinishedListDialog(item: ReadingListItem) {
-        SwiftMessageUtil.showFinishedListDialog(title: item.title)
-    }
+extension FloatingVC: FloationPresenterInjectable {
     
-    func updateList(results: [ReadingListItem]) {
-        displayItems = results
-        articleTableView.reloadData()
+    func inject(homePresenter: HomePresenterInput) {
+        self.homePresenter = homePresenter
     }
+}
+
+extension FloatingVC: FloatingViewPresenterOutput {
     
     func displayNoContentView() {
     }
     
     func dismissNoContentView() {
+    }
+    
+    func updateFinishedList(items: [ReadingListItem]) {
+        displayItems = items
+        articleTableView.reloadData()
+    }
+    
+    func updateList() {
+        // homePresenter.requestUpdateView()
     }
 }

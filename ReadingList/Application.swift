@@ -57,3 +57,8 @@ protocol HomePresenterInjectable {
     func inject(homePresenter: HomePresenterInput)
 }
 
+protocol FloationPresenterInjectable {
+    // 親viewのpresenterを利用しています
+    func inject(homePresenter: HomePresenterInput)
+}
+

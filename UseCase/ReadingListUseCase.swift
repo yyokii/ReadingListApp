@@ -46,14 +46,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             }
         }
     }
-    
-    func fetchFinishedItems() {
-        
-    }
-    
-    func fetchReadingItemsWillDelete() {
-    }
-    
+
     func fetchReadingItems() {
         
         readingListGateway.fetchReadingList { [weak self] res in
@@ -90,7 +83,6 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     func saveReadingItem() {
         
         guard let items = readingListGateway.fetchReadingListFromLocal() else {
-            self.output.didSaveReadingItem()
             return
         }
         
@@ -100,7 +92,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             
             switch res {
             case .success:
-                self.output.didSaveReadingItem()
+                self.output.didUpdateItemData()
                 // 通知設定
                 items.forEach {
                     NotificationManager.addNotification(title: $0[Constant.ReadingItem.title] as! String, targetDate: $0[Constant.ReadingItem.dueDate] as! Date, type: .OneDayBefore )
@@ -118,13 +110,16 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
     func saveToReadingList(_ id: String) {
         
-        readingListGateway.changeFinishedState(id: id, isFinished: true) { [weak self] res in
+        readingListGateway.changeFinishedState(id: id, isFinished: false) { [weak self] res in
             
             guard let self = self else { return }
             
             switch res {
             case .success:
                 self.output.didUpdateItemData()
+                
+                // todo: 通知設定必要
+                
                 break
             case .failure(let error):
                 self.output.useCaseDidReceiveError(error)

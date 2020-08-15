@@ -9,12 +9,6 @@
 // Input
 protocol ReadingListUseCaseProtocol: AnyObject {
     
-    /// 読み終わったもの一覧取得
-    func fetchFinishedItems()
-    
-    /// 読み終わっていない and 近い内に削除予定のもの一覧取得
-    func fetchReadingItemsWillDelete()
-    
     /// 読み終わっていない and 削除されるまで時間があるもの一覧取得
     func fetchReadingItems()
     
@@ -36,8 +30,6 @@ protocol ReadingListUseCaseProtocol: AnyObject {
 
 // Output
 protocol ReadingListUseCaseOutput {
-    
-    func didSaveReadingItem()
     
     /// アイテムのデータが更新された時に呼ばれる
     func didUpdateItemData()

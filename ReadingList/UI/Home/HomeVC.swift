@@ -26,14 +26,11 @@ class HomeVC: UIViewController {
     
     static func vc() -> HomeVC {
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
-        // todo: modelを後から外したい
-        let homeModel = HomeModel()
         let authUseCase: AuthUseCase! = Application.shared.authUseCase
         let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
         let dataStore = UserDefaultsDataStore()
-        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, dataStore: dataStore, model: homeModel)
-        authUseCase.output = homePresenter
-        
+        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, dataStore: dataStore)
+
         homeVC.inject(homePresenter: homePresenter)
         return homeVC
     }
@@ -62,11 +59,7 @@ class HomeVC: UIViewController {
     private func configureFloatingPanel() {
         floatingPanelController = FloatingPanelController()
         floatingPanelController.delegate = self
-        let storyboard: UIStoryboard = UIStoryboard(name: "FloatingVC", bundle: nil)
-        let floatingVC = storyboard.instantiateInitialViewController() as! FloatingVC
-        let floatingViewModel = FloatingViewModel()
-        let floatingViewPresenter = FloatingViewPresenter(view: floatingVC, model: floatingViewModel)
-        floatingVC.inject(presenter: floatingViewPresenter)
+        let floatingVC: FloatingVC = FloatingVC.vc(homePresenter: presenter)
         floatingPanelController.set(contentViewController: floatingVC)
         floatingPanelController.addPanel(toParent: self, belowView: nil, animated: false)
     }
@@ -137,11 +130,15 @@ extension HomeVC: HomePresenterOutput {
     func updateFinishedReadingList(items: [ReadingListItem]) {
         guard let floatingVC = floatingPanelController.contentViewController as? FloatingVC  else { return }
         
-        floatingVC.updateList(results: items)
+        floatingVC.updateFinishedList(items: items)
     }
     
     func displayReadingListDialog(item: ReadingListItem) {
         SwiftMessageUtil.showReadingListDialog(title: item.title, delegate: self)
+    }
+    
+    func displayFinishedListDialog(item: ReadingListItem) {
+        SwiftMessageUtil.showFinishedListDialog(title: item.title, delegate: self)
     }
     
     func displayTodayDeleteView(items: [ReadingListItem]) {
@@ -175,10 +172,20 @@ extension HomeVC: FloatingPanelControllerDelegate {
 extension HomeVC: ReadingItemDialogViewDelegate {
 
     func tapToFinishedList() {
-        presenter.tapMoveItemToReadingList()
+        presenter.tapMoveItemToFinishedList()
     }
     
     func tapDelete() {
+        presenter.tapDeleteItem()
+    }
+}
+
+extension HomeVC: FinishedItemDialogViewDelegate {
+    func tapToReadingList() {
+        presenter.tapMoveItemToReadingList()
+    }
+    
+    func tapDeleteFinishedItem() {
         presenter.tapDeleteItem()
     }
 }
