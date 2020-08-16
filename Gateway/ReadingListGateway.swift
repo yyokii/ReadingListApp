@@ -6,6 +6,8 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
+import Foundation
+
 final class ReadingListGateway: ReadingListGatewayProtocol {
     
     private weak var useCase: ReadingListUseCaseProtocol!
@@ -16,9 +18,22 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         self.useCase = useCase
     }
     
-    func changeFinishedState(id: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToReading(id: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
-        fireStoreClient.changeFinishedState(docId: id, isFinished: isFinished) { res in
+        fireStoreClient.changeStateToReading(docId: id, dueDate: dueDate) { res in
+            
+            switch res {
+            case .success:
+                completion(.success(nil))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
+    }
+    
+    func changeStateToFinished(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        fireStoreClient.changeStateToFinished(docId: id) { res in
             
             switch res {
             case .success:

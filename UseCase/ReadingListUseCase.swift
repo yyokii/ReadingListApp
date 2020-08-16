@@ -14,17 +14,17 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     var readingListGateway: ReadingListGatewayProtocol!
     var output: ReadingListUseCaseOutput!
     
-    func deleteReadingItem(_ id: String) {
+    func deleteReadingItem(_ item: ReadingListItem) {
         
-        readingListGateway.deleteReadingItem(id: id) { [weak self] res in
+        readingListGateway.deleteReadingItem(id: item.id!) { [weak self] res in
             
             guard let self = self else { return }
             
             switch res {
             case .success:
                 self.output.didUpdateItemData()
-                // 通知の削除設定必要
-                
+                // 通知の削除
+                self.localPushGateway.deleteNotification(id: item.id!)
                 break
             case .failure(let error):
                 self.output.useCaseDidReceiveError(error)
@@ -33,15 +33,17 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
         }
     }
     
-    func finishReadingItem(_ id: String) {
+    func finishReadingItem(_ item: ReadingListItem) {
         
-        readingListGateway.changeFinishedState(id: id, isFinished: true) { [weak self] res in
+        readingListGateway.changeStateToFinished(id: item.id!) { [weak self] res in
             
             guard let self = self else { return }
             
             switch res {
             case .success:
                 self.output.didUpdateItemData()
+                // 通知の削除
+                self.localPushGateway.deleteNotification(id: item.id!)
                 break
             case .failure(let error):
                 self.output.useCaseDidReceiveError(error)
@@ -49,7 +51,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             }
         }
     }
-
+    
     func fetchReadingItems() {
         
         readingListGateway.fetchReadingList { [weak self] res in
@@ -96,6 +98,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             switch res {
             case .success(let items):
                 self.output.didUpdateItemData()
+                
                 items.forEach {
                     self.localPushGateway.registerOneDayBeforePush(id: $0.id!, title: $0.title, targetDate: $0.dueDate!.dateValue())
                     self.localPushGateway.registerTwoDaysBeforePush(id: $0.id!, title: $0.title, targetDate: $0.dueDate!.dateValue())
@@ -110,9 +113,15 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
         }
     }
     
-    func saveToReadingList(_ id: String) {
+    func saveToReadingList(_ item: ReadingListItem) {
         
-        readingListGateway.changeFinishedState(id: id, isFinished: false) { [weak self] res in
+        let now = Date()
+        // 一週間後の日付（=読み終わり予定の期限日）を取得
+        let calendar = Calendar.current
+        let dueDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: now)
+        guard let due = dueDate else { return }
+        
+        readingListGateway.changeStateToReading(id: item.id!, dueDate: due) { [weak self] res in
             
             guard let self = self else { return }
             
@@ -120,7 +129,8 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
             case .success:
                 self.output.didUpdateItemData()
                 
-                // todo: 通知設定必要
+                self.localPushGateway.registerOneDayBeforePush(id: item.id!, title: item.title, targetDate: due)
+                self.localPushGateway.registerTwoDaysBeforePush(id: item.id!, title: item.title, targetDate: due)
                 
                 break
             case .failure(let error):

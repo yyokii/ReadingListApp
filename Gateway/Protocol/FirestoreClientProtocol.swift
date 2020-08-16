@@ -6,6 +6,8 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
+import Foundation
+
 protocol FirestoreClientProtocol {
     
     /// リーディングリスト情報取得
@@ -13,9 +15,12 @@ protocol FirestoreClientProtocol {
     
     /// アイテムを保存
     func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
-
-    /// 任意のアイテムの読み終わりステータスを更新
-    func changeFinishedState(docId: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    
+    /// 任意のアイテムのステータスを未読に設定
+    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    
+    /// 任意のアイテムのステータスを読み終わりに設定
+    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// 任意のアイテムを論理削除
     func deleteReadingItem(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)

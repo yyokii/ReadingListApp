@@ -51,7 +51,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func changeFinishedState(docId: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
@@ -59,7 +59,30 @@ final class FireStoreClient: FirestoreClientProtocol {
             .collection(FiryeStoreKeyConstant.items)
             .document(docId)
         
-        let data: [String: Any] = [Constant.ReadingItem.finishedAt: isFinished ? FieldValue.serverTimestamp() : NSNull()]
+        let formatter = Date.getFormatter()
+        let data: [String: Any] = [
+            Constant.ReadingItem.dueDate: formatter.string(from: dueDate),
+            Constant.ReadingItem.finishedAt: NSNull(),
+        ]
+        
+        ref.updateData(data) { (error) in
+            if let error = error {
+                completion(.failure(.serverError(error)))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+    
+    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+            .document(docId)
+        
+        let data: [String: Any] = [Constant.ReadingItem.finishedAt: FieldValue.serverTimestamp()]
         
         ref.updateData(data) { (error) in
             if let error = error {

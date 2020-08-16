@@ -6,10 +6,15 @@
 //  Copyright © 2020 Yoki Higashihara. All rights reserved.
 //
 
-protocol ReadingListGatewayProtocol {
+import Foundation
 
-    /// 任意のアイテムの読み終わりステータスを更新
-    func changeFinishedState(id: String, isFinished: Bool, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+protocol ReadingListGatewayProtocol {
+    
+    /// 任意のアイテムのステータスを未読に設定
+    func changeStateToReading(id: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    
+    /// 任意のアイテムのステータスを読み終わりに設定
+    func changeStateToFinished(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// 任意のアイテムを削除
     func deleteReadingItem(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)

@@ -16,13 +16,13 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     func saveReadingItem()
     
     /// 削除
-    func deleteReadingItem(_ id: String)
+    func deleteReadingItem(_ item: ReadingListItem)
     
     /// 既存アイテムのステータスを読み終わりにする
-    func finishReadingItem(_ id: String)
+    func finishReadingItem(_ item: ReadingListItem)
     
     /// 既存アイテムをリーディングリストに追加
-    func saveToReadingList(_ id: String)
+    func saveToReadingList(_ item: ReadingListItem)
     
     // 外側のオブジェクトはプロパティとしてあとからセットする
     var output: ReadingListUseCaseOutput! { get set }

@@ -45,15 +45,10 @@ class ShareViewController: SLComposeServiceViewController {
                     }
                     
                     let now = Date()
-                    //                    // 日付取得
-                    //                    let formatter = Date.getFormatter()
-                    //                    let dateString = formatter.string(from: now)
-                    
                     // 一週間後の日付（=読み終わり予定の期限日）を取得
                     let calendar = Calendar.current
                     let dueDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: now)
                     guard let due = dueDate else { return }
-                    //                    let dueDateString = formatter.string(from: due)
                     
                     // 保存
                     var itemDic = Dictionary<String, Any>()

@@ -43,17 +43,17 @@ final class  FloatingViewPresenter {
 extension  FloatingViewPresenter: FloatingViewPresenterInput {
     
     func tapMoveItemToReadingList() {
-        guard let id = optionTappedItem.id else {
+        guard let item = optionTappedItem else {
             return
         }
-        readingListUseCase.saveToReadingList(id)
+        readingListUseCase.saveToReadingList(item)
     }
     
     func tapDeleteItem() {
-        guard let id = optionTappedItem.id else {
+        guard let item = optionTappedItem else {
             return
         }
-        readingListUseCase.deleteReadingItem(id)
+        readingListUseCase.deleteReadingItem(item)
     }
     
     func tapOptionBtn(item: ReadingListItem) {
