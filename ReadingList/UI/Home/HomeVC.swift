@@ -153,6 +153,10 @@ extension HomeVC: HomePresenterOutput {
         noReadingItemsLbl.isHidden = false
     }
     
+    func showPopTip() {
+        graphView.showPopTip(with: .first)
+    }
+    
     func displayUserData(viewData: GraphViewData) {
         graphView.configureView(datas: viewData)
     }

@@ -28,6 +28,7 @@ protocol  HomePresenterOutput {
     func displayTodayDeleteView(items: [ReadingListItem])
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
+    func showPopTip()
     func updateFinishedReadingList(items: [ReadingListItem])
     func updateTodayDeleteList(items: [ReadingListItem])
     func updateReadingList(items: [ReadingListItem])
@@ -129,7 +130,7 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func viewWillAppear() {
-        authUsecase.fetchUser()        
+        authUsecase.fetchUser()
     }
 }
 
@@ -155,6 +156,7 @@ extension HomePresenter: ReadingListUseCaseOutput {
     func didUpdateReadingItemsData(_ items: [ReadingListItem]) {
         let viewData = GraphViewData(items: items)
         view.displayUserData(viewData: viewData)
+        view.showPopTip()
     }
     
     func didUpdateFinishedReadingItems(_ items: [ReadingListItem]) {

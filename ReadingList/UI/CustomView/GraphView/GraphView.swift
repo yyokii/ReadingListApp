@@ -19,7 +19,7 @@ enum ButtonType: Int {
     case seventh = 7
 }
 
-class GraphView: UIView {
+final class GraphView: UIView {
     
     @IBOutlet weak var totalCountLabel: UILabel!
     
@@ -63,9 +63,7 @@ class GraphView: UIView {
     
     func configureView(datas: GraphViewData) {
         self.datas = datas
-        
-        configurePopTip()
-        
+                
         totalCountLabel.text = "\(datas.totalCount)"
         
         if let seventhConstraint = self.seventhViewConstraint {
@@ -110,6 +108,10 @@ class GraphView: UIView {
         
         firstViewConstraint = firstView.heightAnchor.constraint(equalToConstant: datas.firstBarHeight)
         firstViewConstraint.isActive = true
+        
+        layoutIfNeeded()
+        
+        configurePopTip()
     }
     
     private func configurePopTip() {
@@ -133,7 +135,12 @@ class GraphView: UIView {
         
         guard let btnType = ButtonType.init(rawValue: sender.tag) else { return }
         
-        switch btnType {
+        showPopTip(with: btnType)
+    }
+    
+    func showPopTip(with buttonType: ButtonType) {
+                
+        switch buttonType {
         case .first:
             popTip.bubbleColor = UIColor.init(named: Constant.Color.pinkSherbet)!
             popTip.show(text: "\(datas.firstItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: firstView.frame)
@@ -157,5 +164,6 @@ class GraphView: UIView {
             popTip.bubbleColor = UIColor.init(named: Constant.Color.cornFlower)!
             popTip.show(text: "\(datas.seventhItemsCount)", direction: .up, maxWidth: 100, in: barStackView, from: seventhView.frame)
         }
+        
     }
 }
