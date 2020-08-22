@@ -39,7 +39,7 @@ final class FireStoreClient: FirestoreClientProtocol {
             let docRef = ref.document()
             batch.setData($0, forDocument: docRef)
             
-            saveItemsWithId.append(ReadingListItem(id: docRef.documentID, title: $0[Constant.ReadingItem.title] as! String, url: $0[Constant.ReadingItem.url] as! String, createdAt: Timestamp(date: $0[Constant.ReadingItem.createdAt] as! Date), dueDate: Timestamp(date: $0[Constant.ReadingItem.dueDate] as! Date), finishedReadingAt: nil, isDeleted: false))
+            saveItemsWithId.append(ReadingListItem(id: docRef.documentID, title: $0[Constant.ReadingItem.title] as! String, url: $0[Constant.ReadingItem.url] as! String, createdAt: $0[Constant.ReadingItem.createdAt] as! Timestamp, dueDate: $0[Constant.ReadingItem.dueDate] as? Timestamp, finishedReadingAt: nil, isDeleted: false))
         }
         
         batch.commit() { err in

@@ -32,7 +32,6 @@ class FloatingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("テスト: viewDidLoad")
         configureTableView()
     }
     

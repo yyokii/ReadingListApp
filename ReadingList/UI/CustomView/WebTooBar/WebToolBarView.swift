@@ -36,7 +36,6 @@ class WebToolBarView: UIView {
         if let view = Bundle(for: type(of: self)).loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? UIView {
             view.frame = self.bounds
             
-            
             //右上と左下を角丸にする設定
             baseView.layer.cornerRadius = 15
             baseView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
