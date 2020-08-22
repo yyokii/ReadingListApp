@@ -24,16 +24,20 @@ protocol ArticleWebPresenterOutput: AnyObject {
     func showSuccessAddFinishedListDialog()
 }
 
+/// 保存している記事閲覧webviewのPresenter
+/// 記事情報の更新い応じた下部ボタンの表示更新は未対応
 final class ArticleWebPresenter {
     
+    private weak var view: ArticleWebPresenterOutput!
+    private weak var itemViewerUseCase:  ItemViewerUseCaseProtocol!
+
     var item: ReadingListItem!
     
-    private weak var view: ArticleWebPresenterOutput!
-    private var model: ArticleWebModelInput
-    
-    init(view: ArticleWebPresenterOutput, model: ArticleWebModelInput) {
+    init(view: ArticleWebPresenterOutput, itemViewerUseCase: ItemViewerUseCaseProtocol) {
+        
         self.view = view
-        self.model = model
+        self.itemViewerUseCase = itemViewerUseCase
+        self.itemViewerUseCase.output = self
     }
     
     private func updateActionBtnState() {
@@ -55,6 +59,24 @@ final class ArticleWebPresenter {
     }
 }
 
+extension  ArticleWebPresenter: ItemViewerUseCaseOutput {
+    
+    func didUpdateItemData(_ itemID: String) {
+
+        if item.finishedReadingAt == nil {
+            // 対象アイテムがリーディングリストにある場合
+            view.showSuccessAddFinishedListDialog()
+        } else {
+            // 対象アイテムが既読リストなど、リーディングリストにはいっていない場合
+            view.showSuccessAddReadingListDialog()
+        }
+    }
+    
+    func useCaseDidReceiveError(_ error: WebClientError) {
+        // TODO:
+    }
+}
+
 extension  ArticleWebPresenter: ArticleWebPresenterInput {
     
     func viewDidLoad() {
@@ -67,24 +89,14 @@ extension  ArticleWebPresenter: ArticleWebPresenterInput {
     func tapItemActionButton() {
         
         if item.finishedReadingAt == nil {
+
             // リーディングリストのもの
-            
-            // TODO: fix
-            // model.addItemToFinishedList(item: item)
-            
-            view.showSuccessAddFinishedListDialog()
-            // view.showAddReadinListBtn()
+            itemViewerUseCase.finishReadingItem(item)
             
         } else {
+            
             // 既読リストなど、リーディングリストにはいっていないもの
-            
-            // TODO: fix
-            // model.addItemToReadingList(item: item)
-            
-            view.showSuccessAddReadingListDialog()
-            // view.showAddFinishedListBtn()
+            itemViewerUseCase.saveToReadingList(item)
         }
-        
-        updateActionBtnState()
     }
 }

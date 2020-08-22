@@ -14,8 +14,11 @@ class Application {
     private init() {}
 
     // ユースケース
-    private(set) var authUseCase: AuthUseCase!
-    private(set) var readingListUseCase: ReadingListUseCase!
+    
+    private(set) var authUseCase: AuthUseCaseProtocol!
+    private(set) var readingListUseCase: ReadingListUseCaseProtocol!
+    // 記事閲覧ユースケース
+    private(set) var itemViewerUseCase: ItemViewerUseCaseProtocol!
 
     func configure(with window: UIWindow) {
         buildLayer()
@@ -31,10 +34,11 @@ class Application {
         // -- Use Case
         authUseCase = AuthUseCase()
         readingListUseCase = ReadingListUseCase()
+        itemViewerUseCase = ItemViewerUseCase()
 
         // -- Interface Adapters
-        let userGateway = UserGateway(useCase: authUseCase)
-        let readingListGateway = ReadingListGateway(useCase: readingListUseCase)
+        let userGateway = UserGateway()
+        let readingListGateway = ReadingListGateway()
         let localPushGateway = LocalPushGateway()
 
         // -- Framework & Drivers
@@ -52,6 +56,8 @@ class Application {
         authUseCase.userGateway = userGateway
         readingListUseCase.readingListGateway = readingListGateway
         readingListUseCase.localPushGateway = localPushGateway
+        itemViewerUseCase.readingListGateway = readingListGateway
+        itemViewerUseCase.localPushGateway = localPushGateway
         
         // Presenterの作成・バインドは各ViewControllerを生成するクラスが実施
     }
@@ -59,6 +65,10 @@ class Application {
 
 protocol HomePresenterInjectable {
     func inject(homePresenter: HomePresenterInput)
+}
+
+protocol ArticleWebPresenterInjectable {
+    func inject(articleWebPresenter: ArticleWebPresenterInput)
 }
 
 protocol FloationPresenterInjectable {

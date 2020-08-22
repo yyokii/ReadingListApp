@@ -10,7 +10,7 @@ import Foundation
 
 final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
-    var localPushGateway: LocalPushGateway!
+    var localPushGateway: LocalPushGatewayProtocol!
     var readingListGateway: ReadingListGatewayProtocol!
     var output: ReadingListUseCaseOutput!
     

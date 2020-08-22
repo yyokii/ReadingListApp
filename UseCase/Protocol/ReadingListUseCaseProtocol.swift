@@ -26,6 +26,9 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     
     // 外側のオブジェクトはプロパティとしてあとからセットする
     var output: ReadingListUseCaseOutput! { get set }
+    
+    var readingListGateway: ReadingListGatewayProtocol! { get set }
+    var localPushGateway: LocalPushGatewayProtocol! { get set }
 }
 
 // Output

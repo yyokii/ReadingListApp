@@ -9,7 +9,8 @@
 // Input
 // Use Caseが外側に公開するインターフェイス
 protocol AuthUseCaseProtocol: AnyObject {
-    // ユーザー情報取得
+    
+    // ユーザー情報取得（未設定の場合は匿名ログインを実施）
     func fetchUser()
     
     // Emailログイン

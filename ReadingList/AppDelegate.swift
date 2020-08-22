@@ -32,13 +32,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         
-        // TODO: vcで検知する方針なので、ここ消したい
-//        // UserDefaultに保存されているものを取得して保存
-//        if let items = UserDefaultManager.shareInstance.fetchReadingItems() {
-//            RealmManager.sharedInstance.addItemToRealm(from: items)
-//            // Userdefaultに保存している記事情報を削除
-//            UserDefaultManager.shareInstance.deleteReadingItems()
-//            NotificationCenter.default.post(name: .updateReadingList, object: nil)
-//        }
     }
 }

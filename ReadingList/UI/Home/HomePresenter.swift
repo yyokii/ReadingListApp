@@ -126,11 +126,11 @@ extension  HomePresenter: HomePresenterInput {
             view.displayTutorialDialog()
             dataStore.setFirstOpenArticleView()
         }
-        
-        authUsecase.fetchUser()
     }
     
-    func viewWillAppear() {}
+    func viewWillAppear() {
+        authUsecase.fetchUser()        
+    }
 }
 
 extension HomePresenter: AuthUseCaseOutput {

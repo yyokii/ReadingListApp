@@ -59,9 +59,8 @@ final class FireStoreClient: FirestoreClientProtocol {
             .collection(FiryeStoreKeyConstant.items)
             .document(docId)
         
-        let formatter = Date.getFormatter()
         let data: [String: Any] = [
-            Constant.ReadingItem.dueDate: formatter.string(from: dueDate),
+            Constant.ReadingItem.dueDate: Timestamp(date: dueDate),
             Constant.ReadingItem.finishedAt: NSNull(),
         ]
         

@@ -26,11 +26,9 @@ class HomeVC: UIViewController {
     
     static func vc() -> HomeVC {
         let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as! HomeVC
-        let authUseCase: AuthUseCase! = Application.shared.authUseCase
-        let readingListUseCase: ReadingListUseCase! = Application.shared.readingListUseCase
         let dataStore = UserDefaultsDataStore()
-        let homePresenter = HomePresenter(view: homeVC, authUseCase: authUseCase, readingListUseCase: readingListUseCase, dataStore: dataStore)
-
+        let homePresenter = HomePresenter(view: homeVC, authUseCase: Application.shared.authUseCase, readingListUseCase: Application.shared.readingListUseCase, dataStore: dataStore)
+        
         homeVC.inject(homePresenter: homePresenter)
         return homeVC
     }
@@ -46,6 +44,7 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        presenter.viewWillAppear()
     }
     
     private func configureView() {        
@@ -170,7 +169,7 @@ extension HomeVC: FloatingPanelControllerDelegate {
 }
 
 extension HomeVC: ReadingItemDialogViewDelegate {
-
+    
     func tapToFinishedList() {
         presenter.tapMoveItemToFinishedList()
     }

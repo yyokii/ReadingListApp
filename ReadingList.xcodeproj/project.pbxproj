@@ -86,6 +86,8 @@
 		F509CEDE24E845D80048746A /* LocalPushGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEDD24E845D80048746A /* LocalPushGateway.swift */; };
 		F509CEE124E8461B0048746A /* LocalPushGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE024E8461B0048746A /* LocalPushGatewayProtocol.swift */; };
 		F509CEE324E84CE80048746A /* NotificationClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE224E84CE80048746A /* NotificationClientProtocol.swift */; };
+		F509CEE624EAC9740048746A /* ItemViewerUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */; };
+		F509CEE824EACF2F0048746A /* ItemViewerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */; };
 		F535AEA524AB783900FCB375 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961DC24AA301B00426D92 /* AppUser.swift */; };
 		F535AEA724AB784200FCB375 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81377A62EC4B33B0B85634 /* AuthUseCase.swift */; };
 		F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */; };
@@ -227,6 +229,8 @@
 		F509CEDD24E845D80048746A /* LocalPushGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushGateway.swift; sourceTree = "<group>"; };
 		F509CEE024E8461B0048746A /* LocalPushGatewayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushGatewayProtocol.swift; sourceTree = "<group>"; };
 		F509CEE224E84CE80048746A /* NotificationClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationClientProtocol.swift; sourceTree = "<group>"; };
+		F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCaseProtocol.swift; sourceTree = "<group>"; };
+		F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCase.swift; sourceTree = "<group>"; };
 		F54961D624A8CAD200426D92 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		F54961D824A8ECCD00426D92 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		F54961DC24AA301B00426D92 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -421,6 +425,7 @@
 				F509CEDF24E845E70048746A /* Protocol */,
 				0A81377A62EC4B33B0B85634 /* AuthUseCase.swift */,
 				25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */,
+				F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -656,6 +661,7 @@
 				F5AAE89224E04BE8004DE177 /* ReadingListGatewayProtocol.swift */,
 				F5AAE88E24E04AC6004DE177 /* AuthUseCaseProtocol.swift */,
 				F5AAE89024E04AF7004DE177 /* ReadingListUseCaseProtocol.swift */,
+				F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */,
 				F509CEE024E8461B0048746A /* LocalPushGatewayProtocol.swift */,
 			);
 			path = Protocol;
@@ -951,11 +957,13 @@
 				4F74B06788F2843FC40E808F /* ArticleTableViewCell.swift in Sources */,
 				37B83E184E882BBD12DF52A6 /* ArticleView.swift in Sources */,
 				D5968D84822EBD27342DB8BC /* ArticleWebModel.swift in Sources */,
+				F509CEE824EACF2F0048746A /* ItemViewerUseCase.swift in Sources */,
 				F535AEA724AB784200FCB375 /* AuthUseCase.swift in Sources */,
 				F08D99D8255EFAFF03AD5B2F /* ArticleWebPresenter.swift in Sources */,
 				51D21E34DA0887892A32CBA1 /* ArticleWebVC.swift in Sources */,
 				1E0F3C23FBCF451F79689A3C /* Constant.swift in Sources */,
 				D3CF7F9BD7A4718CE34B1070 /* Date+Extension.swift in Sources */,
+				F509CEE624EAC9740048746A /* ItemViewerUseCaseProtocol.swift in Sources */,
 				F509CEDE24E845D80048746A /* LocalPushGateway.swift in Sources */,
 				DAED9FF7BC6C8109BC57519C /* DeletedListModel.swift in Sources */,
 				F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */,

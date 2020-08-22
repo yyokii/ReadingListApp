@@ -10,13 +10,8 @@ import Foundation
 
 final class ReadingListGateway: ReadingListGatewayProtocol {
     
-    private weak var useCase: ReadingListUseCaseProtocol!
     var fireStoreClient: FirestoreClientProtocol!
     var dataStore: DataStoreProtocol!
-    
-    init(useCase: ReadingListUseCaseProtocol) {
-        self.useCase = useCase
-    }
     
     func changeStateToReading(id: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
@@ -81,7 +76,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
     func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         
         fireStoreClient.fetchReadingList { res in
-            //            completion()
+            
             switch res {
             case .success(let items):
                 completion(.success(items))

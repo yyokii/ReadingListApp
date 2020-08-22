@@ -22,17 +22,13 @@ class ArticleWebVC: UIViewController {
     /// ナビゲーション付きのwebviewを作成する
     class func viewController (item: ReadingListItem) -> UIViewController {
         let vc = UIStoryboard(name: "Article", bundle: nil).instantiateInitialViewController() as! ArticleWebVC
-        let model = ArticleWebModel()
-        let presenter = ArticleWebPresenter.init(view: vc, model: model)
+        let presenter = ArticleWebPresenter.init(view: vc, itemViewerUseCase: Application.shared.itemViewerUseCase)
         presenter.item = item
-        vc.inject(presenter: presenter)
+        vc.inject(articleWebPresenter: presenter)
         let nav = UINavigationController(rootViewController: vc)
         nav.navigationBar.barTintColor = UIColor.white
+        nav.modalPresentationStyle = .fullScreen
         return nav
-    }
-    
-    func inject(presenter: ArticleWebPresenterInput) {
-        self.presenter = presenter
     }
     
     override func viewDidLoad() {
@@ -47,6 +43,12 @@ class ArticleWebVC: UIViewController {
         webView.scrollView.delegate = self
         webView.uiDelegate = self
         toolbarView.delegate = self
+    }
+}
+
+extension ArticleWebVC: ArticleWebPresenterInjectable {
+    func inject(articleWebPresenter: ArticleWebPresenterInput){
+        self.presenter = articleWebPresenter
     }
 }
 

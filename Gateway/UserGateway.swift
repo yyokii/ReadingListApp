@@ -8,14 +8,9 @@
 
 final class UserGateway: UserGatewayProtocol {
     
-    private weak var useCase: AuthUseCaseProtocol!
     var fireStoreClient: FirestoreClientProtocol!
     
     private var user: AppUser?
-    
-    init(useCase: AuthUseCaseProtocol) {
-        self.useCase = useCase
-    }
     
     func fetchUser(completion: @escaping (AppUser) -> Void) {
         
