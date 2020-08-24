@@ -12,7 +12,7 @@ target 'ReadingList' do
   pod 'FloatingPanel', '>= 1.6.4'
   pod 'LicensePlist'
   pod 'AMPopTip'
-  pod 'RealmSwift',  '>= 3.18.0'
+  pod 'RealmSwift', '>= 3.18.0'
   pod 'SwiftMessages'
   pod 'SwiftLinkPreview', '~> 3.1'
   

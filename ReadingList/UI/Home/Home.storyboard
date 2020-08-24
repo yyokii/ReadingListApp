@@ -22,6 +22,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjC-4F-GHl">
                                         <rect key="frame" x="16" y="0.0" width="18" height="40"/>
                                         <state key="normal" image="person.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="tapUserButton:" destination="xxi-di-qzX" eventType="touchUpInside" id="x8b-fb-UaX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IR8-9H-TqJ">
                                         <rect key="frame" x="386" y="0.0" width="20" height="40"/>

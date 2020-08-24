@@ -10,22 +10,62 @@ final class UserGateway: UserGatewayProtocol {
     
     var fireStoreClient: FirestoreClientProtocol!
     
-    private var user: AppUser?
+    var currentUser: AppUser?    
+    
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+        
+        fireStoreClient.convertToPermanent(email: email, pass: pass) { [weak self] res in
+            
+            guard let self = self else {
+                completion(.failure(.other(nil)))
+                return
+            }
+            
+            switch res {
+            case .success(let appUser):
+                self.currentUser = appUser
+                completion(.success(self.currentUser!))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
+    }
+
     
     func fetchUser(completion: @escaping (AppUser) -> Void) {
         
-        if let appUser = user {
+        if let appUser = currentUser {
             // キャッシュ
             completion(appUser)
         } else {
             fireStoreClient.fetchUser { user in
-                self.user = user
+                self.currentUser = user
                 completion(user)
             }
         }
     }
     
-    func signIn(with email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func signOut(completion: @escaping (WebClientError?) -> Void) {
+        // TODO: ログアウトを実行する、
+    }
+    
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+        
+        fireStoreClient.signIn(email: email, pass: pass) { [weak self] res in
+            
+            guard let self = self else {
+                completion(.failure(.other(nil)))
+                return
+            }
+            
+            switch res {
+            case .success(let appUser):
+                self.currentUser = appUser
+                completion(.success(self.currentUser!))
+            case .failure(let error):
+                completion(.failure(.serverError(error)))
+            }
+        }
     }
     
     func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
@@ -38,8 +78,8 @@ final class UserGateway: UserGatewayProtocol {
             
             switch res {
             case .success(let appUser):
-                self.user = appUser
-                completion(.success(self.user!))
+                self.currentUser = appUser
+                completion(.success(self.currentUser!))
             case .failure(let error):
                 completion(.failure(.serverError(error)))
             }

@@ -104,6 +104,10 @@ class HomeVC: UIViewController {
         let aboutAppVC = UIStoryboard(name: "AboutApp", bundle: nil).instantiateInitialViewController() as! AboutAppVC
         navigationController?.pushViewController(aboutAppVC, animated: true)
     }
+    
+    @IBAction func tapUserButton(_ sender: Any) {
+        presenter.tapUserButton()
+    }
 }
 
 extension HomeVC: HomePresenterInjectable {
@@ -157,6 +161,24 @@ extension HomeVC: HomePresenterOutput {
         graphView.showPopTip(with: .first)
     }
     
+    func showRegisterDialog() {
+        let dialog = AuthUserDialog.createRegisterDialog(registerAction: { [weak self]
+            (mail, pass) in
+            
+            guard let self = self else { return }
+            self.presenter.tapRegisterButton(mail: mail, pass: pass)
+        }) { [weak self] (mail, pass) in
+            
+            guard let self = self else { return }
+            self.presenter.tapLoginButton(mail: mail, pass: pass)
+        }
+        self.present(dialog, animated: true, completion: nil)
+    }
+    
+    func showLogoutDialog() {
+        // TODO:
+    }
+    
     func displayUserData(viewData: GraphViewData) {
         graphView.configureView(datas: viewData)
     }
@@ -167,6 +189,7 @@ extension HomeVC: HomePresenterOutput {
 }
 
 extension HomeVC: FloatingPanelControllerDelegate {
+    
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         return ArticleListPanelLayout()
     }

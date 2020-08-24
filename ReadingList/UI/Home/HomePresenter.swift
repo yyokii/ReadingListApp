@@ -16,6 +16,10 @@ protocol HomePresenterInput: AnyObject {
     func tapMoveItemToFinishedList()
     func tapMoveItemToReadingList()
     func tapDeleteItem()
+    func tapUserButton()
+    func tapRegisterButton(mail: String, pass: String)
+    func tapLoginButton(mail: String, pass: String)
+    func tapLogoutButton()
     func viewDidLoad()
     func viewWillAppear()
 }
@@ -26,6 +30,8 @@ protocol  HomePresenterOutput {
     func displayFinishedListDialog(item: ReadingListItem)
     func displayUserData(viewData: GraphViewData)
     func displayTodayDeleteView(items: [ReadingListItem])
+    func showRegisterDialog()
+    func showLogoutDialog()
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
     func showPopTip()
@@ -121,6 +127,37 @@ extension  HomePresenter: HomePresenterInput {
         view.displayFinishedListDialog(item: item)
     }
     
+    func tapUserButton() {
+        guard let user = authUsecase.currentUser else {
+            return
+        }
+        
+        switch user.status {
+        case .uninitialized:
+            break
+        case .authenticated:
+            break
+            // ログイン状態、ログアウトボタンを出す
+            view.showLogoutDialog()
+        case .authenticatedAnonymously:
+            // 匿名ログイン状態、新規登録 or ログインボタンを出す
+            view.showRegisterDialog()
+        }
+    }
+    
+    func tapRegisterButton(mail: String, pass: String) {
+        // TODO: バリデーション
+        
+    }
+    
+    func tapLoginButton(mail: String, pass: String) {
+        // TODO: バリデーション
+    }
+    
+    func tapLogoutButton() {
+        // TODO: バリデーション
+    }
+    
     func viewDidLoad() {
         if dataStore.isFirstOpenArticleView() {
             // 初回表示時
@@ -140,10 +177,14 @@ extension HomePresenter: AuthUseCaseOutput {
         readingListUseCase.fetchReadingItems()
     }
     
-    func didsignIn(_ repoStatuses: String) {
+    func didsignIn() {
     }
     
-    func useCaseDidReceiveError(_ error: WebClientError) {
+    func didRegisterUser() {
+        
+    }
+    
+    func useCaseDidReceiveError(error: WebClientError) {
     }
 }
 

@@ -7,10 +7,17 @@
 //
 
 final class AuthUseCase: AuthUseCaseProtocol {
+
     var userGateway: UserGatewayProtocol!
     var output: AuthUseCaseOutput!
+
+    var currentUser: AppUser? {
+         return userGateway.currentUser
+     }
     
     func fetchUser() {
+        
+        // TODO: これresでエラーも返すようにしないといけなくね
         userGateway.fetchUser {[weak self] user in
             
             guard let self = self else { return }
@@ -19,11 +26,11 @@ final class AuthUseCase: AuthUseCaseProtocol {
             case .uninitialized:
                 self.userGateway.signSignInAnonymously { (res) in
                     switch res {
-                    case .success(let appUser):
+                    case .success:
                         self.output.didFetchUser()
                         break
                     case .failure(let error):
-                        self.output.useCaseDidReceiveError(error)
+                        self.output.useCaseDidReceiveError(error: error)
                         break
                     }
                 }
@@ -37,7 +44,38 @@ final class AuthUseCase: AuthUseCaseProtocol {
         }
     }
     
-    func signIn() {
+    func registerUser(mail: String, pass: String) {
+        
+        userGateway.convertToPermanent(email: mail, pass: pass) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didRegisterUser()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error: error)
+                break
+            }
+        }
+    }
+    
+    func signIn(mail: String, pass: String) {
+
+        userGateway.signIn(email: mail, pass: pass) { [weak self] res in
+            
+            guard let self = self else { return }
+            
+            switch res {
+            case .success:
+                self.output.didsignIn()
+                break
+            case .failure(let error):
+                self.output.useCaseDidReceiveError(error: error)
+                break
+            }
+        }
     }
     
     func signOut() {

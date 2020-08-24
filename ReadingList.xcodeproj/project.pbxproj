@@ -88,6 +88,7 @@
 		F509CEE324E84CE80048746A /* NotificationClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE224E84CE80048746A /* NotificationClientProtocol.swift */; };
 		F509CEE624EAC9740048746A /* ItemViewerUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */; };
 		F509CEE824EACF2F0048746A /* ItemViewerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */; };
+		F509CEEA24F278680048746A /* AuthUserDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE924F278680048746A /* AuthUserDialog.swift */; };
 		F535AEA524AB783900FCB375 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961DC24AA301B00426D92 /* AppUser.swift */; };
 		F535AEA724AB784200FCB375 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81377A62EC4B33B0B85634 /* AuthUseCase.swift */; };
 		F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */; };
@@ -231,6 +232,7 @@
 		F509CEE224E84CE80048746A /* NotificationClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationClientProtocol.swift; sourceTree = "<group>"; };
 		F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCaseProtocol.swift; sourceTree = "<group>"; };
 		F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCase.swift; sourceTree = "<group>"; };
+		F509CEE924F278680048746A /* AuthUserDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserDialog.swift; sourceTree = "<group>"; };
 		F54961D624A8CAD200426D92 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		F54961D824A8ECCD00426D92 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		F54961DC24AA301B00426D92 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				D83AD67532647F3EE2729204 /* OptionDialog */,
 				7CC734135FD3712B2DFDF0CE /* TutorialDialog */,
 				7774B6616A5C37B69A43313B /* WebTooBar */,
+				F509CEE924F278680048746A /* AuthUserDialog.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				C280525F1AC7994002C5B0F2 /* GraphView.swift in Sources */,
 				6F3DF9ECB4936F5EC1F3030F /* GraphViewData.swift in Sources */,
 				A8A0369260C9A2B9E2B585E9 /* HomePresenter.swift in Sources */,
+				F509CEEA24F278680048746A /* AuthUserDialog.swift in Sources */,
 				F7F97F5544AA97CAF7318105 /* HomeVC.swift in Sources */,
 				F5AAE88F24E04AC6004DE177 /* AuthUseCaseProtocol.swift in Sources */,
 				F1A402723B35C234ADE3153E /* Indicator.swift in Sources */,

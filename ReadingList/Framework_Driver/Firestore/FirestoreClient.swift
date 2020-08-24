@@ -133,9 +133,6 @@ final class FireStoreClient: FirestoreClientProtocol {
         completion(AppUser(from: user))
     }
     
-    func deleteReadingItem() {
-    }
-    
     func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
         
         Auth.auth().signInAnonymously() { (authResult, error) in
@@ -154,6 +151,7 @@ final class FireStoreClient: FirestoreClientProtocol {
     }
     
     func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+        
         let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
         
         user?.link(with: credential) { (authResult, error) in
@@ -182,20 +180,21 @@ final class FireStoreClient: FirestoreClientProtocol {
                     completion(.failure(.other(nil)))
                     return
                 }
-                //                completion(.success(user))
+                self.user = user
+                completion(.success(AppUser(from: self.user)))
             }
         }
     }
     
     // ログアウト（Emailログインしている場合）
-    func signOut(completion: @escaping (Result<Bool, WebClientError>) -> Void) {
+    func signOut(completion: @escaping (WebClientError?) -> Void) {
         
         do {
             try Auth.auth().signOut()
-            completion(.success(true))
+            completion(nil)
         } catch let signOutError as NSError {
             print ("エラー サインアウト: %@", signOutError)
-            completion(.failure(.serverError(signOutError)))
+            completion(.serverError(signOutError))
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Indicator: UIView {
+final class Indicator: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     

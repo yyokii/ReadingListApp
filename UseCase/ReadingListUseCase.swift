@@ -27,7 +27,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 self.localPushGateway.deleteNotification(id: item.id!)
                 break
             case .failure(let error):
-                self.output.useCaseDidReceiveError(error)
+                self.output.useCaseDidReceiveError(error: error)
                 break
             }
         }
@@ -46,7 +46,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 self.localPushGateway.deleteNotification(id: item.id!)
                 break
             case .failure(let error):
-                self.output.useCaseDidReceiveError(error)
+                self.output.useCaseDidReceiveError(error: error)
                 break
             }
         }
@@ -79,7 +79,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 
                 break
             case .failure(let error):
-                self.output.useCaseDidReceiveError(error)
+                self.output.useCaseDidReceiveError(error: error)
                 break
             }
         }
@@ -107,7 +107,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 self.readingListGateway.deleteLocalReadingListDatas()
                 break
             case .failure(let error):
-                self.output.useCaseDidReceiveError(error)
+                self.output.useCaseDidReceiveError(error: error)
                 break
             }
         }
@@ -134,7 +134,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 
                 break
             case .failure(let error):
-                self.output.useCaseDidReceiveError(error)
+                self.output.useCaseDidReceiveError(error: error)
                 break
             }
         }
