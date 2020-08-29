@@ -23,7 +23,7 @@ protocol FirestoreClientProtocol {
     func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// 任意のアイテムを論理削除
-    func deleteReadingItem(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// ユーザー情報取得
     func fetchUser(completion: @escaping (AppUser) -> Void)

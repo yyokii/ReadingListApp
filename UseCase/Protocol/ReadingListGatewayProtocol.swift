@@ -17,7 +17,7 @@ protocol ReadingListGatewayProtocol {
     func changeStateToFinished(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     /// 任意のアイテムを削除
-    func deleteReadingItem(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func deleteReadingItems(ids: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void)
     
     func saveItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
     

@@ -16,7 +16,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
     
     func deleteReadingItem(_ item: ReadingListItem) {
         
-        readingListGateway.deleteReadingItem(id: item.id!) { [weak self] res in
+        readingListGateway.deleteReadingItems(ids: [item.id!]) { [weak self] res in
             
             guard let self = self else { return }
             
@@ -67,7 +67,23 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                     $0.createdAt.dateValue() < $1.createdAt.dateValue()
                 }
                 
-                let lessOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) <= 1 }
+                // 期限切れのものがあればデータ更新（論理削除）する
+                let expiratedItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) < 0}
+                
+                if expiratedItems.count > 0 {
+                    let ids = expiratedItems.map { $0.id! }
+                    self.readingListGateway.deleteReadingItems(ids: ids) { res in
+                        
+                        switch res {
+                        case .success:
+                            break
+                        case .failure(let error):
+                            self.output.useCaseDidReceiveError(error: error)
+                        }
+                    }
+                }
+                
+                let lessOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) <= 1 && $0.differenceDay(fromDate: now) >= 0 }
                 let moreThanOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) > 1 }
                 let finishedReadingItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt != nil }
                 

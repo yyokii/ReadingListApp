@@ -13,7 +13,8 @@ import FirebaseFirestoreSwift
 import RealmSwift
 
 extension FireStoreClient {
-    
+
+    // realmからfirestoreへのデータ移行、後のリリースで消す
     func convertRealmToFirestore(items: Results<ReadingItem>, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
         let fireStore = Firestore.firestore()
@@ -149,16 +150,22 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func deleteReadingItem(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
             .document(user.uid)
             .collection(FiryeStoreKeyConstant.items)
-            .document(docId)
         
-        ref.updateData(
-        [Constant.ReadingItem.isDeleted: true]) { (error) in
-            if let error = error {
+        // バッチ書き込み
+        let batch: WriteBatch = fireStore.batch()
+        docIds.forEach {
+            let docRef = ref.document($0)
+            batch.updateData([Constant.ReadingItem.isDeleted: true], forDocument: docRef)
+        }
+        
+        batch.commit() { err in
+            if let error = err {
                 completion(.failure(.serverError(error)))
             } else {
                 completion(.success(nil))

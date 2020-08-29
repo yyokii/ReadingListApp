@@ -15,7 +15,7 @@ protocol ReadingListUseCaseProtocol: AnyObject {
     /// 他のアプリから本アプリへシェアしたものをサーバーに保存
     func saveReadingItem()
     
-    /// 削除
+    /// 任意のアイテムを1件削除
     func deleteReadingItem(_ item: ReadingListItem)
     
     /// 既存アイテムのステータスを読み終わりにする

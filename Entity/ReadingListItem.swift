@@ -18,6 +18,7 @@ struct ReadingListItem: Codable {
     var finishedReadingAt: Timestamp?
     var isDeleted: Bool
     
+    /// 指定日と期限日との日数差
     func differenceDay(fromDate: Date) -> Int {
         guard let dueDate = self.dueDate else { return 0 }
         let diff = fromDate.differenceInDay(dueDate.dateValue())

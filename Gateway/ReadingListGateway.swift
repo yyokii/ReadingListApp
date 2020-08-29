@@ -39,9 +39,9 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    func deleteReadingItem(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func deleteReadingItems(ids: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
         
-        fireStoreClient.deleteReadingItem(docId: id) { res in
+        fireStoreClient.deleteReadingItems(docIds: ids) { res in
             
             switch res {
             case .success:
