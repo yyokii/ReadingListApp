@@ -416,7 +416,6 @@
 				5A971907BC44B492A333148E /* Extension */,
 				EA747586E151969F3008DD46 /* Support */,
 				2CBE5EFFD8264C531A62FB29 /* UI */,
-				B90763ADDECE63A44174CF3E /* Utility */,
 			);
 			path = ReadingList;
 			sourceTree = "<group>";
@@ -562,14 +561,6 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
-		B90763ADDECE63A44174CF3E /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
 		B9CE6C896D7FFC4AE8CF20D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +624,8 @@
 		E6453B95DE9E2B9C17D25348 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F509CEE924F278680048746A /* AuthUserDialog.swift */,
+				FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */,
 				E5A47FB76F07ED11F12612D2 /* GradationView.swift */,
 				FC002330B7EB54BA1A678A52 /* Indicator.swift */,
 				DCE5363852AFE3955D415435 /* Indicator.xib */,
@@ -642,7 +635,6 @@
 				D83AD67532647F3EE2729204 /* OptionDialog */,
 				7CC734135FD3712B2DFDF0CE /* TutorialDialog */,
 				7774B6616A5C37B69A43313B /* WebTooBar */,
-				F509CEE924F278680048746A /* AuthUserDialog.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";

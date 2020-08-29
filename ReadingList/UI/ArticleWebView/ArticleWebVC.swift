@@ -71,11 +71,11 @@ extension ArticleWebVC: ArticleWebPresenterOutput {
     }
     
     func showSuccessAddReadingListDialog() {
-        SwiftMessageUtil.showIconTextMessage(type: .ToReadingList, iconText: "👍", title: "", message: "リーディングリストに追加しました")
+        SwiftMessageUtil.showIconTextMessage(of: .ToReadingList, iconText: "👍", title: "", message: "リーディングリストに追加しました")
     }
     
     func showSuccessAddFinishedListDialog() {
-        SwiftMessageUtil.showIconTextMessage(type: .ToFinishedList, iconText: "🌟", title: "", message: "読み終わり記事に追加しました")
+        SwiftMessageUtil.showIconTextMessage(of: .ToFinishedList, iconText: "🌟", title: "", message: "読み終わり記事に追加しました")
     }
     
     func closeView() {

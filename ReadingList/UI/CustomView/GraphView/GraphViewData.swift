@@ -66,7 +66,7 @@ struct GraphViewData {
         }).count
         
         seventhItemsCount = items.filter({
-            $0.differenceDay(fromDate: now) == 7
+            $0.differenceDay(fromDate: now) >= 7
         }).count
         
         totalCount = firstItemsCount + secondItemsCount + thirdItemsCount + fourthItemsCount + fifthItemsCount + sixthItemsCount + seventhItemsCount

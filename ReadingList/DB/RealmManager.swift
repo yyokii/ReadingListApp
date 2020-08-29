@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import FirebaseFirestore
 
 /*
  ReditReadingItemのステータス
@@ -20,8 +21,21 @@ import RealmSwift
  
  */
 
+extension RealmManager {
+
+    func readAll() -> Results<ReadingItem>? {
+        return database?.objects(ReadingItem.self)
+    }
+    
+    func deleteAll() {
+        try? database?.write {
+            database?.deleteAll()
+        }
+    }
+}
+
 /// ReadingItemモデル管理クラス
-class RealmManager {
+final class RealmManager {
     static let sharedInstance = RealmManager()
     private var database: Realm?
     
@@ -39,15 +53,15 @@ class RealmManager {
         }
     }
     
-//    /// 記事データ編集 TODO: bool返すようにしたい, error型か
-//    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: Date?, finishedDate: Date?, item: ReadingItem) {
-//        try? database?.write {
-//            item.url = url
-//            item.title = title
-//            item.createdDate = createdDate
-//            item.finishedDate = finishedDate
-//        }
-//    }
+    //    /// 記事データ編集 TODO: bool返すようにしたい, error型か
+    //    func editReadingItem(url: String, title: String, imageUrl: String, createdDate: Date?, finishedDate: Date?, item: ReadingItem) {
+    //        try? database?.write {
+    //            item.url = url
+    //            item.title = title
+    //            item.createdDate = createdDate
+    //            item.finishedDate = finishedDate
+    //        }
+    //    }
     //
     
     /// 辞書型データをRealmへ保存
@@ -55,14 +69,14 @@ class RealmManager {
         
         // TODO: fix, 保存とローカルプッシュ設定
         
-//        dicItems.forEach { (item: [String:String]) in
-//            let obj = RealmManager.sharedInstance.createRealmObj(itemDic: item)
-//            guard let readingItem = obj else { return }
-//            RealmManager.sharedInstance.addReadingItem(object: readingItem)
-//            // duedate前の通知設定
-//            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
-//            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
-//        }
+        //        dicItems.forEach { (item: [String:String]) in
+        //            let obj = RealmManager.sharedInstance.createRealmObj(itemDic: item)
+        //            guard let readingItem = obj else { return }
+        //            RealmManager.sharedInstance.addReadingItem(object: readingItem)
+        //            // duedate前の通知設定
+        //            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .OneDayBefore)
+        //            NotificationManager.sharedInstance.addNotification(item: readingItem, type: .TwoDaysBefore)
+        //        }
     }
     
     /// dicからRealmオブジェクトを生成
@@ -170,31 +184,17 @@ class RealmManager {
         let results = database?.objects(ReadingItem.self).filter("finishedDate >= %@ && finishedDate <= %@ && isDeleted == false", startOfDay, endOfDay)
         return results
     }
-
+    
     /// 論理削除されているアイテムを取得
     func readDeletedItems() -> Results<ReadingItem>?  {
         let results = database?.objects(ReadingItem.self).filter("isDeleted == true")
         return results
     }
     
-    /// TODO: 動作確認、期日切れのアイテムを論理削除
+    /// 期日切れのアイテムを論理削除
     func deleteExpiredItem(now: Date) {
         // 削除されていない、期限日を超えているもの、読み終わっていないもの
         let fileterdItem = database?.objects(ReadingItem.self).filter("finishedDate == null && dueDate < %@ && isDeleted == false", now)
-        guard let results = fileterdItem else { return }
-        
-        results.forEach { item in
-            try? database?.write {
-                item.isDeleted = true
-            }
-        }
-    }
-    
-    /// TODO: 動作確認、論理削除されている且つ、作成日から30日以上経過しているものを削除
-    func deleteItem(now: Date) {
-        let date = NSDate(timeInterval: -60*60*24*30, since: now)
-        
-        let fileterdItem = database?.objects(ReadingItem.self).filter("createdDate < %@ && isDeleted == true", date)
         guard let results = fileterdItem else { return }
         
         results.forEach { item in

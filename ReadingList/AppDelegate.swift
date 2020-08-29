@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let now = Date()
         RealmManager.sharedInstance.deleteExpiredItem(now: now)
-        RealmManager.sharedInstance.deleteItem(now: now)
         
         // Clean Architectureのレイヤーを構築
         Application.shared.configure(with: self.window!)

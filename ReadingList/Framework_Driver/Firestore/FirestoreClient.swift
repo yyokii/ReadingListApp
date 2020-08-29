@@ -10,11 +10,68 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+import RealmSwift
+
+extension FireStoreClient {
+    
+    func convertRealmToFirestore(items: Results<ReadingItem>, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+        
+        let fireStore = Firestore.firestore()
+        
+        // FireStoreに保存するデータ整形
+        let saveItems: [[String: Any]] = items.map {
+            
+            var data: [String: Any] = [
+                Constant.ReadingItem.title: $0.title,
+                Constant.ReadingItem.url: $0.url,
+                Constant.ReadingItem.isDeleted: $0.isDeleted]
+            
+            if let createdDate = $0.createdDate {
+                data[Constant.ReadingItem.createdAt] = Timestamp(date: createdDate)
+            } else {
+                data[Constant.ReadingItem.createdAt] = FieldValue.serverTimestamp()
+            }
+            
+            if let finishedData = $0.finishedDate {
+                data[Constant.ReadingItem.finishedAt] = Timestamp(date: finishedData)
+            }
+            
+            if let dueDate = $0.dueDate {
+                data[Constant.ReadingItem.dueDate] = Timestamp(date: dueDate)
+            }
+            
+            return data
+        }
+        
+        let ref = fireStore
+            .collection(FiryeStoreKeyConstant.users)
+            .document(user.uid)
+            .collection(FiryeStoreKeyConstant.items)
+        
+        // バッチ書き込み
+        let batch: WriteBatch = fireStore.batch()
+        saveItems.forEach {
+            
+            let docRef = ref.document()
+            batch.setData($0, forDocument: docRef)
+        }
+        
+        batch.commit() { err in
+            if let err = err {
+                completion(.failure(.serverError(err)))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+}
+
 final class FireStoreClient: FirestoreClientProtocol {
     
     private var user: User!
     let auth = Auth.auth()
     let fireStore = Firestore.firestore()
+    let realmManager = RealmManager.sharedInstance
     
     func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
         
@@ -111,19 +168,40 @@ final class FireStoreClient: FirestoreClientProtocol {
     
     
     func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
-        let ref = fireStore
-            .collection(FiryeStoreKeyConstant.users)
-            .document(user.uid)
-            .collection(FiryeStoreKeyConstant.items)
         
-        ref.getDocuments { (shapShot, error) in
-            if let error = error {
-                completion(.failure(.serverError(error)))
-            } else {
-                let items = shapShot!.documents.compactMap {
-                    try! $0.data(as: ReadingListItem.self)
+        // realmからfirestoreへのデータ移行を先に行う、後のリリースで消す
+        let realmDatas = realmManager.readAll()
+        if let datas = realmDatas, datas.count > 0 {
+            convertRealmToFirestore(items: datas) { [weak self] res in
+                
+                guard let self = self else {
+                    completion(.failure(.other(nil)))
+                    return
                 }
-                completion(.success(items))
+                
+                switch res {
+                case .success:
+                    self.realmManager.deleteAll()
+                    self.fetchReadingList(completion: completion)
+                case .failure(let error):
+                    completion(.failure(.serverError(error)))
+                }
+            }
+        } else {
+            let ref = fireStore
+                .collection(FiryeStoreKeyConstant.users)
+                .document(user.uid)
+                .collection(FiryeStoreKeyConstant.items)
+            
+            ref.getDocuments { (shapShot, error) in
+                if let error = error {
+                    completion(.failure(.serverError(error)))
+                } else {
+                    let items = shapShot!.documents.compactMap {
+                        try! $0.data(as: ReadingListItem.self)
+                    }
+                    completion(.success(items))
+                }
             }
         }
     }

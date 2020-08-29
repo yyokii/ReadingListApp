@@ -131,12 +131,11 @@ extension  HomePresenter: HomePresenterInput {
         guard let user = authUsecase.currentUser else {
             return
         }
-        
+            
         switch user.status {
         case .uninitialized:
             break
         case .authenticated:
-            break
             // ログイン状態、ログアウトボタンを出す
             view.showLogoutDialog()
         case .authenticatedAnonymously:
@@ -147,15 +146,17 @@ extension  HomePresenter: HomePresenterInput {
     
     func tapRegisterButton(mail: String, pass: String) {
         // TODO: バリデーション
+        authUsecase.registerUser(mail: mail, pass: pass)
         
     }
     
     func tapLoginButton(mail: String, pass: String) {
         // TODO: バリデーション
+        authUsecase.signIn(mail: mail, pass: pass)
     }
     
     func tapLogoutButton() {
-        // TODO: バリデーション
+        authUsecase.signOut()
     }
     
     func viewDidLoad() {
@@ -178,10 +179,10 @@ extension HomePresenter: AuthUseCaseOutput {
     }
     
     func didsignIn() {
+        readingListUseCase.fetchReadingItems()
     }
     
     func didRegisterUser() {
-        
     }
     
     func useCaseDidReceiveError(error: WebClientError) {

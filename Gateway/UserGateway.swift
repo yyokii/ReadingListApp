@@ -35,7 +35,7 @@ final class UserGateway: UserGatewayProtocol {
     func fetchUser(completion: @escaping (AppUser) -> Void) {
         
         if let appUser = currentUser {
-            // キャッシュ
+            // キャッシュを返す
             completion(appUser)
         } else {
             fireStoreClient.fetchUser { user in
@@ -46,7 +46,16 @@ final class UserGateway: UserGatewayProtocol {
     }
     
     func signOut(completion: @escaping (WebClientError?) -> Void) {
-        // TODO: ログアウトを実行する、
+        
+        fireStoreClient.signOut { error in
+            
+            if let error = error {
+                self.currentUser = nil
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
     }
     
     func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {

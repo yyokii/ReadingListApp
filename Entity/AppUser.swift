@@ -40,7 +40,7 @@ extension AppUser {
             // ログイン済
             id = firebaseUser!.uid
             name = ""
-            status = .authenticatedAnonymously
+            status = .authenticated
         }
     }
 }

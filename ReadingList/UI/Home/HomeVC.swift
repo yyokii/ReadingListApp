@@ -176,7 +176,14 @@ extension HomeVC: HomePresenterOutput {
     }
     
     func showLogoutDialog() {
-        // TODO:
+        let dialog = AuthUserDialog.createLogoutDialog {
+            [weak self] in
+            
+            guard let self = self else { return }
+            self.presenter.tapLogoutButton()
+        }
+        
+        self.present(dialog, animated: true, completion: nil)
     }
     
     func displayUserData(viewData: GraphViewData) {

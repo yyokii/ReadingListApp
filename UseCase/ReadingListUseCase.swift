@@ -71,7 +71,7 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 let moreThanOneDayItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt == nil && $0.differenceDay(fromDate: now) > 1 }
                 let finishedReadingItems = items.filter { $0.isDeleted == false && $0.finishedReadingAt != nil }
                 
-                self.output.didUpdateReadingItemsData(items)
+                self.output.didUpdateReadingItemsData(lessOneDayItems + moreThanOneDayItems)
                 self.output.didUpdateReadingItemsWillDelete(lessOneDayItems)
                 self.output.didUpdateReadingItems(moreThanOneDayItems)
                 self.output.didUpdateFinishedReadingItems(finishedReadingItems)
@@ -138,5 +138,10 @@ final class ReadingListUseCase: ReadingListUseCaseProtocol {
                 break
             }
         }
+    }
+    
+    /// ローカル（Realm）で永続化していたものをサーバーで持つように修正
+    func convertDataToRemote() {
+        
     }
 }

@@ -38,5 +38,5 @@ protocol FirestoreClientProtocol {
     func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
     
     /// ログアウト（Emailログインしている場合）
-    func signOut(completion: @escaping (Result<Bool, WebClientError>) -> Void)
+    func signOut(completion: @escaping (WebClientError?) -> Void)
 }

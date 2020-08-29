@@ -9,7 +9,7 @@
 import UIKit
 import SwiftMessages
 
-enum DialogType {
+enum ReadingItemActionType {
     case Delete
     case Fail
     case Success
@@ -17,10 +17,44 @@ enum DialogType {
     case ToReadingList
 }
 
+enum AuthActionType {
+    case signIn
+    case signOut
+    case register
+}
+
 struct SwiftMessageUtil {
     
     /// 上から表示するテキストアイコンを使用したダイアログ
-    static func showIconTextMessage(type: DialogType, iconText: String, title: String, message: String) {
+    static func showIconTextMessage(of type: AuthActionType) {
+        // view
+        let view: MessageView
+        view = MessageView.viewFromNib(layout: .cardView)
+        view.configureDropShadow()
+        
+        // タイプに基づきテーマ設定
+        switch type {
+        case .signIn:
+            view.configureContent(title: "", body: "ログインしました", iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: "👍")
+        case .signOut:
+            view.configureContent(title: "", body: "ログアウトしました", iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: "👍")
+        case .register:
+            view.configureContent(title: "", body: "会員登録が完了しました", iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "", buttonTapHandler: { _ in SwiftMessages.hide() })
+            view.configureTheme(backgroundColor: UIColor.init(named: Constant.Color.greenSheen)!, foregroundColor: UIColor.white, iconImage: nil, iconText: "👍")
+        }
+        
+        // config
+        var config = SwiftMessages.defaultConfig
+        config.interactiveHide = true
+        view.button?.isHidden = true
+
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    /// （アイテムへのアクション時）上から表示するテキストアイコンを使用したダイアログ
+    static func showIconTextMessage(of type: ReadingItemActionType, iconText: String, title: String, message: String) {
         // view
         let view: MessageView
         view = MessageView.viewFromNib(layout: .cardView)
