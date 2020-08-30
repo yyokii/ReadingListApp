@@ -11,32 +11,32 @@ import Foundation
 protocol FirestoreClientProtocol {
     
     /// リーディングリスト情報取得
-    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], AppError>) -> Void)
     
     /// アイテムを保存
-    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void)
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], AppError>) -> Void)
     
     /// 任意のアイテムのステータスを未読に設定
-    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, AppError>) -> Void)
     
     /// 任意のアイテムのステータスを読み終わりに設定
-    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, AppError>) -> Void)
     
     /// 任意のアイテムを論理削除
-    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void)
+    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, AppError>) -> Void)
     
     /// ユーザー情報取得
     func fetchUser(completion: @escaping (AppUser) -> Void)
     
     /// 匿名ログイン
-    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func signSignInAnonymously(completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// 匿名ユーザーから昇格させる（メールアドレスとパスワード）
-    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// Emailログイン
-    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// ログアウト（Emailログインしている場合）
-    func signOut(completion: @escaping (WebClientError?) -> Void)
+    func signOut(completion: @escaping (AppError?) -> Void)
 }

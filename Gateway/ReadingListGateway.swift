@@ -13,7 +13,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
     var fireStoreClient: FirestoreClientProtocol!
     var dataStore: DataStoreProtocol!
     
-    func changeStateToReading(id: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToReading(id: String, dueDate: Date, completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         fireStoreClient.changeStateToReading(docId: id, dueDate: dueDate) { res in
             
@@ -26,7 +26,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    func changeStateToFinished(id: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToFinished(id: String, completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         fireStoreClient.changeStateToFinished(docId: id) { res in
             
@@ -39,7 +39,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    func deleteReadingItems(ids: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func deleteReadingItems(ids: [String], completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         fireStoreClient.deleteReadingItems(docIds: ids) { res in
             
@@ -60,7 +60,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         dataStore.deleteReadingItems()
     }
     
-    func saveItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
+    func saveItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], AppError>) -> Void) {
         
         fireStoreClient.addReadingItems(items: items) { res in
             
@@ -73,7 +73,7 @@ final class ReadingListGateway: ReadingListGatewayProtocol {
         }
     }
     
-    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], AppError>) -> Void) {
         
         fireStoreClient.fetchReadingList { res in
             

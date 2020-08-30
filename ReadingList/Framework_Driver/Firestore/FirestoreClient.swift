@@ -15,7 +15,7 @@ import RealmSwift
 extension FireStoreClient {
 
     // realmからfirestoreへのデータ移行、後のリリースで消す
-    func convertRealmToFirestore(items: Results<ReadingItem>, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func convertRealmToFirestore(items: Results<ReadingItem>, completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         let fireStore = Firestore.firestore()
         
@@ -74,7 +74,7 @@ final class FireStoreClient: FirestoreClientProtocol {
     let fireStore = Firestore.firestore()
     let realmManager = RealmManager.sharedInstance
     
-    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
+    func addReadingItems(items: [[String: Any]], completion: @escaping (Result<[ReadingListItem], AppError>) -> Void) {
         
         // FireStoreに保存するデータ整形
         let saveItems = items.map {
@@ -109,7 +109,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToReading(docId: String, dueDate: Date, completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
@@ -131,7 +131,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func changeStateToFinished(docId: String, completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
@@ -150,7 +150,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, WebClientError>) -> Void) {
+    func deleteReadingItems(docIds: [String], completion: @escaping (Result<Any?, AppError>) -> Void) {
         
         let ref = fireStore
             .collection(FiryeStoreKeyConstant.users)
@@ -174,7 +174,7 @@ final class FireStoreClient: FirestoreClientProtocol {
     }
     
     
-    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], WebClientError>) -> Void) {
+    func fetchReadingList(completion: @escaping (Result<[ReadingListItem], AppError>) -> Void) {
         
         // realmからfirestoreへのデータ移行を先に行う、後のリリースで消す
         let realmDatas = realmManager.readAll()
@@ -218,7 +218,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         completion(AppUser(from: user))
     }
     
-    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func signSignInAnonymously(completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         Auth.auth().signInAnonymously() { (authResult, error) in
             
@@ -235,7 +235,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
         
@@ -254,7 +254,7 @@ final class FireStoreClient: FirestoreClientProtocol {
         }
     }
     
-    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         Auth.auth().signIn(withEmail: email, password: pass) { (authResult, error) in
             
@@ -272,7 +272,7 @@ final class FireStoreClient: FirestoreClientProtocol {
     }
     
     // ログアウト（Emailログインしている場合）
-    func signOut(completion: @escaping (WebClientError?) -> Void) {
+    func signOut(completion: @escaping (AppError?) -> Void) {
         
         do {
             try Auth.auth().signOut()

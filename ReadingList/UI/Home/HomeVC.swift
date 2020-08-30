@@ -88,16 +88,18 @@ class HomeVC: UIViewController {
         readingCollectionView.showsHorizontalScrollIndicator = false
     }
     
-    @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
-        
-        presenter.tapDisplayTodayDeleteView()
-    }
-    
-    @IBAction func tapShowingReadingItems(_ sender: Any) {
-        
-        let readingListVC = ReadingListTableVC.viewController()
-        navigationController?.pushViewController(readingListVC, animated: true)
-    }
+    #warning("未実装のためコメントアウト")
+//    @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
+//
+//        presenter.tapDisplayTodayDeleteView()
+//    }
+  
+    #warning("未実装のためコメントアウト")
+//    @IBAction func tapShowingReadingItems(_ sender: Any) {
+//
+//        let readingListVC = ReadingListTableVC.viewController()
+//        navigationController?.pushViewController(readingListVC, animated: true)
+//    }
     
     @IBAction func displayAboutAppVeiw(_ sender: Any) {
         

@@ -72,7 +72,7 @@ extension  ArticleWebPresenter: ItemViewerUseCaseOutput {
         }
     }
     
-    func useCaseDidReceiveError(_ error: WebClientError) {
+    func useCaseDidReceiveError(_ error: AppError) {
         // TODO:
     }
 }

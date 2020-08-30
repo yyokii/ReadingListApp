@@ -95,6 +95,9 @@
 		F54961D724A8CAD200426D92 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961D624A8CAD200426D92 /* FirestoreClient.swift */; };
 		F54961D924A8ECCD00426D92 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961D824A8ECCD00426D92 /* AppError.swift */; };
 		F564C5BA24B1F22B0076E770 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564C5B924B1F22B0076E770 /* Application.swift */; };
+		F570712F24FAC87200EC23CE /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570712E24FAC87200EC23CE /* Validators.swift */; };
+		F570713124FACB4900EC23CE /* ValidateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570713024FACB4900EC23CE /* ValidateString.swift */; };
+		F570717A24FC021A00EC23CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570717924FC021900EC23CE /* Validator.swift */; };
 		F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */; };
 		F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84824DEC0A1004DE177 /* UserGateway.swift */; };
@@ -238,6 +241,9 @@
 		F54961DC24AA301B00426D92 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		F564C5B924B1F22B0076E770 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		F56AD8EE7F2D3F7DDDA333CB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		F570712E24FAC87200EC23CE /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		F570713024FACB4900EC23CE /* ValidateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateString.swift; sourceTree = "<group>"; };
+		F570717924FC021900EC23CE /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreKeyConstant.swift; sourceTree = "<group>"; };
 		F5AAE84524D866DF004DE177 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		F5AAE84824DEC0A1004DE177 /* UserGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
@@ -675,6 +681,7 @@
 		F54961D324A8CA4B00426D92 /* Framework_Driver */ = {
 			isa = PBXGroup;
 			children = (
+				F570712D24FAC82B00EC23CE /* Validator */,
 				F56AD8EE7F2D3F7DDDA333CB /* NotificationManager.swift */,
 				F54961D524A8CAAE00426D92 /* Firestore */,
 				F54961D424A8CAA300426D92 /* DB */,
@@ -697,6 +704,16 @@
 				F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */,
 			);
 			path = Firestore;
+			sourceTree = "<group>";
+		};
+		F570712D24FAC82B00EC23CE /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				F570712E24FAC87200EC23CE /* Validators.swift */,
+				F570713024FACB4900EC23CE /* ValidateString.swift */,
+				F570717924FC021900EC23CE /* Validator.swift */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		F5AAE86E24DFC119004DE177 /* ShareExtension */ = {
@@ -959,6 +976,7 @@
 				1E0F3C23FBCF451F79689A3C /* Constant.swift in Sources */,
 				D3CF7F9BD7A4718CE34B1070 /* Date+Extension.swift in Sources */,
 				F509CEE624EAC9740048746A /* ItemViewerUseCaseProtocol.swift in Sources */,
+				F570713124FACB4900EC23CE /* ValidateString.swift in Sources */,
 				F509CEDE24E845D80048746A /* LocalPushGateway.swift in Sources */,
 				DAED9FF7BC6C8109BC57519C /* DeletedListModel.swift in Sources */,
 				F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */,
@@ -982,12 +1000,14 @@
 				AFF330D97678CC4F1997A4CF /* NoFinishedListItemView.swift in Sources */,
 				F5AAE88B24E04A57004DE177 /* FirestoreClientProtocol.swift in Sources */,
 				DF24E97DAD1B0A706402D06C /* NoReadingListItemView.swift in Sources */,
+				F570712F24FAC87200EC23CE /* Validators.swift in Sources */,
 				F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */,
 				0E39BBD0C8FAC0355536B24D /* Notification+Extension.swift in Sources */,
 				732BB65B392840B544E52943 /* NotificationManager.swift in Sources */,
 				F5AAE89524E04D59004DE177 /* UserDefaultsDataStore.swift in Sources */,
 				F535AEA524AB783900FCB375 /* AppUser.swift in Sources */,
 				C004C29ECAB10B6FF85CE8FC /* ReadingItem.swift in Sources */,
+				F570717A24FC021A00EC23CE /* Validator.swift in Sources */,
 				56131DCD262892FDB0344743 /* ReadingItemDialogView.swift in Sources */,
 				A0A92C56F1FB09615381F19F /* ReadingListModel.swift in Sources */,
 				F5AAE89724E04E3D004DE177 /* DataStoreProtocol.swift in Sources */,

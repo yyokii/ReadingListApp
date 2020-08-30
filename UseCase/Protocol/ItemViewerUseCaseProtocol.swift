@@ -29,5 +29,5 @@ protocol ItemViewerUseCaseOutput {
     func didUpdateItemData(_ itemID: String)
     
     /// Use Caseの関係する処理でエラーがあったときに呼ばれる
-    func useCaseDidReceiveError(_ error: WebClientError)
+    func useCaseDidReceiveError(_ error: AppError)
 }

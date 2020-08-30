@@ -41,5 +41,5 @@ protocol AuthUseCaseOutput {
     func didRegisterUser()
     
     // Use Caseの関係する処理でエラーがあったときに呼ばれる
-    func useCaseDidReceiveError(error: WebClientError)
+    func useCaseDidReceiveError(error: AppError)
 }

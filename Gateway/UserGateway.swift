@@ -12,7 +12,7 @@ final class UserGateway: UserGatewayProtocol {
     
     var currentUser: AppUser?    
     
-    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         fireStoreClient.convertToPermanent(email: email, pass: pass) { [weak self] res in
             
@@ -45,7 +45,7 @@ final class UserGateway: UserGatewayProtocol {
         }
     }
     
-    func signOut(completion: @escaping (WebClientError?) -> Void) {
+    func signOut(completion: @escaping (AppError?) -> Void) {
         
         fireStoreClient.signOut { error in
             
@@ -58,7 +58,7 @@ final class UserGateway: UserGatewayProtocol {
         }
     }
     
-    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         fireStoreClient.signIn(email: email, pass: pass) { [weak self] res in
             
@@ -77,7 +77,7 @@ final class UserGateway: UserGatewayProtocol {
         }
     }
     
-    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void) {
+    func signSignInAnonymously(completion: @escaping (Result<AppUser, AppError>) -> Void) {
         
         fireStoreClient.signSignInAnonymously { [weak self] res in
             guard let self = self else {

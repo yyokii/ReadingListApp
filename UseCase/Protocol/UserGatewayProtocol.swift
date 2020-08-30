@@ -12,16 +12,16 @@ protocol UserGatewayProtocol {
     func fetchUser(completion: @escaping (AppUser) -> Void)
     
     /// 匿名ユーザーから昇格させる（メールアドレスとパスワード）
-    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func convertToPermanent(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// Emailログイン
-    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func signIn(email: String, pass: String, completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// 匿名ログイン
-    func signSignInAnonymously(completion: @escaping (Result<AppUser, WebClientError>) -> Void)
+    func signSignInAnonymously(completion: @escaping (Result<AppUser, AppError>) -> Void)
     
     /// ログアウト
-    func signOut(completion: @escaping (WebClientError?) -> Void)
+    func signOut(completion: @escaping (AppError?) -> Void)
     
     var currentUser: AppUser? { get }
 }

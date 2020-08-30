@@ -185,7 +185,7 @@ extension HomePresenter: AuthUseCaseOutput {
     func didRegisterUser() {
     }
     
-    func useCaseDidReceiveError(error: WebClientError) {
+    func useCaseDidReceiveError(error: AppError) {
     }
 }
 

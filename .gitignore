@@ -55,7 +55,6 @@ Pods/
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
-
 Carthage/Build
 
 # Accio dependency management
@@ -73,5 +72,4 @@ GoogleService-Info.plist
 #
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
-
 iOSInjectionProject/
