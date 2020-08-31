@@ -18,7 +18,7 @@ final class ValidatorFactory {
     static func validatorFor(type: ValidatorType) -> ValidatorConvertible {
         switch type {
         case .email: return EmailValidator()
-        case .password: return EmailValidator()
+        case .password: return PasswordValidator()
         }
     }
 }

@@ -24,7 +24,7 @@ protocol HomePresenterInput: AnyObject {
     func viewWillAppear()
 }
 
-protocol  HomePresenterOutput {
+protocol  HomePresenterOutput: CanDisplayErrorDialog {
     func displayTutorialDialog()
     func displayReadingListDialog(item: ReadingListItem)
     func displayFinishedListDialog(item: ReadingListItem)
@@ -49,8 +49,8 @@ final class  HomePresenter {
     let notificationCenter = NotificationCenter.default
     
     private var optionTappedItem: ReadingListItem!
-    
     private var notFinishedItems: [ReadingListItem]!
+    private var errorMessage: [String] = []
     
     init(view: HomePresenterOutput, authUseCase: AuthUseCaseProtocol, readingListUseCase: ReadingListUseCaseProtocol, dataStore: DataStoreProtocol) {
         self.view = view
@@ -82,6 +82,21 @@ final class  HomePresenter {
         return readingItems
     }
     
+    private func emailValidate(email: String) {
+        do {
+            _ = try Validator.validatedText(text: email, validationType: .email)
+        } catch {
+            errorMessage.append((error as? AppError)?.message ?? "")
+        }
+    }
+    
+    private func passwordValidate(password: String) {
+        do {
+            _ = try Validator.validatedText(text: password, validationType: .password)
+        } catch {
+            errorMessage.append((error as? AppError)?.message ?? "")
+        }
+    }
     
     @objc private func saveReadingItem() {
         readingListUseCase.saveReadingItem()
@@ -145,14 +160,31 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func tapRegisterButton(mail: String, pass: String) {
-        // TODO: バリデーション
-        authUsecase.registerUser(mail: mail, pass: pass)
+       
+        emailValidate(email: mail)
+        passwordValidate(password: pass)
         
+        if errorMessage.isEmpty {
+            authUsecase.registerUser(mail: mail, pass: pass)
+        } else {
+            let message = errorMessage.joined(separator: "\n")
+            view.showErrorDialog(message: message, buttonAction: nil)
+            errorMessage.removeAll()
+        }
     }
     
     func tapLoginButton(mail: String, pass: String) {
-        // TODO: バリデーション
-        authUsecase.signIn(mail: mail, pass: pass)
+        
+        emailValidate(email: mail)
+        passwordValidate(password: pass)
+        
+        if errorMessage.isEmpty {
+            authUsecase.signIn(mail: mail, pass: pass)
+        } else {
+            let message = errorMessage.joined(separator: "\n")
+            view.showErrorDialog(message: message, buttonAction: nil)
+            errorMessage.removeAll()
+        }
     }
     
     func tapLogoutButton() {

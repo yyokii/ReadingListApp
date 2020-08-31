@@ -21,7 +21,7 @@ struct AuthUserDialog {
         
         // メールアドレス入力用テキストフィールド
         alert.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.placeholder = "Mail Address"
+            textField.placeholder = "メールアドレス"
             textField.keyboardType = .emailAddress
             textField.tag = 0
             mailTextField = textField
@@ -29,7 +29,7 @@ struct AuthUserDialog {
         
         // パスワード入力用テキストフィールド
         alert.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.placeholder = "Password"
+            textField.placeholder = "英数字8文字以上のパスワード"
             textField.keyboardType = .alphabet
             textField.tag = 1
             passTextField = textField

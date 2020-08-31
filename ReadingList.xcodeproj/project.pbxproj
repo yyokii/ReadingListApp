@@ -98,6 +98,7 @@
 		F570712F24FAC87200EC23CE /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570712E24FAC87200EC23CE /* Validators.swift */; };
 		F570713124FACB4900EC23CE /* ValidateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570713024FACB4900EC23CE /* ValidateString.swift */; };
 		F570717A24FC021A00EC23CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570717924FC021900EC23CE /* Validator.swift */; };
+		F570717C24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */; };
 		F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */; };
 		F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84824DEC0A1004DE177 /* UserGateway.swift */; };
@@ -244,6 +245,7 @@
 		F570712E24FAC87200EC23CE /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		F570713024FACB4900EC23CE /* ValidateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateString.swift; sourceTree = "<group>"; };
 		F570717924FC021900EC23CE /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorDialog.swift"; sourceTree = "<group>"; };
 		F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreKeyConstant.swift; sourceTree = "<group>"; };
 		F5AAE84524D866DF004DE177 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		F5AAE84824DEC0A1004DE177 /* UserGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				3C2D8D00020E3DB2A1284438 /* Notification+Extension.swift */,
 				E3925C5396FF01131FCD9F0F /* UIImageView+Extension.swift */,
 				EFB62B35343D3B9D588CE00D /* UIView+Extension.swift */,
+				F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				F570713124FACB4900EC23CE /* ValidateString.swift in Sources */,
 				F509CEDE24E845D80048746A /* LocalPushGateway.swift in Sources */,
 				DAED9FF7BC6C8109BC57519C /* DeletedListModel.swift in Sources */,
+				F570717C24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift in Sources */,
 				F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */,
 				93221C9C8FA9E41DE6E3F2D0 /* DeletedListPresenter.swift in Sources */,
 				CD659F196D339BAD3FAC1075 /* DeletedListVC.swift in Sources */,
