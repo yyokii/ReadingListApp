@@ -14,7 +14,7 @@ public class ArticleListPanelLayout: FloatingPanelLayout {
     }
     
     public var supportedPositions: Set<FloatingPanelPosition> {
-        return [.full, .half, .tip]
+        return [.full, .tip]
     }
     
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {

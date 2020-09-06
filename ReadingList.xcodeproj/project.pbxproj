@@ -99,6 +99,7 @@
 		F570713124FACB4900EC23CE /* ValidateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570713024FACB4900EC23CE /* ValidateString.swift */; };
 		F570717A24FC021A00EC23CE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570717924FC021900EC23CE /* Validator.swift */; };
 		F570717C24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */; };
+		F5962F192501801F00D4CE82 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5962F182501801F00D4CE82 /* UIView+Animation.swift */; };
 		F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */; };
 		F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84824DEC0A1004DE177 /* UserGateway.swift */; };
@@ -246,6 +247,7 @@
 		F570713024FACB4900EC23CE /* ValidateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateString.swift; sourceTree = "<group>"; };
 		F570717924FC021900EC23CE /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorDialog.swift"; sourceTree = "<group>"; };
+		F5962F182501801F00D4CE82 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreKeyConstant.swift; sourceTree = "<group>"; };
 		F5AAE84524D866DF004DE177 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		F5AAE84824DEC0A1004DE177 /* UserGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				E3925C5396FF01131FCD9F0F /* UIImageView+Extension.swift */,
 				EFB62B35343D3B9D588CE00D /* UIView+Extension.swift */,
 				F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */,
+				F5962F182501801F00D4CE82 /* UIView+Animation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				F509CEE324E84CE80048746A /* NotificationClientProtocol.swift in Sources */,
 				F7B75A3871378CB10E6C603D /* AppDelegate.swift in Sources */,
 				F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */,
+				F5962F192501801F00D4CE82 /* UIView+Animation.swift in Sources */,
 				6B26C57E7D2985A35C3D72B7 /* ArticleCollectionViewCell.swift in Sources */,
 				F54961D724A8CAD200426D92 /* FirestoreClient.swift in Sources */,
 				F5AAE89324E04BE8004DE177 /* ReadingListGatewayProtocol.swift in Sources */,

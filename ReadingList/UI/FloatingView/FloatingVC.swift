@@ -15,15 +15,11 @@ class FloatingVC: UIViewController {
     
     // 表示するアイテムの配列
     private var displayItems: [ReadingListItem]?
-    // ここweakにしたいけど、そうするとnilになる、なぜ？？、他で参照されないweakはnilになるってよ
-    // private var presenter: FloatingViewPresenterInput!
     private weak var homePresenter: HomePresenterInput!
 
     static func vc(homePresenter: HomePresenterInput) -> FloatingVC {
         
         let floatingVC: FloatingVC = UIStoryboard(name: "FloatingVC", bundle: nil).instantiateInitialViewController() as! FloatingVC
-//        let readingListUseCase: ReadingListUseCase! = Application.shared.redingListUseCase
-//        let floatingPresenter = FloatingViewPresenter(view: floatingVC, readingListUseCase: readingListUseCase)
         floatingVC.inject(homePresenter: homePresenter)
         
         return floatingVC
@@ -37,8 +33,6 @@ class FloatingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-      //  presenter.viewWillAppear()
     }
     
     private func configureTableView() {

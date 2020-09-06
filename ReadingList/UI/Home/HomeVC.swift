@@ -7,8 +7,9 @@
 //
 
 import UIKit
+
 import FloatingPanel
-import RealmSwift
+import AMPopTip
 
 class HomeVC: UIViewController {
     @IBOutlet weak var baseScrollView: UIScrollView!
