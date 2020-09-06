@@ -18,10 +18,12 @@ class HomeVC: UIViewController {
     @IBOutlet weak var readingCollectionView: UICollectionView!
     @IBOutlet weak var noTodayDeleteItemsLbl: UILabel!
     @IBOutlet weak var noReadingItemsLbl: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     
     var floatingPanelController: FloatingPanelController!
     var displayTodayDeleteItems: [ReadingListItem] = [ReadingListItem]()
     var displayReadingItems: [ReadingListItem] = [ReadingListItem]()
+    let userStatusPopTip = PopTip()
     
     private weak var presenter: HomePresenterInput!
     
@@ -52,8 +54,27 @@ class HomeVC: UIViewController {
         let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         baseScrollView.contentInset = adjustForTabbarInsets
         
+        configurePopTip()
         configureFloatingPanel()
         configureCollectionView()
+    }
+    
+    private func configurePopTip() {
+        userStatusPopTip.font = UIFont(name: "Avenir-Medium", size: 14)!
+        userStatusPopTip.shouldDismissOnTap = true
+        userStatusPopTip.shouldDismissOnTapOutside = true
+        userStatusPopTip.shouldDismissOnSwipeOutside = true
+        // バブル部分左のマージン
+        userStatusPopTip.edgeMargin = 0
+        // 左のオフセット
+        userStatusPopTip.bubbleOffset = 2
+        // 対象との距離
+        userStatusPopTip.offset = 20
+        // バブル内の上下左右
+        userStatusPopTip.edgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        userStatusPopTip.bubbleColor = UIColor.init(named: Constant.Color.cornFlower)!
+
+        userStatusPopTip.actionAnimation = .bounce(8)
     }
     
     private func configureFloatingPanel() {
@@ -90,17 +111,17 @@ class HomeVC: UIViewController {
     }
     
     #warning("未実装のためコメントアウト")
-//    @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
-//
-//        presenter.tapDisplayTodayDeleteView()
-//    }
-  
+    //    @IBAction func tapShowingTodayDeleteItems(_ sender: Any) {
+    //
+    //        presenter.tapDisplayTodayDeleteView()
+    //    }
+    
     #warning("未実装のためコメントアウト")
-//    @IBAction func tapShowingReadingItems(_ sender: Any) {
-//
-//        let readingListVC = ReadingListTableVC.viewController()
-//        navigationController?.pushViewController(readingListVC, animated: true)
-//    }
+    //    @IBAction func tapShowingReadingItems(_ sender: Any) {
+    //
+    //        let readingListVC = ReadingListTableVC.viewController()
+    //        navigationController?.pushViewController(readingListVC, animated: true)
+    //    }
     
     @IBAction func displayAboutAppVeiw(_ sender: Any) {
         
@@ -162,6 +183,10 @@ extension HomeVC: HomePresenterOutput {
     
     func showPopTip() {
         graphView.showPopTip(with: .first)
+    }
+    
+    func showUserStatusPopTip(text: String) {
+        userStatusPopTip.show(text: text, direction: .down, maxWidth: 300, in: view, from: userButton.frame, duration: 3)
     }
     
     func showRegisterDialog() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xxi-di-qzX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xxi-di-qzX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -266,6 +266,7 @@
                         <outlet property="noTodayDeleteItemsLbl" destination="sFY-f9-f72" id="tbP-Ym-eNP"/>
                         <outlet property="readingCollectionView" destination="IZB-SC-vzr" id="isS-ab-895"/>
                         <outlet property="todayDeleteCollectionView" destination="V04-rw-o4M" id="UVL-h1-zJf"/>
+                        <outlet property="userButton" destination="SjC-4F-GHl" id="tuq-Nv-mV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSv-UO-dYU" userLabel="First Responder" sceneMemberID="firstResponder"/>

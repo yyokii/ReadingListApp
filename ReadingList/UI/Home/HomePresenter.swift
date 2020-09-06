@@ -35,6 +35,7 @@ protocol  HomePresenterOutput: CanDisplayErrorDialog {
     func showNoTodayDeleteItemsView()
     func showNoReadingItemsView()
     func showPopTip()
+    func showUserStatusPopTip(text: String)
     func updateFinishedReadingList(items: [ReadingListItem])
     func updateTodayDeleteList(items: [ReadingListItem])
     func updateReadingList(items: [ReadingListItem])
@@ -98,6 +99,24 @@ final class  HomePresenter {
         }
     }
     
+    private func showUserStatusPoptip() {
+        
+        guard let user = authUsecase.currentUser else {
+            return
+        }
+        
+        switch user.status {
+        case .uninitialized:
+            break
+        case .authenticated:
+            // ログイン状態
+            view.showUserStatusPopTip(text: "現在ログイン中です😊")
+        case .authenticatedAnonymously:
+            // 匿名ログイン状態
+            view.showUserStatusPopTip(text: "現在ゲストログイン中です")
+        }
+    }
+    
     @objc private func saveReadingItem() {
         readingListUseCase.saveReadingItem()
     }
@@ -146,7 +165,7 @@ extension  HomePresenter: HomePresenterInput {
         guard let user = authUsecase.currentUser else {
             return
         }
-            
+        
         switch user.status {
         case .uninitialized:
             break
@@ -160,7 +179,7 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func tapRegisterButton(mail: String, pass: String) {
-       
+        
         emailValidate(email: mail)
         passwordValidate(password: pass)
         
@@ -207,6 +226,7 @@ extension  HomePresenter: HomePresenterInput {
 extension HomePresenter: AuthUseCaseOutput {
     
     func didFetchUser() {
+        showUserStatusPoptip()
         readingListUseCase.fetchReadingItems()
     }
     
