@@ -12,6 +12,7 @@ import RealmSwift
 class FloatingVC: UIViewController {
     
     @IBOutlet weak var articleTableView: UITableView!
+    @IBOutlet weak var noContentLabel: UILabel!
     
     // 表示するアイテムの配列
     private var displayItems: [ReadingListItem]?
@@ -105,6 +106,7 @@ extension FloatingVC: FloatingViewPresenterOutput {
     }
     
     func updateFinishedList(items: [ReadingListItem]) {
+        noContentLabel.isHidden = items.count > 0
         displayItems = items
         articleTableView.reloadData()
     }

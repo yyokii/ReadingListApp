@@ -28,7 +28,7 @@
 		41D84831B7A96D0B5A4737F5 /* GraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C532105F3D7689B79F20D604 /* GraphView.xib */; };
 		41E0B43B41E5B91CA9C956F0 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1908360A5CDEB849D9D4C448 /* RealmManager.swift */; };
 		46261E4728C150CE36D7BAE2 /* WebToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9163E76F971C73787AAF9DA /* WebToolBarView.swift */; };
-		46675089CE4C4BB6512A07D6 /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE5363852AFE3955D415435 /* Indicator.xib */; };
+		46675089CE4C4BB6512A07D6 /* IndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCE5363852AFE3955D415435 /* IndicatorView.xib */; };
 		4702F2988D914594ED01C83D /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDFFAC288804B0C0D355FAE /* SwitchTableViewCell.swift */; };
 		47EDEDBE804BA72F4C77EB4F /* WebHowtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E175A2B09E40C2A3FF85940 /* WebHowtoView.swift */; };
 		4AC1D59FFC70A63B04207353 /* SwiftMessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */; };
@@ -82,13 +82,15 @@
 		ECA6B0C9B62DDE827A1B27EE /* NoReadingListItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E1F29CBAB67BA5BD37F232 /* NoReadingListItemView.xib */; };
 		EE271CF96D6B8D2D072A1D55 /* Pods_ShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7485189D2790D680E3B60276 /* Pods_ShareExtension.framework */; };
 		F08D99D8255EFAFF03AD5B2F /* ArticleWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6659F58B80AB592D370BF /* ArticleWebPresenter.swift */; };
-		F1A402723B35C234ADE3153E /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC002330B7EB54BA1A678A52 /* Indicator.swift */; };
+		F1A402723B35C234ADE3153E /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC002330B7EB54BA1A678A52 /* IndicatorView.swift */; };
 		F509CEDE24E845D80048746A /* LocalPushGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEDD24E845D80048746A /* LocalPushGateway.swift */; };
 		F509CEE124E8461B0048746A /* LocalPushGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE024E8461B0048746A /* LocalPushGatewayProtocol.swift */; };
 		F509CEE324E84CE80048746A /* NotificationClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE224E84CE80048746A /* NotificationClientProtocol.swift */; };
 		F509CEE624EAC9740048746A /* ItemViewerUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */; };
 		F509CEE824EACF2F0048746A /* ItemViewerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */; };
 		F509CEEA24F278680048746A /* AuthUserDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509CEE924F278680048746A /* AuthUserDialog.swift */; };
+		F51BB525250E138E00ACED29 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51BB524250E138E00ACED29 /* LoadingView.swift */; };
+		F51BB527250E140D00ACED29 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51BB526250E140D00ACED29 /* Loadable.swift */; };
 		F535AEA524AB783900FCB375 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54961DC24AA301B00426D92 /* AppUser.swift */; };
 		F535AEA724AB784200FCB375 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81377A62EC4B33B0B85634 /* AuthUseCase.swift */; };
 		F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25318CDB8C5104E20CAB45B8 /* ReadingListUseCase.swift */; };
@@ -221,7 +223,7 @@
 		D6719619F55E0F84AC4D0126 /* TodayDeleteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDeleteTableVC.swift; sourceTree = "<group>"; };
 		D8CFCB72041B2F0A55F89EE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB671CB3F4CD3F5C7EE8EF12 /* ReadingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingItem.swift; sourceTree = "<group>"; };
-		DCE5363852AFE3955D415435 /* Indicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Indicator.xib; sourceTree = "<group>"; };
+		DCE5363852AFE3955D415435 /* IndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndicatorView.xib; sourceTree = "<group>"; };
 		DE2B4C3707F4E3F468A812ED /* DeletedListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedListPresenter.swift; sourceTree = "<group>"; };
 		E0AAB7490D4B300BFEC64FCA /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		E27F7C5AC3375B486771BDAB /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
@@ -238,6 +240,8 @@
 		F509CEE524EAC9730048746A /* ItemViewerUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCaseProtocol.swift; sourceTree = "<group>"; };
 		F509CEE724EACF2F0048746A /* ItemViewerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewerUseCase.swift; sourceTree = "<group>"; };
 		F509CEE924F278680048746A /* AuthUserDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserDialog.swift; sourceTree = "<group>"; };
+		F51BB524250E138E00ACED29 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		F51BB526250E140D00ACED29 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		F54961D624A8CAD200426D92 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		F54961D824A8ECCD00426D92 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		F54961DC24AA301B00426D92 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -265,7 +269,7 @@
 		F5AAE89424E04D59004DE177 /* UserDefaultsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataStore.swift; sourceTree = "<group>"; };
 		F5AAE89624E04E3D004DE177 /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
 		FA04E861EC759E7B475FBA2C /* ReadingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadingList.storyboard; sourceTree = "<group>"; };
-		FC002330B7EB54BA1A678A52 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		FC002330B7EB54BA1A678A52 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		FCCFADC565F353F6B246D5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEFDA8EB8BC2748346C150D /* TutorialDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDialogView.swift; sourceTree = "<group>"; };
 		FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMessageUtil.swift; sourceTree = "<group>"; };
@@ -510,6 +514,7 @@
 				EFB62B35343D3B9D588CE00D /* UIView+Extension.swift */,
 				F570717B24FD5D8F00EC23CE /* UIViewController+ErrorDialog.swift */,
 				F5962F182501801F00D4CE82 /* UIView+Animation.swift */,
+				F51BB526250E140D00ACED29 /* Loadable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -639,14 +644,15 @@
 				F509CEE924F278680048746A /* AuthUserDialog.swift */,
 				FF0C47C9B4B05362BFE65037 /* SwiftMessageUtil.swift */,
 				E5A47FB76F07ED11F12612D2 /* GradationView.swift */,
-				FC002330B7EB54BA1A678A52 /* Indicator.swift */,
-				DCE5363852AFE3955D415435 /* Indicator.xib */,
+				FC002330B7EB54BA1A678A52 /* IndicatorView.swift */,
+				DCE5363852AFE3955D415435 /* IndicatorView.xib */,
 				0D1D66C79E63AE7F919948C8 /* ArticleView */,
 				3C1E8E758CB56AF3FB8F4314 /* GraphView */,
 				53DD788A5AFF422B642A25E1 /* NoContentView */,
 				D83AD67532647F3EE2729204 /* OptionDialog */,
 				7CC734135FD3712B2DFDF0CE /* TutorialDialog */,
 				7774B6616A5C37B69A43313B /* WebTooBar */,
+				F51BB524250E138E00ACED29 /* LoadingView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -846,7 +852,7 @@
 				7A6905722A7EBB37FD9ECAE5 /* GoogleService-Info.plist in Resources */,
 				41D84831B7A96D0B5A4737F5 /* GraphView.xib in Resources */,
 				D41E42DC5848327A22CF34A7 /* Home.storyboard in Resources */,
-				46675089CE4C4BB6512A07D6 /* Indicator.xib in Resources */,
+				46675089CE4C4BB6512A07D6 /* IndicatorView.xib in Resources */,
 				DE1CC6D3F2AF8663AFFB5320 /* ItemOption.storyboard in Resources */,
 				33DC897B3E790F2208EB7BBD /* LaunchScreen.storyboard in Resources */,
 				0687B889F903F03CC9FE23A6 /* NoFinishedListItemView.xib in Resources */,
@@ -978,6 +984,7 @@
 				D5968D84822EBD27342DB8BC /* ArticleWebModel.swift in Sources */,
 				F509CEE824EACF2F0048746A /* ItemViewerUseCase.swift in Sources */,
 				F535AEA724AB784200FCB375 /* AuthUseCase.swift in Sources */,
+				F51BB527250E140D00ACED29 /* Loadable.swift in Sources */,
 				F08D99D8255EFAFF03AD5B2F /* ArticleWebPresenter.swift in Sources */,
 				51D21E34DA0887892A32CBA1 /* ArticleWebVC.swift in Sources */,
 				1E0F3C23FBCF451F79689A3C /* Constant.swift in Sources */,
@@ -1003,11 +1010,12 @@
 				F509CEEA24F278680048746A /* AuthUserDialog.swift in Sources */,
 				F7F97F5544AA97CAF7318105 /* HomeVC.swift in Sources */,
 				F5AAE88F24E04AC6004DE177 /* AuthUseCaseProtocol.swift in Sources */,
-				F1A402723B35C234ADE3153E /* Indicator.swift in Sources */,
+				F1A402723B35C234ADE3153E /* IndicatorView.swift in Sources */,
 				D03DFC12BFE2E87FF9D0722D /* ItemOptionVC.swift in Sources */,
 				AFF330D97678CC4F1997A4CF /* NoFinishedListItemView.swift in Sources */,
 				F5AAE88B24E04A57004DE177 /* FirestoreClientProtocol.swift in Sources */,
 				DF24E97DAD1B0A706402D06C /* NoReadingListItemView.swift in Sources */,
+				F51BB525250E138E00ACED29 /* LoadingView.swift in Sources */,
 				F570712F24FAC87200EC23CE /* Validators.swift in Sources */,
 				F535AEA824AB784400FCB375 /* ReadingListUseCase.swift in Sources */,
 				0E39BBD0C8FAC0355536B24D /* Notification+Extension.swift in Sources */,

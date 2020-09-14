@@ -37,13 +37,23 @@
                                     <constraint firstItem="0JP-n6-3tT" firstAttribute="top" secondItem="hol-60-W9X" secondAttribute="top" constant="24" id="Mpg-ne-7Ge"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="まだ読み終わった記事はありません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzJ-cY-8df">
+                                <rect key="frame" x="16" y="342" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="tXP-Mz-3G4" firstAttribute="trailing" secondItem="vzJ-cY-8df" secondAttribute="trailing" constant="16" id="3GL-K6-yaZ"/>
                             <constraint firstItem="MLw-pu-aMC" firstAttribute="top" secondItem="hol-60-W9X" secondAttribute="bottom" id="DoD-Oa-eg3"/>
                             <constraint firstItem="MLw-pu-aMC" firstAttribute="trailing" secondItem="tXP-Mz-3G4" secondAttribute="trailing" id="Iar-FQ-BXq"/>
                             <constraint firstItem="hol-60-W9X" firstAttribute="top" secondItem="tXP-Mz-3G4" secondAttribute="top" id="OdW-5W-px5"/>
                             <constraint firstItem="tXP-Mz-3G4" firstAttribute="trailing" secondItem="hol-60-W9X" secondAttribute="trailing" id="Wnd-Hx-6J2"/>
+                            <constraint firstItem="vzJ-cY-8df" firstAttribute="top" secondItem="hol-60-W9X" secondAttribute="bottom" constant="200" id="Y2z-X4-HzX"/>
+                            <constraint firstItem="vzJ-cY-8df" firstAttribute="centerX" secondItem="bb4-rD-K7C" secondAttribute="centerX" id="d3n-jZ-laL"/>
+                            <constraint firstItem="vzJ-cY-8df" firstAttribute="leading" secondItem="tXP-Mz-3G4" secondAttribute="leading" constant="16" id="kEB-Aq-m6Z"/>
                             <constraint firstAttribute="bottom" secondItem="MLw-pu-aMC" secondAttribute="bottom" id="oNf-2P-hcA"/>
                             <constraint firstItem="hol-60-W9X" firstAttribute="leading" secondItem="tXP-Mz-3G4" secondAttribute="leading" id="ppL-o2-0hm"/>
                             <constraint firstItem="MLw-pu-aMC" firstAttribute="leading" secondItem="tXP-Mz-3G4" secondAttribute="leading" id="zJ7-Ep-Gag"/>
@@ -52,6 +62,7 @@
                     </view>
                     <connections>
                         <outlet property="articleTableView" destination="MLw-pu-aMC" id="Thg-Gy-48E"/>
+                        <outlet property="noContentLabel" destination="vzJ-cY-8df" id="IAb-Wv-vJC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJO-J7-ezU" userLabel="First Responder" sceneMemberID="firstResponder"/>

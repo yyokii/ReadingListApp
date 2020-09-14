@@ -1,5 +1,5 @@
 //
-//  Indicator.swift
+//  IndicatorView.swift
 //  ReadingList
 //
 //  Created by Yoki Higashihara on 2019/07/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class Indicator: UIView {
+final class IndicatorView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
@@ -22,12 +22,35 @@ final class Indicator: UIView {
         loadNib()
     }
     
-    func loadNib() {
+    private func loadNib() {
         if let view = Bundle(for: type(of: self)).loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? UIView {
-            view.frame = self.bounds
             configureCircleView()
             self.tag = Constant.ViewTag.indicator
             self.addSubview(view)
+        }
+    }
+    
+    func showIndicator(to vc: UIViewController) {
+        
+        guard let keyWindow = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        frame = keyWindow.frame
+        center = keyWindow.center
+        
+        if let _ = keyWindow.findSubview(withTag: Constant.ViewTag.indicator) {
+            return
+        }
+        
+        keyWindow.animateAddSubView(addTargetView: self, completion: nil)
+    }
+    
+    static func hideIndicator() {
+     
+        if let indicatorView = UIApplication.shared.keyWindow?.findSubview(withTag: Constant.ViewTag.indicator) as? IndicatorView {
+            
+            indicatorView.animateRemoveSubView(completion: nil)
         }
     }
     

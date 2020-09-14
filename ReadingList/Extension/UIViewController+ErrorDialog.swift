@@ -13,6 +13,12 @@ protocol CanDisplayErrorDialog {
     func showErrorDialog(message: String, buttonAction: (() -> Void)?)
 }
 
+protocol CanDisplayIndicator {
+    
+    func showIndicator()
+    func hideIndicator()
+}
+
 extension UIViewController {
 
     func showErrorDialog(message: String, buttonAction: (() -> Void)?) {
@@ -24,5 +30,14 @@ extension UIViewController {
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showIndicator() {
+        let indicator = IndicatorView()
+        indicator.showIndicator(to: self)
+    }
+    
+    func hideIndicator() {
+        IndicatorView.hideIndicator()
     }
 }

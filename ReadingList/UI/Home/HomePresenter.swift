@@ -24,7 +24,7 @@ protocol HomePresenterInput: AnyObject {
     func viewWillAppear()
 }
 
-protocol  HomePresenterOutput: CanDisplayErrorDialog {
+protocol  HomePresenterOutput: CanDisplayErrorDialog, Loadable {
     func displayTutorialDialog()
     func displayReadingListDialog(item: ReadingListItem)
     func displayFinishedListDialog(item: ReadingListItem)
@@ -219,6 +219,7 @@ extension  HomePresenter: HomePresenterInput {
     }
     
     func viewWillAppear() {
+        view.showLoadingView()
         authUsecase.fetchUser()
     }
 }
@@ -248,17 +249,19 @@ extension HomePresenter: ReadingListUseCaseOutput {
     }
     
     func didUpdateReadingItemsData(_ items: [ReadingListItem]) {
+        view.hideLoadingView()
         let viewData = GraphViewData(items: items)
         view.displayUserData(viewData: viewData)
         view.showPopTip()
     }
     
     func didUpdateFinishedReadingItems(_ items: [ReadingListItem]) {
+        view.hideLoadingView()
         view.updateFinishedReadingList(items: items)
     }
     
     func didUpdateReadingItemsWillDelete(_ items: [ReadingListItem]) {
-        
+        view.hideLoadingView()
         if items.count > 0 {
             view.updateTodayDeleteList(items: items)
         } else {
