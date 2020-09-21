@@ -9,7 +9,6 @@
 import UIKit
 import Social
 import MobileCoreServices
-import FirebaseFirestore
 
 class ShareViewController: SLComposeServiceViewController {
     

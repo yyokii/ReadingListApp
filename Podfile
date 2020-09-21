@@ -21,7 +21,5 @@ end
 target 'ShareExtension' do
 
   use_frameworks!
-  pod 'AlamofireImage'
-  pod 'FirebaseFirestoreSwift'
-
+  
 end

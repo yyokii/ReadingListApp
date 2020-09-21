@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Application {
+final class Application {
 
     static let shared = Application()
     private init() {}
@@ -28,6 +28,28 @@ class Application {
         homeNav.viewControllers = [homeVC]
         window.rootViewController = homeNav
     }
+
+//    // authのところ消して、nilで落ちるの確認して、builクラス作成するか
+//    
+//    // -- Interface Adapters
+//    let userGateway = UserGateway()
+//    let readingListGateway = ReadingListGateway()
+//    let localPushGateway = LocalPushGateway()
+//
+//    // -- Framework & Drivers
+//    let fireStoreClient = FireStoreClient()
+//    let userDefaultsDataStore = UserDefaultsDataStore()
+//    let notificationClient = NotificationClient()
+//    
+//    
+//    func getAuth() {
+//        // -- Use Case
+//        let authUseCase = AuthUseCase()
+//        // Interface Adaptersとのバインド
+//        userGateway.fireStoreClient = fireStoreClient
+//        // Use Caseとのバインド
+//        authUseCase.userGateway = userGateway
+//    }
 
     private func buildLayer() {
 

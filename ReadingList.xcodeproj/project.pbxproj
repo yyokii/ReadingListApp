@@ -105,11 +105,10 @@
 		F5AAE84424D8603A004DE177 /* FireStoreKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */; };
 		F5AAE84724DEA7FF004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F5AAE84924DEC0A1004DE177 /* UserGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84824DEC0A1004DE177 /* UserGateway.swift */; };
-		F5AAE87724DFC119004DE177 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F5AAE86D24DFC119004DE177 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5AAE87724DFC119004DE177 /* YOMU.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F5AAE86D24DFC119004DE177 /* YOMU.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F5AAE87C24DFC14A004DE177 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE87B24DFC14A004DE177 /* ShareViewController.swift */; };
 		F5AAE88124DFC164004DE177 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5AAE87F24DFC164004DE177 /* MainInterface.storyboard */; };
 		F5AAE88224DFC25F004DE177 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7EAD736159B32B365DEC01 /* Constant.swift */; };
-		F5AAE88424DFC270004DE177 /* ReadingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE84524D866DF004DE177 /* ReadingListItem.swift */; };
 		F5AAE88524DFC274004DE177 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFFDE9209722443F9C2DFFA /* UserDefaultManager.swift */; };
 		F5AAE88724DFD447004DE177 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85698107CB94F3D56AB48F0E /* Date+Extension.swift */; };
 		F5AAE88924E048D1004DE177 /* ReadingListGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AAE88824E048D0004DE177 /* ReadingListGateway.swift */; };
@@ -143,7 +142,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				F5AAE87724DFC119004DE177 /* ShareExtension.appex in Embed App Extensions */,
+				F5AAE87724DFC119004DE177 /* YOMU.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +254,7 @@
 		F5AAE84324D86039004DE177 /* FireStoreKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreKeyConstant.swift; sourceTree = "<group>"; };
 		F5AAE84524D866DF004DE177 /* ReadingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListItem.swift; sourceTree = "<group>"; };
 		F5AAE84824DEC0A1004DE177 /* UserGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGateway.swift; sourceTree = "<group>"; };
-		F5AAE86D24DFC119004DE177 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5AAE86D24DFC119004DE177 /* YOMU.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = YOMU.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AAE87B24DFC14A004DE177 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		F5AAE87D24DFC15A004DE177 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5AAE88024DFC164004DE177 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -633,7 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				B514E700AD80E4BE6E20D634 /* ReadingList.app */,
-				F5AAE86D24DFC119004DE177 /* ShareExtension.appex */,
+				F5AAE86D24DFC119004DE177 /* YOMU.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -792,7 +791,7 @@
 			);
 			name = ShareExtension;
 			productName = ShareExtension;
-			productReference = F5AAE86D24DFC119004DE177 /* ShareExtension.appex */;
+			productReference = F5AAE86D24DFC119004DE177 /* YOMU.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1054,7 +1053,6 @@
 			files = (
 				F5AAE88724DFD447004DE177 /* Date+Extension.swift in Sources */,
 				F5AAE87C24DFC14A004DE177 /* ShareViewController.swift in Sources */,
-				F5AAE88424DFC270004DE177 /* ReadingListItem.swift in Sources */,
 				F5AAE88524DFC274004DE177 /* UserDefaultManager.swift in Sources */,
 				F5AAE88224DFC25F004DE177 /* Constant.swift in Sources */,
 			);
@@ -1099,6 +1097,7 @@
 				CODE_SIGN_ENTITLEMENTS = ReadingList/ReadingList.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EAZT2D654U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1111,6 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1184,6 +1184,7 @@
 				CODE_SIGN_ENTITLEMENTS = ReadingList/ReadingList.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EAZT2D654U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1196,6 +1197,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1274,6 +1276,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = EAZT2D654U;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1286,8 +1289,9 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList.ShareExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YOMU;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1302,6 +1306,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = EAZT2D654U;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1310,9 +1315,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = yyokii.ReadingList.ShareExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YOMU;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

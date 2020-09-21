@@ -3,22 +3,9 @@ body:
                    …
 version: 0.20200225.0
 
-name: abseil, nameSpecified: 
-body: 
-                   …
-version: 0.20200225.0
-
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014-2…
 version: 5.1.0
-
-name: Alamofire, nameSpecified: 
-body: Copyright (c) 2014-2…
-version: 5.1.0
-
-name: AlamofireImage, nameSpecified: 
-body: Copyright (c) 2015 A…
-version: 4.1.0
 
 name: AlamofireImage, nameSpecified: 
 body: Copyright (c) 2015 A…
@@ -27,10 +14,6 @@ version: 4.1.0
 name: AMPopTip, nameSpecified: 
 body: The MIT License (MIT…
 version: 4.5.0
-
-name: BoringSSL-GRPC, nameSpecified: 
-body: BoringSSL is a fork …
-version: 0.0.7
 
 name: BoringSSL-GRPC, nameSpecified: 
 body: BoringSSL is a fork …
@@ -55,16 +38,6 @@ body:
                    …
 version: 6.8.0
 
-name: FirebaseCore, nameSpecified: 
-body: 
-                   …
-version: 6.8.0
-
-name: FirebaseCoreDiagnostics, nameSpecified: 
-body: 
-                   …
-version: 1.4.0
-
 name: FirebaseCoreDiagnostics, nameSpecified: 
 body: 
                    …
@@ -74,16 +47,6 @@ name: FirebaseFirestore, nameSpecified:
 body: 
                    …
 version: 1.16.0
-
-name: FirebaseFirestore, nameSpecified: 
-body: 
-                   …
-version: 1.16.0
-
-name: FirebaseFirestoreSwift, nameSpecified: 
-body: 
-                   …
-version: 0.3.0
 
 name: FirebaseFirestoreSwift, nameSpecified: 
 body: 
@@ -110,16 +73,6 @@ body:
                    …
 version: 6.2.1
 
-name: GoogleDataTransport, nameSpecified: 
-body: 
-                   …
-version: 6.2.1
-
-name: GoogleDataTransportCCTSupport, nameSpecified: 
-body: 
-                   …
-version: 3.2.0
-
 name: GoogleDataTransportCCTSupport, nameSpecified: 
 body: 
                    …
@@ -130,25 +83,10 @@ body:
                    …
 version: 6.6.0
 
-name: GoogleUtilities, nameSpecified: 
-body: 
-                   …
-version: 6.6.0
-
 name: gRPC-C++, nameSpecified: 
 body: 
                    …
 version: 
-
-name: gRPC-C++, nameSpecified: 
-body: 
-                   …
-version: 
-
-name: gRPC-Core, nameSpecified: 
-body: 
-                   …
-version: 1.28.2
 
 name: gRPC-Core, nameSpecified: 
 body: 
@@ -164,10 +102,6 @@ name: leveldb-library, nameSpecified:
 body: Copyright (c) 2011 T…
 version: 1.22
 
-name: leveldb-library, nameSpecified: 
-body: Copyright (c) 2011 T…
-version: 1.22
-
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
@@ -177,15 +111,6 @@ version: 2.15.1
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
 version: 1.30905.0
-
-name: nanopb, nameSpecified: 
-body: Copyright (c) 2011 P…
-version: 1.30905.0
-
-name: PromisesObjC, nameSpecified: 
-body: 
-                   …
-version: 1.2.9
 
 name: PromisesObjC, nameSpecified: 
 body: 

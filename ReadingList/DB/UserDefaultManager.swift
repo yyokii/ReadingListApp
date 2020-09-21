@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
-import FirebaseFirestore
 
 // TODO: これも消したい userdefaultsdatastoreに移行したい
 class UserDefaultManager {
