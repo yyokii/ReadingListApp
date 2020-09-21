@@ -10,96 +10,36 @@ options:
   defaultConfig: Release
   groupSortPosition: bottom
   transitivelyLinkDependencies: false
-settings:
-  configs:
-    Debug:
-      CODE_SIGN_IDENTITY: iPhone Developer
-      GCC_PREPROCESSOR_DEFINITIONS:
-      - $(inherited)
-      - DEBUG=1
-      IPHONEOS_DEPLOYMENT_TARGET: 11.0
-      MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
-      MTL_FAST_MATH: YES
-      SDKROOT: iphoneos
-      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
-      SWIFT_OPTIMIZATION_LEVEL: -Onone
-      SWIFT_VERSION: 5.0
-    Release:
-      CODE_SIGN_IDENTITY: iPhone Developer
-      GCC_OPTIMIZATION_LEVEL: 0
-      IPHONEOS_DEPLOYMENT_TARGET: 11.0
-      MTL_FAST_MATH: YES
-      SDKROOT: iphoneos
-      SWIFT_COMPILATION_MODE: wholemodule
-      SWIFT_OPTIMIZATION_LEVEL: -O
-      SWIFT_VERSION: 5.0
+# settings:
+#   configs:
+#     Debug:
+#       CODE_SIGN_IDENTITY: iPhone Developer
+#       GCC_PREPROCESSOR_DEFINITIONS:
+#       - $(inherited)
+#       - DEBUG=1
+#       IPHONEOS_DEPLOYMENT_TARGET: 12.0
+#       MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+#       MTL_FAST_MATH: YES
+#       SDKROOT: iphoneos
+#       SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+#       SWIFT_OPTIMIZATION_LEVEL: -Onone
+#       SWIFT_VERSION: 5.0
+#     Release:
+#       CODE_SIGN_IDENTITY: iPhone Developer
+#       GCC_OPTIMIZATION_LEVEL: 0
+#       IPHONEOS_DEPLOYMENT_TARGET: 12.0
+#       MTL_FAST_MATH: YES
+#       SDKROOT: iphoneos
+#       SWIFT_COMPILATION_MODE: wholemodule
+#       SWIFT_OPTIMIZATION_LEVEL: -O
+#       SWIFT_VERSION: 5.0
 targets:
-  Entity:
-    platform: iOS
-    settings:
-      configs:
-        Debug:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          GCC_PREPROCESSOR_DEFINITIONS:
-          - DEBUG=1
-          - $(inherited)
-          INFOPLIST_FILE: Entity/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.Entity
-          SWIFT_VERSION: 5.0
-        Release:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          INFOPLIST_FILE: Entity/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          MTL_ENABLE_DEBUG_INFO: NO
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.Entity
-          SWIFT_VERSION: 5.0
-    sources:
-    - name: Entity
-      path: Entity
-    type: framework
-  GateWay:
-    platform: iOS
-    settings:
-      configs:
-        Debug:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          GCC_PREPROCESSOR_DEFINITIONS:
-          - DEBUG=1
-          - $(inherited)
-          INFOPLIST_FILE: GateWay/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.GateWay
-          SWIFT_VERSION: 5.0
-        Release:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          INFOPLIST_FILE: GateWay/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          MTL_ENABLE_DEBUG_INFO: NO
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.GateWay
-          SWIFT_OPTIMIZATION_LEVEL: -Onone
-          SWIFT_VERSION: 5.0
-    sources:
-    - name: GateWay
-      path: GateWay
-    - headerVisibility: public
-      path: GateWay/GateWay.h
-    type: framework
   ReadingList:
     dependencies:
     - sdk: WebKit.framework
-    - framework: Pods_ReadingList.framework
-    - framework: Entity.framework
-    - framework: UseCase.framework
-    - framework: GateWay.framework
+    - target: ShareExtension
+      codeSign: false
+      embed: true
     platform: iOS
     postbuildScripts:
     - inputFiles:
@@ -149,7 +89,7 @@ targets:
           - $(inherited)
           - '"."'
           INFOPLIST_FILE: ReadingList/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
+          IPHONEOS_DEPLOYMENT_TARGET: 12.0
           PRODUCT_BUNDLE_IDENTIFIER: yyokii.ReadingList
           PROVISIONING_PROFILE_SPECIFIER: 
           SWIFT_VERSION: 5.2.4
@@ -163,7 +103,7 @@ targets:
           - $(inherited)
           - '"."'
           INFOPLIST_FILE: ReadingList/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
+          IPHONEOS_DEPLOYMENT_TARGET: 12.0
           PRODUCT_BUNDLE_IDENTIFIER: yyokii.ReadingList
           PROVISIONING_PROFILE_SPECIFIER: 
           SWIFT_VERSION: 5.2.4
@@ -171,6 +111,12 @@ targets:
     sources:
     - name: ReadingList
       path: ReadingList
+    - name: Entity
+      path: Entity
+    - name: Gateway
+      path: Gateway
+    - name: UseCase
+      path: UseCase
     type: application
   ShareExtension:
     platform: iOS
@@ -184,7 +130,7 @@ targets:
           - $(inherited)
           - '"."'
           INFOPLIST_FILE: ShareExtension/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
+          IPHONEOS_DEPLOYMENT_TARGET: 12.0
           LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
           - '@executable_path/Frameworks'
@@ -201,7 +147,7 @@ targets:
           - $(inherited)
           - '"."'
           INFOPLIST_FILE: ShareExtension/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
+          IPHONEOS_DEPLOYMENT_TARGET: 12.0
           LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
           - '@executable_path/Frameworks'
@@ -211,39 +157,8 @@ targets:
           SWIFT_VERSION: 5.2.4
           TARGETED_DEVICE_FAMILY: 1
     sources:
-    - name: Constants
-      path: ReadingList/Constants
+    - name: ShareExtension
+      path: ShareExtension
+    - ReadingList/Constants
     - ReadingList/DB/UserDefaultManager.swift
-    - ReadingList/Extension/Date+Extension.swift
-    - ReadingList/Support/Color.xcassets
-    - ShareExtension/ShareViewController.swift
     type: app-extension
-  UseCase:
-    platform: iOS
-    settings:
-      configs:
-        Debug:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          GCC_PREPROCESSOR_DEFINITIONS:
-          - DEBUG=1
-          - $(inherited)
-          INFOPLIST_FILE: UseCase/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.UseCase
-          SWIFT_VERSION: 5.0
-        Release:
-          CODE_SIGN_IDENTITY: iPhone Developer
-          CODE_SIGN_STYLE: Automatic
-          DEVELOPMENT_TEAM: EAZT2D654U
-          INFOPLIST_FILE: UseCase/Info.plist
-          IPHONEOS_DEPLOYMENT_TARGET: 11.0
-          MTL_ENABLE_DEBUG_INFO: NO
-          PRODUCT_BUNDLE_IDENTIFIER: yyokii.UseCase
-          SWIFT_OPTIMIZATION_LEVEL: -Onone
-          SWIFT_VERSION: 5.0
-    sources:
-    - name: UseCase
-      path: UseCase
-    type: framework

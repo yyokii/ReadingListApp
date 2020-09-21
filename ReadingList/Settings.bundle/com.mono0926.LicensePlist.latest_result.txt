@@ -5,7 +5,7 @@ version: 0.20200225.0
 
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014-2…
-version: 5.1.0
+version: 5.2.2
 
 name: AlamofireImage, nameSpecified: 
 body: Copyright (c) 2015 A…
@@ -62,7 +62,7 @@ name: FloatingPanel, nameSpecified:
 body: MIT License
 
 Copyrig…
-version: 1.7.4
+version: 1.7.6
 
 name: GoogleAppMeasurement, nameSpecified: 
 body: Copyright 2020 Googl…
@@ -106,7 +106,7 @@ name: LicensePlist, nameSpecified:
 body: MIT License
 
 Copyrig…
-version: 2.15.1
+version: 2.16.0
 
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
@@ -121,13 +121,13 @@ name: Realm, nameSpecified:
 body: TABLE OF CONTENTS
 
 1…
-version: 4.4.1
+version: 5.4.2
 
 name: RealmSwift, nameSpecified: 
 body: TABLE OF CONTENTS
 
 1…
-version: 4.4.1
+version: 5.4.2
 
 name: SwiftLinkPreview, nameSpecified: 
 body: The MIT License (MIT…
@@ -135,10 +135,10 @@ version: 3.1.0
 
 name: SwiftMessages, nameSpecified: 
 body: Copyright (c) 2016 S…
-version: 7.0.1
+version: 8.0.2
 
 name: xcodegen, nameSpecified: , owner: yonaskolb, version: 2.16.0
 
 add-version-numbers: false
 
-LicensePlist Version: 2.15.0
+LicensePlist Version: 2.16.0
